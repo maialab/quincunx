@@ -7,7 +7,7 @@ as_tidy_tables_scores <- function(tbl_json) {
   scores <- unwrap_score(tbl_json2)
 
   publications <- tbl_json2 %>%
-    enter('publication', iterable = FALSE) %>%
+    tidyjson::enter_object('publication') %>%
     unwrap_publication()
 
   samples <- tbl_json2 %>%
@@ -20,7 +20,8 @@ as_tidy_tables_scores <- function(tbl_json) {
     unwrap_scores_cohorts()
 
   traits <- tbl_json2 %>%
-    enter('trait_efo') %>%
+    tidyjson::enter_object('trait_efo') %>%
+    tidyjson::gather_array(column.name = 'trait_efo_id') %>%
     dplyr::select(-'trait_efo_id') %>%
     unwrap_efotrait()
 
@@ -65,12 +66,14 @@ unwrap_score <- function(tbl_json) {
 unwrap_scores_samples <- function(tbl_json) {
 
   samples_variants <- tbl_json %>%
-    enter('samples_variants', column_id_name = 'sample_id') %>%
+    tidyjson::enter_object('samples_variants') %>%
+    tidyjson::gather_array(column.name = 'sample_id') %>%
     tibble::add_column(stage = 'gwas') %>%
     unwrap_sample()
 
   samples_training <- tbl_json %>%
-    enter('samples_training', column_id_name = 'sample_id') %>%
+    tidyjson::enter_object('samples_training') %>%
+    tidyjson::gather_array(column.name = 'sample_id') %>%
     tibble::add_column(stage = 'development') %>%
     unwrap_sample()
 
@@ -84,12 +87,14 @@ unwrap_scores_samples <- function(tbl_json) {
 unwrap_scores_demographics <- function(tbl_json) {
 
   demographics_variants <- tbl_json %>%
-    enter('samples_variants', column_id_name = 'sample_id') %>%
+    tidyjson::enter_object('samples_variants') %>%
+    tidyjson::gather_array(column.name = 'sample_id') %>%
     tibble::add_column(stage = 'gwas') %>%
     unwrap_demographics()
 
   demographics_training <- tbl_json %>%
-    enter('samples_training', column_id_name = 'sample_id') %>%
+    tidyjson::enter_object('samples_training') %>%
+    tidyjson::gather_array(column.name = 'sample_id') %>%
     tibble::add_column(stage = 'development') %>%
     unwrap_demographics()
 
@@ -103,7 +108,8 @@ unwrap_scores_demographics <- function(tbl_json) {
 unwrap_scores_cohorts <- function(tbl_json) {
 
   cohorts_variants <- tbl_json %>%
-    enter('samples_variants', column_id_name = 'sample_id') %>%
+    tidyjson::enter_object('samples_variants') %>%
+    tidyjson::gather_array(column.name = 'sample_id') %>%
     tibble::add_column(stage = 'gwas') %>%
     tidyjson::enter_object('cohorts') %>%
     tidyjson::gather_array(column.name = 'cohort_id') %>%
@@ -111,7 +117,8 @@ unwrap_scores_cohorts <- function(tbl_json) {
     unwrap_cohort()
 
   cohorts_training <- tbl_json %>%
-    enter('samples_training', column_id_name = 'sample_id') %>%
+    tidyjson::enter_object('samples_training') %>%
+    tidyjson::gather_array(column.name = 'sample_id') %>%
     tibble::add_column(stage = 'development') %>%
     tidyjson::enter_object('cohorts') %>%
     tidyjson::gather_array(column.name = 'cohort_id') %>%

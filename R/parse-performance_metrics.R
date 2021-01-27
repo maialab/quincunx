@@ -18,17 +18,17 @@ unpack_performance_metric <- function(tbl_json) {
   performance_metrics <- unwrap_performance_metric(tbl_json)
 
   publications <- tbl_json %>%
-    enter('publication', iterable = FALSE) %>%
+    tidyjson::enter_object('publication') %>%
     unwrap_publication()
 
   sample_sets <-
     tbl_json %>%
-    enter('sampleset', iterable = FALSE) %>%
+    tidyjson::enter_object('sampleset') %>%
     unwrap_sample_set()
 
   samples <-
     tbl_json %>%
-    enter('sampleset', iterable = FALSE) %>%
+    tidyjson::enter_object('sampleset') %>%
     tidyjson::spread_values(pss_id = tidyjson::jstring('id')) %>%
     tidyjson::enter_object('samples') %>%
     tidyjson::gather_array(column.name = 'sample_id') %>%
@@ -36,7 +36,7 @@ unpack_performance_metric <- function(tbl_json) {
 
   demographics <-
     tbl_json %>%
-    enter('sampleset', iterable = FALSE) %>%
+    tidyjson::enter_object('sampleset') %>%
     tidyjson::spread_values(pss_id = tidyjson::jstring('id')) %>%
     tidyjson::enter_object('samples') %>%
     tidyjson::gather_array(column.name = 'sample_id') %>%
@@ -44,7 +44,7 @@ unpack_performance_metric <- function(tbl_json) {
 
   cohorts <-
     tbl_json %>%
-    enter('sampleset', iterable = FALSE) %>%
+    tidyjson::enter_object('sampleset') %>%
     tidyjson::spread_values(pss_id = tidyjson::jstring('id')) %>%
     tidyjson::enter_object('samples') %>%
     tidyjson::gather_array(column.name = 'sample_id') %>%
@@ -54,18 +54,21 @@ unpack_performance_metric <- function(tbl_json) {
     unwrap_cohort()
 
   pgs_effect_sizes <- tbl_json %>%
-    enter('performance_metrics', iterable = FALSE) %>%
-    enter('effect_sizes', column_id_name = 'effect_size_id') %>%
+    tidyjson::enter_object('performance_metrics') %>%
+    tidyjson::enter_object('effect_sizes') %>%
+    tidyjson::gather_array(column.name = 'effect_size_id') %>%
     unwrap_metric()
 
   pgs_classification_metrics <- tbl_json %>%
-    enter('performance_metrics', iterable = FALSE) %>%
-    enter('class_acc', column_id_name = 'classification_metrics_id') %>%
+    tidyjson::enter_object('performance_metrics') %>%
+    tidyjson::enter_object('class_acc') %>%
+    tidyjson::gather_array(column.name = 'classification_metrics_id') %>%
     unwrap_metric()
 
   pgs_other_metrics <- tbl_json %>%
-    enter('performance_metrics', iterable = FALSE) %>%
-    enter('othermetrics', column_id_name = 'other_metrics_id') %>%
+    tidyjson::enter_object('performance_metrics') %>%
+    tidyjson::enter_object('othermetrics') %>%
+    tidyjson::gather_array(column.name = 'other_metrics_id') %>%
     unwrap_metric()
 
   list(

@@ -23,7 +23,8 @@ unwrap_cohort_extended <- function(tbl_json) {
     tbl_json %>%
     tidyjson::spread_values(cohort_symbol = tidyjson::jstring('name_short')) %>%
     tidyjson::enter_object('associated_pgs_ids') %>%
-    enter('evaluation') %>%
+    tidyjson::enter_object('evaluation') %>%
+    tidyjson::gather_array(column.name = 'evaluation_id') %>%
     dplyr::select(-'evaluation_id') %>%
     tidyjson::append_values_string(column.name = 'pgs_id') %>%
     tibble::add_column(stage = 'evaluation') %>%
@@ -33,7 +34,8 @@ unwrap_cohort_extended <- function(tbl_json) {
     tbl_json %>%
     tidyjson::spread_values(cohort_symbol = tidyjson::jstring('name_short')) %>%
     tidyjson::enter_object('associated_pgs_ids') %>%
-    enter('development') %>%
+    tidyjson::enter_object('development') %>%
+    tidyjson::gather_array(column.name = 'development_id') %>%
     dplyr::select(-'development_id') %>%
     tidyjson::append_values_string(column.name = 'pgs_id') %>%
     tibble::add_column(stage = 'development') %>%

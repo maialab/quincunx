@@ -1,12 +1,12 @@
 unwrap_demographics <- function(tbl_json) {
 
   sample_age <- tbl_json %>%
-    enter('sample_age', iterable = FALSE) %>%
+    tidyjson::enter_object('sample_age') %>%
     unwrap_demographic() %>%
     tibble::add_column(variable = 'age', .before = 'estimate_type')
 
   followup_time <- tbl_json %>%
-    enter('followup_time', iterable = FALSE) %>%
+    tidyjson::enter_object('followup_time') %>%
     unwrap_demographic() %>%
     tibble::add_column(variable = 'follow_up_time', .before = 'estimate_type')
 
@@ -29,7 +29,7 @@ unwrap_demographic <- function(tbl_json) {
       variability_type = tidyjson::jstring('variability_type'),
       variability = tidyjson::jnumber('variability')
     ) %>%
-    enter('interval', iterable = FALSE) %>%
+    tidyjson::enter_object('interval') %>%
     unwrap_interval()
 
   return(tbl1)

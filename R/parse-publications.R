@@ -38,7 +38,8 @@ unwrap_publication_pgs_ids <- function(tbl_json) {
 
   tbl_json %>%
     tidyjson::spread_values(id = tidyjson::jstring('id')) %>%
-    enter('associated_pgs_ids') %>%
+    tidyjson::enter_object('associated_pgs_ids') %>%
+    tidyjson::gather_array(column.name = 'associated_pgs_ids_id') %>%
     dplyr::select(-'associated_pgs_ids_id') %>%
     tidyjson::append_values_string('pgs_id') %>%
     tidyjson::as_tibble()

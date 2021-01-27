@@ -27,35 +27,40 @@ unwrap_traits <- function(tbl_json) {
 
   pgs_ids <- tbl_json %>%
     tidyjson::spread_values(efo_id = tidyjson::jstring('id')) %>%
-    enter('associated_pgs_ids') %>%
+    tidyjson::enter_object('associated_pgs_ids') %>%
+    tidyjson::gather_array(column.name = 'associated_pgs_ids_id') %>%
     dplyr::select(-'associated_pgs_ids_id') %>%
     tidyjson::append_values_string('pgs_id') %>%
     tidyjson::as_tibble()
 
   child_pgs_ids <- tbl_json %>%
     tidyjson::spread_values(efo_id = tidyjson::jstring('id')) %>%
-    enter('child_associated_pgs_ids') %>%
+    tidyjson::enter_object('child_associated_pgs_ids') %>%
+    tidyjson::gather_array(column.name = 'child_associated_pgs_ids_id') %>%
     dplyr::select(-'child_associated_pgs_ids_id') %>%
     tidyjson::append_values_string('child_pgs_id') %>%
     tidyjson::as_tibble()
 
   trait_categories <- tbl_json %>%
     tidyjson::spread_values(efo_id = tidyjson::jstring('id')) %>%
-    enter('trait_categories') %>%
+    tidyjson::enter_object('trait_categories') %>%
+    tidyjson::gather_array(column.name = 'trait_categories_id') %>%
     dplyr::select(-'trait_categories_id') %>%
     tidyjson::append_values_string('trait_categories') %>%
     tidyjson::as_tibble()
 
   trait_synonyms <- tbl_json %>%
     tidyjson::spread_values(efo_id = tidyjson::jstring('id')) %>%
-    enter('trait_synonyms') %>%
+    tidyjson::enter_object('trait_synonyms') %>%
+    tidyjson::gather_array(column.name = 'trait_synonyms_id') %>%
     dplyr::select(-'trait_synonyms_id') %>%
     tidyjson::append_values_string('trait_synonyms') %>%
     tidyjson::as_tibble()
 
   trait_mapped_terms <- tbl_json %>%
     tidyjson::spread_values(efo_id = tidyjson::jstring('id')) %>%
-    enter('trait_mapped_terms') %>%
+    tidyjson::enter_object('trait_mapped_terms') %>%
+    tidyjson::gather_array(column.name = 'trait_mapped_terms_id') %>%
     dplyr::select(-'trait_mapped_terms_id') %>%
     tidyjson::append_values_string('trait_mapped_terms') %>%
     tidyjson::as_tibble()
@@ -81,7 +86,8 @@ unwrap_traits2 <- function(tbl_json) {
     tbl_json %>%
     tidyjson::spread_values(parent_efo_id = tidyjson::jstring('id')) %>%
     tibble::add_column(is_child = TRUE) %>%
-    enter('child_traits') %>%
+    tidyjson::enter_object('child_traits') %>%
+    tidyjson::gather_array(column.name = 'child_traits_id') %>%
     dplyr::select(-'child_traits_id') %>%
     unwrap_traits()
 
