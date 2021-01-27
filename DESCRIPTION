@@ -1,0 +1,103 @@
+Package: quincunx
+Type: Package
+Title: REST API Client for the PGS Catalog
+Version: 0.1.0
+Authors@R: c(
+    person(given = "Ramiro", family = "Magno",
+      email = "ramiro.magno@gmail.com",
+      role = c("aut", "cre"),
+      comment = c(ORCID = "0000-0001-5226-3441")),
+    person(given = "Isabel", family = "Duarte",
+      email = "iduarte.scientist@gmail.com",
+      role = "aut",
+      comment = c(ORCID = "0000-0003-0060-2936")),
+    person(given = "Ana-Teresa", family = "Maia",
+      email = "maia.anateresa@gmail.com", role = "aut", 
+      comment = c(ORCID = "0000-0002-0454-9207")),
+    person("Centre for Biomedical Research, University of Algarve",
+    role = c("cph", "fnd"))
+    )
+Description: Programmatic access to the PGS Catalog.
+    This package provides easy access to PGS Catalog data by
+    accessing the REST API <https://www.pgscatalog.org/rest/>.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Suggests: 
+    testthat
+Imports: 
+    stringr,
+    magrittr,
+    vroom,
+    purrr,
+    glue,
+    dplyr,
+    tidyjson,
+    tibble,
+    lubridate,
+    rlang,
+    tidyr,
+    httr,
+    utils,
+    rvest,
+    progress,
+    methods
+Collate: 
+    'class-cohorts.R'
+    'class-performance_metrics.R'
+    'class-publications.R'
+    'class-releases.R'
+    'class-sample_sets.R'
+    'class-scores.R'
+    'class-trait_categories.R'
+    'class-traits.R'
+    'contains_question_mark.R'
+    'count.R'
+    'drop_metadata_cols.R'
+    'enter.R'
+    'first_non_na.R'
+    'generics.R'
+    'get.R'
+    'get_cohorts.R'
+    'get_column.R'
+    'get_performance_metrics.R'
+    'get_publications.R'
+    'get_releases.R'
+    'get_sample_sets.R'
+    'get_scores.R'
+    'get_trait_categories.R'
+    'get_traits.R'
+    'id_mapping.R'
+    'is_json_empty.R'
+    'is_paginated.R'
+    'is_pgs_id.R'
+    'messages.R'
+    'n_pages.R'
+    'nr_to_na.R'
+    'offsets.R'
+    'parse-cohorts.R'
+    'parse-performance_metrics.R'
+    'parse-publications.R'
+    'parse-releases.R'
+    'parse-sample_sets.R'
+    'parse-scores.R'
+    'parse-trait_categories.R'
+    'parse-traits.R'
+    'read_file_column_names.R'
+    'read_pgs_scoring_file.R'
+    'relocate_metadata_cols.R'
+    'remap_id.R'
+    'request.R'
+    's4-utils.R'
+    'sure.R'
+    'unpack.R'
+    'unwrap.R'
+    'unwrap_cohort.R'
+    'unwrap_demographics.R'
+    'unwrap_efotrait.R'
+    'unwrap_interval.R'
+    'unwrap_publication.R'
+    'unwrap_sample.R'
+    'utils-pipe.R'
+    'warnings.R'
