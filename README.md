@@ -29,6 +29,7 @@ turn is a key concept of genetics, namely, [Fisher’s infinitesimal
 model](https://doi.org/10.1016/j.tpb.2017.09.003)… which leads us to
 Polygenic Scores, the key concept of the PGS Catalog.
 
-The bird is a *Porphyrio porphyrio*, an emblematic species native to the
-Ria Formosa Natural Park, which is a wildlife reserve surrounding the
-University of Algarve, where the authors are affiliated.
+The bird in the hex sticker is a *Porphyrio porphyrio*, an emblematic
+species native to the Ria Formosa Natural Park, which is a wildlife
+reserve surrounding the University of Algarve, where the authors are
+affiliated.
