@@ -18,3 +18,17 @@ You can install the current version of quincunx with:
 
     # install.packages("remotes")
     remotes::install_github("ramiromagno/quincunx")
+
+## Package name and hex sticker
+
+The package name *quincunx* is another name for [Galton
+Board](https://en.wikipedia.org/wiki/Bean_machine), that so nicely
+exemplifies the [Central Limit
+Theorem](https://en.wikipedia.org/wiki/Central_limit_theorem), which in
+turn is a key concept of genetics, namely, [Fisher’s infinitesimal
+model](https://doi.org/10.1016/j.tpb.2017.09.003)… which leads us to
+Polygenic Scores, the key concept of the PGS Catalog.
+
+The bird is a *Porphyrio porphyrio*, an emblematic species native to the
+Ria Formosa Natural Park, which is a wildlife reserve surrounding the
+University of Algarve, where the authors are affiliated.

@@ -39,3 +39,4 @@ status code}.}
 Performs a \code{\link[httr]{GET}} request on the endpoint as specified by
 \code{resource_url}.
 }
+\keyword{internal}

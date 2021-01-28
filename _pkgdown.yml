@@ -1,0 +1,56 @@
+url: https://rmagno.eu/quincunx
+
+reference:
+- title: "Get PGS Catalog and Other Entities"
+  desc: "Receive data from the PGS Catalog REST API."
+  contents:
+  - get_scores
+  - get_publications
+  - get_performance_metrics
+  - get_sample_sets
+  - get_traits
+  - get_cohorts
+  - get_trait_categories
+  - get_releases
+- title: "PGS Catalog Entities"
+  desc: "S4 classes for scores, publications, performance_metrics, sample_sets and traits."
+  contents:
+  - 'scores-class'
+  - '`publications-class`'
+  - '`performance_metrics-class`'
+  - '`sample_sets-class`'
+  - '`traits-class`'
+- title: "Other Entities"
+  desc: "S4 classes for cohorts, trait_categories and releases."
+  contents:
+  - '`cohorts-class`'
+  - '`trait_categories-class`'
+  - '`releases-class`'
+- title: "Data Wrangling of PGS Catalog Entities"
+  desc: >
+    S4 methods for combining and tallying scores,
+    publications, performance_metrics, sample_set,
+    traits, cohorts, trait_categories and releases.
+  contents:
+  - 'n'
+  - 'bind'
+  - 'union'
+  - 'intersect'
+  - 'setdiff'
+  - 'setequal'
+- title: "Accession identifier mapping"
+  desc: >
+    Translate accession identifiers between scores,
+    publications, performance_metrics, sample_set,
+    traits and GWAS studies.
+  contents:
+  - study_to_pgs
+
+
+authors:
+  Ramiro Magno:
+    href: https://rmagno.eu/
+  Isabel Duarte:
+    href: https://iduarte.eu/
+  Ana Teresa Maia:
+    href: https://www.linkedin.com/in/ana-teresa-maia-2a1a866/

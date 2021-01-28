@@ -402,6 +402,34 @@ setMethod("filter_by_id",
             return(y)
           })
 
+#' @keywords internal
+setMethod("filter_by_id",
+          signature(x = "releases", id = "Date"),
+          definition = function(x, id) {
+            lst <- purrr::map(s4_to_list(x),
+                              ~ dplyr::inner_join(
+                                tibble::tibble(date = id),
+                                .x,
+                                by = 'date')
+            )
+            y <- list_to_s4(lst, "releases")
+            return(y)
+          })
+
+#' @keywords internal
+setMethod("filter_by_id",
+          signature(x = "releases", id = "character"),
+          definition = function(x, id) {
+            lst <- purrr::map(s4_to_list(x),
+                              ~ dplyr::inner_join(
+                                tibble::tibble(date = lubridate::ymd(id)),
+                                .x,
+                                by = 'date')
+            )
+            y <- list_to_s4(lst, "releases")
+            return(y)
+          })
+
 #' Subset a scores object
 #'
 #' You can subset \linkS4class{scores} by identifier or by position using the
@@ -421,12 +449,14 @@ setMethod("filter_by_id",
 NULL
 
 #' @rdname subset-scores
+#' @keywords internal
 #' @export
 setMethod("[",
           signature(x = "scores", i = "missing", j = "missing", drop = "missing"),
           definition = function(x, i, j, ..., drop = FALSE) x)
 
 #' @rdname subset-scores
+#' @keywords internal
 #' @export
 setMethod("[",
           signature(x = "scores", i = "numeric", j = "missing", drop = "missing"),
@@ -437,6 +467,7 @@ setMethod("[",
 )
 
 #' @rdname subset-scores
+#' @keywords internal
 #' @export
 setMethod("[",
           signature(x = "scores", i = "character", j = "missing", drop = "missing"),
@@ -465,12 +496,14 @@ setMethod("[",
 NULL
 
 #' @rdname subset-publications
+#' @keywords internal
 #' @export
 setMethod("[",
           signature(x = "publications", i = "missing", j = "missing", drop = "missing"),
           definition = function(x, i, j, ..., drop = FALSE) x)
 
 #' @rdname subset-publications
+#' @keywords internal
 #' @export
 setMethod("[",
           signature(x = "publications", i = "numeric", j = "missing", drop = "missing"),
@@ -481,6 +514,7 @@ setMethod("[",
 )
 
 #' @rdname subset-publications
+#' @keywords internal
 #' @export
 setMethod("[",
           signature(x = "publications", i = "character", j = "missing", drop = "missing"),
@@ -509,12 +543,14 @@ setMethod("[",
 NULL
 
 #' @rdname subset-traits
+#' @keywords internal
 #' @export
 setMethod("[",
           signature(x = "traits", i = "missing", j = "missing", drop = "missing"),
           definition = function(x, i, j, ..., drop = FALSE) x)
 
 #' @rdname subset-traits
+#' @keywords internal
 #' @export
 setMethod("[",
           signature(x = "traits", i = "numeric", j = "missing", drop = "missing"),
@@ -525,6 +561,7 @@ setMethod("[",
 )
 
 #' @rdname subset-traits
+#' @keywords internal
 #' @export
 setMethod("[",
           signature(x = "traits", i = "character", j = "missing", drop = "missing"),
@@ -553,12 +590,14 @@ setMethod("[",
 NULL
 
 #' @rdname subset-performance_metrics
+#' @keywords internal
 #' @export
 setMethod("[",
           signature(x = "performance_metrics", i = "missing", j = "missing", drop = "missing"),
           definition = function(x, i, j, ..., drop = FALSE) x)
 
 #' @rdname subset-performance_metrics
+#' @keywords internal
 #' @export
 setMethod("[",
           signature(x = "performance_metrics", i = "numeric", j = "missing", drop = "missing"),
@@ -569,6 +608,7 @@ setMethod("[",
 )
 
 #' @rdname subset-performance_metrics
+#' @keywords internal
 #' @export
 setMethod("[",
           signature(x = "performance_metrics", i = "character", j = "missing", drop = "missing"),
@@ -597,12 +637,14 @@ setMethod("[",
 NULL
 
 #' @rdname subset-sample_sets
+#' @keywords internal
 #' @export
 setMethod("[",
           signature(x = "sample_sets", i = "missing", j = "missing", drop = "missing"),
           definition = function(x, i, j, ..., drop = FALSE) x)
 
 #' @rdname subset-sample_sets
+#' @keywords internal
 #' @export
 setMethod("[",
           signature(x = "sample_sets", i = "numeric", j = "missing", drop = "missing"),
@@ -613,6 +655,7 @@ setMethod("[",
 )
 
 #' @rdname subset-sample_sets
+#' @keywords internal
 #' @export
 setMethod("[",
           signature(x = "sample_sets", i = "character", j = "missing", drop = "missing"),
@@ -640,12 +683,14 @@ setMethod("[",
 NULL
 
 #' @rdname subset-cohorts
+#' @keywords internal
 #' @export
 setMethod("[",
           signature(x = "cohorts", i = "missing", j = "missing", drop = "missing"),
           definition = function(x, i, j, ..., drop = FALSE) x)
 
 #' @rdname subset-cohorts
+#' @keywords internal
 #' @export
 setMethod("[",
           signature(x = "cohorts", i = "numeric", j = "missing", drop = "missing"),
@@ -656,6 +701,7 @@ setMethod("[",
 )
 
 #' @rdname subset-cohorts
+#' @keywords internal
 #' @export
 setMethod("[",
           signature(x = "cohorts", i = "character", j = "missing", drop = "missing"),
@@ -683,12 +729,14 @@ setMethod("[",
 NULL
 
 #' @rdname subset-trait_categories
+#' @keywords internal
 #' @export
 setMethod("[",
           signature(x = "trait_categories", i = "missing", j = "missing", drop = "missing"),
           definition = function(x, i, j, ..., drop = FALSE) x)
 
 #' @rdname subset-trait_categories
+#' @keywords internal
 #' @export
 setMethod("[",
           signature(x = "trait_categories", i = "numeric", j = "missing", drop = "missing"),
@@ -699,9 +747,66 @@ setMethod("[",
 )
 
 #' @rdname subset-trait_categories
+#' @keywords internal
 #' @export
 setMethod("[",
           signature(x = "trait_categories", i = "character", j = "missing", drop = "missing"),
+          definition = function(x, i, j, ..., drop = FALSE) {
+            filter_by_id(x, id = i)
+          }
+)
+
+#' Subset a releases object
+#'
+#' You can subset \linkS4class{releases} by identifier or by position using the
+#' \code{`[`} operator.
+#'
+#' @param x A \linkS4class{releases} object.
+#' @param i Position of the identifier or the name of the identifier itself.
+#' @param j Not used.
+#' @param ... Additional arguments not used here.
+#' @param drop Not used.
+#'
+#' @return A \linkS4class{releases} object.
+#' @examples
+#' # TODO
+#'
+#' @name subset-releases
+NULL
+
+#' @rdname subset-releases
+#' @keywords internal
+#' @export
+setMethod("[",
+          signature(x = "releases", i = "missing", j = "missing", drop = "missing"),
+          definition = function(x, i, j, ..., drop = FALSE) x)
+
+#' @rdname subset-releases
+#' @keywords internal
+#' @export
+setMethod("[",
+          signature(x = "releases", i = "numeric", j = "missing", drop = "missing"),
+          definition = function(x, i, j, ..., drop = FALSE) {
+            release_dates <- as.character(x@releases$date[i])
+            filter_by_id(x, id = release_dates)
+          }
+)
+
+#' @rdname subset-releases
+#' @keywords internal
+#' @export
+setMethod("[",
+          signature(x = "releases", i = "character", j = "missing", drop = "missing"),
+          definition = function(x, i, j, ..., drop = FALSE) {
+            filter_by_id(x, id = i)
+          }
+)
+
+#' @rdname subset-releases
+#' @keywords internal
+#' @export
+setMethod("[",
+          signature(x = "releases", i = "Date", j = "missing", drop = "missing"),
           definition = function(x, i, j, ..., drop = FALSE) {
             filter_by_id(x, id = i)
           }
@@ -798,6 +903,17 @@ setMethod("n",
           definition = function(x, unique = FALSE) {
             if (unique) n <- dplyr::n_distinct(x@trait_categories$trait_category)
             else n <- nrow(x@trait_categories)
+            return(n)
+          }
+)
+
+#' @rdname n
+#' @export
+setMethod("n",
+          signature(x = "releases"),
+          definition = function(x, unique = FALSE) {
+            if (unique) n <- dplyr::n_distinct(x@releases$date)
+            else n <- nrow(x@releases)
             return(n)
           }
 )

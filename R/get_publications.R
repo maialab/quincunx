@@ -124,6 +124,42 @@ get_publication_by_author <-
     purrr::pmap(dplyr::bind_rows)
 }
 
+#' Get PGS Catalog Publications
+#'
+#' Retrieves polygenic publications via the PGS Catalog REST API. The REST
+#' API is queried multiple times with the criteria passed as arguments (see
+#' below). By default all publications that match the criteria supplied in the
+#' arguments are retrieved: this corresponds to the default option
+#' \code{set_operation} set to \code{'union'}. If you rather have only the
+#' associations that match simultaneously all criteria provided, then set
+#' \code{set_operation} to \code{'intersection'}.
+#'
+#' Please note that all search criteria are vectorised, thus allowing for batch
+#' mode search.
+#'
+#' @param pgp_id A character vector of PGS Catalog publication accession
+#'   identifiers.
+#' @param pgs_id A \code{character} vector of PGS Catalog score accession
+#'   identifiers.
+#' @param pubmed_id An \code{integer} vector of
+#'   \href{https://en.wikipedia.org/wiki/PubMed}{PubMed} identifiers.
+#' @param author A character vector of author names, any author in the list of
+#'   authors in a publication, .e.g. \code{'Mavaddat'}.
+#' @param set_operation Either \code{'union'} or \code{'intersection'}. This
+#'   tells how publications retrieved by different criteria  should be combined:
+#'   \code{'union'} binds together all results removing duplicates and
+#'   \code{'intersection'} only keeps same publications found with different
+#'   criteria.
+#' @param interactive A logical. If all publications are requested, whether to ask
+#'   interactively if we really want to proceed.
+#' @param verbose A \code{logical} indicating whether the function should be
+#'   verbose about the different queries or not.
+#' @param warnings A \code{logical} indicating whether to print warnings, if any.
+#'
+#' @return An \linkS4class{publications} object.
+#' @examples
+#' # TODO
+#'
 #' @export
 get_publications <- function(pgp_id = NULL,
                              pgs_id = NULL,

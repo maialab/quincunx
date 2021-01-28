@@ -66,7 +66,7 @@ get_release_all <-
                 progress_bar = progress_bar)
 }
 
-#' Retrieve PGS Catalog release information
+#' Get PGS Catalog Releases
 #'
 #' This function retrieves PGS Catalog release information. Note that the
 #' columns \code{pgs_id}, \code{ppm_id} and \code{pgp_id} contain in each

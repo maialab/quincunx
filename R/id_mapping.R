@@ -43,8 +43,13 @@ get_gwas_get_score_ids_by_gcst_id <- function(study_id,
 
 }
 
+#' Map GWAS study to PGS identifiers
+#'
+#' Map GWAS study to PGS identifiers
+#'
+#'
 #' @export
-study_id_to_pgs_id <- function(study_id,
+study_to_pgs <- function(study_id,
                                verbose = FALSE,
                                warnings = TRUE,
                                progress_bar = TRUE) {

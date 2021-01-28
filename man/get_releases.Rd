@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_releases.R
 \name{get_releases}
 \alias{get_releases}
-\title{Retrieve PGS Catalog release information}
+\title{Get PGS Catalog Releases}
 \usage{
 get_releases(
   date = "latest",

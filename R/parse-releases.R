@@ -31,7 +31,8 @@ unwrap_release <- function(tbl_json) {
       n_pgp = tidyjson::jnumber('publication_count'),
       notes = tidyjson::jstring('notes')) %>%
     # Coerce json number (default is R's double) to integer.
-    dplyr::mutate(n_pgs = as.integer(.data$n_pgs),
+    dplyr::mutate(date = lubridate::ymd(.data$date),
+                  n_pgs = as.integer(.data$n_pgs),
                   n_ppm = as.integer(.data$n_ppm),
                   n_pgp = as.integer(.data$n_pgp)) %>%
     dplyr::select(-'array.index') %>%

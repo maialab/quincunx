@@ -1,0 +1,66 @@
+---
+title: "PGS Catalog Releases"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{PGS Catalog Releases}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 7,
+  fig.height = 5,
+  fig.align = "center"
+)
+library(quincunx)
+```
+
+The function `get_releases()` gets you information about PGS Catalog releases; namely, the number of newly released polygenic scores, publications and performance metrics, as well as their respective associated identifiers (i.e., new `pgs_ids`, `pgp_ids` and `ppm_ids`).
+
+## Latest release of the PGS Catalog
+
+To get information about the latest release, run `get_releases()` with default argument values:
+
+```{r releases-latest}
+get_releases() # Or get_releases(date = 'latest')
+```
+
+## Release by date
+
+You can use the argument `date` to select a specific date (if a release exists for this day) in the format `"YYYY-MM-DD"`, e.g., `"2020-11-20"`:
+
+```{r releases-by-date}
+get_releases(date = '2020-11-20')
+```
+
+## All releases
+
+```{r releases-all}
+(all_releases <- get_releases(date = 'all'))
+```
+
+
+```{r releases-over-time, echo=FALSE,message=FALSE}
+library(dplyr)
+library(ggplot2)
+library(plotly)
+
+df <- dplyr::arrange(all_releases@releases, date)
+p <- ggplot(df, aes(x = date, y = cumsum(n_pgs))) +
+  geom_point() +
+  geom_line() +
+  scale_x_date(date_labels = '%b %Y', date_breaks = "1 month") +
+  scale_y_continuous(breaks = seq(0, 700, 100), limits = c(0, 700)) +
+  labs(title = 'PGS Catalog Releases') +
+  ylab('Cumulative number of released PGS') +
+  theme(axis.text.x = element_text(angle=45, hjust=1),
+        axis.title.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.border = element_blank()) 
+ggplotly(p)
+```

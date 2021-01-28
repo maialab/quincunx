@@ -38,7 +38,7 @@ user_agent_id <- function()
 #' \item{json}{JSON response as string.}
 #' }
 #'
-#' @export
+#' @keywords internal
 request <- function(resource_url,
                     base_url = pgs_server(),
                     user_agent = user_agent_id(),

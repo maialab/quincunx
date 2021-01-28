@@ -35,3 +35,4 @@ You can subset \linkS4class{performance_metrics} by identifier or by position us
 # TODO
 
 }
+\keyword{internal}

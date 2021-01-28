@@ -9,6 +9,7 @@
 \alias{n,sample_sets-method}
 \alias{n,cohorts-method}
 \alias{n,trait_categories-method}
+\alias{n,releases-method}
 \title{Number of PGS Catalog entities}
 \usage{
 n(x, unique = FALSE)
@@ -26,6 +27,8 @@ n(x, unique = FALSE)
 \S4method{n}{cohorts}(x, unique = FALSE)
 
 \S4method{n}{trait_categories}(x, unique = FALSE)
+
+\S4method{n}{releases}(x, unique = FALSE)
 }
 \arguments{
 \item{x}{A \linkS4class{scores}, \linkS4class{publications},

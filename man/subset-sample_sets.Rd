@@ -35,3 +35,4 @@ You can subset \linkS4class{sample_sets} by identifier or by position using the
 # TODO
 
 }
+\keyword{internal}

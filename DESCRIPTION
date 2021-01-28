@@ -25,7 +25,11 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
 Suggests: 
-    testthat
+    testthat,
+    knitr,
+    rmarkdown,
+    ggplot2,
+    plotly
 Imports: 
     stringr,
     magrittr,
@@ -98,3 +102,4 @@ Collate:
     'unwrap_sample.R'
     'utils-pipe.R'
     'warnings.R'
+VignetteBuilder: knitr

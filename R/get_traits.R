@@ -92,6 +92,45 @@ get_trait_by_trait_term <-
     purrr::pmap(dplyr::bind_rows)
 }
 
+#' Get PGS Catalog Traits
+#'
+#' Retrieves traits via the PGS Catalog REST API. The REST
+#' API is queried multiple times with the criteria passed as arguments (see
+#' below). By default all traits that match the criteria supplied in the
+#' arguments are retrieved: this corresponds to the default option
+#' \code{set_operation} set to \code{'union'}. If you rather have only the
+#' associations that match simultaneously all criteria provided, then set
+#' \code{set_operation} to \code{'intersection'}.
+#'
+#' Please note that all search criteria are vectorised, thus allowing for batch
+#' mode search.
+#'
+#' @param efo_id A character vector of \href{https://www.ebi.ac.uk/efo/}{EFO}
+#'   identifiers.
+#' @param trait_term A character vector of terms to be matched against trait
+#'   identifiers (\code{efo_id}), trait descriptions, synonyms thereof,
+#'   externally mapped terms, or even trait categories.
+#' @param exact_term A logical value, indicating whether to match the
+#'   \code{trait_term} exactly (\code{TRUE}) or not (\code{FALSE}).
+#' @param include_children A logical value, indicating whether to include child
+#'   traits or not.
+#' @param set_operation Either \code{'union'} or \code{'intersection'}. This
+#'   tells how performance metrics retrieved by different criteria  should be combined:
+#'   \code{'union'} binds together all results removing duplicates and
+#'   \code{'intersection'} only keeps same sample sets found with different
+#'   criteria.
+#' @param interactive A logical. If all sample sets are requested, whether to ask
+#'   interactively if we really want to proceed.
+#' @param verbose A \code{logical} indicating whether the function should be
+#'   verbose about the different queries or not.
+#' @param warnings A \code{logical} indicating whether to print warnings, if any.
+#' @param progress_bar Whether to show a progress bar indicating download
+#'   progress from the REST API server.
+#'
+#' @return An \linkS4class{traits} object.
+#' @examples
+#' # TODO
+#'
 #' @export
 get_traits <- function(efo_id = NULL,
                        trait_term = NULL,

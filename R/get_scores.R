@@ -74,6 +74,40 @@ get_score_by_trait_id <- function(efo_id, limit = 20L, verbose = FALSE, warnings
     purrr::pmap(dplyr::bind_rows)
 }
 
+#' Get PGS Catalog Scores
+#'
+#' Retrieves polygenic scores via the PGS Catalog REST API. The REST
+#' API is queried multiple times with the criteria passed as arguments (see
+#' below). By default all scores that match the criteria supplied in the
+#' arguments are retrieved: this corresponds to the default option
+#' \code{set_operation} set to \code{'union'}. If you rather have only the
+#' associations that match simultaneously all criteria provided, then set
+#' \code{set_operation} to \code{'intersection'}.
+#'
+#' Please note that all search criteria are vectorised, thus allowing for batch
+#' mode search.
+#'
+#' @param pgs_id A \code{character} vector of PGS Catalog score accession
+#'   identifiers.
+#' @param efo_id A character vector of \href{https://www.ebi.ac.uk/efo/}{EFO}
+#'   identifiers.
+#' @param pubmed_id An \code{integer} vector of
+#'   \href{https://en.wikipedia.org/wiki/PubMed}{PubMed} identifiers.
+#' @param set_operation Either \code{'union'} or \code{'intersection'}. This
+#'   tells how scores retrieved by different criteria  should be combined:
+#'   \code{'union'} binds together all results removing duplicates and
+#'   \code{'intersection'} only keeps same scores found with different
+#'   criteria.
+#' @param interactive A logical. If all scores are requested, whether to ask
+#'   interactively if we really want to proceed.
+#' @param verbose A \code{logical} indicating whether the function should be
+#'   verbose about the different queries or not.
+#' @param warnings A \code{logical} indicating whether to print warnings, if any.
+#'
+#' @return An \linkS4class{scores} object.
+#' @examples
+#' # TODO
+#'
 #' @export
 get_scores <- function(pgs_id = NULL,
                        efo_id = NULL,

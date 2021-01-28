@@ -47,6 +47,42 @@ get_sample_sets_by_pgs_id <- function(pgs_id, limit = 20L, verbose = FALSE, warn
     purrr::pmap(dplyr::bind_rows)
 }
 
+
+
+#' Get PGS Catalog Sample Sets
+#'
+#' Retrieves sample sets via the PGS Catalog REST API. The REST
+#' API is queried multiple times with the criteria passed as arguments (see
+#' below). By default all sample sets that match the criteria supplied in the
+#' arguments are retrieved: this corresponds to the default option
+#' \code{set_operation} set to \code{'union'}. If you rather have only the
+#' associations that match simultaneously all criteria provided, then set
+#' \code{set_operation} to \code{'intersection'}.
+#'
+#' Please note that all search criteria are vectorised, thus allowing for batch
+#' mode search.
+#'
+#' @param pss_id A character vector of PGS Catalog sample sets accession
+#'   identifiers.
+#' @param pgs_id A \code{character} vector of PGS Catalog score accession
+#'   identifiers.
+#' @param set_operation Either \code{'union'} or \code{'intersection'}. This
+#'   tells how performance metrics retrieved by different criteria  should be combined:
+#'   \code{'union'} binds together all results removing duplicates and
+#'   \code{'intersection'} only keeps same sample sets found with different
+#'   criteria.
+#' @param interactive A logical. If all sample sets are requested, whether to ask
+#'   interactively if we really want to proceed.
+#' @param verbose A \code{logical} indicating whether the function should be
+#'   verbose about the different queries or not.
+#' @param warnings A \code{logical} indicating whether to print warnings, if any.
+#' @param progress_bar Whether to show a progress bar indicating download
+#'   progress from the REST API server.
+#'
+#' @return An \linkS4class{sample_sets} object.
+#' @examples
+#' # TODO
+#'
 #' @export
 get_sample_sets <- function(
   pss_id = NULL,

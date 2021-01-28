@@ -31,17 +31,31 @@ get_cohort_by_cohort_symbol <- function(cohort_symbol, limit = 20L, verbose = FA
     purrr::pmap(dplyr::bind_rows)
 }
 
+
+#' Get PGS Catalog Cohorts
+#'
+#' Retrieves cohorts via the PGS Catalog REST API. The REST API is queried
+#' multiple times with the criteria passed as arguments (see below). Please note
+#' that all search criteria are vectorised, thus allowing for batch mode search.
+#'
+#' @param cohort_symbol A cohort symbol.
+#' @param verbose A \code{logical} indicating whether the function should be
+#'   verbose about the different queries or not.
+#' @param warnings A \code{logical} indicating whether to print warnings, if any.
+#' @param progress_bar Whether to show a progress bar indicating download
+#'   progress from the REST API server.
+#'
+#' @return An \linkS4class{cohorts} object.
+#' @examples
+#' # TODO
+#'
 #' @export
 get_cohorts <- function(
   cohort_symbol = NULL,
-  set_operation = 'union',
-  interactive = TRUE,
   verbose = FALSE,
   warnings = TRUE,
   progress_bar = TRUE) {
 
-  if(!(rlang::is_scalar_character(set_operation) && set_operation %in% c('union', 'intersection')))
-    stop("set_operation must be either 'union' or 'intersection'")
 
   if(!(rlang::is_scalar_logical(verbose) && verbose %in% c(TRUE, FALSE)))
     stop("verbose must be either TRUE or FALSE")
@@ -49,27 +63,17 @@ get_cohorts <- function(
   if(!(rlang::is_scalar_logical(warnings) && warnings %in% c(TRUE, FALSE)))
     stop("warnings must be either TRUE or FALSE")
 
-  list_of_cohorts <- list()
+  if (!rlang::is_null(cohort_symbol)) {
+    get_cohort_by_cohort_symbol(
+      cohort_symbol = cohort_symbol,
+      verbose = verbose,
+      warnings = warnings,
+      progress_bar = progress_bar
+    ) %>%
+      coerce_to_s4_cohorts() %>%
+      return()
 
-  if (!rlang::is_null(cohort_symbol))
-    list_of_cohorts[['get_cohort_by_cohort_symbol']] <-
-    get_cohort_by_cohort_symbol(cohort_symbol = cohort_symbol,
-                              verbose = verbose,
-                              warnings = warnings,
-                              progress_bar = progress_bar) %>%
-    coerce_to_s4_cohorts()
-
-  # There is no endpoint to fetch all cohorts at the moment
-  if(rlang::is_empty(list_of_cohorts)) {
-    return(coerce_to_s4_cohorts(NULL))
   } else {
-
-    if (identical(set_operation, "union")) {
-      return(purrr::reduce(list_of_cohorts, union))
-    }
-
-    if (identical(set_operation, "intersection")) {
-      return(purrr::reduce(list_of_cohorts, intersect))
-    }
+    return(coerce_to_s4_cohorts(NULL))
   }
 }

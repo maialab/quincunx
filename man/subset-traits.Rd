@@ -35,3 +35,4 @@ You can subset \linkS4class{traits} by identifier or by position using the
 # TODO
 
 }
+\keyword{internal}
