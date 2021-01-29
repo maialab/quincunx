@@ -1292,7 +1292,7 @@
      font-weight: bold;
 }
  dd {
-     margin-left: 0;
+     margin-left: 40px; /* Before: margin-left: 0; */
 }
  .dl-horizontal dd:before, .dl-horizontal dd:after {
      content: " ";

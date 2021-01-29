@@ -2,20 +2,23 @@ setOldClass(c("tbl_df", "tbl", "data.frame"))
 
 #' An S4 class to represent a set of cohorts
 #'
-#' The cohorts object consists of two slots, each a table
-#' (\code{\link[tibble]{tibble}}), that combined form a relational database of a
-#' subset of PGS Catalog cohorts. Each cohort is an observation (row) in
-#' the \code{cohorts} table --- main table.
+#' The cohorts object consists of two tables (slots) that combined form a
+#' relational database of a subset of cohorts. Each cohort is an observation
+#' (row) in the \code{cohorts} table (first table).
 #'
-#' @slot cohorts
+#' @slot cohorts A table of cohorts. Each cohort (row) is identified by its
+#'   \code{cohort_symbol}. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{cohort_symbol}{Cohort symbol. Example: \code{"CECILE"}.}
+#' \item{cohort_name}{Cohort full name. Example: \code{"CECILE Breast Cancer
+#' Study"}.}
 #' }
-#' @slot pgs_ids A \code{\link[tibble]{tibble}} listing TODO. Columns:
+#' @slot pgs_ids A table of cohorts and their associated polygenic scores
+#'   identifiers. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{cohort_symbol}{Cohort symbol. Example: \code{"CECILE"}.}
+#' \item{pgs_id}{Polygenic Score (PGS) identifier.}
+#' \item{stage}{PGS lifecycle stage: gwas, development or evaluation.}
 #' }
 #' @export
 setClass(

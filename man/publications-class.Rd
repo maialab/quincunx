@@ -5,24 +5,37 @@
 \alias{publications-class}
 \title{An S4 class to represent a set of PGS Catalog Publications}
 \description{
-The publications object consists of two slots, each a table
-(\code{\link[tibble]{tibble}}), that combined form a relational database of a
-subset of PGS Catalog Publications. Each publication is an observation (row) in
-the \code{publications} table --- main table. All tables have the column
-\code{pgp_id} as primary key.
+The publications object consists of two tables (slots), each a table that
+combined form a relational database of a subset of PGS Catalog Publications.
+Each publication is an observation (row) in the \code{publications} table
+(first table).
 }
 \section{Slots}{
 
 \describe{
-\item{\code{publications}}{\describe{
-\item{TODO}{TODO}
-\item{TODO}{TODO}
+\item{\code{publications}}{A table of publications. Each publication (row) is
+  uniquely identified by the \code{pgp_id} column. Columns:
+\describe{
+\item{pgp_id}{PGS Publication identifier. Example: \code{"PGP000001"}.}
+\item{pubmed_id}{\href{https://en.wikipedia.org/wiki/PubMed}{PubMed}
+identifier. Example: \code{"25855707"}.}
+\item{publication_date}{Publication date. Example: \code{"2020-09-28"}. Note
+that the class of \code{publication_date} is \code{\link[base]{Date}}.}
+\item{publication}{Abbreviated name of the journal. Example: \code{"Am J Hum
+Genet"}.}
+\item{title}{Publication title.}
+\item{author_fullname}{First author of the publication. Example:
+\code{'Mavaddat N'}.}
+\item{doi}{Digital Object Identifier (DOI). This variable is also curated to
+allow unpublished work (e.g. pre-prints) to be added to the catalog. Example:
+\code{"10.1093/jnci/djv036"}.}
+\item{authors}{Concatenated list of all the publication authors.}
 }}
 
-\item{\code{pgs_ids}}{A \code{\link[tibble]{tibble}} listing TODO. Columns:
+\item{\code{pgs_ids}}{A table of publication and associated PGS identifiers. Columns:
 \describe{
-\item{TODO}{TODO}
-\item{TODO}{TODO}
+\item{pgp_id}{PGS Publication identifier. Example: \code{"PGP000001"}.}
+\item{pgs_id}{Polygenic Score (PGS) identifier.}
 }}
 }}
 

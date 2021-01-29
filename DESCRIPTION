@@ -48,6 +48,7 @@ Imports:
     progress,
     methods
 Collate: 
+    'ancestry_categories.R'
     'class-cohorts.R'
     'class-performance_metrics.R'
     'class-publications.R'
@@ -103,3 +104,5 @@ Collate:
     'utils-pipe.R'
     'warnings.R'
 VignetteBuilder: knitr
+Depends: 
+    R (>= 2.10)

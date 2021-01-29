@@ -14,7 +14,6 @@ as_tidy_tables_performance_metrics <- function(tbl_json) {
 
 unpack_performance_metric <- function(tbl_json) {
 
-  # performance_metrics <- unwrap(tbl_json, 'PerformanceMetric')
   performance_metrics <- unwrap_performance_metric(tbl_json)
 
   publications <- tbl_json %>%
@@ -31,6 +30,7 @@ unpack_performance_metric <- function(tbl_json) {
     tidyjson::enter_object('sampleset') %>%
     tidyjson::spread_values(pss_id = tidyjson::jstring('id')) %>%
     tidyjson::enter_object('samples') %>%
+    tibble::add_column(stage = 'evaluation') %>% # All PPM samples in evaluation stage.
     tidyjson::gather_array(column.name = 'sample_id') %>%
     unwrap_sample()
 
@@ -39,6 +39,7 @@ unpack_performance_metric <- function(tbl_json) {
     tidyjson::enter_object('sampleset') %>%
     tidyjson::spread_values(pss_id = tidyjson::jstring('id')) %>%
     tidyjson::enter_object('samples') %>%
+    tibble::add_column(stage = 'evaluation') %>% # All PPM samples in evaluation stage.
     tidyjson::gather_array(column.name = 'sample_id') %>%
     unwrap_demographics()
 
@@ -47,6 +48,7 @@ unpack_performance_metric <- function(tbl_json) {
     tidyjson::enter_object('sampleset') %>%
     tidyjson::spread_values(pss_id = tidyjson::jstring('id')) %>%
     tidyjson::enter_object('samples') %>%
+    tibble::add_column(stage = 'evaluation') %>% # All PPM samples in evaluation stage.
     tidyjson::gather_array(column.name = 'sample_id') %>%
     tidyjson::enter_object('cohorts') %>%
     tidyjson::gather_array(column.name = 'cohort_id') %>%

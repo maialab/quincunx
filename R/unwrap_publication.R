@@ -3,7 +3,7 @@ unwrap_publication <- function(tbl_json) {
 
   tbl_json %>%
     tidyjson::spread_values(
-      id = tidyjson::jstring('id'),
+      pgp_id = tidyjson::jstring('id'),
       pubmed_id = tidyjson::jstring('PMID'),
       publication_date = tidyjson::jstring('date_publication'),
       publication = tidyjson::jstring('journal'),

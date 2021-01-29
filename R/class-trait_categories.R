@@ -2,20 +2,21 @@ setOldClass(c("tbl_df", "tbl", "data.frame"))
 
 #' An S4 class to represent a set of PGS Catalog Trait Categories
 #'
-#' The trait_categories object consists of two slots, each a table
-#' (\code{\link[tibble]{tibble}}), that combined form a relational database of a
-#' subset of PGS Catalog trait categories. Each score is an observation (row) in
-#' the \code{trait_categories} table --- main table.
+#' The trait_categories object consists of two tables (slots) that combined form
+#' a relational database of a subset of PGS Catalog trait categories. Each score
+#' is an observation (row) in the \code{trait_categories} table (first table).
 #'
-#' @slot trait_categories
+#' @slot trait_categories A table of trait categories. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{trait_category}{Trait category name.}
 #' }
-#' @slot traits A \code{\link[tibble]{tibble}} listing TODO. Columns:
+#' @slot traits A table of associated traits. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{trait_category}{Trait category name.}
+#' \item{efo_id}{An \href{https://www.ebi.ac.uk/efo/}{EFO} identifier.}
+#' \item{trait}{Trait name.}
+#' \item{description}{Detailed description of the trait from EFO.}
+#' \item{url}{External link to the EFO entry.}
 #' }
 #' @export
 setClass(

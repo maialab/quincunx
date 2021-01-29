@@ -45,7 +45,10 @@ reference:
     traits and GWAS studies.
   contents:
   - study_to_pgs
-
+- title: "Datasets"
+  desc: "Datasets shipped with quincunx"
+  contents:
+  - ancestry_categories
 
 authors:
   Ramiro Magno:

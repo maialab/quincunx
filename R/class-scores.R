@@ -2,41 +2,130 @@ setOldClass(c("tbl_df", "tbl", "data.frame"))
 
 #' An S4 class to represent a set of PGS Catalog Polygenic Scores
 #'
-#' The scores object consists of eleven slots, each a table
-#' (\code{\link[tibble]{tibble}}), that combined form a relational database of a
-#' subset of PGS Catalog polygenic scores. Each score is an observation (row) in
-#' the \code{scores} table --- main table. All tables have the column
-#' \code{pgs_id} as primary key.
+#' The scores object consists of six tables (slots) that combined form a
+#' relational database of a subset of PGS Catalog polygenic scores. Each score
+#' is an observation (row) in the \code{scores} table (the first table).
 #'
-#' @slot scores
+#' @slot scores A table of polygenic scores. Each polygenic score (row) is
+#'   uniquely identified by the \code{pgs_id} column. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{pgs_id}{Polygenic Score (PGS) identifier. Example: \code{"PGS000001"}.}
+#' \item{pgs_name}{This may be the name that the authors describe the PGS with
+#' in the source publication, or a name that a curator of the PGS Catalog has
+#' assigned to identify the score during the curation process (before a PGS
+#' identifier has been given). Example: \code{PRS77_BC}.}
+#' \item{scoring_file}{URL to the scoring file on the PGS FTP server. Example:
+#' \code{"http://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000001/ScoringFiles/PGS000001.txt.gz"}.}
+#' \item{matches_publication}{Indicate if the PGS data matches the published
+#' polygenic score (\code{TRUE}). If not (\code{FALSE}), the authors have
+#' provided an alternative polygenic for the Catalog and some other data, such
+#' as performance metrics, may differ from the publication.}
+#' \item{reported_trait}{The author-reported trait that the PGS has been
+#' developed to predict. Example: \code{"Breast Cancer"}.}
+#' \item{trait_additional_description}{Any additional description not captured
+#' in the other columns. Example: \code{"Femoral neck BMD (g/cm2)"}.}
+#' \item{pgs_method_name}{The name or description of the method or computational
+#' algorithm used to develop the PGS.}
+#' \item{pgs_method_params}{A description of the relevant inputs and parameters
+#' relevant to the PGS development method/process.}
+#' \item{n_variants}{Number of variants used to calculate the PGS.}
+#' \item{n_variants_interactions}{Number of higher-order variant interactions
+#' included in the PGS.}
+#' \item{assembly}{The version of the genome assembly that the variants present
+#' in the PGS are associated with. Example: \code{GRCh37}.}
+#' \item{license}{The PGS Catalog distributes its data according to EBI’s
+#' standard Terms of Use. Some PGS have specific terms, licenses, or
+#' restrictions (e.g. non-commercial use) that we highlight in this field, if
+#' known.}
 #' }
-#' @slot publications A \code{\link[tibble]{tibble}} listing TODO. Columns:
+#' @slot publications A table of publications. Each publication (row) is
+#'   uniquely identified by the \code{pgp_id} column. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{pgs_id}{Polygenic Score (PGS) identifier.}
+#' \item{pgp_id}{PGS Publication identifier. Example: \code{"PGP000001"}.}
+#' \item{pubmed_id}{\href{https://en.wikipedia.org/wiki/PubMed}{PubMed}
+#' identifier. Example: \code{"25855707"}.}
+#' \item{publication_date}{Publication date. Example: \code{"2020-09-28"}. Note
+#' that the class of \code{publication_date} is \code{\link[base]{Date}}.}
+#' \item{publication}{Abbreviated name of the journal. Example: \code{"Am J Hum
+#' Genet"}.}
+#' \item{title}{Publication title.}
+#' \item{author_fullname}{First author of the publication. Example:
+#' \code{'Mavaddat N'}.}
+#' \item{doi}{Digital Object Identifier (DOI). This variable is also curated to
+#' allow unpublished work (e.g. pre-prints) to be added to the catalog. Example:
+#' \code{"10.1093/jnci/djv036"}.}
 #' }
-#' @slot samples A \code{\link[tibble]{tibble}} listing TODO. Columns:
+#' @slot samples A table of samples. Each sample (row) is uniquely identified by
+#'   the combination of values from the columns: \code{pgs_id}, \code{stage} and
+#'   \code{sample_id}. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{pgs_id}{Polygenic score identifier. An identifier that starts with
+#' \code{'PGS'} and is followed by six digits, e.g. \code{'PGS000001'}.}
+#' \item{stage}{PGS lifecycle stage: gwas, development or evaluation.}
+#' \item{sample_id}{Sample identifier. This is a surrogate key to identify each sample.}
+#' \item{sample_size}{Number of individuals included in the sample.}
+#' \item{sample_cases}{Number of cases.}
+#' \item{sample_controls}{Number of controls.}
+#' \item{sample_percent_male}{Percentage of male participants.}
+#' \item{phenotype_description}{Detailed phenotype description.}
+#' \item{ancestry}{Author reported ancestry is mapped to the best matching
+#' ancestry category from the NHGRI-EBI GWAS Catalog framework (see
+#' \code{\link[quincunx]{ancestry_categories}}) for possible values.}
+#' \item{ancestry_description}{A more detailed description of sample ancestry
+#' that usually matches the most specific description described by the authors
+#' (e.g. French, Chinese).}
+#' \item{ancestry_country}{Author reported countries of recruitment (if available).}
+#' \item{ancestry_additional_description}{Any additional description not
+#' captured in the other columns (e.g. founder or genetically isolated
+#' populations, or further description of admixed samples).}
+#' \item{study_id}{Associated GWAS Catalog study accession identifier, e.g.,
+#' \code{"GCST002735"}.}
+#' \item{pubmed_id}{\href{https://en.wikipedia.org/wiki/PubMed}{PubMed}
+#' identifier.}
+#' \item{cohorts_additional_description}{Any additional description about the
+#' samples (e.g. sub-cohort information).}
 #' }
-#' @slot demographics A \code{\link[tibble]{tibble}} listing TODO. Columns:
+#' @slot demographics A table of sample demographics' variables. Each
+#'   demographics' variable (row) is uniquely identified by the combination of
+#'   values from the columns: \code{pgs_id}, \code{stage}, \code{sample_id} and
+#'   \code{variable}. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{pgs_id}{Polygenic Score (PGS) identifier.}
+#' \item{stage}{PGS lifecycle stage: gwas, development or evaluation.}
+#' \item{sample_id}{Sample identifier. This is a surrogate identifier to
+#' identify each sample.}
+#' \item{variable}{Demographics variable. Following columns report about the
+#' indicated variable.}
+#' \item{estimate_type}{Type of statistical estimate for variable.}
+#' \item{estimate}{The variable's statistical value.}
+#' \item{unit}{Unit of the variable.}
+#' \item{variability_type}{Measure of statistical dispersion for variable, e.g.
+#' standard error (se) or standard deviation (sd).}
+#' \item{variability}{The value of the measure of dispersion.}
+#' \item{interval_type}{Type of statistical interval for variable: range, iqr
+#' (interquartile), ci (confidence interval).}
+#' \item{interval_lower}{Interval lower bound.}
+#' \item{interval_upper}{Interval upper bound.}
 #' }
-#' @slot cohorts A \code{\link[tibble]{tibble}} listing TODO. Columns:
+#' @slot cohorts A table of cohorts. Each cohort (row) is uniquely identified by
+#'   the combination of values from the columns: \code{pgs_id}, \code{stage},
+#'   \code{sample_id} and \code{cohort_symbol}. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{pgs_id}{Polygenic Score (PGS) identifier.}
+#' \item{stage}{PGS lifecycle stage: gwas, development or evaluation.}
+#' \item{sample_id}{Sample identifier. This is a surrogate key to identify each sample.}
+#' \item{cohort_symbol}{Cohort symbol.}
+#' \item{cohort_name}{Cohort full name.}
 #' }
-#' @slot traits A \code{\link[tibble]{tibble}} listing TODO. Columns:
+#' @slot traits A table of EFO traits. Each trait (row) is uniquely identified
+#'   by the combination of the columns \code{pgs_id} and \code{efo_id}. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{pgs_id}{Polygenic Score (PGS) identifier.}
+#' \item{efo_id}{An \href{https://www.ebi.ac.uk/efo/}{EFO} identifier.}
+#' \item{trait}{Trait name.}
+#' \item{description}{Detailed description of the trait from EFO.}
+#' \item{url}{External link to the EFO entry.}
 #' }
 #' @export
 setClass(
@@ -118,6 +207,7 @@ s4scores_scores_tbl <- function(pgs_id = character(),
 
 s4scores_publications_tbl <- function(
   pgs_id = character(),
+  pgp_id = character(),
   pubmed_id = character(),
   publication_date = lubridate::ymd(),
   publication = character(),
@@ -128,6 +218,7 @@ s4scores_publications_tbl <- function(
 
   tbl <- tibble::tibble(
     pgs_id = pgs_id,
+    pgp_id = pgp_id,
     pubmed_id = pubmed_id,
     publication_date = publication_date,
     publication = publication,
@@ -141,8 +232,8 @@ s4scores_publications_tbl <- function(
 
 s4scores_samples_tbl <- function(
   pgs_id = character(),
-  sample_id = integer(),
   stage = character(),
+  sample_id = integer(),
   sample_size = integer(),
   sample_cases = integer(),
   sample_controls = integer(),
@@ -159,8 +250,8 @@ s4scores_samples_tbl <- function(
 
   tbl <- tibble::tibble(
     pgs_id = pgs_id,
-    sample_id = sample_id,
     stage = stage,
+    sample_id = sample_id,
     sample_size = sample_size,
     sample_cases = sample_cases,
     sample_controls = sample_controls,
@@ -180,8 +271,8 @@ s4scores_samples_tbl <- function(
 
 s4scores_demographics_tbl <- function(
   pgs_id = character(),
-  sample_id = integer(),
   stage = character(),
+  sample_id = integer(),
   estimate_type = character(),
   estimate = double(),
   interval_type = character(),
@@ -194,8 +285,8 @@ s4scores_demographics_tbl <- function(
 
   tbl <- tibble::tibble(
     pgs_id = pgs_id,
-    sample_id = sample_id,
     stage = stage,
+    sample_id = sample_id,
     estimate_type = estimate_type,
     estimate = estimate,
     interval_type = interval_type,
@@ -212,8 +303,8 @@ s4scores_demographics_tbl <- function(
 
 s4scores_cohorts_tbl <- function(
   pgs_id = character(),
-  sample_id = integer(),
   stage = character(),
+  sample_id = integer(),
   cohort_symbol = character(),
   cohort_name = character()
 ) {

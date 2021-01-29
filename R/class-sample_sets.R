@@ -2,31 +2,72 @@ setOldClass(c("tbl_df", "tbl", "data.frame"))
 
 #' An S4 class to represent a set of PGS Catalog Sample Sets
 #'
-#' The sample_sets object consists of four slots, each a table
-#' (\code{\link[tibble]{tibble}}), that combined form a relational database of a
-#' subset of PGS Catalog sample sets. Each sample set is an observation (row) in
-#' the \code{sample_sets} table --- main table. All tables have the column
-#' \code{pss_id} as primary key.
+#' The sample_sets object consists of four tables (slots) that combined form a
+#' relational database of a subset of PGS Catalog sample sets. Each sample set
+#' is an observation (row) in the \code{sample_sets} table (first table).
 #'
-#' @slot sample_sets
+#' @slot sample_sets A table of sample sets. Each sample set (row) is uniquely
+#'   identified by the column \code{pss_id}. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{pss_id}{A PGS Sample Set identifier. Example: \code{"PSS000042"}.}
 #' }
-#' @slot samples A \code{\link[tibble]{tibble}} listing TODO. Columns:
+#' @slot samples A table of samples. Each sample (row) is uniquely identified by
+#'   the combination of values from the columns: \code{pss_id} and
+#'   \code{sample_id}. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{pss_id}{A PGS Sample Set identifier. Example: \code{"PSS000042"}.}
+#' \item{sample_id}{Sample identifier. This is a surrogate key to identify each sample.}
+#' \item{sample_size}{Number of individuals included in the sample.}
+#' \item{sample_cases}{Number of cases.}
+#' \item{sample_controls}{Number of controls.}
+#' \item{sample_percent_male}{Percentage of male participants.}
+#' \item{phenotype_description}{Detailed phenotype description.}
+#' \item{ancestry}{Author reported ancestry is mapped to the best matching
+#' ancestry category from the NHGRI-EBI GWAS Catalog framework (see
+#' \code{\link[quincunx]{ancestry_categories}}) for possible values.}
+#' \item{ancestry_description}{A more detailed description of sample ancestry
+#' that usually matches the most specific description described by the authors
+#' (e.g. French, Chinese).}
+#' \item{ancestry_country}{Author reported countries of recruitment (if available).}
+#' \item{ancestry_additional_description}{Any additional description not
+#' captured in the other columns (e.g. founder or genetically isolated
+#' populations, or further description of admixed samples).}
+#' \item{study_id}{Associated GWAS Catalog study accession identifier, e.g.,
+#' \code{"GCST002735"}.}
+#' \item{pubmed_id}{\href{https://en.wikipedia.org/wiki/PubMed}{PubMed}
+#' identifier.}
+#' \item{cohorts_additional_description}{Any additional description about the
+#' samples (e.g. sub-cohort information).}
 #' }
-#' @slot demographics A \code{\link[tibble]{tibble}} listing TODO. Columns:
+#' @slot demographics A table of sample demographics' variables. Each
+#'   demographics' variable (row) is uniquely identified by the combination of
+#'   values from the columns: \code{pss_id}, \code{sample_id}, and
+#'   \code{variable}. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{pss_id}{A PGS Sample Set identifier. Example: \code{"PSS000042"}.}
+#' \item{sample_id}{Sample identifier. This is a surrogate identifier to
+#' identify each sample.}
+#' \item{variable}{Demographics variable. Following columns report about the
+#' indicated variable.}
+#' \item{estimate_type}{Type of statistical estimate for variable.}
+#' \item{estimate}{The variable's statistical value.}
+#' \item{unit}{Unit of the variable.}
+#' \item{variability_type}{Measure of statistical dispersion for variable, e.g.
+#' standard error (se) or standard deviation (sd).}
+#' \item{variability}{The value of the measure of dispersion.}
+#' \item{interval_type}{Type of statistical interval for variable: range, iqr
+#' (interquartile), ci (confidence interval).}
+#' \item{interval_lower}{Interval lower bound.}
+#' \item{interval_upper}{Interval upper bound.}
 #' }
-#' @slot cohorts A \code{\link[tibble]{tibble}} listing TODO. Columns:
+#' @slot cohorts A table of cohorts. Each cohort (row) is uniquely identified by
+#'   the combination of values from the columns: \code{pss_id}, \code{sample_id}
+#'   and \code{cohort_symbol}. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{pss_id}{A PGS Sample Set identifier. Example: \code{"PSS000042"}.}
+#' \item{sample_id}{Sample identifier. This is a surrogate key to identify each sample.}
+#' \item{cohort_symbol}{Cohort symbol.}
+#' \item{cohort_name}{Cohort full name.}
 #' }
 #' @export
 setClass(

@@ -3,31 +3,34 @@ setOldClass(c("tbl_df", "tbl", "data.frame"))
 
 #' An S4 class to represent a set of PGS Catalog Releases
 #'
-#' The releases object consists of four slots, each a table
-#' (\code{\link[tibble]{tibble}}), that combined form a relational database of a
-#' subset of PGS Catalog releases. Each score is an observation (row) in
-#' the \code{scores} table --- main table. All tables have the column
-#' \code{date} as primary key.
+#' The releases object consists of four tables (slots) that combined form a
+#' relational database of a subset of PGS Catalog releases. Each release is an
+#' observation (row) in the \code{releases} table (first table).
 #'
-#' @slot releases
+#' @slot releases A table of PGS Catalog releases. Each release (row) is
+#'   uniquely identified by the release date (\code{date}). Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{date}{Release date.}
+#' \item{n_pgs}{Number of newly released Polygenic Scores.}
+#' \item{n_ppm}{Number of newly released PGS Performance Metrics.}
+#' \item{n_pgp}{Number of newly released PGS Publications.}
 #' }
-#' @slot pgs_ids A \code{\link[tibble]{tibble}} listing TODO. Columns:
+#' @slot pgs_ids A table of released Polygenic Scores (PGS) identifiers.
+#'   Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{date}{Release date.}
+#' \item{pgs_id}{Polygenic Score (PGS) identifier. Example: \code{"PGS000001"}.}
 #' }
-#' @slot ppm_ids A \code{\link[tibble]{tibble}} listing TODO. Columns:
+#' @slot ppm_ids A table of the released PGS Performance Metrics identifiers.
+#'   Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{date}{Release date.}
+#' \item{ppm_id}{A PGS Performance Metrics identifier. Example: \code{"PPM000001"}.}
 #' }
-#' @slot pgp_ids A \code{\link[tibble]{tibble}} listing TODO. Columns:
+#' @slot pgp_ids A table of the released PGS Publication identifiers. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{date}{Release date.}
+#' \item{pgp_id}{PGS Publication identifier. Example: \code{"PGP000001"}.}
 #' }
 #' @export
 setClass(

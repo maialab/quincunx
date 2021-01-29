@@ -2,56 +2,170 @@ setOldClass(c("tbl_df", "tbl", "data.frame"))
 
 #' An S4 class to represent a set of PGS Catalog Performance Metrics
 #'
-#' The performance_metrics object consists of nine slots, each a table
-#' (\code{\link[tibble]{tibble}}), that combined form a relational database of a
-#' subset of performance metrics. Each performance metric is an observation
-#' (row) in the \code{scores} table --- main table. All tables have the column
-#' \code{ppm_id} as primary key.
+#' The performance_metrics object consists of nine tables (slots) that combined
+#' form a relational database of a subset of performance metrics. Each
+#' performance metric is an observation (row) in the \code{scores} table (first
+#' table).
 #'
-#' @slot performance_metrics
+#' @slot performance_metrics A table of PGS Performance Metrics (PPM). Each PPM (row) is
+#'   uniquely identified by the \code{ppm_id} column. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{ppm_id}{A PGS Performance Metrics identifier. Example: \code{"PPM000001"}.}
+#' \item{pgs_id}{Polygenic Score (PGS) identifier.}
+#' \item{reported_trait}{The author-reported trait that the PGS has been
+#' developed to predict. Example: \code{"Breast Cancer"}.}
+#' \item{covariates}{Comma-separated list of covariates used in the prediction
+#' model to evaluate the PGS.}
+#' \item{comments}{Any other information relevant to the understanding of the
+#' performance metrics.}
 #' }
-#' @slot publications A \code{\link[tibble]{tibble}} listing TODO. Columns:
+#' @slot publications A table of publications. Each publication (row) is
+#'   uniquely identified by the column \code{pgp_id}. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{ppm_id}{A PGS Performance Metrics identifier. Example: \code{"PPM000001"}.}
+#' \item{pgp_id}{PGS Publication identifier. Example: \code{"PGP000001"}.}
+#' \item{pubmed_id}{\href{https://en.wikipedia.org/wiki/PubMed}{PubMed}
+#' identifier. Example: \code{"25855707"}.}
+#' \item{publication_date}{Publication date. Example: \code{"2020-09-28"}. Note
+#' that the class of \code{publication_date} is \code{\link[base]{Date}}.}
+#' \item{publication}{Abbreviated name of the journal. Example: \code{"Am J Hum
+#' Genet"}.}
+#' \item{title}{Publication title.}
+#' \item{author_fullname}{First author of the publication. Example:
+#' \code{'Mavaddat N'}.}
+#' \item{doi}{Digital Object Identifier (DOI). This variable is also curated to
+#' allow unpublished work (e.g. pre-prints) to be added to the catalog. Example:
+#' \code{"10.1093/jnci/djv036"}.}
 #' }
-#' @slot sample_sets A \code{\link[tibble]{tibble}} listing TODO. Columns:
+#' @slot sample_sets A table of sample sets. Each sample set (row) is uniquely
+#'   identified by the column \code{pss_id}. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{ppm_id}{A PGS Performance Metrics identifier. Example: \code{"PPM000001"}.}
+#' \item{pss_id}{A PGS Sample Set identifier. Example: \code{"PSS000042"}.}
 #' }
-#' @slot samples A \code{\link[tibble]{tibble}} listing TODO. Columns:
+#' @slot samples A table of samples. Each sample (row) is uniquely identified by
+#'   the combination of values from the columns: \code{pgs_id}, \code{stage} and
+#'   \code{sample_id}. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{ppm_id}{A PGS Performance Metrics identifier. Example: \code{"PPM000001"}.}
+#' \item{pss_id}{A PGS Sample Set identifier. Example: \code{"PSS000042"}.}
+#' \item{stage}{PGS lifecycle stage: gwas, development or evaluation.}
+#' \item{sample_id}{Sample identifier. This is a surrogate key to identify each sample.}
+#' \item{sample_size}{Number of individuals included in the sample.}
+#' \item{sample_cases}{Number of cases.}
+#' \item{sample_controls}{Number of controls.}
+#' \item{sample_percent_male}{Percentage of male participants.}
+#' \item{phenotype_description}{Detailed phenotype description.}
+#' \item{ancestry}{Author reported ancestry is mapped to the best matching
+#' ancestry category from the NHGRI-EBI GWAS Catalog framework (see
+#' \code{\link[quincunx]{ancestry_categories}}) for possible values.}
+#' \item{ancestry_description}{A more detailed description of sample ancestry
+#' that usually matches the most specific description described by the authors
+#' (e.g. French, Chinese).}
+#' \item{ancestry_country}{Author reported countries of recruitment (if available).}
+#' \item{ancestry_additional_description}{Any additional description not
+#' captured in the other columns (e.g. founder or genetically isolated
+#' populations, or further description of admixed samples).}
+#' \item{study_id}{Associated GWAS Catalog study accession identifier, e.g.,
+#' \code{"GCST002735"}.}
+#' \item{pubmed_id}{\href{https://en.wikipedia.org/wiki/PubMed}{PubMed}
+#' identifier.}
+#' \item{cohorts_additional_description}{Any additional description about the
+#' samples (e.g. sub-cohort information).}
 #' }
-#' @slot demographics A \code{\link[tibble]{tibble}} listing TODO. Columns:
+#' @slot demographics A table of sample demographics' variables. Each
+#'   demographics' variable (row) is uniquely identified by the combination of
+#'   values from the columns: \code{ppm_id}, \code{pss_id}, \code{sample_id},
+#'   and \code{variable}. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{ppm_id}{A PGS Performance Metrics identifier. Example: \code{"PPM000001"}.}
+#' \item{pss_id}{A PGS Sample Set identifier. Example: \code{"PSS000042"}.}
+#' \item{stage}{PGS lifecycle stage: gwas, development or evaluation.}
+#' \item{sample_id}{Sample identifier. This is a surrogate identifier to
+#' identify each sample.}
+#' \item{variable}{Demographics variable. Following columns report about the
+#' indicated variable.}
+#' \item{estimate_type}{Type of statistical estimate for variable.}
+#' \item{estimate}{The variable's statistical value.}
+#' \item{unit}{Unit of the variable.}
+#' \item{variability_type}{Measure of statistical dispersion for variable, e.g.
+#' standard error (se) or standard deviation (sd).}
+#' \item{variability}{The value of the measure of dispersion.}
+#' \item{interval_type}{Type of statistical interval for variable: range, iqr
+#' (interquartile), ci (confidence interval).}
+#' \item{interval_lower}{Interval lower bound.}
+#' \item{interval_upper}{Interval upper bound.}
 #' }
-#' @slot cohorts A \code{\link[tibble]{tibble}} listing TODO. Columns:
+#' @slot cohorts A table of cohorts. Each cohort (row) is uniquely identified by
+#'   the combination of values from the columns: \code{ppm_id}, \code{sample_id}
+#'   and \code{cohort_symbol}. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{ppm_id}{A PGS Performance Metrics identifier. Example: \code{"PPM000001"}.}
+#' \item{stage}{PGS lifecycle stage: gwas, development or evaluation.}
+#' \item{sample_id}{Sample identifier. This is a surrogate key to identify each sample.}
+#' \item{cohort_symbol}{Cohort symbol.}
+#' \item{cohort_name}{Cohort full name.}
 #' }
-#' @slot pgs_effect_sizes A \code{\link[tibble]{tibble}} listing TODO. Columns:
+#' @slot pgs_effect_sizes A table of effect sizes per standard deviation change
+#'   in PGS. Examples include regression coefficients (betas) for continuous
+#'   traits, odds ratios (OR) and/or hazard ratios (HR) for dichotomous traits
+#'   depending on the availability of time-to-event data. Each effect size is
+#'   uniquely identified by the combination of values from the columns:
+#'   \code{ppm_id} and \code{effect_size_id}. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{ppm_id}{A PGS Performance Metrics identifier. Example: \code{"PPM000001"}.}
+#' \item{effect_size_id}{Effect size identifier. This is a surrogate identifier to
+#' identify each effect size.}
+#' \item{estimate_type_long}{Long notation of the effect size (e.g. Odds Ratio).}
+#' \item{estimate_type}{Short notation of the effect size (e.g. OR).}
+#' \item{estimate}{The estimate's value.}
+#' \item{unit}{Unit of the estimate.}
+#' \item{variability_type}{Measure of statistical dispersion for variable, e.g.
+#' standard error (se) or standard deviation (sd).}
+#' \item{variability}{The value of the measure of dispersion.}
+#' \item{interval_type}{Type of statistical interval for variable: range, iqr
+#' (interquartile), ci (confidence interval).}
+#' \item{interval_lower}{Interval lower bound.}
+#' \item{interval_upper}{Interval upper bound.}
 #' }
-#' @slot pgs_classification_metrics A \code{\link[tibble]{tibble}} listing TODO. Columns:
+#' @slot pgs_classification_metrics A table of classification metrics. Examples
+#'   include the Area under the Receiver Operating Characteristic (AUROC) or
+#'   Harrell's C-index (Concordance statistic). Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{ppm_id}{A PGS Performance Metrics identifier. Example: \code{"PPM000001"}.}
+#' \item{classification_metrics_id}{Classification metric identifier. This is a
+#' surrogate identifier to identify each classification metric.}
+#' \item{estimate_type_long}{Long notation of the classification metric (e.g.
+#' Concordance Statistic).}
+#' \item{estimate_type}{Short notation classification metric (e.g. C-index).}
+#' \item{estimate}{The estimate's value.}
+#' \item{unit}{Unit of the estimate.}
+#' \item{variability_type}{Measure of statistical dispersion for variable, e.g.
+#' standard error (se) or standard deviation (sd).}
+#' \item{variability}{The value of the measure of dispersion.}
+#' \item{interval_type}{Type of statistical interval for variable: range, iqr
+#' (interquartile), ci (confidence interval).}
+#' \item{interval_lower}{Interval lower bound.}
+#' \item{interval_upper}{Interval upper bound.}
 #' }
-#' @slot pgs_other_metrics A \code{\link[tibble]{tibble}} listing TODO. Columns:
+#' @slot pgs_other_metrics A table of other metrics that are neither effect
+#'   sizes nor classification metrics. Examples include: R² (proportion of the
+#'   variance explained), or reclassification metrics. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{ppm_id}{A PGS Performance Metrics identifier. Example: \code{"PPM000001"}.}
+#' \item{other_metrics_id}{Other metric identifier. This is a
+#' surrogate identifier to identify each metric.}
+#' \item{estimate_type_long}{Long notation of the metric. Example: "Proportion of the variance explained".}
+#' \item{estimate_type}{Short notation metric. Example: "R²".}
+#' \item{estimate}{The estimate's value.}
+#' \item{unit}{Unit of the estimate.}
+#' \item{variability_type}{Measure of statistical dispersion for variable, e.g.
+#' standard error (se) or standard deviation (sd).}
+#' \item{variability}{The value of the measure of dispersion.}
+#' \item{interval_type}{Type of statistical interval for variable: range, iqr
+#' (interquartile), ci (confidence interval).}
+#' \item{interval_lower}{Interval lower bound.}
+#' \item{interval_upper}{Interval upper bound.}
 #' }
 #' @export
 setClass(
@@ -163,6 +277,7 @@ s4ppm_sample_sets_tbl <- function(ppm_id = character(),
 
 s4ppm_samples_tbl <- function(ppm_id = character(),
                               pss_id = character(),
+                              stage = character(),
                               sample_id = integer(),
                               sample_size = integer(),
                               sample_cases = integer(),
@@ -180,6 +295,7 @@ s4ppm_samples_tbl <- function(ppm_id = character(),
   tbl <- tibble::tibble(
     ppm_id = ppm_id,
     pss_id = pss_id,
+    stage = stage,
     sample_id = sample_id,
     sample_size = sample_size,
     sample_cases = sample_cases,
@@ -200,6 +316,7 @@ s4ppm_samples_tbl <- function(ppm_id = character(),
 
 s4ppm_demographics_tbl <- function(ppm_id = character(),
                                  pss_id = character(),
+                                 stage = character(),
                                  sample_id = integer(),
                                  variable = character(),
                                  estimate_type = character(),
@@ -215,6 +332,7 @@ s4ppm_demographics_tbl <- function(ppm_id = character(),
   tbl <- tibble::tibble(
     ppm_id = ppm_id,
     pss_id = pss_id,
+    stage = stage,
     sample_id = sample_id,
     variable = variable,
     estimate_type = estimate_type,
@@ -232,6 +350,7 @@ s4ppm_demographics_tbl <- function(ppm_id = character(),
 
 s4ppm_pgs_cohorts_tbl  <- function(ppm_id = character(),
                                    pss_id = character(),
+                                   stage = character(),
                                    sample_id = integer(),
                                    cohort_symbol = character(),
                                    cohort_name = character()) {
@@ -239,6 +358,7 @@ s4ppm_pgs_cohorts_tbl  <- function(ppm_id = character(),
   tbl <- tibble::tibble(
     ppm_id = ppm_id,
     pss_id = pss_id,
+    stage = stage,
     sample_id = sample_id,
     cohort_symbol = cohort_symbol,
     cohort_name = cohort_name

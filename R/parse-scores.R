@@ -67,14 +67,14 @@ unwrap_scores_samples <- function(tbl_json) {
 
   samples_variants <- tbl_json %>%
     tidyjson::enter_object('samples_variants') %>%
-    tidyjson::gather_array(column.name = 'sample_id') %>%
     tibble::add_column(stage = 'gwas') %>%
+    tidyjson::gather_array(column.name = 'sample_id') %>%
     unwrap_sample()
 
   samples_training <- tbl_json %>%
     tidyjson::enter_object('samples_training') %>%
-    tidyjson::gather_array(column.name = 'sample_id') %>%
     tibble::add_column(stage = 'development') %>%
+    tidyjson::gather_array(column.name = 'sample_id') %>%
     unwrap_sample()
 
   samples <-
@@ -88,14 +88,14 @@ unwrap_scores_demographics <- function(tbl_json) {
 
   demographics_variants <- tbl_json %>%
     tidyjson::enter_object('samples_variants') %>%
-    tidyjson::gather_array(column.name = 'sample_id') %>%
     tibble::add_column(stage = 'gwas') %>%
+    tidyjson::gather_array(column.name = 'sample_id') %>%
     unwrap_demographics()
 
   demographics_training <- tbl_json %>%
     tidyjson::enter_object('samples_training') %>%
-    tidyjson::gather_array(column.name = 'sample_id') %>%
     tibble::add_column(stage = 'development') %>%
+    tidyjson::gather_array(column.name = 'sample_id') %>%
     unwrap_demographics()
 
   demographics <-
@@ -109,8 +109,8 @@ unwrap_scores_cohorts <- function(tbl_json) {
 
   cohorts_variants <- tbl_json %>%
     tidyjson::enter_object('samples_variants') %>%
-    tidyjson::gather_array(column.name = 'sample_id') %>%
     tibble::add_column(stage = 'gwas') %>%
+    tidyjson::gather_array(column.name = 'sample_id') %>%
     tidyjson::enter_object('cohorts') %>%
     tidyjson::gather_array(column.name = 'cohort_id') %>%
     dplyr::select(-'cohort_id') %>%
@@ -118,8 +118,8 @@ unwrap_scores_cohorts <- function(tbl_json) {
 
   cohorts_training <- tbl_json %>%
     tidyjson::enter_object('samples_training') %>%
-    tidyjson::gather_array(column.name = 'sample_id') %>%
     tibble::add_column(stage = 'development') %>%
+    tidyjson::gather_array(column.name = 'sample_id') %>%
     tidyjson::enter_object('cohorts') %>%
     tidyjson::gather_array(column.name = 'cohort_id') %>%
     dplyr::select(-'cohort_id') %>%

@@ -8,35 +8,57 @@ setOldClass(c("tbl_df", "tbl", "data.frame"))
 #' the \code{traits} table --- main table. All tables have the column
 #' \code{efo_id} as primary key.
 #'
-#' @slot traits
+#' @slot traits A table of traits. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{efo_id}{An \href{https://www.ebi.ac.uk/efo/}{EFO} identifier.}
+#' \item{parent_efo_id}{An \href{https://www.ebi.ac.uk/efo/}{EFO} identifier of
+#' the parent trait.}
+#' \item{is_child}{Is this trait obtained because it is a child of other trait?}
+#' \item{trait}{Trait name.}
+#' \item{description}{Detailed description of the trait from EFO.}
+#' \item{url}{External link to the EFO entry.}
 #' }
-#' @slot pgs_ids A \code{\link[tibble]{tibble}} listing TODO. Columns:
+#' @slot pgs_ids A table of associated polygenic score identifiers. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{efo_id}{An \href{https://www.ebi.ac.uk/efo/}{EFO} identifier.}
+#' \item{parent_efo_id}{An \href{https://www.ebi.ac.uk/efo/}{EFO} identifier of
+#' the parent trait.}
+#' \item{is_child}{Is this trait obtained because it is a child of other trait?}
+#' \item{pgs_id}{Polygenic Score (PGS) identifier.}
 #' }
-#' @slot child_pgs_ids A \code{\link[tibble]{tibble}} listing TODO. Columns:
+#' @slot child_pgs_ids A table of polygenic score identifiers associated with
+#'   the child traits. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{efo_id}{An \href{https://www.ebi.ac.uk/efo/}{EFO} identifier.}
+#' \item{parent_efo_id}{An \href{https://www.ebi.ac.uk/efo/}{EFO} identifier of
+#' the parent trait.}
+#' \item{is_child}{Is this trait obtained because it is a child of other trait?}
+#' \item{child_pgs_id}{Polygenic Score (PGS) identifiers associated with child traits.}
 #' }
-#' @slot trait_categories A \code{\link[tibble]{tibble}} listing TODO. Columns:
+#' @slot trait_categories A table of associated trait categories. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{efo_id}{An \href{https://www.ebi.ac.uk/efo/}{EFO} identifier.}
+#' \item{parent_efo_id}{An \href{https://www.ebi.ac.uk/efo/}{EFO} identifier of
+#' the parent trait.}
+#' \item{is_child}{Is this trait obtained because it is a child of other trait?}
+#' \item{trait_category}{Trait category name.}
 #' }
-#' @slot trait_synonyms A \code{\link[tibble]{tibble}} listing TODO. Columns:
+#' @slot trait_synonyms A table of associated trait synonyms. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{efo_id}{An \href{https://www.ebi.ac.uk/efo/}{EFO} identifier.}
+#' \item{parent_efo_id}{An \href{https://www.ebi.ac.uk/efo/}{EFO} identifier of
+#' the parent trait.}
+#' \item{is_child}{Is this trait obtained because it is a child of other trait?}
+#' \item{trait_synonyms}{Trait synonyms.}
 #' }
-#' @slot trait_mapped_terms A \code{\link[tibble]{tibble}} listing TODO. Columns:
+#' @slot trait_mapped_terms A table of associated external references,
+#'   identifiers or other terms. Columns:
 #' \describe{
-#' \item{TODO}{TODO}
-#' \item{TODO}{TODO}
+#' \item{efo_id}{An \href{https://www.ebi.ac.uk/efo/}{EFO} identifier.}
+#' \item{parent_efo_id}{An \href{https://www.ebi.ac.uk/efo/}{EFO} identifier of
+#' the parent trait.}
+#' \item{is_child}{Is this trait obtained because it is a child of other trait?}
+#' \item{trait_mapped_terms}{Trait mapped terms.}
 #' }
 #' @export
 setClass(
