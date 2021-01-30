@@ -18,7 +18,8 @@ read_pgs_scoring_file_data <- function(file) {
     imputation_method = vroom::col_character(),
     variant_description = vroom::col_character(),
     inclusion_criteria = vroom::col_character(),
-    OR = vroom::col_character()
+    OR = vroom::col_double(),
+    HR = vroom::col_double()
   )
 
   col_names <- read_file_column_names(file)
@@ -72,17 +73,66 @@ read_pgs_scoring_file_metadata <- function(file) {
 }
 
 
-read_one_pgs_scoring_file <- function(file) {
+read_one_pgs_scoring_file <- function(file, metadata_only = FALSE) {
 
   metadata_tbl <- read_pgs_scoring_file_metadata(file)
-  data_tbl <- read_pgs_scoring_file_data(file)
+  if (metadata_only) {
+    data_tbl <- NULL
+  } else {
+    data_tbl <- read_pgs_scoring_file_data(file)
+  }
 
   return(list(metadata = metadata_tbl, data = data_tbl))
 
 }
 
+#' Read a polygenic scoring file
+#'
+#' This function imports a PGS scoring file. For more information about the
+#' scoring file schema check \code{vignette("pgs-scoring-file", package =
+#' "quincunx")}.
+#'
+#' @param source PGS scoring file. This can be specified in three forms: (i) a
+#'   PGS identifier, e.g. \code{"PGS000001"}, (ii) a path to a local file, e.g.
+#'   \code{"~/PGS000001.txt"} or \code{"~/PGS000001.txt.gz"} or (iii) a direct
+#'   URL to the PGS Catalog FTP server, e.g.
+#'   \code{"http://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000001/ScoringFiles/PGS000001.txt.gz"}.
+#' @param protocol Network protocol for communication with the PGS Catalog FTP
+#'   server: either \code{"http"} or \code{"ftp"}.
+#' @param metadata_only Whether to read only the comment block (header) from the
+#'   scoring file.
+#'
+#' @return The returned value is a named list. The names are copied from the
+#'   arguments passed in \code{source}. Each element of the list contains
+#'   another list of two elements: \code{"metadata"} and \code{"data"}. The
+#'   "metadata" element contains data parsed from the header of the PGS scoring
+#'   file. The "data" element contains a data frame with as many rows as
+#'   variants that constitute the PGS score. The columns can vary. There are
+#'   mandatory and optional columns. The mandatory columns are those that
+#'   identify the variant, effect allele (\code{effect_allele}), and its
+#'   respective weight (\code{effect_weight}) in the score. The columns that
+#'   identify the variant can either be the \code{rsID} or the combination of
+#'   \code{chr_name} and \code{chr_position}. The "data" element will be
+#'   \code{NULL} is argument \code{metadata_only} is \code{TRUE}. For more
+#'   information about the scoring file schema check
+#'   \code{vignette("pgs-scoring-file", package = "quincunx")}.
+#'
+#' @examples
+#'
+#' # Read a PGS scoring file by PGS ID
+#' # (internally, it translates the PGS ID
+#' #  to the corresponding FTP URL)
+#' read_scoring_file("PGS000655")
+#'
+#' # Equivalent to `read_scoring_file("PGS000655")`
+#' read_scoring_file("http://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000655/ScoringFiles/PGS000655.txt.gz")
+#'
+#' \dontrun{
+#' # Reading from a local file
+#' read_scoring_file("~/PGS000655")
+#' }
 #' @export
-get_pgs_scoring <- function(source, protocol = 'http', verbose = FALSE) {
+read_scoring_file <- function(source, protocol = 'http', metadata_only = FALSE) {
 
   pgs_ids <- source[is_pgs_id(source)]
 
@@ -98,6 +148,6 @@ get_pgs_scoring <- function(source, protocol = 'http', verbose = FALSE) {
   source2[is_pgs_id(source2)] <- ftp_resources
   source2 <- stats::setNames(object = source2, nm = source)
 
-  purrr::map(source2, read_one_pgs_scoring_file)
+  purrr::map(source2, read_one_pgs_scoring_file, metadata_only = metadata_only)
 
 }

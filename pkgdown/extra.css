@@ -5829,7 +5829,22 @@ navbar-link .fa .fa-home .fa-lg {
 /* Makes the spacing between object     */
 /* names and their descriptions in      */
 /* in the Reference list more sensible. */
-table {
-     border-collapse: separate;
-     border-spacing: 5px 0;
+.ref-index {
+    border-collapse: separate;
+    border-spacing: 5px 0;
+}
+
+.contents h1 {
+  padding-top: 60px;
+  margin-top: -40px;
+}
+
+.contents h2 {
+  padding-top: 45px;
+  margin-top: -40px;
+}
+
+.contents h3, .contents h4 {
+  padding-top: 35px;
+  margin-top: -40px;
 }

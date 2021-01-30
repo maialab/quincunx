@@ -1,10 +1,11 @@
 url: https://rmagno.eu/quincunx
 
 reference:
-- title: "Get PGS Catalog and Other Entities"
+- title: "Get PGS Catalog Data"
   desc: "Receive data from the PGS Catalog REST API."
   contents:
   - get_scores
+  - read_scoring_file
   - get_publications
   - get_performance_metrics
   - get_sample_sets
