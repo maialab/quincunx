@@ -29,7 +29,7 @@ Suggests:
     knitr,
     rmarkdown,
     ggplot2,
-    gwasrapidd
+    gwasrapidd (>= 0.99.11)
 Imports: 
     stringr,
     magrittr,
@@ -106,3 +106,5 @@ Collate:
 VignetteBuilder: knitr
 Depends: 
     R (>= 2.10)
+Remotes:  
+    ramiromagno/gwasrapidd
