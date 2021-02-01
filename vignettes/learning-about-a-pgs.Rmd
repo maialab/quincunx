@@ -1,0 +1,188 @@
+---
+title: "Learning about published polygenic risk score(s)"
+output: rmarkdown::html_vignette
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Introduction 
+
+Let us say you are a researcher studying breast cancer and that you are interested in screening and prevention of this disease. Now, imagine you have just recently noticed a new publication that claims to have developed a set of new polygenic risk scores that are both powerful and reliable predictors of breast cancer risk, e.g., [Mavaddat et al. (2018)](https://doi.org/10.1016/j.ajhg.2018.11.002).
+
+Perhaps now you would like to investigate a bit more about these new polygenic risk scores to assess their potential application. You know that the performance of these scores is dependent on various aspects, such as study design, participant demographics, case definitions, and covariates adjusted for. In general, to access this information, you will have to carefully read the paper for these details. If it happens however that these scores have been already indexed and curated by the [PGS Catalog](https://www.pgscatalog.org/) team then you might take advantage of using this free and open resource to quickly gather relevant data about these scores. And if you happen to be an R user, then you can use quincunx retrieval functions to fetch polygenic score metadata from the PGS Catalog REST API server. This is what we will be doing next.
+
+## Finding polygenic risk scores by publication
+
+### Searching for publications by author name
+
+To check if we are fortunate enough to have the polygenic risk scores for breast cancer ([Mavaddat et al. (2018)](https://doi.org/10.1016/j.ajhg.2018.11.002)) in the PGS Catalog, we start by loading the quincunx package and by searching for this publication in the PGS Catalog. To do this we will use the function `get_publications()` and start by searching by the first author's last name, i.e. "Mavaddat":
+
+```{r get_publications, cache=TRUE}
+library(quincunx)
+
+pub_by_mavaddat <- get_publications(author = 'Mavaddat') # Not case sensitive,
+                                                         # so "mavaddat" would
+                                                         # have worked just fine.
+```
+
+When you ask the PGS Catalog for publications, it returns an S4 `publications` object with two tables (slots): `publications` and `pgs_ids`. You can access these tables with the `@` operator.
+
+The `publications` table (data frame) contains all the publications added to the PGS Catalog that contain an author whose last name is "Mavaddat":
+
+```{r pub_by_mavaddat}
+pub_by_mavaddat@publications
+```
+
+Seemingly there are `r n(pub_by_mavaddat)` publications indexed in the PGS Catalog. Each publication added to the PGS Catalog gets an unique identifier. This identifier is right in the first column (`pgp_id`) of the `publications` table. The number of publications can be obtained by using the function `n()` on the S4 object `pub_by_mavaddat`, or by asking directly the number of rows of the `publications` table:
+
+```{r no_of_pubs}
+n(pub_by_mavaddat)
+nrow(pub_by_mavaddat@publications)
+```
+
+Moreover, we can see that Nasim Mavaddat is not the first author in all these publications because her name is not always present in the column `author_fullname` (which contains the name of the first author only). If you want to know all the authors you can access the column `authors` (contains a string of comma separated author names).
+
+Now, to identify our publication of interest amongst these `r n(pub_by_mavaddat)` publications, we can check, for example, the PubMed identifier of [Mavaddat et al. (2018)](https://doi.org/10.1016/j.ajhg.2018.11.002) (column `pubmed_id`), or check other information such as journal name (column `publication`), the publication title (column `title`) or the publication date (column `publication_date`). The most unambiguous approach is to use the PubMed identifier. The PubMed identifier for [Mavaddat et al. (2018)](https://doi.org/10.1016/j.ajhg.2018.11.002) is `"30554720"`. So the publication of interest corresponds to the one returned in row number `r which(pub_by_mavaddat@publications$pubmed_id == "30554720")` of the `publications` table:
+
+```{r pub_row}
+publication_row_index <- which(pub_by_mavaddat@publications$pubmed_id == "30554720")
+publication_row_index
+```
+
+To focus now on this publication and filter out the others, we can subset the `publications` object `pub_by_mavaddat`, e.g., by position, and get a new object with both tables (`publications` and `pgs_ids`) filtered for only this publication:
+
+```{r filtering_for_mavaddat}
+mavaddat2018 <- pub_by_mavaddat[publication_row_index]
+mavaddat2018
+```
+
+We see now that the `publications` table contains one entry only, and that the PGS Catalog identifier assigned to this publication is `r mavaddat2018@publications$pgp_id`:
+
+```{r pgp_id}
+mavaddat2018@publications$pgp_id
+```
+
+### Searching for publications by PubMed ID
+
+An alternatively, albeit more direct, route to get this publication by [Mavaddat et al. (2018)](https://doi.org/10.1016/j.ajhg.2018.11.002) could have been to query for publications directly by the corresponding PubMed ID (30554720):
+
+```{r pub_by_pubmed_id, cache=TRUE}
+pub_by_pmid_30554720 <- get_publications(pubmed_id = '30554720')
+pub_by_pmid_30554720
+```
+
+## From publication to polygenic risk scores
+
+Now that we have found that our publication of interest exists in the PGS Catalog, whose identifier is `r mavaddat2018@publications$pgp_id`, it is time now to check which polygenic risk scores are annotated in the Catalog. Polygenic scores (PGS) in the PGS Catalog are indexed by an unique accession identifier of the form: "PGS000000" ("PGS" followed by six digits).
+
+To get all PGS identifiers associated with Mavaddat's publication we turn to the second table `pgs_ids` that maps publication identifiers (PGP) to PGS identifiers:
+
+```{r}
+pub_by_pmid_30554720@pgs_ids
+```
+
+There are `r nrow(pub_by_pmid_30554720@pgs_ids)` scores. To retrieve information about them, we use the quincunx function `get_scores()`:
+
+```{r cache=TRUE}
+mavaddat2018_scores <- get_scores(pgs_id = pub_by_pmid_30554720@pgs_ids$pgs_id)
+slotNames(mavaddat2018_scores)
+```
+
+The returned object is an S4 object `scores` which contains six tables (slots): `r slotNames(mavaddat2018_scores)`.
+
+## Polygenic Scores Metadata
+
+### Scores table
+
+The S4 scores object `mavaddat2018_scores` starts with a table named `scores` that lists each score in one row each. All scores are identified by the PGS identifier (column `pgs_id`). In addition, scores can have a name (column `pgs_name`). This may be the name that the authors describe the PGS with in the source publication, or a name that a curator of the PGS Catalog has assigned to identify the score during the curation process.
+
+```{r}
+mavaddat2018_scores@scores[c('pgs_id', 'pgs_name')]
+```
+
+From the PGS names we can already see the presence of the suffixes "ERpos" and "ERneg", suggestive of specialised polygenic risk scores for estrogen-receptor positive and negative samples.
+
+```{r}
+mavaddat2018_scores@scores['scoring_file']
+```
+
+The column `scoring_file` contains the URL to the FTP location of the PGS scoring file. PGS scoring files are the files provided by the PGS Catalog that allow you to compute polygenic scores for your samples. You can learn more about scoring files in `vignette("pgs-scoring-file")`.
+
+```{r}
+mavaddat2018_scores@scores['matches_publication']
+```
+
+The column `matches_publication` is a logical value indicating whether the published polygenic score is exactly the same as the one provided to the PGS Catalog. In this case all of the `r nrow(mavaddat2018_scores@scores)` scores are provided exactly as published.
+
+```{r}
+mavaddat2018_scores@scores[c('pgs_name', 'pgs_method_name', 'pgs_method_params', 'n_variants', 'assembly')]
+```
+In addition, columns such as `pgs_method_name` and `pgs_method_params` provide extra details about the PGS development method. Finally, `n_variants` informs about the number of variants comprising each polygenic risk score, and `assembly` indicates the genome assembly.
+
+### Publications table
+
+The S4 scores object contains a table about the publications. In this case, it is not surprising that all PGS scores map to the same publication identifier, i.e., `r unique(mavaddat2018_scores@publications$pgp_id)`, as that was our starting point.
+
+```{r}
+mavaddat2018_scores@publications
+```
+
+### Samples table
+
+The third table (slot) of the S4 scores object pertains the samples used in the development of the PGS scores.
+
+```{r}
+mavaddat2018_scores@samples
+```
+
+TODO: waiting feedback from the PGS Catalog team on sample "stage".
+TODO: Add here link to a vignette about samples.
+
+### Demographics table
+
+The demographics table usually lists demographic information about each sample. For this study this table is however empty, meaning that this information was not available from Mavaddat's.
+
+TODO: Link here another vignette with an example for which all slots are not empty.
+
+```{r}
+mavaddat2018_scores@demographics
+```
+
+### Cohorts table
+
+In the cohorts table you can check which cohorts belong to which samples. Note that the unique identification of a sample is given by the combination of the values of the first three columns: `pgs_id`, `stage` and `sample_id`.
+
+TODO: Add here link to a vignette about samples.
+
+```{r}
+mavaddat2018_scores@cohorts
+```
+
+### Traits table
+
+Finally, in the traits table, you have access to the associated traits with these polygenic scores. With no surprise, all scores indicate breast cancer or a subtype thereof (column `trait`):
+
+```{r}
+mavaddat2018_scores@traits[c('pgs_id', 'efo_id', 'trait')]
+```
+
+Compared to the author-reported trait (column `reported_trait` from table `scores`), the trait description in this table follow the controlled vocabulary of an ontology, i.e., the [Experimental Factor Ontology (EFO)](https://www.ebi.ac.uk/efo/). This way, traits are described objectively. This is very useful for comparing trait data among different studies (where different reported trait descriptions might have been used). For example, if you wanted now to know what other polygenic scores may be deposited in the PGS Catalog that also study breast cancer --- namely, `r knitr::combine_words(unique(mavaddat2018_scores@traits[['trait']]))` --- then you could use their respective EFO identifiers (`r knitr::combine_words(unique(mavaddat2018_scores@traits[['efo_id']]))`) with the function `get_scores()`:
+
+```{r other_studies, cache=TRUE}
+scores_bc <- get_scores(efo_id = unique(mavaddat2018_scores@traits[['efo_id']]))
+n(scores_bc)
+```
+
+So there are `r n(scores_bc)` scores present in the Catalog. Included in this set are the `r n(mavaddat2018_scores)` scores originating from [Mavaddat et al. (2018)](https://doi.org/10.1016/j.ajhg.2018.11.002). If we wanted to proceed in analysing these other scores without those of Mavaddat's study, we could use the function `setdiff()` to remove them from the S4 scores object:
+
+```{r cache=TRUE}
+bc_scores_not_mavaddat2018 <- setdiff(scores_bc, mavaddat2018_scores)
+n(bc_scores_not_mavaddat2018)
+```
+
+For other set operations check their documentation page: `union()`, `intersect()` and `setequal()`.
