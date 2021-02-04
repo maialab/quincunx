@@ -67,7 +67,7 @@ ancestry_categories <-
     'Surinamese, Russian',
     # Row 14
     'Other admixed ancestry',
-    'Includes individuals who either self-report or have been described by authors as admixed and do not fit the definition of the other admixed categories already defined (“African American or Afro-Caribbean” or “Hispanic or Latin American”)',
+    'Includes individuals who either self-report or have been described by authors as admixed and do not fit the definition of the other admixed categories already defined ("African American or Afro-Caribbean" or "Hispanic or Latin American")',
     NA_character_,
     # Row 15
     'South Asian',
