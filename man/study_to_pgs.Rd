@@ -2,10 +2,32 @@
 % Please edit documentation in R/id_mapping.R
 \name{study_to_pgs}
 \alias{study_to_pgs}
-\title{Map GWAS study to PGS identifiers}
+\title{Map GWAS studies identifiers to PGS identifiers}
 \usage{
 study_to_pgs(study_id, verbose = FALSE, warnings = TRUE, progress_bar = TRUE)
 }
+\arguments{
+\item{study_id}{A character vector of GWAS Catalog study accession
+identifiers, e.g., "GCST001937".}
+
+\item{verbose}{A \code{logical} indicating whether the function should be
+verbose about the different queries or not.}
+
+\item{warnings}{A \code{logical} indicating whether to print warnings, if
+any.}
+
+\item{progress_bar}{Whether to show a progress bar as the queries are
+performed.}
+}
+\value{
+A data frame of two columns: \code{study_id} and \code{pgs_id}.
+}
 \description{
-Map GWAS study to PGS identifiers
+Map GWAS studies identifiers to PGS identifiers.
+}
+\examples{
+study_to_pgs('GCST001937')
+
+study_to_pgs(c('GCST000998', 'GCST000338'))
+
 }
