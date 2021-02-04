@@ -45,7 +45,19 @@ reference:
     publications, performance_metrics, sample_set,
     traits and GWAS studies.
   contents:
+  - pgs_to_pgp
+  - pgs_to_pss
+  - pgs_to_study
   - study_to_pgs
+  - pgp_to_pgs
+  - pss_to_pgs
+- title: "Export to xlsx"
+  desc: >
+    Exporting scores, publications,
+    performance_metrics, sample_set, traits,
+    cohorts, trait_categories and releases to xlsx.
+  contents:
+  - write_xlsx
 - title: "Datasets"
   desc: "Datasets shipped with quincunx"
   contents:
