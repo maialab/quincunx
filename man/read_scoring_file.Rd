@@ -48,10 +48,16 @@ scoring file schema check \code{vignette("pgs-scoring-file", package =
 read_scoring_file("PGS000655")
 
 # Equivalent to `read_scoring_file("PGS000655")`
-read_scoring_file("http://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000655/ScoringFiles/PGS000655.txt.gz")
+url <- paste0(
+  "http://ftp.ebi.ac.uk/",
+  "pub/databases/spot/pgs/scores/",
+  "PGS000655/ScoringFiles/",
+  "PGS000655.txt.gz"
+)
+read_scoring_file(url)
 
 \dontrun{
 # Reading from a local file
-read_scoring_file("~/PGS000655")
+read_scoring_file("~/PGS000655.txt.gz")
 }
 }
