@@ -46,7 +46,8 @@ Imports:
     utils,
     rvest,
     progress,
-    methods
+    methods,
+    writexl
 Collate: 
     'ancestry_categories.R'
     'class-cohorts.R'
@@ -103,8 +104,9 @@ Collate:
     'unwrap_sample.R'
     'utils-pipe.R'
     'warnings.R'
+    'write_xlsx.R'
 VignetteBuilder: knitr
 Depends: 
     R (>= 2.10)
-Remotes:  
+Remotes: 
     ramiromagno/gwasrapidd
