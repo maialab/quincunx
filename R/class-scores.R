@@ -57,13 +57,13 @@ setOldClass(c("tbl_df", "tbl", "data.frame"))
 #' \code{"10.1093/jnci/djv036"}.}
 #' }
 #' @slot samples A table of samples. Each sample (row) is uniquely identified by
-#'   the combination of values from the columns: \code{pgs_id}, \code{stage} and
+#'   the combination of values from the columns: \code{pgs_id} and
 #'   \code{sample_id}. Columns:
 #' \describe{
 #' \item{pgs_id}{Polygenic score identifier. An identifier that starts with
 #' \code{'PGS'} and is followed by six digits, e.g. \code{'PGS000001'}.}
-#' \item{stage}{PGS lifecycle stage: gwas, development or evaluation.}
 #' \item{sample_id}{Sample identifier. This is a surrogate key to identify each sample.}
+#' \item{stage}{Sample stage: either \code{"discovery"} or \code{"training"}.}
 #' \item{sample_size}{Number of individuals included in the sample.}
 #' \item{sample_cases}{Number of cases.}
 #' \item{sample_controls}{Number of controls.}
@@ -88,11 +88,10 @@ setOldClass(c("tbl_df", "tbl", "data.frame"))
 #' }
 #' @slot demographics A table of sample demographics' variables. Each
 #'   demographics' variable (row) is uniquely identified by the combination of
-#'   values from the columns: \code{pgs_id}, \code{stage}, \code{sample_id} and
+#'   values from the columns: \code{pgs_id}, \code{sample_id} and
 #'   \code{variable}. Columns:
 #' \describe{
 #' \item{pgs_id}{Polygenic Score (PGS) identifier.}
-#' \item{stage}{PGS lifecycle stage: gwas, development or evaluation.}
 #' \item{sample_id}{Sample identifier. This is a surrogate identifier to
 #' identify each sample.}
 #' \item{variable}{Demographics variable. Following columns report about the
@@ -109,11 +108,10 @@ setOldClass(c("tbl_df", "tbl", "data.frame"))
 #' \item{interval_upper}{Interval upper bound.}
 #' }
 #' @slot cohorts A table of cohorts. Each cohort (row) is uniquely identified by
-#'   the combination of values from the columns: \code{pgs_id}, \code{stage},
-#'   \code{sample_id} and \code{cohort_symbol}. Columns:
+#'   the combination of values from the columns: \code{pgs_id}, \code{sample_id}
+#'   and \code{cohort_symbol}. Columns:
 #' \describe{
 #' \item{pgs_id}{Polygenic Score (PGS) identifier.}
-#' \item{stage}{PGS lifecycle stage: gwas, development or evaluation.}
 #' \item{sample_id}{Sample identifier. This is a surrogate key to identify each sample.}
 #' \item{cohort_symbol}{Cohort symbol.}
 #' \item{cohort_name}{Cohort full name.}
@@ -232,8 +230,8 @@ s4scores_publications_tbl <- function(
 
 s4scores_samples_tbl <- function(
   pgs_id = character(),
-  stage = character(),
   sample_id = integer(),
+  stage = character(),
   sample_size = integer(),
   sample_cases = integer(),
   sample_controls = integer(),
@@ -250,8 +248,8 @@ s4scores_samples_tbl <- function(
 
   tbl <- tibble::tibble(
     pgs_id = pgs_id,
-    stage = stage,
     sample_id = sample_id,
+    stage = stage,
     sample_size = sample_size,
     sample_cases = sample_cases,
     sample_controls = sample_controls,
@@ -271,7 +269,6 @@ s4scores_samples_tbl <- function(
 
 s4scores_demographics_tbl <- function(
   pgs_id = character(),
-  stage = character(),
   sample_id = integer(),
   estimate_type = character(),
   estimate = double(),
@@ -285,7 +282,6 @@ s4scores_demographics_tbl <- function(
 
   tbl <- tibble::tibble(
     pgs_id = pgs_id,
-    stage = stage,
     sample_id = sample_id,
     estimate_type = estimate_type,
     estimate = estimate,
@@ -303,7 +299,6 @@ s4scores_demographics_tbl <- function(
 
 s4scores_cohorts_tbl <- function(
   pgs_id = character(),
-  stage = character(),
   sample_id = integer(),
   cohort_symbol = character(),
   cohort_name = character()
@@ -312,7 +307,6 @@ s4scores_cohorts_tbl <- function(
   tbl <- tibble::tibble(
     pgs_id = pgs_id,
     sample_id = sample_id,
-    stage = stage,
     cohort_symbol = cohort_symbol,
     cohort_name = cohort_name
   )

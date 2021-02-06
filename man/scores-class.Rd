@@ -65,13 +65,13 @@ allow unpublished work (e.g. pre-prints) to be added to the catalog. Example:
 }}
 
 \item{\code{samples}}{A table of samples. Each sample (row) is uniquely identified by
-  the combination of values from the columns: \code{pgs_id}, \code{stage} and
+  the combination of values from the columns: \code{pgs_id} and
   \code{sample_id}. Columns:
 \describe{
 \item{pgs_id}{Polygenic score identifier. An identifier that starts with
 \code{'PGS'} and is followed by six digits, e.g. \code{'PGS000001'}.}
-\item{stage}{PGS lifecycle stage: gwas, development or evaluation.}
 \item{sample_id}{Sample identifier. This is a surrogate key to identify each sample.}
+\item{stage}{Sample stage: either \code{"discovery"} or \code{"training"}.}
 \item{sample_size}{Number of individuals included in the sample.}
 \item{sample_cases}{Number of cases.}
 \item{sample_controls}{Number of controls.}
@@ -97,11 +97,10 @@ samples (e.g. sub-cohort information).}
 
 \item{\code{demographics}}{A table of sample demographics' variables. Each
   demographics' variable (row) is uniquely identified by the combination of
-  values from the columns: \code{pgs_id}, \code{stage}, \code{sample_id} and
+  values from the columns: \code{pgs_id}, \code{sample_id} and
   \code{variable}. Columns:
 \describe{
 \item{pgs_id}{Polygenic Score (PGS) identifier.}
-\item{stage}{PGS lifecycle stage: gwas, development or evaluation.}
 \item{sample_id}{Sample identifier. This is a surrogate identifier to
 identify each sample.}
 \item{variable}{Demographics variable. Following columns report about the
@@ -119,11 +118,10 @@ standard error (se) or standard deviation (sd).}
 }}
 
 \item{\code{cohorts}}{A table of cohorts. Each cohort (row) is uniquely identified by
-  the combination of values from the columns: \code{pgs_id}, \code{stage},
-  \code{sample_id} and \code{cohort_symbol}. Columns:
+  the combination of values from the columns: \code{pgs_id}, \code{sample_id}
+  and \code{cohort_symbol}. Columns:
 \describe{
 \item{pgs_id}{Polygenic Score (PGS) identifier.}
-\item{stage}{PGS lifecycle stage: gwas, development or evaluation.}
 \item{sample_id}{Sample identifier. This is a surrogate key to identify each sample.}
 \item{cohort_symbol}{Cohort symbol.}
 \item{cohort_name}{Cohort full name.}

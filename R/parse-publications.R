@@ -5,7 +5,9 @@ as_tidy_tables_publications <- function(tbl_json) {
     tidyjson::gather_array()
 
   publication_ext <- unwrap_publication_extended(tbl_json2)
+  # TODO: Waiting for feedback on: https://github.com/PGScatalog/PGS_Catalog/issues/163
   publication_pgs_ids <- unwrap_publication_pgs_ids(tbl_json2)
+  # publication_pgs_ids <- tibble::tibble(..page = integer(), array.index = integer(), ..resource = character(), ..timestamp = lubridate::as_datetime(character()))
 
   tidy_publications_tables <-
     list(publications = publication_ext,
@@ -34,13 +36,53 @@ unwrap_publication_extended <- function(tbl_json) {
     tidyjson::as_tibble()
 }
 
+# unwrap_publication_pgs_ids <- function(tbl_json) {
+#
+#   tbl_json %>%
+#     tidyjson::spread_values(id = tidyjson::jstring('id')) %>%
+#     tidyjson::enter_object('associated_pgs_ids') %>%
+#     tidyjson::gather_array(column.name = 'associated_pgs_ids_id') %>%
+#     dplyr::select(-'associated_pgs_ids_id') %>%
+#     tidyjson::append_values_string('pgs_id') %>%
+#     tidyjson::as_tibble()
+# }
+
 unwrap_publication_pgs_ids <- function(tbl_json) {
 
   tbl_json %>%
     tidyjson::spread_values(id = tidyjson::jstring('id')) %>%
-    tidyjson::enter_object('associated_pgs_ids') %>%
-    tidyjson::gather_array(column.name = 'associated_pgs_ids_id') %>%
-    dplyr::select(-'associated_pgs_ids_id') %>%
-    tidyjson::append_values_string('pgs_id') %>%
-    tidyjson::as_tibble()
+    collect_pgs_ids()
+}
+
+#' Collect development and evaluation pgs_ids
+#'
+#' Collect development and evaluation pgs_ids.
+#'
+#' @keywords internal
+#' @importFrom rlang .data
+collect_pgs_ids <- function(tbl_json) {
+
+  development_pgs_ids <- tbl_json %>%
+    tidyjson::enter_object('associated_pgs_ids', 'development')%>%
+    tidyjson::gather_array(column.name = 'dummy') %>%
+    dplyr::select(-'dummy') %>%
+    tidyjson::append_values_string(column.name = 'pgs_id') %>%
+    tibble::add_column(stage = 'development')
+
+
+  evaluation_pgs_ids <- tbl_json %>%
+    tidyjson::enter_object('associated_pgs_ids', 'evaluation')%>%
+    tidyjson::gather_array(column.name = 'dummy') %>%
+    dplyr::select(-'dummy') %>%
+    tidyjson::append_values_string(column.name = 'pgs_id') %>%
+    tibble::add_column(stage = 'evaluation')
+
+  all_pgs_ids <-
+    tidyjson::bind_rows(development_pgs_ids, evaluation_pgs_ids) %>%
+    tidyjson::as_tibble() %>%
+    dplyr::group_by(.data$..page, .data$array.index) %>%
+    dplyr::arrange('pgs_id', .by_group = TRUE) %>%
+    dplyr::ungroup()
+
+  return(all_pgs_ids)
 }

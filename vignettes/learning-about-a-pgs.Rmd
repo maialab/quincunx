@@ -1,6 +1,10 @@
 ---
 title: "Learning about published polygenic risk score(s)"
 output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Learning about published polygenic risk score(s)}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}
@@ -8,6 +12,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+library(dplyr) # Need this here before library(quincunx) because of n().
 ```
 
 ## Introduction 
@@ -22,7 +27,7 @@ Perhaps now you would like to investigate a bit more about these new polygenic r
 
 To check if we are fortunate enough to have the polygenic risk scores for breast cancer ([Mavaddat et al. (2018)](https://doi.org/10.1016/j.ajhg.2018.11.002)) in the PGS Catalog, we start by loading the quincunx package and by searching for this publication in the PGS Catalog. To do this we will use the function `get_publications()` and start by searching by the first author's last name, i.e. "Mavaddat":
 
-```{r get_publications, cache=TRUE}
+```{r get_publications}
 library(quincunx)
 
 pub_by_mavaddat <- get_publications(author = 'Mavaddat') # Not case sensitive,
@@ -71,7 +76,7 @@ mavaddat2018@publications$pgp_id
 
 An alternatively, albeit more direct, route to get this publication by [Mavaddat et al. (2018)](https://doi.org/10.1016/j.ajhg.2018.11.002) could have been to query for publications directly by the corresponding PubMed ID (30554720):
 
-```{r pub_by_pubmed_id, cache=TRUE}
+```{r pub_by_pubmed_id}
 pub_by_pmid_30554720 <- get_publications(pubmed_id = '30554720')
 pub_by_pmid_30554720
 ```
@@ -88,7 +93,7 @@ pub_by_pmid_30554720@pgs_ids
 
 There are `r nrow(pub_by_pmid_30554720@pgs_ids)` scores. To retrieve information about them, we use the quincunx function `get_scores()`:
 
-```{r cache=TRUE}
+```{r}
 mavaddat2018_scores <- get_scores(pgs_id = pub_by_pmid_30554720@pgs_ids$pgs_id)
 slotNames(mavaddat2018_scores)
 ```
@@ -129,7 +134,7 @@ In addition, columns such as `pgs_method_name` and `pgs_method_params` provide e
 The S4 scores object contains a table about the publications. In this case, it is not surprising that all PGS scores map to the same publication identifier, i.e., `r unique(mavaddat2018_scores@publications$pgp_id)`, as that was our starting point.
 
 ```{r}
-mavaddat2018_scores@publications
+mavaddat2018_scores@publications[c('pgs_id', 'pgp_id', 'publication_date', 'author_fullname')]
 ```
 
 ### Samples table
@@ -171,16 +176,16 @@ Finally, in the traits table, you have access to the associated traits with thes
 mavaddat2018_scores@traits[c('pgs_id', 'efo_id', 'trait')]
 ```
 
-Compared to the author-reported trait (column `reported_trait` from table `scores`), the trait description in this table follow the controlled vocabulary of an ontology, i.e., the [Experimental Factor Ontology (EFO)](https://www.ebi.ac.uk/efo/). This way, traits are described objectively. This is very useful for comparing trait data among different studies (where different reported trait descriptions might have been used). For example, if you wanted now to know what other polygenic scores may be deposited in the PGS Catalog that also study breast cancer --- namely, `r knitr::combine_words(unique(mavaddat2018_scores@traits[['trait']]))` --- then you could use their respective EFO identifiers (`r knitr::combine_words(unique(mavaddat2018_scores@traits[['efo_id']]))`) with the function `get_scores()`:
+Compared to the author-reported trait (column `reported_trait` from table `scores`), the trait description in this table follows the controlled vocabulary of an ontology, i.e., the [Experimental Factor Ontology (EFO)](https://www.ebi.ac.uk/efo/). This way, traits are described objectively. This is very useful for comparing trait data among different studies where different reported trait descriptions might have been used. For example, if you wanted now to know what other polygenic scores may be deposited in the PGS Catalog that also study breast cancer --- namely, `r knitr::combine_words(unique(mavaddat2018_scores@traits[['trait']]))` --- then you could use their respective EFO identifiers (`r knitr::combine_words(unique(mavaddat2018_scores@traits[['efo_id']]))`) with the function `get_scores()`:
 
-```{r other_studies, cache=TRUE}
+```{r other_studies}
 scores_bc <- get_scores(efo_id = unique(mavaddat2018_scores@traits[['efo_id']]))
 n(scores_bc)
 ```
 
 So there are `r n(scores_bc)` scores present in the Catalog. Included in this set are the `r n(mavaddat2018_scores)` scores originating from [Mavaddat et al. (2018)](https://doi.org/10.1016/j.ajhg.2018.11.002). If we wanted to proceed in analysing these other scores without those of Mavaddat's study, we could use the function `setdiff()` to remove them from the S4 scores object:
 
-```{r cache=TRUE}
+```{r}
 bc_scores_not_mavaddat2018 <- setdiff(scores_bc, mavaddat2018_scores)
 n(bc_scores_not_mavaddat2018)
 ```

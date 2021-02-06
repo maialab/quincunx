@@ -30,8 +30,8 @@ unpack_performance_metric <- function(tbl_json) {
     tidyjson::enter_object('sampleset') %>%
     tidyjson::spread_values(pss_id = tidyjson::jstring('id')) %>%
     tidyjson::enter_object('samples') %>%
-    tibble::add_column(stage = 'evaluation') %>% # All PPM samples in evaluation stage.
     tidyjson::gather_array(column.name = 'sample_id') %>%
+    tibble::add_column(stage = 'evaluation') %>% # All PPM samples in evaluation stage.
     unwrap_sample()
 
   demographics <-
@@ -39,7 +39,6 @@ unpack_performance_metric <- function(tbl_json) {
     tidyjson::enter_object('sampleset') %>%
     tidyjson::spread_values(pss_id = tidyjson::jstring('id')) %>%
     tidyjson::enter_object('samples') %>%
-    tibble::add_column(stage = 'evaluation') %>% # All PPM samples in evaluation stage.
     tidyjson::gather_array(column.name = 'sample_id') %>%
     unwrap_demographics()
 
@@ -48,7 +47,6 @@ unpack_performance_metric <- function(tbl_json) {
     tidyjson::enter_object('sampleset') %>%
     tidyjson::spread_values(pss_id = tidyjson::jstring('id')) %>%
     tidyjson::enter_object('samples') %>%
-    tibble::add_column(stage = 'evaluation') %>% # All PPM samples in evaluation stage.
     tidyjson::gather_array(column.name = 'sample_id') %>%
     tidyjson::enter_object('cohorts') %>%
     tidyjson::gather_array(column.name = 'cohort_id') %>%
@@ -86,88 +84,6 @@ unpack_performance_metric <- function(tbl_json) {
   )
 
 }
-
-# unpack_sample_set <- function(tbl_json) {
-#
-#   # sample_set <- unwrap(tbl_json, 'SampleSet')
-#   sample_set <- unwrap_sample_set(tbl_json)
-#
-#   tbl <- tibble::add_column(tbl_json, sample_set['pss_id'], .before = 2)
-#   # tbl <- dplyr::relocate(sample_set, 'pss_id', .before = 2)
-#   c(list(sample_sets = sample_set), unpack_sample(enter(tbl, 'samples', column_id_name = 'sample_id'), parent_id = 'sample_id'))
-# }
-
-# unpack_sample <- function(tbl_json,
-#                           parent_id,
-#                           samples_name = 'samples',
-#                           sample_age_name = 'sample_age',
-#                           followup_time_name = 'sample_follow_up_time',
-#                           cohorts_name = 'cohorts') {
-#
-#   samples <- tbl_json %>%
-#     unwrap_sample()
-#
-#   sample_age <- tbl_json %>%
-#     enter('sample_age', iterable = FALSE) %>%
-#     unwrap_demographic()
-#
-#   followup_time <- tbl_json %>%
-#     enter('followup_time', iterable = FALSE) %>%
-#     unwrap_demographic()
-#
-#   cohorts <- tbl_json %>%
-#     enter('cohorts', column_id_name = 'cohort_id') %>%
-#     dplyr::select(-'cohort_id') %>%
-#     unwrap_cohort()
-#
-#   lst <- list(
-#     samples = samples,
-#     sample_age = sample_age,
-#     sample_follow_up_time = followup_time,
-#     cohorts = cohorts
-#   )
-#
-#   nm <- c(samples_name, sample_age_name, followup_time_name, cohorts_name)
-#
-#   setNames(lst, nm)
-# }
-
-
-
-# unpack_sample <- function(tbl_json,
-#                           parent_id,
-#                           samples_name = 'samples',
-#                           sample_age_name = 'sample_age',
-#                           followup_time_name = 'sample_follow_up_time',
-#                           cohorts_name = 'cohorts') {
-#
-#   samples <- tbl_json %>%
-#     unwrap_sample()
-#
-#   sample_age <- tbl_json %>%
-#     enter('sample_age', iterable = FALSE) %>%
-#     unwrap_demographic()
-#
-#   followup_time <- tbl_json %>%
-#     enter('followup_time', iterable = FALSE) %>%
-#     unwrap_demographic()
-#
-#   cohorts <- tbl_json %>%
-#     enter('cohorts', column_id_name = 'cohort_id') %>%
-#     dplyr::select(-'cohort_id') %>%
-#     unwrap_cohort()
-#
-#   lst <- list(
-#     samples = samples,
-#     sample_age = sample_age,
-#     sample_follow_up_time = followup_time,
-#     cohorts = cohorts
-#   )
-#
-#   nm <- c(samples_name, sample_age_name, followup_time_name, cohorts_name)
-#
-#   setNames(lst, nm)
-# }
 
 unwrap_metric <- function(tbl_json) {
 

@@ -44,13 +44,13 @@ setOldClass(c("tbl_df", "tbl", "data.frame"))
 #' \item{pss_id}{A PGS Sample Set identifier. Example: \code{"PSS000042"}.}
 #' }
 #' @slot samples A table of samples. Each sample (row) is uniquely identified by
-#'   the combination of values from the columns: \code{pgs_id}, \code{stage} and
-#'   \code{sample_id}. Columns:
+#'   the combination of values from the columns: \code{ppm_id}, \code{pss_id},
+#'   and \code{sample_id}. Columns:
 #' \describe{
 #' \item{ppm_id}{A PGS Performance Metrics identifier. Example: \code{"PPM000001"}.}
 #' \item{pss_id}{A PGS Sample Set identifier. Example: \code{"PSS000042"}.}
-#' \item{stage}{PGS lifecycle stage: gwas, development or evaluation.}
 #' \item{sample_id}{Sample identifier. This is a surrogate key to identify each sample.}
+#' \item{stage}{Sample stage: should be always \code{"evaluation"}.}
 #' \item{sample_size}{Number of individuals included in the sample.}
 #' \item{sample_cases}{Number of cases.}
 #' \item{sample_controls}{Number of controls.}
@@ -80,7 +80,6 @@ setOldClass(c("tbl_df", "tbl", "data.frame"))
 #' \describe{
 #' \item{ppm_id}{A PGS Performance Metrics identifier. Example: \code{"PPM000001"}.}
 #' \item{pss_id}{A PGS Sample Set identifier. Example: \code{"PSS000042"}.}
-#' \item{stage}{PGS lifecycle stage: gwas, development or evaluation.}
 #' \item{sample_id}{Sample identifier. This is a surrogate identifier to
 #' identify each sample.}
 #' \item{variable}{Demographics variable. Following columns report about the
@@ -101,7 +100,6 @@ setOldClass(c("tbl_df", "tbl", "data.frame"))
 #'   and \code{cohort_symbol}. Columns:
 #' \describe{
 #' \item{ppm_id}{A PGS Performance Metrics identifier. Example: \code{"PPM000001"}.}
-#' \item{stage}{PGS lifecycle stage: gwas, development or evaluation.}
 #' \item{sample_id}{Sample identifier. This is a surrogate key to identify each sample.}
 #' \item{cohort_symbol}{Cohort symbol.}
 #' \item{cohort_name}{Cohort full name.}
@@ -277,8 +275,8 @@ s4ppm_sample_sets_tbl <- function(ppm_id = character(),
 
 s4ppm_samples_tbl <- function(ppm_id = character(),
                               pss_id = character(),
-                              stage = character(),
                               sample_id = integer(),
+                              stage = character(),
                               sample_size = integer(),
                               sample_cases = integer(),
                               sample_controls = integer(),
@@ -295,8 +293,8 @@ s4ppm_samples_tbl <- function(ppm_id = character(),
   tbl <- tibble::tibble(
     ppm_id = ppm_id,
     pss_id = pss_id,
-    stage = stage,
     sample_id = sample_id,
+    stage = stage,
     sample_size = sample_size,
     sample_cases = sample_cases,
     sample_controls = sample_controls,
@@ -316,7 +314,6 @@ s4ppm_samples_tbl <- function(ppm_id = character(),
 
 s4ppm_demographics_tbl <- function(ppm_id = character(),
                                  pss_id = character(),
-                                 stage = character(),
                                  sample_id = integer(),
                                  variable = character(),
                                  estimate_type = character(),
@@ -332,7 +329,6 @@ s4ppm_demographics_tbl <- function(ppm_id = character(),
   tbl <- tibble::tibble(
     ppm_id = ppm_id,
     pss_id = pss_id,
-    stage = stage,
     sample_id = sample_id,
     variable = variable,
     estimate_type = estimate_type,
@@ -350,7 +346,6 @@ s4ppm_demographics_tbl <- function(ppm_id = character(),
 
 s4ppm_pgs_cohorts_tbl  <- function(ppm_id = character(),
                                    pss_id = character(),
-                                   stage = character(),
                                    sample_id = integer(),
                                    cohort_symbol = character(),
                                    cohort_name = character()) {
@@ -358,7 +353,6 @@ s4ppm_pgs_cohorts_tbl  <- function(ppm_id = character(),
   tbl <- tibble::tibble(
     ppm_id = ppm_id,
     pss_id = pss_id,
-    stage = stage,
     sample_id = sample_id,
     cohort_symbol = cohort_symbol,
     cohort_name = cohort_name

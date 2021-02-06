@@ -29,6 +29,7 @@ setOldClass(c("tbl_df", "tbl", "data.frame"))
 #' \describe{
 #' \item{pgp_id}{PGS Publication identifier. Example: \code{"PGP000001"}.}
 #' \item{pgs_id}{Polygenic Score (PGS) identifier.}
+#' \item{stage}{PGS stage: either "development" or "evaluation".}
 #' }
 #' @export
 setClass(
@@ -82,11 +83,13 @@ publications_tbl <- function(pgp_id = character(),
 }
 
 pgs_ids_tbl <- function(pgp_id = character(),
-                        pgs_id = character()) {
+                        pgs_id = character(),
+                        stage = character()) {
 
   tbl <- tibble::tibble(
     pgp_id = pgp_id,
-    pgs_id = pgs_id
+    pgs_id = pgs_id,
+    stage = stage
   )
 
   return(tbl)

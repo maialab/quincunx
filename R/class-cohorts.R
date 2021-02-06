@@ -18,7 +18,7 @@ setOldClass(c("tbl_df", "tbl", "data.frame"))
 #' \describe{
 #' \item{cohort_symbol}{Cohort symbol. Example: \code{"CECILE"}.}
 #' \item{pgs_id}{Polygenic Score (PGS) identifier.}
-#' \item{stage}{PGS lifecycle stage: gwas, development or evaluation.}
+#' \item{stage}{Sample stage: either \code{"development"} or \code{"evaluation"}.}
 #' }
 #' @export
 setClass(

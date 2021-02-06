@@ -53,13 +53,13 @@ allow unpublished work (e.g. pre-prints) to be added to the catalog. Example:
 }}
 
 \item{\code{samples}}{A table of samples. Each sample (row) is uniquely identified by
-  the combination of values from the columns: \code{pgs_id}, \code{stage} and
-  \code{sample_id}. Columns:
+  the combination of values from the columns: \code{ppm_id}, \code{pss_id},
+  and \code{sample_id}. Columns:
 \describe{
 \item{ppm_id}{A PGS Performance Metrics identifier. Example: \code{"PPM000001"}.}
 \item{pss_id}{A PGS Sample Set identifier. Example: \code{"PSS000042"}.}
-\item{stage}{PGS lifecycle stage: gwas, development or evaluation.}
 \item{sample_id}{Sample identifier. This is a surrogate key to identify each sample.}
+\item{stage}{Sample stage: should be always \code{"evaluation"}.}
 \item{sample_size}{Number of individuals included in the sample.}
 \item{sample_cases}{Number of cases.}
 \item{sample_controls}{Number of controls.}
@@ -90,7 +90,6 @@ samples (e.g. sub-cohort information).}
 \describe{
 \item{ppm_id}{A PGS Performance Metrics identifier. Example: \code{"PPM000001"}.}
 \item{pss_id}{A PGS Sample Set identifier. Example: \code{"PSS000042"}.}
-\item{stage}{PGS lifecycle stage: gwas, development or evaluation.}
 \item{sample_id}{Sample identifier. This is a surrogate identifier to
 identify each sample.}
 \item{variable}{Demographics variable. Following columns report about the
@@ -112,7 +111,6 @@ standard error (se) or standard deviation (sd).}
   and \code{cohort_symbol}. Columns:
 \describe{
 \item{ppm_id}{A PGS Performance Metrics identifier. Example: \code{"PPM000001"}.}
-\item{stage}{PGS lifecycle stage: gwas, development or evaluation.}
 \item{sample_id}{Sample identifier. This is a surrogate key to identify each sample.}
 \item{cohort_symbol}{Cohort symbol.}
 \item{cohort_name}{Cohort full name.}

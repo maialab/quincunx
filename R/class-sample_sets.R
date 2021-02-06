@@ -17,6 +17,7 @@ setOldClass(c("tbl_df", "tbl", "data.frame"))
 #' \describe{
 #' \item{pss_id}{A PGS Sample Set identifier. Example: \code{"PSS000042"}.}
 #' \item{sample_id}{Sample identifier. This is a surrogate key to identify each sample.}
+#' \item{stage}{Sample stage: should be always \code{"evaluation"}.}
 #' \item{sample_size}{Number of individuals included in the sample.}
 #' \item{sample_cases}{Number of cases.}
 #' \item{sample_controls}{Number of controls.}
@@ -118,6 +119,7 @@ s4pss_sample_sets_tbl <- function(pss_id = character()) {
 
 s4pss_samples_tbl <- function(pss_id = character(),
                               sample_id = integer(),
+                              stage = character(),
                               sample_size = integer(),
                               sample_cases = integer(),
                               sample_controls = integer(),
@@ -134,6 +136,7 @@ s4pss_samples_tbl <- function(pss_id = character(),
   tbl <- tibble::tibble(
     pss_id = pss_id,
     sample_id = sample_id,
+    stage = stage,
     sample_size = sample_size,
     sample_cases = sample_cases,
     sample_controls = sample_controls,
@@ -152,17 +155,16 @@ s4pss_samples_tbl <- function(pss_id = character(),
 }
 
 s4pss_demographics_tbl <- function(pss_id = character(),
-                                 sample_id = integer(),
-                                 variable = character(),
-                                 estimate_type = character(),
-                                 estimate = double(),
-                                 unit = character(),
-                                 variability_type = character(),
-                                 variability = double(),
-                                 interval_type = character(),
-                                 interval_lower = double(),
-                                 interval_upper = double()) {
-
+                                   sample_id = integer(),
+                                   variable = character(),
+                                   estimate_type = character(),
+                                   estimate = double(),
+                                   unit = character(),
+                                   variability_type = character(),
+                                   variability = double(),
+                                   interval_type = character(),
+                                   interval_lower = double(),
+                                   interval_upper = double()) {
 
   tbl <- tibble::tibble(
     pss_id = pss_id,

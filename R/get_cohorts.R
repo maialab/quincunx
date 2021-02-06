@@ -18,6 +18,7 @@ get_cohort <- function(resource,
 get_cohort_by_cohort_symbol <- function(cohort_symbol, limit = 20L, verbose = FALSE, warnings = TRUE, progress_bar = TRUE) {
 
   resource <- '/rest/cohort'
+  cohort_symbol <- purrr::map_chr(cohort_symbol, utils::URLencode, reserved = TRUE)
   resource_urls <- sprintf("%s/%s", resource, cohort_symbol)
 
   purrr::map(

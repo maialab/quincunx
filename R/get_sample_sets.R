@@ -81,7 +81,7 @@ get_sample_sets_by_pgs_id <- function(pgs_id, limit = 20L, verbose = FALSE, warn
 #'
 #' @return An \linkS4class{sample_sets} object.
 #' @examples
-#' # TODO
+#' get_sample_sets('PSS000068')
 #'
 #' @export
 get_sample_sets <- function(
