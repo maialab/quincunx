@@ -19,6 +19,10 @@ You can install the current version of quincunx with:
     # install.packages("remotes")
     remotes::install_github("ramiromagno/quincunx")
 
+## Cheatsheet
+
+<a href="https://github.com/ramiromagno/cheatsheets/blob/master/quincunx/quincunx_cheatsheet.pdf"><img src="https://raw.githubusercontent.com/ramiromagno/cheatsheets/master/quincunx/quincunx_cheatsheet.png" width="615" height="225"/></a>
+
 ## Package name and hex sticker
 
 The package name *quincunx* is another name for [Galton

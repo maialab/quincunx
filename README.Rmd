@@ -29,6 +29,10 @@ You can install the current version of quincunx with:
 remotes::install_github("ramiromagno/quincunx")
 ```
 
+## Cheatsheet
+
+<a href="https://github.com/ramiromagno/cheatsheets/blob/master/quincunx/quincunx_cheatsheet.pdf"><img src="https://raw.githubusercontent.com/ramiromagno/cheatsheets/master/quincunx/quincunx_cheatsheet.png" width="615" height="225"/></a>  
+
 ## Package name and hex sticker
 
 The package name *quincunx* is another name for [Galton Board](https://en.wikipedia.org/wiki/Bean_machine), that so nicely exemplifies the [Central Limit Theorem](https://en.wikipedia.org/wiki/Central_limit_theorem), which in turn is a key concept of genetics, namely, [Fisher’s infinitesimal model](https://doi.org/10.1016/j.tpb.2017.09.003)... which leads us to Polygenic Scores, the key concept of the PGS Catalog.
