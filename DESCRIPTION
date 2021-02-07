@@ -47,9 +47,11 @@ Imports:
     rvest,
     progress,
     methods,
-    writexl
+    writexl,
+    concatenate
 Collate: 
     'ancestry_categories.R'
+    'browse.R'
     'class-cohorts.R'
     'class-performance_metrics.R'
     'class-publications.R'

@@ -80,6 +80,8 @@ To know how many variants are included in every score, you can take advantage of
 
 ## PGS scoring file format
 
+Each scoring file contains variant identification, effect alleles and respective score weights. The file is formatted as a gzipped tab-delimited text file, with a header containing brief metada about the score.
+
 ### Header
 
 ```
@@ -94,10 +96,11 @@ To know how many variants are included in every score, you can take advantage of
 # PGP ID = <PGS publication idenfier, e.g. 'PGP000001'>
 # Citation = <Information about the publication>
 # LICENSE = <License and terms of PGS use/distribution - refers to the EMBL-EBI Terms of Use by default>
-rsIDchr_namechr_positioneffect_allelereference_allele...
 ```
 
 ### Columns
+
+The following table lists all possible columns in a PGS scoring file. A few columns are required, and most are optional; either the `rsID` alone or the combination of `chr_name` and `chr_position` are required, with the other being optional. The `read_scoring_file()` function automatically reads all available columns with the right R types into a data frame.
 
 | Column                   | Field Name                                | Field Description                                            | Field Requirement                                            |
 | ------------------------ | ----------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |

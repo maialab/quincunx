@@ -8,3 +8,4 @@
 ^\.github$
 ^data-raw$
 ^vignettes/articles$
+^CODE_OF_CONDUCT\.md$

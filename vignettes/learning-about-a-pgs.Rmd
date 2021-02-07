@@ -160,7 +160,7 @@ mavaddat2018_scores@demographics
 
 ### Cohorts table
 
-In the cohorts table you can check which cohorts belong to which samples. Note that the unique identification of a sample is given by the combination of the values of the first three columns: `pgs_id`, `stage` and `sample_id`.
+In the cohorts table you can check which cohorts belong to which samples. Note that the unique identification of a sample is given by the combination of the values of the first two columns: `pgs_id`, and `sample_id`.
 
 TODO: Add here link to a vignette about samples.
 

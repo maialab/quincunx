@@ -23,6 +23,19 @@ You can install the current version of quincunx with:
 
 <a href="https://github.com/ramiromagno/cheatsheets/blob/master/quincunx/quincunx_cheatsheet.pdf"><img src="https://raw.githubusercontent.com/ramiromagno/cheatsheets/master/quincunx/quincunx_cheatsheet.png" width="615" height="225"/></a>
 
+## Code of Conduct
+
+Please note that the quincunx project is released with a [Contributor
+Code of Conduct](https://rmagno.eu/quincunx/CODE_OF_CONDUCT.html). By
+contributing to this project, you agree to abide by its terms.
+
+## Acknowledgements
+
+This work would have not been possible without the precious feedback
+from the [PGS Catalog team](https://www.pgscatalog.org/), particularly
+[Samuel Lambert](https://www.ebi.ac.uk/about/people/samuel-lambert) and
+[Laurent Gil](https://www.sanger.ac.uk/person/gil-laurent/).
+
 ## Package name and hex sticker
 
 The package name *quincunx* is another name for [Galton
