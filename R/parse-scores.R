@@ -105,7 +105,7 @@ unwrap_scores_samples <- function(tbl_json) {
     dplyr::bind_rows(samples_variants,
                      samples_training) %>%
     dplyr::group_by(.data$..page, .data$array.index) %>%
-    dplyr::mutate(., sample_id = seq_len(dplyr::n()), .after = 'array.index') %>%
+    dplyr::mutate(sample_id = seq_len(dplyr::n()), .after = 'array.index') %>%
     dplyr::arrange('sample_id', .by_group = TRUE) %>%
     dplyr::ungroup()
 
@@ -219,7 +219,7 @@ collect_samples <- function(tbl_json) {
   all_samples <-
     tidyjson::bind_rows(samples_variants, samples_training) %>%
     dplyr::group_by(.data$..page, .data$array.index) %>%
-    dplyr::mutate(., sample_id = seq_len(dplyr::n()), .after = 'array.index') %>%
+    dplyr::mutate(sample_id = seq_len(dplyr::n()), .after = 'array.index') %>%
     dplyr::arrange('sample_id', .by_group = TRUE) %>%
     dplyr::ungroup() %>%
     tidyjson::as.tbl_json(json.column = '..JSON') # Needed because of https://github.com/colearendt/tidyjson/issues/135.

@@ -12,13 +12,13 @@ sample_sets(
 )
 }
 \arguments{
-\item{sample_sets}{A \code{\link{s4pss_sample_sets_tbl}} tibble.}
+\item{sample_sets}{A \code{s4pss_sample_sets_tbl} tibble.}
 
-\item{samples}{A \code{\link{s4pss_samples_tbl}} tibble.}
+\item{samples}{A \code{s4pss_samples_tbl} tibble.}
 
-\item{demographics}{A \code{\link{s4pss_demographics_tbl}} tibble.}
+\item{demographics}{A \code{s4pss_demographics_tbl} tibble.}
 
-\item{cohorts}{A \code{\link{s4pss_pgs_cohorts_tbl}} tibble.}
+\item{cohorts}{A \code{s4pss_pgs_cohorts_tbl} tibble.}
 }
 \value{
 An object of class \linkS4class{sample_sets}.

@@ -10,9 +10,9 @@ trait_categories(
 )
 }
 \arguments{
-\item{trait_categories}{A \code{\link{s4trait_categories_trait_categories_tbl}} tibble.}
+\item{trait_categories}{A \code{s4trait_categories_trait_categories_tbl} tibble.}
 
-\item{traits}{A \code{\link{s4trait_categories_traits_tbl}} tibble.}
+\item{traits}{A \code{s4trait_categories_traits_tbl} tibble.}
 }
 \value{
 An object of class \linkS4class{trait_categories}.

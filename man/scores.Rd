@@ -14,17 +14,17 @@ scores(
 )
 }
 \arguments{
-\item{scores}{A \code{\link{s4scores_scores_tbl}} tibble.}
+\item{scores}{A \code{s4scores_scores_tbl} tibble.}
 
-\item{publications}{A \code{\link{s4scores_publications_tbl}} tibble.}
+\item{publications}{A \code{s4scores_publications_tbl} tibble.}
 
-\item{samples}{A \code{\link{s4scores_samples_tbl}} tibble.}
+\item{samples}{A \code{s4scores_samples_tbl} tibble.}
 
-\item{demographics}{A \code{\link{s4scores_demographics_tbl}} tibble.}
+\item{demographics}{A \code{s4scores_demographics_tbl} tibble.}
 
-\item{cohorts}{A \code{\link{s4scores_cohorts_tbl}} tibble.}
+\item{cohorts}{A \code{s4scores_cohorts_tbl} tibble.}
 
-\item{traits}{A \code{\link{s4scores_traits_tbl}} tibble.}
+\item{traits}{A \code{s4scores_traits_tbl} tibble.}
 }
 \value{
 An object of class \linkS4class{scores}.

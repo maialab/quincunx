@@ -87,6 +87,8 @@ get_performance_by_pgs_id <- function(pgs_id, limit = 20L, verbose = FALSE, warn
 #' @param verbose A \code{logical} indicating whether the function should be
 #'   verbose about the different queries or not.
 #' @param warnings A \code{logical} indicating whether to print warnings, if any.
+#' @param progress_bar Whether to show a progress bar as the queries are
+#'   performed.
 #'
 #' @return An \linkS4class{performance_metrics} object.
 #' @examples

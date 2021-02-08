@@ -103,6 +103,8 @@ get_score_by_trait_id <- function(efo_id, limit = 20L, verbose = FALSE, warnings
 #' @param verbose A \code{logical} indicating whether the function should be
 #'   verbose about the different queries or not.
 #' @param warnings A \code{logical} indicating whether to print warnings, if any.
+#' @param progress_bar Whether to show a progress bar as the queries are
+#'   performed.
 #'
 #' @return An \linkS4class{scores} object.
 #' @examples

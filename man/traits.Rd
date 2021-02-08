@@ -14,17 +14,17 @@ traits(
 )
 }
 \arguments{
-\item{traits}{A \code{\link{s4traits_traits_tbl}} tibble.}
+\item{traits}{A \code{s4traits_traits_tbl} tibble.}
 
-\item{pgs_ids}{A \code{\link{s4traits_pgs_ids_tbl}} tibble.}
+\item{pgs_ids}{A \code{s4traits_pgs_ids_tbl} tibble.}
 
-\item{child_pgs_ids}{A \code{\link{s4traits_child_pgs_ids_tbl}} tibble.}
+\item{child_pgs_ids}{A \code{s4traits_child_pgs_ids_tbl} tibble.}
 
-\item{trait_categories}{A \code{\link{s4traits_trait_categories_tbl}} tibble.}
+\item{trait_categories}{A \code{s4traits_trait_categories_tbl} tibble.}
 
-\item{trait_synonyms}{A \code{\link{s4traits_trait_synonyms_tbl}} tibble.}
+\item{trait_synonyms}{A \code{s4traits_trait_synonyms_tbl} tibble.}
 
-\item{trait_mapped_terms}{A \code{\link{s4traits_trait_mapped_terms_tbl}} tibble.}
+\item{trait_mapped_terms}{A \code{s4traits_trait_mapped_terms_tbl} tibble.}
 }
 \value{
 An object of class \linkS4class{traits}.

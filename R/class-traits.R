@@ -77,12 +77,12 @@ setClass(
 #'
 #' Constructor for the S4 \linkS4class{traits} object.
 #'
-#' @param traits A \code{\link{s4traits_traits_tbl}} tibble.
-#' @param pgs_ids A \code{\link{s4traits_pgs_ids_tbl}} tibble.
-#' @param child_pgs_ids A \code{\link{s4traits_child_pgs_ids_tbl}} tibble.
-#' @param trait_categories A \code{\link{s4traits_trait_categories_tbl}} tibble.
-#' @param trait_synonyms A \code{\link{s4traits_trait_synonyms_tbl}} tibble.
-#' @param trait_mapped_terms A \code{\link{s4traits_trait_mapped_terms_tbl}} tibble.
+#' @param traits A \code{s4traits_traits_tbl} tibble.
+#' @param pgs_ids A \code{s4traits_pgs_ids_tbl} tibble.
+#' @param child_pgs_ids A \code{s4traits_child_pgs_ids_tbl} tibble.
+#' @param trait_categories A \code{s4traits_trait_categories_tbl} tibble.
+#' @param trait_synonyms A \code{s4traits_trait_synonyms_tbl} tibble.
+#' @param trait_mapped_terms A \code{s4traits_trait_mapped_terms_tbl} tibble.
 #'
 #' @return An object of class \linkS4class{traits}.
 #' @keywords internal

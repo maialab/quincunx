@@ -7,9 +7,9 @@
 cohorts(cohorts = s4cohorts_cohorts_tbl(), pgs_ids = s4cohorts_pgs_ids_tbl())
 }
 \arguments{
-\item{cohorts}{A \code{\link{s4cohorts_cohorts_tbl}} tibble.}
+\item{cohorts}{A \code{s4cohorts_cohorts_tbl} tibble.}
 
-\item{pgs_ids}{A \code{\link{s4cohorts_pgs_ids_tbl}} tibble.}
+\item{pgs_ids}{A \code{s4cohorts_pgs_ids_tbl} tibble.}
 }
 \value{
 An object of class \linkS4class{cohorts}.

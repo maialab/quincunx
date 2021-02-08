@@ -33,8 +33,8 @@ setClass(
 #'
 #' Constructor for the S4 \linkS4class{cohorts} object.
 #'
-#' @param cohorts A \code{\link{s4cohorts_cohorts_tbl}} tibble.
-#' @param pgs_ids A \code{\link{s4cohorts_pgs_ids_tbl}} tibble.
+#' @param cohorts A \code{s4cohorts_cohorts_tbl} tibble.
+#' @param pgs_ids A \code{s4cohorts_pgs_ids_tbl} tibble.
 #'
 #' @return An object of class \linkS4class{cohorts}.
 #' @keywords internal

@@ -17,23 +17,23 @@ performance_metrics(
 )
 }
 \arguments{
-\item{performance_metrics}{A \code{\link{s4ppm_performance_metrics_tbl}} tibble.}
+\item{performance_metrics}{A \code{s4ppm_performance_metrics_tbl} tibble.}
 
-\item{publications}{A \code{\link{s4ppm_publications_tbl}} tibble.}
+\item{publications}{A \code{s4ppm_publications_tbl} tibble.}
 
-\item{sample_sets}{A \code{\link{s4ppm_sample_sets_tbl}} tibble.}
+\item{sample_sets}{A \code{s4ppm_sample_sets_tbl} tibble.}
 
-\item{samples}{A \code{\link{s4ppm_samples_tbl}} tibble.}
+\item{samples}{A \code{s4ppm_samples_tbl} tibble.}
 
-\item{demographics}{A \code{\link{s4ppm_demographics_tbl}} tibble.}
+\item{demographics}{A \code{s4ppm_demographics_tbl} tibble.}
 
-\item{cohorts}{A \code{\link{s4ppm_pgs_cohorts_tbl}} tibble.}
+\item{cohorts}{A \code{s4ppm_pgs_cohorts_tbl} tibble.}
 
-\item{pgs_effect_sizes}{A \code{\link{s4ppm_pgs_effect_sizes_tbl}} tibble.}
+\item{pgs_effect_sizes}{A \code{s4ppm_pgs_effect_sizes_tbl} tibble.}
 
-\item{pgs_classification_metrics}{A \code{\link{s4ppm_pgs_classification_metrics_tbl}} tibble.}
+\item{pgs_classification_metrics}{A \code{s4ppm_pgs_classification_metrics_tbl} tibble.}
 
-\item{pgs_other_metrics}{A \code{\link{s4ppm_pgs_other_metrics_tbl}} tibble.}
+\item{pgs_other_metrics}{A \code{s4ppm_pgs_other_metrics_tbl} tibble.}
 }
 \value{
 An object of class \linkS4class{performance_metrics}.

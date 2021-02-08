@@ -47,10 +47,10 @@ setClass(
 #'
 #' Constructor for the S4 \linkS4class{releases} object.
 #'
-#' @param releases A \code{\link{s4releases_releases_tbl}} tibble.
-#' @param pgs_ids A \code{\link{s4releases_pgs_ids_tbl}} tibble.
-#' @param ppm_ids A \code{\link{s4releases_ppm_ids_tbl}} tibble.
-#' @param pgp_ids A \code{\link{s4releases_pgp_ids_tbl}} tibble.
+#' @param releases A \code{s4releases_releases_tbl} tibble.
+#' @param pgs_ids A \code{s4releases_pgs_ids_tbl} tibble.
+#' @param ppm_ids A \code{s4releases_ppm_ids_tbl} tibble.
+#' @param pgp_ids A \code{s4releases_pgp_ids_tbl} tibble.
 #'
 #' @return An object of class \linkS4class{releases}.
 #' @keywords internal

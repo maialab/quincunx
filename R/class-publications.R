@@ -44,8 +44,8 @@ setClass(
 #'
 #' Constructor for the S4 \linkS4class{publications} object.
 #'
-#' @param publications A \code{\link{publications_tbl}} tibble.
-#' @param pgs_ids A \code{\link{pgs_ids_tbl}} tibble.
+#' @param publications A \code{publications_tbl} tibble.
+#' @param pgs_ids A \code{pgs_ids_tbl} tibble.
 #'
 #' @return An object of class \linkS4class{publications}.
 #' @keywords internal

@@ -5,7 +5,7 @@
 \title{Browse PGS Catalog entities from the PGS Catalog Web Graphical User Interface}
 \usage{
 open_in_pgs_catalog(
-  identifier,
+  identifier = NULL,
   pgs_catalog_entity = c("pgs", "pgp", "pss", "efo")
 )
 }

@@ -7,9 +7,9 @@
 publications(publications = publications_tbl(), pgs_ids = pgs_ids_tbl())
 }
 \arguments{
-\item{publications}{A \code{\link{publications_tbl}} tibble.}
+\item{publications}{A \code{publications_tbl} tibble.}
 
-\item{pgs_ids}{A \code{\link{pgs_ids_tbl}} tibble.}
+\item{pgs_ids}{A \code{pgs_ids_tbl} tibble.}
 }
 \value{
 An object of class \linkS4class{publications}.

@@ -42,6 +42,9 @@ interactively if we really want to proceed.}
 verbose about the different queries or not.}
 
 \item{warnings}{A \code{logical} indicating whether to print warnings, if any.}
+
+\item{progress_bar}{Whether to show a progress bar as the queries are
+performed.}
 }
 \value{
 An \linkS4class{publications} object.

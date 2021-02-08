@@ -142,12 +142,12 @@ setClass(
 #'
 #' Constructor for the S4 \linkS4class{scores} object.
 #'
-#' @param scores A \code{\link{s4scores_scores_tbl}} tibble.
-#' @param publications A \code{\link{s4scores_publications_tbl}} tibble.
-#' @param samples A \code{\link{s4scores_samples_tbl}} tibble.
-#' @param demographics A \code{\link{s4scores_demographics_tbl}} tibble.
-#' @param cohorts A \code{\link{s4scores_cohorts_tbl}} tibble.
-#' @param traits A \code{\link{s4scores_traits_tbl}} tibble.
+#' @param scores A \code{s4scores_scores_tbl} tibble.
+#' @param publications A \code{s4scores_publications_tbl} tibble.
+#' @param samples A \code{s4scores_samples_tbl} tibble.
+#' @param demographics A \code{s4scores_demographics_tbl} tibble.
+#' @param cohorts A \code{s4scores_cohorts_tbl} tibble.
+#' @param traits A \code{s4scores_traits_tbl} tibble.
 #'
 #' @return An object of class \linkS4class{scores}.
 #' @keywords internal

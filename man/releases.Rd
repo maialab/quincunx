@@ -12,13 +12,13 @@ releases(
 )
 }
 \arguments{
-\item{releases}{A \code{\link{s4releases_releases_tbl}} tibble.}
+\item{releases}{A \code{s4releases_releases_tbl} tibble.}
 
-\item{pgs_ids}{A \code{\link{s4releases_pgs_ids_tbl}} tibble.}
+\item{pgs_ids}{A \code{s4releases_pgs_ids_tbl} tibble.}
 
-\item{ppm_ids}{A \code{\link{s4releases_ppm_ids_tbl}} tibble.}
+\item{ppm_ids}{A \code{s4releases_ppm_ids_tbl} tibble.}
 
-\item{pgp_ids}{A \code{\link{s4releases_pgp_ids_tbl}} tibble.}
+\item{pgp_ids}{A \code{s4releases_pgp_ids_tbl} tibble.}
 }
 \value{
 An object of class \linkS4class{releases}.

@@ -47,10 +47,21 @@ reference:
   contents:
   - pgs_to_pgp
   - pgs_to_pss
+  - pgs_to_ppm
   - pgs_to_study
   - study_to_pgs
   - pgp_to_pgs
+  - pgp_to_pss
+  - pgp_to_ppm
   - pss_to_pgs
+  - pss_to_pgp
+  - pss_to_ppm
+  - ppm_to_pgs
+  - ppm_to_pgp
+  - ppm_to_pss
+- title: "Browse the PGS Catalog Web Portal"
+  contents:
+  - open_in_pgs_catalog
 - title: "Export to xlsx"
   desc: >
     Exporting scores, publications,
@@ -58,6 +69,10 @@ reference:
     cohorts, trait_categories and releases to xlsx.
   contents:
   - write_xlsx
+- title: "Miscellaneous"
+  desc: "Other functions."
+  contents:
+  - clear_cache
 - title: "Datasets"
   desc: "Datasets shipped with quincunx"
   contents:

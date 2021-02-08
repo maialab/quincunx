@@ -85,10 +85,10 @@ setClass(
 #'
 #' Constructor for the S4 \linkS4class{sample_sets} object.
 #'
-#' @param sample_sets A \code{\link{s4pss_sample_sets_tbl}} tibble.
-#' @param samples A \code{\link{s4pss_samples_tbl}} tibble.
-#' @param demographics A \code{\link{s4pss_demographics_tbl}} tibble.
-#' @param cohorts A \code{\link{s4pss_pgs_cohorts_tbl}} tibble.
+#' @param sample_sets A \code{s4pss_sample_sets_tbl} tibble.
+#' @param samples A \code{s4pss_samples_tbl} tibble.
+#' @param demographics A \code{s4pss_demographics_tbl} tibble.
+#' @param cohorts A \code{s4pss_pgs_cohorts_tbl} tibble.
 #'
 #' @return An object of class \linkS4class{sample_sets}.
 #' @keywords internal

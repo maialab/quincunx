@@ -16,6 +16,8 @@ pgs_server <- function() 'https://www.pgscatalog.org'
 user_agent_id <- function()
   httr::user_agent("quincunx: R client for the PGS Catalog REST API")
 
+memoised_GET <- memoise::memoise(httr::GET)
+
 #' Request a resource from the PGS REST API
 #'
 #' Performs a \code{\link[httr]{GET}} request on the endpoint as specified by
@@ -54,7 +56,8 @@ request <- function(resource_url,
     glue::glue('{url}?format=json')
   )
 
-  response <- httr::GET(url, user_agent)
+  # response <- httr::GET(url, user_agent)
+  response <- memoised_GET(url, user_agent)
   timestamp <- Sys.time()
 
   if (verbose) {

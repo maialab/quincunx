@@ -31,8 +31,8 @@ setClass(
 #'
 #' Constructor for the S4 \linkS4class{trait_categories} object.
 #'
-#' @param trait_categories A \code{\link{s4trait_categories_trait_categories_tbl}} tibble.
-#' @param traits A \code{\link{s4trait_categories_traits_tbl}} tibble.
+#' @param trait_categories A \code{s4trait_categories_trait_categories_tbl} tibble.
+#' @param traits A \code{s4trait_categories_traits_tbl} tibble.
 #'
 #' @return An object of class \linkS4class{trait_categories}.
 #' @keywords internal

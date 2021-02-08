@@ -6,7 +6,6 @@
 \usage{
 pgs_to_pss(
   pgs_id = NULL,
-  interactive = TRUE,
   verbose = FALSE,
   warnings = TRUE,
   progress_bar = TRUE
@@ -16,9 +15,6 @@ pgs_to_pss(
 \item{pgs_id}{A character vector of PGS identifiers,
 e.g., "PGS000001". If \code{NULL} then returns results for all PGS
 identifiers in the Catalog.}
-
-\item{interactive}{A logical. If all scores are requested, whether to ask
-interactively if we really want to proceed.}
 
 \item{verbose}{A \code{logical} indicating whether the function should be
 verbose about the different queries or not.}

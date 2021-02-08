@@ -48,7 +48,8 @@ Imports:
     progress,
     methods,
     writexl,
-    concatenate
+    concatenate,
+    memoise
 Collate: 
     'ancestry_categories.R'
     'browse.R'
@@ -60,6 +61,7 @@ Collate:
     'class-scores.R'
     'class-trait_categories.R'
     'class-traits.R'
+    'clear_cache.R'
     'contains_question_mark.R'
     'count.R'
     'drop_metadata_cols.R'

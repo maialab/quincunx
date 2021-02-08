@@ -185,15 +185,15 @@ setClass(
 #'
 #' Constructor for the S4 \linkS4class{performance_metrics} object.
 #'
-#' @param performance_metrics A \code{\link{s4ppm_performance_metrics_tbl}} tibble.
-#' @param publications A \code{\link{s4ppm_publications_tbl}} tibble.
-#' @param sample_sets A \code{\link{s4ppm_sample_sets_tbl}} tibble.
-#' @param samples A \code{\link{s4ppm_samples_tbl}} tibble.
-#' @param demographics A \code{\link{s4ppm_demographics_tbl}} tibble.
-#' @param cohorts A \code{\link{s4ppm_pgs_cohorts_tbl}} tibble.
-#' @param pgs_effect_sizes A \code{\link{s4ppm_pgs_effect_sizes_tbl}} tibble.
-#' @param pgs_classification_metrics A \code{\link{s4ppm_pgs_classification_metrics_tbl}} tibble.
-#' @param pgs_other_metrics A \code{\link{s4ppm_pgs_other_metrics_tbl}} tibble.
+#' @param performance_metrics A \code{s4ppm_performance_metrics_tbl} tibble.
+#' @param publications A \code{s4ppm_publications_tbl} tibble.
+#' @param sample_sets A \code{s4ppm_sample_sets_tbl} tibble.
+#' @param samples A \code{s4ppm_samples_tbl} tibble.
+#' @param demographics A \code{s4ppm_demographics_tbl} tibble.
+#' @param cohorts A \code{s4ppm_pgs_cohorts_tbl} tibble.
+#' @param pgs_effect_sizes A \code{s4ppm_pgs_effect_sizes_tbl} tibble.
+#' @param pgs_classification_metrics A \code{s4ppm_pgs_classification_metrics_tbl} tibble.
+#' @param pgs_other_metrics A \code{s4ppm_pgs_other_metrics_tbl} tibble.
 #'
 #' @return An object of class \linkS4class{performance_metrics}.
 #' @keywords internal
