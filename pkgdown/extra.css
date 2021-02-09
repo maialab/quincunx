@@ -3069,7 +3069,7 @@
      text-decoration: none;
      outline: 0;
      /* background-color: #5a9ddb; */
-     background-color: rgb(64, 109, 194);
+     background-color: rgb(232, 239, 250);
 }
  .dropdown-menu > .disabled > a, .dropdown-menu > .disabled > a:hover, .dropdown-menu > .disabled > a:focus {
      color: #bbbbbb;
@@ -5817,6 +5817,7 @@
 
 #navbar a {
   color: rgb(64, 109, 194);
+
 }
 
 navbar-link .fa .fa-home .fa-lg {
