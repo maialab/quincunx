@@ -26,8 +26,8 @@ A data frame of two columns: \code{study_id} and \code{pgs_id}.
 Map GWAS studies identifiers to PGS identifiers.
 }
 \examples{
+\dontrun{
 study_to_pgs('GCST001937')
-
 study_to_pgs(c('GCST000998', 'GCST000338'))
-
+}
 }

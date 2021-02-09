@@ -28,8 +28,8 @@ starts by downloading first all Performance Metrics, as this is the linkage
 between PSS and PGP.
 }
 \examples{
+\dontrun{
 pss_to_pgp('PSS000001')
-
 pss_to_pgp(c('PSS000017', 'PSS000042'))
-
+}
 }

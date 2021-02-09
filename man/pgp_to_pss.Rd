@@ -32,8 +32,8 @@ A data frame of two columns: \code{pgp_id} and \code{pss_id}.
 Map PGP identifiers to PSS identifiers.
 }
 \examples{
+\dontrun{
 pgp_to_pss('PGP000001')
-
 pgp_to_pss(c('PGP000017', 'PGP000042'))
-
+}
 }

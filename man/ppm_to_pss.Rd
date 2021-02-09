@@ -26,8 +26,8 @@ A data frame of two columns: \code{ppm_id} and \code{pss_id}.
 Map PPM identifiers to PSS identifiers.
 }
 \examples{
+\dontrun{
 ppm_to_pss('PPM000001')
-
 ppm_to_pss(c('PPM000017', 'PPM000042'))
-
+}
 }

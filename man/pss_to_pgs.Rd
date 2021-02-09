@@ -28,8 +28,8 @@ starts by downloading first all Performance Metrics, as this is the linkage
 between PSS and PGS.
 }
 \examples{
+\dontrun{
 pss_to_pgs('PSS000001')
-
 pss_to_pgs(c('PSS000017', 'PSS000042'))
-
+}
 }

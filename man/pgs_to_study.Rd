@@ -34,9 +34,9 @@ identifiers associated with samples used in the discovery stage of queried
 PGS identifiers.
 }
 \examples{
+\dontrun{
 pgs_to_study('PGS000001')
-
 # Unmappable pgs ids will be missing, e.g., PGS000023
 pgs_to_study(c('PGS000013', 'PGS000023'))
-
+}
 }

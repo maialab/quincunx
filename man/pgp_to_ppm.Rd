@@ -32,8 +32,8 @@ A data frame of two columns: \code{pgp_id} and \code{ppm_id}.
 Map PGP identifiers to PPM identifiers.
 }
 \examples{
+\dontrun{
 pgp_to_ppm('PGP000001')
-
 pgp_to_ppm(c('PGP000017', 'PGP000042'))
-
+}
 }

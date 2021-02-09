@@ -1,5 +1,47 @@
 url: https://rmagno.eu/quincunx
 
+home:
+  title: Access the PGS Catalog from R
+  description: An R package to query, download and wrangle PGS Catalog data.
+
+articles:
+- title: PGS Catalog Concepts
+  desc: >
+    blah blah blah blah
+    blah blah blah blah
+  navbar: PGS Catalog Concepts
+  contents:
+  - identifiers
+  - pgs-construction-process
+  - cohorts-samples-sample-sets
+- title: Getting PGS Catalog Data
+  desc: >
+    blah blah blah blah
+    blah blah blah blah
+  navbar: Getting PGS Catalog Data
+  contents:
+  - getting-pgs-scores
+  - getting-pgs-publications
+  - getting-pgs-sample-sets
+  - getting-pgs-performance-metrics
+  - getting-traits
+  - getting-cohorts
+  - getting-releases
+  - pgs-scoring-file
+- title: Case Studies
+  desc: >
+    blah blah blah blah
+    blah blah blah blah
+  navbar: Case Studies
+  contents:
+  - pgs-scores-mavaddat
+- title: More info
+  desc: >
+    blah blah blah blah
+    blah blah blah blah
+  contents:
+  - quincunx-development
+
 reference:
 - title: "Get PGS Catalog Data"
   desc: "Receive data from the PGS Catalog REST API."
@@ -59,9 +101,13 @@ reference:
   - ppm_to_pgs
   - ppm_to_pgp
   - ppm_to_pss
-- title: "Browse the PGS Catalog Web Portal"
+- title: "Easily navigate web resources"
+  desc: >
+    Functions that allow you to quickly browse linked information.
   contents:
   - open_in_pgs_catalog
+  - open_in_pubmed
+  - open_in_dbsnp
 - title: "Export to xlsx"
   desc: >
     Exporting scores, publications,

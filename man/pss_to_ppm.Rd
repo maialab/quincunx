@@ -27,8 +27,8 @@ Map PSS identifiers to PPM identifiers. This is a slow function because it
 starts by downloading first all Performance Metrics.
 }
 \examples{
+\dontrun{
 pss_to_ppm('PSS000001')
-
 pss_to_ppm(c('PSS000017', 'PSS000042'))
-
+}
 }

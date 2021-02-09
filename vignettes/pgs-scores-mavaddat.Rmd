@@ -1,8 +1,8 @@
 ---
-title: "Learning about published polygenic risk score(s)"
+title: "PGS scores by Mavaddat et al. (2018)"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Learning about published polygenic risk score(s)}
+  %\VignetteIndexEntry{PGS scores by Mavaddat et al. (2018)}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -12,10 +12,9 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-library(dplyr) # Need this here before library(quincunx) because of n().
 ```
 
-## Introduction 
+## Introduction
 
 Let us say you are a researcher studying breast cancer and that you are interested in screening and prevention of this disease. Now, imagine you have just recently noticed a new publication that claims to have developed a set of new polygenic risk scores that are both powerful and reliable predictors of breast cancer risk, e.g., [Mavaddat et al. (2018)](https://doi.org/10.1016/j.ajhg.2018.11.002).
 
@@ -27,8 +26,9 @@ Perhaps now you would like to investigate a bit more about these new polygenic r
 
 To check if we are fortunate enough to have the polygenic risk scores for breast cancer ([Mavaddat et al. (2018)](https://doi.org/10.1016/j.ajhg.2018.11.002)) in the PGS Catalog, we start by loading the quincunx package and by searching for this publication in the PGS Catalog. To do this we will use the function `get_publications()` and start by searching by the first author's last name, i.e. "Mavaddat":
 
-```{r get_publications}
+```{r get_publications, message=FALSE}
 library(quincunx)
+library(dplyr)
 
 pub_by_mavaddat <- get_publications(author = 'Mavaddat') # Not case sensitive,
                                                          # so "mavaddat" would
@@ -43,16 +43,16 @@ The `publications` table (data frame) contains all the publications added to the
 pub_by_mavaddat@publications
 ```
 
-Seemingly there are `r n(pub_by_mavaddat)` publications indexed in the PGS Catalog. Each publication added to the PGS Catalog gets an unique identifier. This identifier is right in the first column (`pgp_id`) of the `publications` table. The number of publications can be obtained by using the function `n()` on the S4 object `pub_by_mavaddat`, or by asking directly the number of rows of the `publications` table:
+Seemingly there are `r quincunx::n(pub_by_mavaddat)` publications indexed in the PGS Catalog. Each publication added to the PGS Catalog gets an unique identifier. This identifier is right in the first column (`pgp_id`) of the `publications` table. The number of publications can be obtained by using the function `n()` on the S4 object `pub_by_mavaddat`, or by asking directly the number of rows of the `publications` table:
 
 ```{r no_of_pubs}
-n(pub_by_mavaddat)
+quincunx::n(pub_by_mavaddat) # Here we use quincunx::n() instead of n() to avoid namespace collisions with dplyr::n().
 nrow(pub_by_mavaddat@publications)
 ```
 
 Moreover, we can see that Nasim Mavaddat is not the first author in all these publications because her name is not always present in the column `author_fullname` (which contains the name of the first author only). If you want to know all the authors you can access the column `authors` (contains a string of comma separated author names).
 
-Now, to identify our publication of interest amongst these `r n(pub_by_mavaddat)` publications, we can check, for example, the PubMed identifier of [Mavaddat et al. (2018)](https://doi.org/10.1016/j.ajhg.2018.11.002) (column `pubmed_id`), or check other information such as journal name (column `publication`), the publication title (column `title`) or the publication date (column `publication_date`). The most unambiguous approach is to use the PubMed identifier. The PubMed identifier for [Mavaddat et al. (2018)](https://doi.org/10.1016/j.ajhg.2018.11.002) is `"30554720"`. So the publication of interest corresponds to the one returned in row number `r which(pub_by_mavaddat@publications$pubmed_id == "30554720")` of the `publications` table:
+Now, to identify our publication of interest amongst these `r quincunx::n(pub_by_mavaddat)` publications, we can check, for example, the PubMed identifier of [Mavaddat et al. (2018)](https://doi.org/10.1016/j.ajhg.2018.11.002) (column `pubmed_id`), or check other information such as journal name (column `publication`), the publication title (column `title`) or the publication date (column `publication_date`). The most unambiguous approach is to use the PubMed identifier. The PubMed identifier for [Mavaddat et al. (2018)](https://doi.org/10.1016/j.ajhg.2018.11.002) is `"30554720"`. So the publication of interest corresponds to the one returned in row number `r which(pub_by_mavaddat@publications$pubmed_id == "30554720")` of the `publications` table:
 
 ```{r pub_row}
 publication_row_index <- which(pub_by_mavaddat@publications$pubmed_id == "30554720")
@@ -71,6 +71,7 @@ We see now that the `publications` table contains one entry only, and that the P
 ```{r pgp_id}
 mavaddat2018@publications$pgp_id
 ```
+In the `pgs_ids` we see that there are several PGS scores associated with publication `r mavaddat2018@publications$pgp_id`. Besides listing the score identifiers (`pgs_id`), it also includes the `stage` column that annotates the polygenic score relative to the PGS construction process (check page 2 of the [quincunx cheatsheet](https://github.com/ramiromagno/cheatsheets/blob/master/quincunx/quincunx_cheatsheet.pdf) for a visual illustration).
 
 ### Searching for publications by PubMed ID
 
@@ -91,14 +92,22 @@ To get all PGS identifiers associated with Mavaddat's publication we turn to the
 pub_by_pmid_30554720@pgs_ids
 ```
 
-There are `r nrow(pub_by_pmid_30554720@pgs_ids)` scores. To retrieve information about them, we use the quincunx function `get_scores()`:
+There are `r length(unique(pub_by_pmid_30554720@pgs_ids$pgs_id))` unique scores. If we knew, before hand, that `r mavaddat2018@publications$pgp_id` was associated with Mavaddat's publication, we could have also taken advantage of the neat function `pgp_to_pgs()` to quickly get all the associated polygenic score ids:
+
+```{r}
+pgp_to_pgs('PGP000002')
+```
+
+## Polygenic Scores by Mavaddat's (2018)
+
+To dive into the metadata about the polygenic scores, we use the quincunx function `get_scores()`:
 
 ```{r}
 mavaddat2018_scores <- get_scores(pgs_id = pub_by_pmid_30554720@pgs_ids$pgs_id)
 slotNames(mavaddat2018_scores)
 ```
 
-The returned object is an S4 object `scores` which contains six tables (slots): `r slotNames(mavaddat2018_scores)`.
+The returned object is an S4 object `scores` which contains six tables (slots): `r slotNames(mavaddat2018_scores)`. You can quickly check all variables from each table by consulting [quincunx cheatsheet](https://github.com/ramiromagno/cheatsheets/blob/master/quincunx/quincunx_cheatsheet.pdf). A description of each variable can be found with `class?scores`.
 
 ## Polygenic Scores Metadata
 
@@ -116,10 +125,10 @@ From the PGS names we can already see the presence of the suffixes "ERpos" and "
 mavaddat2018_scores@scores['scoring_file']
 ```
 
-The column `scoring_file` contains the URL to the FTP location of the PGS scoring file. PGS scoring files are the files provided by the PGS Catalog that allow you to compute polygenic scores for your samples. You can learn more about scoring files in `vignette("pgs-scoring-file")`.
+The column `scoring_file` contains the URL to the FTP location of the PGS scoring file. PGS scoring files are the files provided by the PGS Catalog that allow you to compute polygenic scores for your samples. You can download PGS scoring files into R with the function `read_scoring_file()`. Learn more about scoring files in `vignette("pgs-scoring-file")`. For a quick consultation of the file format of PGS scoring files you may also check the second page of [quincunx cheatsheet](https://github.com/ramiromagno/cheatsheets/blob/master/quincunx/quincunx_cheatsheet.pdf).
 
 ```{r}
-mavaddat2018_scores@scores['matches_publication']
+mavaddat2018_scores@scores[c('pgs_id', 'matches_publication')]
 ```
 
 The column `matches_publication` is a logical value indicating whether the published polygenic score is exactly the same as the one provided to the PGS Catalog. In this case all of the `r nrow(mavaddat2018_scores@scores)` scores are provided exactly as published.
@@ -127,6 +136,7 @@ The column `matches_publication` is a logical value indicating whether the publi
 ```{r}
 mavaddat2018_scores@scores[c('pgs_name', 'pgs_method_name', 'pgs_method_params', 'n_variants', 'assembly')]
 ```
+
 In addition, columns such as `pgs_method_name` and `pgs_method_params` provide extra details about the PGS development method. Finally, `n_variants` informs about the number of variants comprising each polygenic risk score, and `assembly` indicates the genome assembly.
 
 ### Publications table
@@ -141,28 +151,58 @@ mavaddat2018_scores@publications[c('pgs_id', 'pgp_id', 'publication_date', 'auth
 
 The third table (slot) of the S4 scores object pertains the samples used in the development of the PGS scores.
 
+There are a total of `r ncol(mavaddat2018_scores@samples)` columns, with metadata details about each sample. Each row corresponds to one sample associated with the polygenic scores, and the combination of values of the first two columns, `pgs_id` and `sample_id` identifies uniquely each sample in this table. All samples shown in the `samples` table of a `scores` object are annotated with a `stage`, that can take two values: `"discovery"` or `"training"`. `"discovery"` samples are typically used in determining the variants that are afterwards used for polygenic development. These variants originate typically from Genome-Wide Association Studies (GWAS). Hence, these samples might be linked to the GWAS Catalog. If that is the case, this information is provided in the column `study_id`, indicating the GWAS Catalog accession identifier. You may find more information about these GWAS studies by using the function `gwasrapidd::get_studies()` from the gwasrapidd package. `"training"` samples are those that have been used for the training of the polygenic score. Together, these two stages (_discovery_ and _training_) are referred as _development_, in contrast to the later testing phase of polygenic scores, i.e., the _evaluation_ phase (or stage). If this sounds confusing check our [cheatsheet](https://github.com/ramiromagno/cheatsheets/blob/master/quincunx/quincunx_cheatsheet.pdf), section _PGS Construction Process_, second page.
+
 ```{r}
-mavaddat2018_scores@samples
+dplyr::glimpse(mavaddat2018_scores@samples)
 ```
 
-TODO: waiting feedback from the PGS Catalog team on sample "stage".
-TODO: Add here link to a vignette about samples.
+The PGS Catalog provides brief records samples sizes (total, cases and controls):
+
+```{r}
+mavaddat2018_scores@samples[1:6]
+```
+
+Perhaps, not so surprisingly, the percentage of male participants in the training samples is zero:
+
+
+```{r}
+mavaddat2018_scores@samples[c('pgs_id', 'sample_id', 'stage', 'sample_percent_male')]
+```
+
+Also, information about the trait or disease studied and ancestry information can be accessed:
+
+```{r}
+mavaddat2018_scores@samples[c('pgs_id', 'sample_id', 'stage', 'phenotype_description', 'ancestry')]
+```
+
+Again, not so surprisingly, all samples are of European ancestry, a very well known bias. You can find more details about the ancestry category in the `ancestry_categories` variable. These have been defined by the NHGRI-EBI GWAS Catalog framework. We provide them in quincunx as the dataset `ancestry_categories`. See `?ancestry_categories` more details. To quickly lookup the definition of the _European_ ancestry:
+
+```{r}
+filter(ancestry_categories, ancestry == 'European') %>%
+  glimpse()
+```
+
+
 
 ### Demographics table
 
-The demographics table usually lists demographic information about each sample. For this study this table is however empty, meaning that this information was not available from Mavaddat's.
-
-TODO: Link here another vignette with an example for which all slots are not empty.
+The demographics table usually lists demographic information about each sample. For this study this table is however empty, meaning that this information was either not available from Mavaddat's or not included in the PGS Catalog for some other reason. 
 
 ```{r}
 mavaddat2018_scores@demographics
 ```
 
+Nevertheless, the demographics variables, when present, are participant follow-up time and age. If you doubt that quincunx might not be getting exactly the same info as provided by the PGS Catalog in their website, you can always easily check how metadata for this PGP publication is coming out online:
+
+```{r}
+open_in_pgs_catalog('PGP000002', pgs_catalog_entity = 'pgp')
+```
+
+
 ### Cohorts table
 
-In the cohorts table you can check which cohorts belong to which samples. Note that the unique identification of a sample is given by the combination of the values of the first two columns: `pgs_id`, and `sample_id`.
-
-TODO: Add here link to a vignette about samples.
+In the cohorts table you can check which cohorts associated with which samples. Note that the unique identification of a sample is given by the combination of the values of the first two columns: `pgs_id`, and `sample_id`.
 
 ```{r}
 mavaddat2018_scores@cohorts
@@ -180,14 +220,15 @@ Compared to the author-reported trait (column `reported_trait` from table `score
 
 ```{r other_studies}
 scores_bc <- get_scores(efo_id = unique(mavaddat2018_scores@traits[['efo_id']]))
-n(scores_bc)
+quincunx::n(scores_bc)
 ```
 
-So there are `r n(scores_bc)` scores present in the Catalog. Included in this set are the `r n(mavaddat2018_scores)` scores originating from [Mavaddat et al. (2018)](https://doi.org/10.1016/j.ajhg.2018.11.002). If we wanted to proceed in analysing these other scores without those of Mavaddat's study, we could use the function `setdiff()` to remove them from the S4 scores object:
+So there are `r quincunx::n(scores_bc)` scores present in the Catalog. Included in this set are the `r quincunx::n(mavaddat2018_scores)` scores originating from [Mavaddat et al. (2018)](https://doi.org/10.1016/j.ajhg.2018.11.002). If we wanted to proceed in analysing these other scores without those of Mavaddat's study, we could use the function `setdiff()` to remove them from the S4 scores object:
 
 ```{r}
-bc_scores_not_mavaddat2018 <- setdiff(scores_bc, mavaddat2018_scores)
-n(bc_scores_not_mavaddat2018)
+# Use quincunx::setdiff to avoid collision with dplyr::setdiff()
+bc_scores_not_mavaddat2018 <- quincunx::setdiff(scores_bc, mavaddat2018_scores)
+quincunx::n(bc_scores_not_mavaddat2018)
 ```
 
 For other set operations check their documentation page: `union()`, `intersect()` and `setequal()`.

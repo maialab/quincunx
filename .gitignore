@@ -4,3 +4,4 @@
 .Ruserdata
 inst/doc
 docs
+vignettes/*_cache/

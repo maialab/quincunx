@@ -1,0 +1,16 @@
+---
+title: "Getting Traits"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(quincunx)
+```
+
+TODO.

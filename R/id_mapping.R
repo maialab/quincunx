@@ -59,10 +59,10 @@ get_gwas_get_score_ids_by_gcst_id <- function(study_id,
 #' @return A data frame of two columns: \code{study_id} and \code{pgs_id}.
 #'
 #' @examples
+#' \dontrun{
 #' study_to_pgs('GCST001937')
-#'
 #' study_to_pgs(c('GCST000998', 'GCST000338'))
-#'
+#' }
 #' @export
 study_to_pgs <- function(study_id,
                          verbose = FALSE,
@@ -101,11 +101,11 @@ study_to_pgs <- function(study_id,
 #' @return A data frame of two columns: \code{pgs_id} and \code{study_id}.
 #'
 #' @examples
+#' \dontrun{
 #' pgs_to_study('PGS000001')
-#'
 #' # Unmappable pgs ids will be missing, e.g., PGS000023
 #' pgs_to_study(c('PGS000013', 'PGS000023'))
-#'
+#' }
 #' @export
 pgs_to_study <- function(pgs_id = NULL,
                          verbose = FALSE,
@@ -145,10 +145,10 @@ pgs_to_study <- function(pgs_id = NULL,
 #' @return A data frame of two columns: \code{pgp_id} and \code{pgs_id}.
 #'
 #' @examples
+#' \dontrun{
 #' pgp_to_pgs('PGP000001')
-#'
 #' pgp_to_pgs(c('PGP000017', 'PGP000042'))
-#'
+#' }
 #' @export
 pgp_to_pgs <- function(pgp_id = NULL,
                          verbose = FALSE,
@@ -187,10 +187,10 @@ pgp_to_pgs <- function(pgp_id = NULL,
 #' @return A data frame of two columns: \code{pgp_id} and \code{ppm_id}.
 #'
 #' @examples
+#' \dontrun{
 #' pgp_to_ppm('PGP000001')
-#'
 #' pgp_to_ppm(c('PGP000017', 'PGP000042'))
-#'
+#' }
 #' @export
 pgp_to_ppm <- function(pgp_id = NULL,
                        verbose = FALSE,
@@ -229,10 +229,10 @@ pgp_to_ppm <- function(pgp_id = NULL,
 #' @return A data frame of two columns: \code{pgp_id} and \code{pss_id}.
 #'
 #' @examples
+#' \dontrun{
 #' pgp_to_pss('PGP000001')
-#'
 #' pgp_to_pss(c('PGP000017', 'PGP000042'))
-#'
+#' }
 #' @export
 pgp_to_pss <- function(pgp_id = NULL,
                        verbose = FALSE,
@@ -271,10 +271,10 @@ pgp_to_pss <- function(pgp_id = NULL,
 #' @return A data frame of two columns: \code{pgs_id} and \code{pgp_id}.
 #'
 #' @examples
+#' \dontrun{
 #' pgs_to_pgp('PGS000001')
-#'
 #' pgs_to_pgp(c('PGS000017', 'PGS000042'))
-#'
+#' }
 #' @export
 pgs_to_pgp <- function(pgs_id = NULL,
                        verbose = FALSE,
@@ -313,10 +313,10 @@ pgs_to_pgp <- function(pgs_id = NULL,
 #' @return A data frame of two columns: \code{pgs_id} and \code{pss_id}.
 #'
 #' @examples
+#' \dontrun{
 #' pgs_to_pss('PGS000001')
-#'
 #' pgs_to_pss(c('PGS000017', 'PGS000042'))
-#'
+#' }
 #' @export
 pgs_to_pss <- function(pgs_id = NULL,
                        verbose = FALSE,
@@ -360,10 +360,10 @@ pgs_to_pss <- function(pgs_id = NULL,
 #' @return A data frame of two columns: \code{pgs_id} and \code{ppm_id}.
 #'
 #' @examples
+#' \dontrun{
 #' pgs_to_ppm('PGS000001')
-#'
 #' pgs_to_ppm(c('PGS000017', 'PGS000042'))
-#'
+#' }
 #' @importFrom rlang .data
 #' @export
 pgs_to_ppm <- function(pgs_id,
@@ -403,10 +403,10 @@ pgs_to_ppm <- function(pgs_id,
 #' @return A data frame of two columns: \code{pss_id} and \code{pgs_id}.
 #'
 #' @examples
+#' \dontrun{
 #' pss_to_pgs('PSS000001')
-#'
 #' pss_to_pgs(c('PSS000017', 'PSS000042'))
-#'
+#' }
 #' @export
 pss_to_pgs <- function(pss_id,
                        verbose = FALSE,
@@ -450,10 +450,10 @@ pss_to_pgs <- function(pss_id,
 #' @return A data frame of two columns: \code{pss_id} and \code{pgp_id}.
 #'
 #' @examples
+#' \dontrun{
 #' pss_to_pgp('PSS000001')
-#'
 #' pss_to_pgp(c('PSS000017', 'PSS000042'))
-#'
+#' }
 #' @export
 pss_to_pgp <- function(pss_id,
                        verbose = FALSE,
@@ -493,10 +493,10 @@ pss_to_pgp <- function(pss_id,
 #' @return A data frame of two columns: \code{pss_id} and \code{ppm_id}.
 #'
 #' @examples
+#' \dontrun{
 #' pss_to_ppm('PSS000001')
-#'
 #' pss_to_ppm(c('PSS000017', 'PSS000042'))
-#'
+#' }
 #' @export
 pss_to_ppm <- function(pss_id,
                        verbose = FALSE,
@@ -529,10 +529,10 @@ pss_to_ppm <- function(pss_id,
 #' @return A data frame of two columns: \code{ppm_id} and \code{pgs_id}.
 #'
 #' @examples
+#' \dontrun{
 #' ppm_to_pgs('PPM000001')
-#'
 #' ppm_to_pgs(c('PPM000017', 'PPM000042'))
-#'
+#' }
 #' @export
 ppm_to_pgs <- function(ppm_id,
                        verbose = FALSE,
@@ -565,10 +565,10 @@ ppm_to_pgs <- function(ppm_id,
 #' @return A data frame of two columns: \code{ppm_id} and \code{pgp_id}.
 #'
 #' @examples
+#' \dontrun{
 #' ppm_to_pgp('PPM000001')
-#'
 #' ppm_to_pgp(c('PPM000017', 'PPM000042'))
-#'
+#' }
 #' @export
 ppm_to_pgp <- function(ppm_id,
                        verbose = FALSE,
@@ -601,10 +601,10 @@ ppm_to_pgp <- function(ppm_id,
 #' @return A data frame of two columns: \code{ppm_id} and \code{pss_id}.
 #'
 #' @examples
+#' \dontrun{
 #' ppm_to_pss('PPM000001')
-#'
 #' ppm_to_pss(c('PPM000017', 'PPM000042'))
-#'
+#' }
 #' @export
 ppm_to_pss <- function(ppm_id,
                        verbose = FALSE,

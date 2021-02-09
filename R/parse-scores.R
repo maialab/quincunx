@@ -63,27 +63,6 @@ unwrap_score <- function(tbl_json) {
     tidyjson::as_tibble()
 }
 
-# unwrap_scores_samples <- function(tbl_json) {
-#
-#   samples_variants <- tbl_json %>%
-#     tidyjson::enter_object('samples_variants') %>%
-#     tibble::add_column(stage = 'discovery') %>%
-#     tidyjson::gather_array(column.name = 'sample_id') %>%
-#     unwrap_sample()
-#
-#   samples_training <- tbl_json %>%
-#     tidyjson::enter_object('samples_training') %>%
-#     tibble::add_column(stage = 'training') %>%
-#     tidyjson::gather_array(column.name = 'sample_id') %>%
-#     unwrap_sample()
-#
-#   samples <-
-#     dplyr::bind_rows(samples_variants,
-#                      samples_training)
-#
-#   return(samples)
-# }
-
 #' @importFrom rlang .data
 unwrap_scores_samples <- function(tbl_json) {
 
@@ -112,28 +91,6 @@ unwrap_scores_samples <- function(tbl_json) {
   return(samples)
 }
 
-
-# unwrap_scores_demographics <- function(tbl_json) {
-#
-#   demographics_variants <- tbl_json %>%
-#     tidyjson::enter_object('samples_variants') %>%
-#     tibble::add_column(stage = 'discovery') %>%
-#     tidyjson::gather_array(column.name = 'sample_id') %>%
-#     unwrap_demographics()
-#
-#   demographics_training <- tbl_json %>%
-#     tidyjson::enter_object('samples_training') %>%
-#     tibble::add_column(stage = 'training') %>%
-#     tidyjson::gather_array(column.name = 'sample_id') %>%
-#     unwrap_demographics()
-#
-#   demographics <-
-#     dplyr::bind_rows(demographics_variants,
-#                      demographics_training)
-#
-#   return(demographics)
-# }
-
 #' @importFrom rlang .data
 unwrap_scores_demographics <- function(tbl_json) {
 
@@ -152,33 +109,6 @@ unwrap_scores_demographics <- function(tbl_json) {
 
   return(demographics)
 }
-
-# unwrap_scores_cohorts <- function(tbl_json) {
-#
-#   cohorts_variants <- tbl_json %>%
-#     tidyjson::enter_object('samples_variants') %>%
-#     tibble::add_column(stage = 'discovery') %>%
-#     tidyjson::gather_array(column.name = 'sample_id') %>%
-#     tidyjson::enter_object('cohorts') %>%
-#     tidyjson::gather_array(column.name = 'cohort_id') %>%
-#     dplyr::select(-'cohort_id') %>%
-#     unwrap_cohort()
-#
-#   cohorts_training <- tbl_json %>%
-#     tidyjson::enter_object('samples_training') %>%
-#     tibble::add_column(stage = 'training') %>%
-#     tidyjson::gather_array(column.name = 'sample_id') %>%
-#     tidyjson::enter_object('cohorts') %>%
-#     tidyjson::gather_array(column.name = 'cohort_id') %>%
-#     dplyr::select(-'cohort_id') %>%
-#     unwrap_cohort()
-#
-#   cohorts <-
-#     dplyr::bind_rows(cohorts_variants,
-#                      cohorts_training)
-#
-#   return(cohorts)
-# }
 
 #' @importFrom rlang .data
 unwrap_scores_cohorts <- function(tbl_json) {

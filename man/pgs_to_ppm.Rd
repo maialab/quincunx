@@ -26,8 +26,8 @@ A data frame of two columns: \code{pgs_id} and \code{ppm_id}.
 Map PGS identifiers to PPM identifiers.
 }
 \examples{
+\dontrun{
 pgs_to_ppm('PGS000001')
-
 pgs_to_ppm(c('PGS000017', 'PGS000042'))
-
+}
 }

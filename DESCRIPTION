@@ -52,7 +52,6 @@ Imports:
     memoise
 Collate: 
     'ancestry_categories.R'
-    'browse.R'
     'class-cohorts.R'
     'class-performance_metrics.R'
     'class-publications.R'
@@ -81,10 +80,14 @@ Collate:
     'is_json_empty.R'
     'is_paginated.R'
     'is_pgs_id.R'
+    'is_pubmed_id.R'
     'messages.R'
     'n_pages.R'
     'nr_to_na.R'
     'offsets.R'
+    'open_in_dbsnp.R'
+    'open_in_pgs_catalog.R'
+    'open_in_pubmed.R'
     'parse-cohorts.R'
     'parse-performance_metrics.R'
     'parse-publications.R'
