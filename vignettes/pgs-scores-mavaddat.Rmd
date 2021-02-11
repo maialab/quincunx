@@ -103,7 +103,7 @@ pgp_to_pgs('PGP000002')
 To dive into the metadata about the polygenic scores, we use the quincunx function `get_scores()`:
 
 ```{r}
-mavaddat2018_scores <- get_scores(pgs_id = pub_by_pmid_30554720@pgs_ids$pgs_id)
+mavaddat2018_scores <- get_scores(pgs_id = sort(unique(pub_by_pmid_30554720@pgs_ids$pgs_id)))
 slotNames(mavaddat2018_scores)
 ```
 
@@ -229,6 +229,29 @@ So there are `r quincunx::n(scores_bc)` scores present in the Catalog. Included 
 # Use quincunx::setdiff to avoid collision with dplyr::setdiff()
 bc_scores_not_mavaddat2018 <- quincunx::setdiff(scores_bc, mavaddat2018_scores)
 quincunx::n(bc_scores_not_mavaddat2018)
+bc_scores_not_mavaddat2018@scores[c('pgs_id', 'reported_trait','n_variants')]
 ```
 
 For other set operations check their documentation page: `union()`, `intersect()` and `setequal()`.
+
+## Performance Metrics
+
+In this section we learn how to retrieve details about the evaluation of the polygenic scores development in Mavaddat et al. (2018). To do this, we start by querying performance metrics for our scores of interest. Recall that the scores with Mavaddat's publication are:
+
+```{r}
+mavaddat2018_scores@scores[c('pgs_id', 'reported_trait')]
+```
+
+So we use these PGS identifiers to query the PGS Catalog for performance metrics using the function `get_performance_metrics()`. The output is an S4 object with `r length(slotNames(mavaddat2018_ppm))` tables: `r knitr::combine_words(slotNames(mavaddat2018_ppm))`. Performance metrics are indexed with an unique identifier that starts with "PPM". In the first table `performance_metrics` we get one performance metrics per row:
+
+```{r}
+mavaddat2018_ppm <- get_performance_metrics(pgs_id = mavaddat2018_scores@scores$pgs_id)
+mavaddat2018_ppm@performance_metrics[1:4]
+```
+
+We see that one polygenic score can be associated with several performance metrics (PPM), e.g., PGS000001 associates with `r nrow(dplyr::filter(mavaddat2018_ppm@performance_metrics, pgs_id == 'PGS000001'))`  PPMs:
+
+```{r}
+dplyr::filter(mavaddat2018_ppm@performance_metrics, pgs_id == 'PGS000001')
+```
+

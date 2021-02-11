@@ -4,6 +4,12 @@ home:
   title: Access the PGS Catalog from R
   description: An R package to query, download and wrangle PGS Catalog data.
 
+template:
+  params:
+    docsearch:
+      api_key: 6eb557c1e1320049dc93c778f9efe639
+      index_name: quincunx
+
 articles:
 - title: PGS Catalog Concepts
   desc: >
