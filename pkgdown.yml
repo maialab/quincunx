@@ -1,0 +1,22 @@
+pandoc: 2.7.3
+pkgdown: 1.6.1
+pkgdown_sha: ~
+articles:
+  cohorts-samples-sample-sets: cohorts-samples-sample-sets.html
+  getting-cohorts: getting-cohorts.html
+  getting-pgs-performance-metrics: getting-pgs-performance-metrics.html
+  getting-pgs-publications: getting-pgs-publications.html
+  getting-pgs-sample-sets: getting-pgs-sample-sets.html
+  getting-pgs-scores: getting-pgs-scores.html
+  getting-releases: getting-releases.html
+  getting-traits: getting-traits.html
+  identifiers: identifiers.html
+  pgs-construction-process: pgs-construction-process.html
+  pgs-scores-mavaddat: pgs-scores-mavaddat.html
+  pgs-scoring-file: pgs-scoring-file.html
+  quincunx-development: quincunx-development.html
+last_built: 2021-02-11T17:07Z
+urls:
+  reference: https://rmagno.eu/quincunx/reference
+  article: https://rmagno.eu/quincunx/articles
+
