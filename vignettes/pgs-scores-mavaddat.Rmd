@@ -242,12 +242,14 @@ In this section we learn how to retrieve details about the evaluation of the pol
 mavaddat2018_scores@scores[c('pgs_id', 'reported_trait')]
 ```
 
-So we use these PGS identifiers to query the PGS Catalog for performance metrics using the function `get_performance_metrics()`. The output is an S4 object with `r length(slotNames(mavaddat2018_ppm))` tables: `r knitr::combine_words(slotNames(mavaddat2018_ppm))`. Performance metrics are indexed with an unique identifier that starts with "PPM". In the first table `performance_metrics` we get one performance metrics per row:
+So we use these PGS identifiers to query the PGS Catalog for performance metrics using the function `get_performance_metrics()`.
 
 ```{r}
 mavaddat2018_ppm <- get_performance_metrics(pgs_id = mavaddat2018_scores@scores$pgs_id)
 mavaddat2018_ppm@performance_metrics[1:4]
 ```
+
+The output is an S4 object with `r length(slotNames(mavaddat2018_ppm))` tables: `r knitr::combine_words(slotNames(mavaddat2018_ppm))`. Performance metrics are indexed with an unique identifier that starts with "PPM". In the first table `performance_metrics` we get one performance metrics per row:
 
 We see that one polygenic score can be associated with several performance metrics (PPM), e.g., PGS000001 associates with `r nrow(dplyr::filter(mavaddat2018_ppm@performance_metrics, pgs_id == 'PGS000001'))`  PPMs:
 
