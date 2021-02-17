@@ -17,7 +17,7 @@ assessment.
 You can install the current version of quincunx with:
 
     # install.packages("remotes")
-    remotes::install_github("ramiromagno/quincunx")
+    remotes::install_github("maialab/quincunx")
 
 ## Cheatsheet
 
@@ -26,7 +26,7 @@ You can install the current version of quincunx with:
 ## Code of Conduct
 
 Please note that the quincunx project is released with a [Contributor
-Code of Conduct](https://rmagno.eu/quincunx/CODE_OF_CONDUCT.html). By
+Code of Conduct](https://maialab.org/quincunx/CODE_OF_CONDUCT.html). By
 contributing to this project, you agree to abide by its terms.
 
 ## Acknowledgements
