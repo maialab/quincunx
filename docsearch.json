@@ -2,21 +2,21 @@
   "index_name": "quincunx",
   "start_urls": [
     {
-      "url": "https://rmagno.eu/quincunx/index.html",
+      "url": "https://maialab.org/quincunx/index.html",
       "selectors_key": "homepage",
       "tags": [
         "homepage"
       ]
     },
     {
-      "url": "https://rmagno.eu/quincunx/reference",
+      "url": "https://maialab.org/quincunx/reference",
       "selectors_key": "reference",
       "tags": [
         "reference"
       ]
     },
     {
-      "url": "https://rmagno.eu/quincunx/articles",
+      "url": "https://maialab.org/quincunx/articles",
       "selectors_key": "articles",
       "tags": [
         "articles"
@@ -30,7 +30,7 @@
     "/articles/index.html"
   ],
   "sitemap_urls": [
-    "https://rmagno.eu/quincunx/sitemap.xml"
+    "https://maialab.org/quincunx/sitemap.xml"
   ],
   "selectors": {
     "homepage": {

@@ -1,291 +1,291 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://rmagno.eu/quincunx/index.html</loc>
+    <loc>https://maialab.org/quincunx/index.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/ancestry_categories.html</loc>
+    <loc>https://maialab.org/quincunx/reference/ancestry_categories.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/bind.html</loc>
+    <loc>https://maialab.org/quincunx/reference/bind.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/clear_cache.html</loc>
+    <loc>https://maialab.org/quincunx/reference/clear_cache.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/cohorts-class.html</loc>
+    <loc>https://maialab.org/quincunx/reference/cohorts-class.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/cohorts.html</loc>
+    <loc>https://maialab.org/quincunx/reference/cohorts.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/collect_pgs_ids.html</loc>
+    <loc>https://maialab.org/quincunx/reference/collect_pgs_ids.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/collect_samples.html</loc>
+    <loc>https://maialab.org/quincunx/reference/collect_samples.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/contains_question_mark.html</loc>
+    <loc>https://maialab.org/quincunx/reference/contains_question_mark.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/count.html</loc>
+    <loc>https://maialab.org/quincunx/reference/count.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/filter_by_id.html</loc>
+    <loc>https://maialab.org/quincunx/reference/filter_by_id.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/first_non_na.html</loc>
+    <loc>https://maialab.org/quincunx/reference/first_non_na.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/get_cohorts.html</loc>
+    <loc>https://maialab.org/quincunx/reference/get_cohorts.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/get_performance_metrics.html</loc>
+    <loc>https://maialab.org/quincunx/reference/get_performance_metrics.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/get_publications.html</loc>
+    <loc>https://maialab.org/quincunx/reference/get_publications.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/get_releases.html</loc>
+    <loc>https://maialab.org/quincunx/reference/get_releases.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/get_sample_sets.html</loc>
+    <loc>https://maialab.org/quincunx/reference/get_sample_sets.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/get_scores.html</loc>
+    <loc>https://maialab.org/quincunx/reference/get_scores.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/get_trait_categories.html</loc>
+    <loc>https://maialab.org/quincunx/reference/get_trait_categories.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/get_traits.html</loc>
+    <loc>https://maialab.org/quincunx/reference/get_traits.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/is_paginated.html</loc>
+    <loc>https://maialab.org/quincunx/reference/is_paginated.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/is_pgs_id.html</loc>
+    <loc>https://maialab.org/quincunx/reference/is_pgs_id.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/is_pubmed_id.html</loc>
+    <loc>https://maialab.org/quincunx/reference/is_pubmed_id.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/list_to_s4.html</loc>
+    <loc>https://maialab.org/quincunx/reference/list_to_s4.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/msg_400.html</loc>
+    <loc>https://maialab.org/quincunx/reference/msg_400.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/msg_404.html</loc>
+    <loc>https://maialab.org/quincunx/reference/msg_404.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/msg_empty.html</loc>
+    <loc>https://maialab.org/quincunx/reference/msg_empty.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/n.html</loc>
+    <loc>https://maialab.org/quincunx/reference/n.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/n_pages.html</loc>
+    <loc>https://maialab.org/quincunx/reference/n_pages.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/no_msg.html</loc>
+    <loc>https://maialab.org/quincunx/reference/no_msg.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/nr_to_na.html</loc>
+    <loc>https://maialab.org/quincunx/reference/nr_to_na.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/offsets.html</loc>
+    <loc>https://maialab.org/quincunx/reference/offsets.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/open_in_dbsnp.html</loc>
+    <loc>https://maialab.org/quincunx/reference/open_in_dbsnp.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/open_in_pgs_catalog.html</loc>
+    <loc>https://maialab.org/quincunx/reference/open_in_pgs_catalog.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/open_in_pubmed.html</loc>
+    <loc>https://maialab.org/quincunx/reference/open_in_pubmed.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/performance_metrics-class.html</loc>
+    <loc>https://maialab.org/quincunx/reference/performance_metrics-class.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/performance_metrics.html</loc>
+    <loc>https://maialab.org/quincunx/reference/performance_metrics.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/pgp_to_pgs.html</loc>
+    <loc>https://maialab.org/quincunx/reference/pgp_to_pgs.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/pgp_to_ppm.html</loc>
+    <loc>https://maialab.org/quincunx/reference/pgp_to_ppm.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/pgp_to_pss.html</loc>
+    <loc>https://maialab.org/quincunx/reference/pgp_to_pss.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/pgs_server.html</loc>
+    <loc>https://maialab.org/quincunx/reference/pgs_server.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/pgs_to_pgp.html</loc>
+    <loc>https://maialab.org/quincunx/reference/pgs_to_pgp.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/pgs_to_ppm.html</loc>
+    <loc>https://maialab.org/quincunx/reference/pgs_to_ppm.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/pgs_to_pss.html</loc>
+    <loc>https://maialab.org/quincunx/reference/pgs_to_pss.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/pgs_to_study.html</loc>
+    <loc>https://maialab.org/quincunx/reference/pgs_to_study.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/pipe.html</loc>
+    <loc>https://maialab.org/quincunx/reference/pipe.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/ppm_to_pgp.html</loc>
+    <loc>https://maialab.org/quincunx/reference/ppm_to_pgp.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/ppm_to_pgs.html</loc>
+    <loc>https://maialab.org/quincunx/reference/ppm_to_pgs.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/ppm_to_pss.html</loc>
+    <loc>https://maialab.org/quincunx/reference/ppm_to_pss.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/pss_to_pgp.html</loc>
+    <loc>https://maialab.org/quincunx/reference/pss_to_pgp.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/pss_to_pgs.html</loc>
+    <loc>https://maialab.org/quincunx/reference/pss_to_pgs.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/pss_to_ppm.html</loc>
+    <loc>https://maialab.org/quincunx/reference/pss_to_ppm.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/publications-class.html</loc>
+    <loc>https://maialab.org/quincunx/reference/publications-class.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/publications.html</loc>
+    <loc>https://maialab.org/quincunx/reference/publications.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/read_scoring_file.html</loc>
+    <loc>https://maialab.org/quincunx/reference/read_scoring_file.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/releases-class.html</loc>
+    <loc>https://maialab.org/quincunx/reference/releases-class.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/releases.html</loc>
+    <loc>https://maialab.org/quincunx/reference/releases.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/remap_id.html</loc>
+    <loc>https://maialab.org/quincunx/reference/remap_id.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/request.html</loc>
+    <loc>https://maialab.org/quincunx/reference/request.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/request_all.html</loc>
+    <loc>https://maialab.org/quincunx/reference/request_all.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/request_warning.html</loc>
+    <loc>https://maialab.org/quincunx/reference/request_warning.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/s4_to_list.html</loc>
+    <loc>https://maialab.org/quincunx/reference/s4_to_list.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/sample_sets-class.html</loc>
+    <loc>https://maialab.org/quincunx/reference/sample_sets-class.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/sample_sets.html</loc>
+    <loc>https://maialab.org/quincunx/reference/sample_sets.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/scores-class.html</loc>
+    <loc>https://maialab.org/quincunx/reference/scores-class.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/scores.html</loc>
+    <loc>https://maialab.org/quincunx/reference/scores.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/setop.html</loc>
+    <loc>https://maialab.org/quincunx/reference/setop.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/study_to_pgs.html</loc>
+    <loc>https://maialab.org/quincunx/reference/study_to_pgs.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/subset-cohorts.html</loc>
+    <loc>https://maialab.org/quincunx/reference/subset-cohorts.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/subset-performance_metrics.html</loc>
+    <loc>https://maialab.org/quincunx/reference/subset-performance_metrics.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/subset-publications.html</loc>
+    <loc>https://maialab.org/quincunx/reference/subset-publications.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/subset-releases.html</loc>
+    <loc>https://maialab.org/quincunx/reference/subset-releases.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/subset-sample_sets.html</loc>
+    <loc>https://maialab.org/quincunx/reference/subset-sample_sets.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/subset-scores.html</loc>
+    <loc>https://maialab.org/quincunx/reference/subset-scores.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/subset-trait_categories.html</loc>
+    <loc>https://maialab.org/quincunx/reference/subset-trait_categories.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/subset-traits.html</loc>
+    <loc>https://maialab.org/quincunx/reference/subset-traits.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/sure.html</loc>
+    <loc>https://maialab.org/quincunx/reference/sure.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/trait_categories-class.html</loc>
+    <loc>https://maialab.org/quincunx/reference/trait_categories-class.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/trait_categories.html</loc>
+    <loc>https://maialab.org/quincunx/reference/trait_categories.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/traits-class.html</loc>
+    <loc>https://maialab.org/quincunx/reference/traits-class.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/traits.html</loc>
+    <loc>https://maialab.org/quincunx/reference/traits.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/user_agent_id.html</loc>
+    <loc>https://maialab.org/quincunx/reference/user_agent_id.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/reference/write_xlsx.html</loc>
+    <loc>https://maialab.org/quincunx/reference/write_xlsx.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/articles/cohorts-samples-sample-sets.html</loc>
+    <loc>https://maialab.org/quincunx/articles/cohorts-samples-sample-sets.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/articles/getting-cohorts.html</loc>
+    <loc>https://maialab.org/quincunx/articles/getting-cohorts.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/articles/getting-pgs-performance-metrics.html</loc>
+    <loc>https://maialab.org/quincunx/articles/getting-pgs-performance-metrics.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/articles/getting-pgs-publications.html</loc>
+    <loc>https://maialab.org/quincunx/articles/getting-pgs-publications.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/articles/getting-pgs-sample-sets.html</loc>
+    <loc>https://maialab.org/quincunx/articles/getting-pgs-sample-sets.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/articles/getting-pgs-scores.html</loc>
+    <loc>https://maialab.org/quincunx/articles/getting-pgs-scores.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/articles/getting-releases.html</loc>
+    <loc>https://maialab.org/quincunx/articles/getting-releases.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/articles/getting-traits.html</loc>
+    <loc>https://maialab.org/quincunx/articles/getting-traits.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/articles/identifiers.html</loc>
+    <loc>https://maialab.org/quincunx/articles/identifiers.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/articles/pgs-construction-process.html</loc>
+    <loc>https://maialab.org/quincunx/articles/pgs-construction-process.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/articles/pgs-scores-mavaddat.html</loc>
+    <loc>https://maialab.org/quincunx/articles/pgs-scores-mavaddat.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/articles/pgs-scoring-file.html</loc>
+    <loc>https://maialab.org/quincunx/articles/pgs-scoring-file.html</loc>
   </url>
   <url>
-    <loc>https://rmagno.eu/quincunx/articles/quincunx-development.html</loc>
+    <loc>https://maialab.org/quincunx/articles/quincunx-development.html</loc>
   </url>
 </urlset>
