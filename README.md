@@ -23,6 +23,28 @@ You can install the current version of quincunx with:
 
 <a href="https://github.com/ramiromagno/cheatsheets/blob/master/quincunx/quincunx_cheatsheet.pdf"><img src="https://raw.githubusercontent.com/ramiromagno/cheatsheets/master/quincunx/quincunx_cheatsheet.png" width="615" height="225"/></a>
 
+## Citing this work
+
+If you use data retrieved from the PGS Catalog by quincunx, please do
+not forget to cite the PGS Catalog project and the original authors who
+created the data. Currently, you can cite the PGS Catalog project by
+using its medRxiv preprint:
+
+> Samuel A. Lambert, Laurent Gil, Simon Jupp, View ORCID ProfileScott
+> Ritchie, Yu Xu, Annalisa Buniello, Gad Abraham, Michael Chapman, Helen
+> Parkinson, John Danesh, Jacqueline A. L. MacArthur, Michael Inouye.
+> The Polygenic Score Catalog: an open database for reproducibility and
+> systematic evaluation. medRxiv:
+> <a href="https://doi.org/10.1101/2020.05.20.20108217" class="uri">https://doi.org/10.1101/2020.05.20.20108217</a>.
+
+Also, please cite quincunx’s publication: *To be added soon*.
+
+## Terms of use
+
+Please note that if you use the data provided by the PGS Catalog either
+directly or via quincunx you agree to abide to the [EMBL-EBI Terms of
+Use](https://www.ebi.ac.uk/about/terms-of-use/).
+
 ## Code of Conduct
 
 Please note that the quincunx project is released with a [Contributor
