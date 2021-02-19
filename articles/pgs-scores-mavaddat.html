@@ -665,9 +665,9 @@ To learn more about the meaning of cohorts for the PGS Catalog, visit our check 
 </ul>
 <p>Reminder | You can quickly check all variables from each table by consulting <a href="https://github.com/ramiromagno/cheatsheets/blob/master/quincunx/quincunx_cheatsheet.pdf">quincunx cheatsheet</a>.<br>
 Also, a description of each variable is annotated in the <code>performance_metrics</code> object help page that can be accessed with <code><a href="../reference/performance_metrics-class.html">class?performance_metrics</a></code>.</p>
-<div id="performance_metrics-object-performance-metrics-table" class="section level3">
+<div id="performance_metrics-object-performance_metrics-table" class="section level3">
 <h3 class="hasAnchor">
-<a href="#performance_metrics-object-performance-metrics-table" class="anchor"></a>performance_metrics object | Performance Metrics table</h3>
+<a href="#performance_metrics-object-performance_metrics-table" class="anchor"></a>performance_metrics object | performance_metrics table</h3>
 <p>In the first table <code>performance_metrics</code> we get one performance metrics entity per row, with the following columns: ppm_id, pgs_id, reported_trait, covariates, comments.<br>
 Note that all performance metrics are indexed with an unique identifier that starts with “PPM”.</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
@@ -712,7 +712,7 @@ Note that all performance metrics are indexed with an unique identifier that sta
 </div>
 <div id="performance_metrics-object-publications-table" class="section level3">
 <h3 class="hasAnchor">
-<a href="#performance_metrics-object-publications-table" class="anchor"></a>performance_metrics object | Publications table</h3>
+<a href="#performance_metrics-object-publications-table" class="anchor"></a>performance_metrics object | publications table</h3>
 <p>The publications table is dedicated to hold information related to the publications associated with the performance metrics. The column <code>pgp_id</code> links each performance metrics to the respective publication where that performance metrics was reported and collected.</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mavaddat2018_ppm</span><span class="op">@</span><span class="va">publications</span>
@@ -759,9 +759,9 @@ This is easily confirmed by checking that all other publications are dated after
 <span class="co">#&gt; 7 PPM0000… PGS0000… ER-negative breast ca… study, genetic … &lt;NA&gt;</span></code></pre></div>
 <p>Here, we can immediately see that the Mavaddat publication has evaluated the PGS000004 twice, with two performance metrics (PPM000004 and PPM000005), that are different because they include a different set of SNPs (see the <code>comments</code> column for PPM000005).</p>
 </div>
-<div id="performance_metrics-object-sample-sets-table" class="section level3">
+<div id="performance_metrics-object-sample_sets-table" class="section level3">
 <h3 class="hasAnchor">
-<a href="#performance_metrics-object-sample-sets-table" class="anchor"></a>performance_metrics object | Sample Sets table</h3>
+<a href="#performance_metrics-object-sample_sets-table" class="anchor"></a>performance_metrics object | sample_sets table</h3>
 <p>The PGS Catalog provides a Sample Set Id (PSS) that links the PPMs to the sample sets that were used to evaluate the corresponding PGS. This mapping is stored in the <code>sample_sets</code> table.</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mavaddat2018_ppm</span><span class="op">@</span><span class="va">sample_sets</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">ppm_id</span> <span class="op">%in%</span> <span class="va">mavaddat2018_ppm_ids</span><span class="op">)</span> 
@@ -778,7 +778,7 @@ This is easily confirmed by checking that all other publications are dated after
 </div>
 <div id="performance_metrics-object-samples-table" class="section level3">
 <h3 class="hasAnchor">
-<a href="#performance_metrics-object-samples-table" class="anchor"></a>performance_metrics object | Samples table</h3>
+<a href="#performance_metrics-object-samples-table" class="anchor"></a>performance_metrics object | samples table</h3>
 <p>The <code>samples</code> table gathers more relevant information regarding the samples used for the relevant evaluations. This table contains the following columns:</p>
 <ul>
 <li>ppm_id, pss_id, sample_id, stage, sample_size, sample_cases, sample_controls, sample_percent_male, phenotype_description, ancestry, ancestry_description, ancestry_country, ancestry_additional_description, study_id, pubmed_id, cohorts_additional_description.</li>
@@ -814,7 +814,7 @@ This is easily confirmed by checking that all other publications are dated after
 </div>
 <div id="performance_metrics-object-demographics-table" class="section level3">
 <h3 class="hasAnchor">
-<a href="#performance_metrics-object-demographics-table" class="anchor"></a>performance_metrics object | Demographics table</h3>
+<a href="#performance_metrics-object-demographics-table" class="anchor"></a>performance_metrics object | demographics table</h3>
 <p>The <code>demographics</code> table holds information regarding the demographics’ variables of each <code>sample</code>. Each demographics’ variable (row) is uniquely identified by the combination of values from the columns: <code>ppm_id</code>, <code>pss_id</code>, <code>sample_id</code>, and <code>variable</code>. Currently, the PGS Catalog only describes two demographic variables: <em>age of participants</em> and <em>follow-up time</em>.</p>
 <p>The columns presented in the table are:</p>
 <ul>
@@ -861,7 +861,7 @@ This is easily confirmed by checking that all other publications are dated after
 </div>
 <div id="performance_metrics-object-pgs-effect-sizes-pgs-classification-metrics-pgs-other-metrics-tables" class="section level3">
 <h3 class="hasAnchor">
-<a href="#performance_metrics-object-pgs-effect-sizes-pgs-classification-metrics-pgs-other-metrics-tables" class="anchor"></a>performance_metrics object | PGS Effect Sizes &amp; PGS Classification Metrics &amp; PGS Other Metrics tables</h3>
+<a href="#performance_metrics-object-pgs-effect-sizes-pgs-classification-metrics-pgs-other-metrics-tables" class="anchor"></a>performance_metrics object | PGS effect sizes &amp; PGS classification metrics &amp; PGS other metrics tables</h3>
 <p>The three final tables of the <code>performance_metrics</code> object hold the performance metrics themselves used in the validation. Each table presents the same column structure with 11 total columns, where the second column is different between the three tables. This column shows an id created by <em>quincunx</em> that is used to identify each of the individual metrics tables (<code>effect_size_id</code>, <code>classification_metrics_id</code>, or <code>other_metrics_id</code>). All other columns are for the same variables:</p>
 <ul>
 <li>ppm_id, effect_size_id, estimate_type_long, estimate_type, estimate, unit, variability_type, variability, interval_type, interval_lower, interval_upper.</li>
@@ -910,9 +910,10 @@ This is easily confirmed by checking that all other publications are dated after
 <p>We can immediately see that the third table (reserved for metrics other than effect sizes and classification metrics) is empty; and that the effect sizes were estimated using Odds Ratio and Hazard Ratio, and the classification metric applied was AUROC.</p>
 <p>Now we can look at the reported values for each PPM metrics and decide if the validation is relevant, and therefore make an informed choice to use the associated PGS score for our own study, and eventually apply it to our own dataset.</p>
 </div>
-<div id="concluding-remarks" class="section level3">
-<h3 class="hasAnchor">
-<a href="#concluding-remarks" class="anchor"></a>Concluding remarks</h3>
+</div>
+<div id="concluding-remarks" class="section level2">
+<h2 class="hasAnchor">
+<a href="#concluding-remarks" class="anchor"></a>Concluding remarks</h2>
 <p>Useful reminders:</p>
 <ul>
 <li>You can quickly check all variables from each table by consulting <a href="https://github.com/ramiromagno/cheatsheets/blob/master/quincunx/quincunx_cheatsheet.pdf">quincunx cheatsheet</a>.<br>
@@ -922,7 +923,6 @@ This is easily confirmed by checking that all other publications are dated after
 <li>All tables retrieved by <em>quincunx’s</em> functions are annotated with help files that describe all variables present. These are accessible via <code>class?object_name</code> (e.g. <code><a href="../reference/scores-class.html">class?scores</a></code>, <code><a href="../reference/performance_metrics-class.html">class?performance_metrics</a></code>).</li>
 <li>The <em>quincunx</em> package has been published in a peer-reviewed journal. Use <code><a href="https://rdrr.io/r/utils/citation.html">citation(package="quincunx")</a></code> to get the full paper citation.</li>
 </ul>
-</div>
 </div>
   </div>
 
