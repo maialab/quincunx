@@ -1,6 +1,7 @@
 ---
 title: "Exploring PGS scores by Mavaddat et al. (2018)"
 output: rmarkdown::html_vignette
+
 vignette: >
   %\VignetteIndexEntry{Exploring PGS scores by Mavaddat et al. (2018)}
   %\VignetteEngine{knitr::rmarkdown}
@@ -298,7 +299,7 @@ The output is an S4 object with `r length(slotNames(mavaddat2018_ppm))` tables:
 Reminder | You can quickly check all variables from each table by consulting [quincunx cheatsheet](https://github.com/ramiromagno/cheatsheets/blob/master/quincunx/quincunx_cheatsheet.pdf).   
 Also, a description of each variable is annotated in the `performance_metrics` object help page that can be accessed with `class?performance_metrics`.
 
-### performance_metrics object | Performance Metrics table 
+### performance_metrics object | performance_metrics table 
 
 In the first table `performance_metrics` we get one performance metrics entity per row, with the following columns: `r colnames(mavaddat2018_ppm@performance_metrics)`.   
 Note that all performance metrics are indexed with an unique identifier that starts with "PPM".
@@ -333,7 +334,7 @@ each having included different covariates in the model:
 (NA means that data for this field is *Not Available* in the records).
 
 
-### performance_metrics object | Publications table
+### performance_metrics object | publications table
 
 The publications table is dedicated to hold information related to the publications associated with the performance metrics. The column `pgp_id` links each performance metrics to the respective publication where that performance metrics was reported and collected.
 
@@ -363,7 +364,7 @@ mavaddat2018_ppm@performance_metrics %>% dplyr::filter(ppm_id %in% mavaddat2018_
  
 Here, we can immediately see that the Mavaddat publication has evaluated the PGS000004 twice, with two performance metrics (PPM000004 and PPM000005), that are different because they include a different set of SNPs (see the `comments` column for PPM000005).   
 
-### performance_metrics object | Sample Sets table
+### performance_metrics object | sample_sets table
 
 The PGS Catalog provides a Sample Set Id (PSS) that links the PPMs to the sample sets that were used to evaluate the corresponding PGS. This mapping is stored in the `sample_sets` table.
 
@@ -371,7 +372,7 @@ The PGS Catalog provides a Sample Set Id (PSS) that links the PPMs to the sample
 mavaddat2018_ppm@sample_sets %>% dplyr::filter(ppm_id %in% mavaddat2018_ppm_ids) 
 ```
 
-### performance_metrics object | Samples table
+### performance_metrics object | samples table
 
 The `samples` table gathers more relevant information regarding the samples used for the relevant evaluations. This table contains the following columns:     
 
@@ -398,7 +399,7 @@ mavaddat2018_ppm@samples %>%
 
 This plot clearly shows that PPM000005 uses a very large sample (particularly regarding the number of controls) when compared with all other reported PPMs. 
 
-### performance_metrics object | Demographics table
+### performance_metrics object | demographics table
 
 The `demographics` table holds information regarding the demographics' variables of each `sample`. Each demographics' variable (row) is uniquely identified by the combination of values from the columns: `ppm_id`, `pss_id`, `sample_id`, and `variable`. Currently, the PGS Catalog only describes two demographic variables: *age of participants* and *follow-up time*. 
 
@@ -420,7 +421,7 @@ Similarly to the `cohorts` table described above (in the `scores` object class),
 mavaddat2018_ppm@cohorts %>% dplyr::filter(ppm_id %in% mavaddat2018_ppm_ids)
 ```
 
-### performance_metrics object | PGS Effect Sizes & PGS Classification Metrics & PGS Other Metrics tables
+### performance_metrics object | PGS effect sizes & PGS classification metrics & PGS other metrics tables
 
 The three final tables of the `performance_metrics` object hold the performance metrics themselves used in the validation. Each table presents the same column structure with
 `r length(colnames(mavaddat2018_ppm@pgs_effect_sizes))`
@@ -450,7 +451,7 @@ We can immediately see that the third table (reserved for metrics other than eff
 Now we can look at the reported values for each PPM metrics and decide if the validation is relevant, and therefore make an informed choice to use the associated PGS score for our own study, and eventually apply it to our own dataset.
 
 
-### Concluding remarks
+## Concluding remarks
 
 Useful reminders:
 
