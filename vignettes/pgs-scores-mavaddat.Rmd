@@ -1,7 +1,6 @@
 ---
 title: "Exploring PGS scores by Mavaddat et al. (2018)"
 output: rmarkdown::html_vignette
-
 vignette: >
   %\VignetteIndexEntry{Exploring PGS scores by Mavaddat et al. (2018)}
   %\VignetteEngine{knitr::rmarkdown}
@@ -413,7 +412,7 @@ mavaddat2018_ppm@demographics %>% dplyr::glimpse()
 
 Here we can see that neither of the PPMs shown is from the Mavaddat paper. This means that the performance metrics reported in the paper do not have any information regarding the demographics' variables that belong in this table (age and follow-up time).
 
-### performance_metrics object | Cohorts table
+### performance_metrics object | cohorts table
 
 Similarly to the `cohorts` table described above (in the `scores` object class), this table shows which cohorts are associated with each sample. However here, the unique identification of a sample can be obtained by combining the values of the first three columns: `ppm_id`, `pss_id` and `sample_id`. 
 
