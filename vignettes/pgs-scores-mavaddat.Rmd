@@ -1,24 +1,25 @@
 ---
-title: "PGS scores by Mavaddat et al. (2018)"
+title: "Exploring PGS scores by Mavaddat et al. (2018)"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{PGS scores by Mavaddat et al. (2018)}
+  %\VignetteIndexEntry{Exploring PGS scores by Mavaddat et al. (2018)}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
+  collapse = TRUE, comment = "#>",
+  fig.width = 7, fig.align = "center"
 )
 ```
 
 ## Introduction
 
-Let us say you are a researcher studying breast cancer and that you are interested in screening and prevention of this disease. Now, imagine you have just recently noticed a new publication that claims to have developed a set of new polygenic risk scores that are both powerful and reliable predictors of breast cancer risk, e.g., [Mavaddat et al. (2018)](https://doi.org/10.1016/j.ajhg.2018.11.002).
+Let us assume that you are a breast cancer researcher, and that you are interested in studying the screening and prevention of this disease. Now, imagine you have just recently noticed a new publication that claims to have developed a set of new polygenic risk scores that are both powerful and reliable predictors of breast cancer risk, e.g., [Mavaddat et al. (2018)](https://doi.org/10.1016/j.ajhg.2018.11.002).
 
-Perhaps now you would like to investigate a bit more about these new polygenic risk scores to assess their potential application. You know that the performance of these scores is dependent on various aspects, such as study design, participant demographics, case definitions, and covariates adjusted for. In general, to access this information, you will have to carefully read the paper for these details. If it happens however that these scores have been already indexed and curated by the [PGS Catalog](https://www.pgscatalog.org/) team then you might take advantage of using this free and open resource to quickly gather relevant data about these scores. And if you happen to be an R user, then you can use quincunx retrieval functions to fetch polygenic score metadata from the PGS Catalog REST API server. This is what we will be doing next.
+Perhaps now you would like to investigate a bit more about these new polygenic risk scores to assess their potential application. You know that the performance of these scores is dependent on various aspects, such as study design, participant demographics, case definitions, and covariates that have been adjusted for. In general, to access this information, you will have to carefully read the paper searching for these details, and usually get them from the supplementary material, with all the extra effort it takes.   
+However, if these scores have already been indexed and manually curated by the [PGS Catalog](https://www.pgscatalog.org/) team, then you can benefit by using this free and open resource to quickly gather relevant data about these scores. And if you happen to be an R user, then you can use the R Package *quincunx* and its retrieval functions to fetch the polygenic score metadata associated with the publication of interest from the PGS Catalog REST API server. This is what we will be doing next.
 
 ## Finding polygenic risk scores by publication
 
@@ -43,7 +44,7 @@ The `publications` table (data frame) contains all the publications added to the
 pub_by_mavaddat@publications
 ```
 
-Seemingly there are `r quincunx::n(pub_by_mavaddat)` publications indexed in the PGS Catalog. Each publication added to the PGS Catalog gets an unique identifier. This identifier is right in the first column (`pgp_id`) of the `publications` table. The number of publications can be obtained by using the function `n()` on the S4 object `pub_by_mavaddat`, or by asking directly the number of rows of the `publications` table:
+Seemingly there are `r quincunx::n(pub_by_mavaddat)` publications indexed in the PGS Catalog. Each publication added to the PGS Catalog gets an unique identifier. This identifier is in the first column (`pgp_id`) of the `publications` table. The number of publications can be obtained by using the function `n()` on the S4 object `pub_by_mavaddat`, or by asking directly the number of rows of the `publications` table:
 
 ```{r no_of_pubs}
 quincunx::n(pub_by_mavaddat) # Here we use quincunx::n() instead of n() to avoid namespace collisions with dplyr::n().
@@ -82,178 +83,389 @@ pub_by_pmid_30554720 <- get_publications(pubmed_id = '30554720')
 pub_by_pmid_30554720
 ```
 
+To get an overview of the possible search criteria for `get_publications` you can use the help function within R.
+
+```{r get_pub_help}
+?get_publications
+
+# or alternatively
+help("get_publications")
+```
+
 ## From publication to polygenic risk scores
 
-Now that we have found that our publication of interest exists in the PGS Catalog, whose identifier is `r mavaddat2018@publications$pgp_id`, it is time now to check which polygenic risk scores are annotated in the Catalog. Polygenic scores (PGS) in the PGS Catalog are indexed by an unique accession identifier of the form: "PGS000000" ("PGS" followed by six digits).
+Now that we have found that our publication of interest exists in the PGS Catalog, with identifier `r mavaddat2018@publications$pgp_id`, we can check now which polygenic risk scores are annotated in the Catalog. Polygenic scores (PGS) in the PGS Catalog are indexed by an unique accession identifier of the form: "PGS000000" ("PGS" followed by six digits).
 
 To get all PGS identifiers associated with Mavaddat's publication we turn to the second table `pgs_ids` that maps publication identifiers (PGP) to PGS identifiers:
 
-```{r}
+```{r pub_by_pmid}
 pub_by_pmid_30554720@pgs_ids
 ```
 
-There are `r length(unique(pub_by_pmid_30554720@pgs_ids$pgs_id))` unique scores. If we knew, before hand, that `r mavaddat2018@publications$pgp_id` was associated with Mavaddat's publication, we could have also taken advantage of the neat function `pgp_to_pgs()` to quickly get all the associated polygenic score ids:
+Please note that there are `r length(unique(pub_by_pmid_30554720@pgs_ids$pgs_id))` unique scores, both from the *development* and the *evaluation* stages, meaning that this paper published new polygenic scores (*development* stage), and tested them (*evaluation* stage). But this paper has also evaluated 3 other polygenic scores previously developed (and firstly published in another publication by the same author).   
+**This distinction between stages is important because when we query the database for the scores from all the pgp_ids present in this publication, only the newly developed ones (from the *development stage*) will be retrieved.** (See below: section about the `get_scores()` function).  
 
-```{r}
+```{r pgs_develop_eval_stages}
+# Newly published PGS scores (development stage)
+pub_by_pmid_30554720@pgs_ids %>% dplyr::filter(stage == "development")
+
+# All PGS scores evaluated (evaluation stage)  
+pub_by_pmid_30554720@pgs_ids %>% dplyr::filter(stage == "evaluation") 
+
+```
+
+If we knew, before hand, that `r mavaddat2018@publications$pgp_id` was associated with Mavaddat's publication, we could have also taken advantage of the neat function `pgp_to_pgs()` to quickly get all the associated polygenic score ids:
+
+```{r pgp_to_pgs}
 pgp_to_pgs('PGP000002')
 ```
 
-## Polygenic Scores by Mavaddat's (2018)
+## Polygenic Scores published by Mavaddat *et al.* (2018)
 
-To dive into the metadata about the polygenic scores, we use the quincunx function `get_scores()`:
+To dive into the metadata about these polygenic scores, we use the quincunx function `get_scores()`:
 
-```{r}
-mavaddat2018_scores <- get_scores(pgs_id = sort(unique(pub_by_pmid_30554720@pgs_ids$pgs_id)))
+```{r get_scores}
+mavaddat2018_scores <- get_scores(pubmed_id = "30554720")
 slotNames(mavaddat2018_scores)
 ```
 
-The returned object is an S4 object `scores` which contains six tables (slots): `r slotNames(mavaddat2018_scores)`. You can quickly check all variables from each table by consulting [quincunx cheatsheet](https://github.com/ramiromagno/cheatsheets/blob/master/quincunx/quincunx_cheatsheet.pdf). A description of each variable can be found with `class?scores`.
+This returns the S4 object `scores` which contains six tables (slots): `r slotNames(mavaddat2018_scores)`.   
+You can quickly check all variables from each table by consulting [quincunx cheatsheet](https://github.com/ramiromagno/cheatsheets/blob/master/quincunx/quincunx_cheatsheet.pdf).   
+A description of each variable is annotated in the `scores` object help page that can be accessed with `class?scores`.
 
 ## Polygenic Scores Metadata
 
-### Scores table
+### scores object | scores table 
 
-The S4 scores object `mavaddat2018_scores` starts with a table named `scores` that lists each score in one row each. All scores are identified by the PGS identifier (column `pgs_id`). In addition, scores can have a name (column `pgs_name`). This may be the name that the authors describe the PGS with in the source publication, or a name that a curator of the PGS Catalog has assigned to identify the score during the curation process.
+The S4 scores object `mavaddat2018_scores` starts with a table named `scores` that lists each score in one row. All scores are identified by a PGS identifier (`pgs_id` column). Note that, as previously explained, only the polygenic scores newly developed in this publication (*developmental stage*) are retrieved, and not all the PGS scores that were evaluated in this publication.
 
-```{r}
+In addition, scores can have a name (`pgs_name` column). This may be the name assigned by authors of the source publication, or a name assigned by a PGS Catalog curator in order to identify that particular score throughout the curating process.
+
+```{r scores_table}
 mavaddat2018_scores@scores[c('pgs_id', 'pgs_name')]
 ```
 
-From the PGS names we can already see the presence of the suffixes "ERpos" and "ERneg", suggestive of specialised polygenic risk scores for estrogen-receptor positive and negative samples.
+From the PGS names we can already see the presence of the suffixes "ERpos" and "ERneg", suggestive of specialized polygenic risk scores for estrogen-receptor positive and negative samples.
 
-```{r}
+```{r scoring_file}
 mavaddat2018_scores@scores['scoring_file']
 ```
 
-The column `scoring_file` contains the URL to the FTP location of the PGS scoring file. PGS scoring files are the files provided by the PGS Catalog that allow you to compute polygenic scores for your samples. You can download PGS scoring files into R with the function `read_scoring_file()`. Learn more about scoring files in `vignette("pgs-scoring-file")`. For a quick consultation of the file format of PGS scoring files you may also check the second page of [quincunx cheatsheet](https://github.com/ramiromagno/cheatsheets/blob/master/quincunx/quincunx_cheatsheet.pdf).
+The column `scoring_file` contains the URL for the FTP location containing the corresponding PGS scoring files. PGS scoring files are the text files provided by the PGS Catalog team containing the source data that you can use to compute polygenic scores for particular individuals, i.e. that allow you to apply these scores to your individual samples. Learn more about scoring files in `vignette("pgs-scoring-file")`. For a quick consultation of the file format of PGS scoring files you may also check the second page of [quincunx cheatsheet](https://github.com/ramiromagno/cheatsheets/blob/master/quincunx/quincunx_cheatsheet.pdf).
 
-```{r}
+As an additional feature, *quincunx* allows you to download the relevant PGS scoring files directly into R using the function `read_scoring_file()`, making the data immediately available in R for further analysis.
+
+
+```{r scoring_file_pub}
 mavaddat2018_scores@scores[c('pgs_id', 'matches_publication')]
 ```
 
-The column `matches_publication` is a logical value indicating whether the published polygenic score is exactly the same as the one provided to the PGS Catalog. In this case all of the `r nrow(mavaddat2018_scores@scores)` scores are provided exactly as published.
+The column `matches_publication` is a logical value indicating whether the published polygenic score is exactly the same as the one present in the PGS scoring file provided by the PGS Catalog. In this case all of the `r nrow(mavaddat2018_scores@scores)` scores are provided exactly as published (all values are "TRUE").
 
-```{r}
+
+Other columns in the `scores` table hold relevant information.
+
+```{r scores_columns}
 mavaddat2018_scores@scores[c('pgs_name', 'pgs_method_name', 'pgs_method_params', 'n_variants', 'assembly')]
 ```
 
-In addition, columns such as `pgs_method_name` and `pgs_method_params` provide extra details about the PGS development method. Finally, `n_variants` informs about the number of variants comprising each polygenic risk score, and `assembly` indicates the genome assembly.
+For example, columns such as `pgs_method_name` and `pgs_method_params` provide extra details about the PGS development method. Finally, `n_variants` informs about the number of variants comprising each polygenic risk score, and `assembly` indicates the genome assembly version used.
 
-### Publications table
+### scores object | publications table
 
-The S4 scores object contains a table about the publications. In this case, it is not surprising that all PGS scores map to the same publication identifier, i.e., `r unique(mavaddat2018_scores@publications$pgp_id)`, as that was our starting point.
+The `scores` S4 object contains a table dedicated to the source publications used to collect the score(s) retrieved. In this case, it is not surprising that all PGS scores map to the same publication identifier, i.e., `r unique(mavaddat2018_scores@publications$pgp_id)`, as that was our starting point.
 
-```{r}
+```{r scores_pub}
 mavaddat2018_scores@publications[c('pgs_id', 'pgp_id', 'publication_date', 'author_fullname')]
 ```
 
-### Samples table
+### scores object | samples table 
 
-The third table (slot) of the S4 scores object pertains the samples used in the development of the PGS scores.
+The third table (slot) of the `scores` S4 object pertains to the samples used for the development of the PGS scores.
 
-There are a total of `r ncol(mavaddat2018_scores@samples)` columns, with metadata details about each sample. Each row corresponds to one sample associated with the polygenic scores, and the combination of values of the first two columns, `pgs_id` and `sample_id` identifies uniquely each sample in this table. All samples shown in the `samples` table of a `scores` object are annotated with a `stage`, that can take two values: `"discovery"` or `"training"`. `"discovery"` samples are typically used in determining the variants that are afterwards used for polygenic development. These variants originate typically from Genome-Wide Association Studies (GWAS). Hence, these samples might be linked to the GWAS Catalog. If that is the case, this information is provided in the column `study_id`, indicating the GWAS Catalog accession identifier. You may find more information about these GWAS studies by using the function `gwasrapidd::get_studies()` from the gwasrapidd package. `"training"` samples are those that have been used for the training of the polygenic score. Together, these two stages (_discovery_ and _training_) are referred as _development_, in contrast to the later testing phase of polygenic scores, i.e., the _evaluation_ phase (or stage). If this sounds confusing check our [cheatsheet](https://github.com/ramiromagno/cheatsheets/blob/master/quincunx/quincunx_cheatsheet.pdf), section _PGS Construction Process_, second page.
+There are a total of `r ncol(mavaddat2018_scores@samples)` columns with metadata details about each sample. Each row corresponds to one sample associated with the polygenic scores, and the combination of values of the first two columns, `pgs_id` and `sample_id`, uniquely identifies each sample in this table. All samples shown in the `samples` table of a `scores` object are annotated with a `stage`, that can take two values: `"discovery"` or `"training"`.   
+The `"discovery"` samples are typically used in determining the variants that are afterwards used for polygenic score development. These variants originate typically from Genome-Wide Association Studies (GWAS). Hence, these samples might be linked to the GWAS Catalog. If that is the case, this information is provided in the column `study_id`, indicating the GWAS Catalog accession identifier. You may find more information about these GWAS studies by using the function `gwasrapidd::get_studies()` from the [gwasrapidd](https://rmagno.eu/gwasrapidd/) R package that we developed previously ([described here](https://doi.org/10.1093/bioinformatics/btz605)).   
+The `"training"` samples are those that have been used for the training of a particular polygenic score. Together, these two stages (*discovery* and *training*) are referred to as *development*, in contrast to the later testing phase of the polygenic scores, i.e., the *evaluation* phase (or stage).   
+If this sounds confusing check our [cheatsheet](https://github.com/ramiromagno/cheatsheets/blob/master/quincunx/quincunx_cheatsheet.pdf), section *PGS Construction Process*, second page.
 
-```{r}
+```{r scores_samples}
 dplyr::glimpse(mavaddat2018_scores@samples)
 ```
 
-The PGS Catalog provides brief records samples sizes (total, cases and controls):
+The PGS Catalog provides brief records of samples sizes (total number, number of cases, and number of controls):
 
-```{r}
+```{r scores_samples_records}
 mavaddat2018_scores@samples[1:6]
 ```
 
 Perhaps, not so surprisingly, the percentage of male participants in the training samples is zero:
 
 
-```{r}
+```{r male_participants}
 mavaddat2018_scores@samples[c('pgs_id', 'sample_id', 'stage', 'sample_percent_male')]
 ```
 
 Also, information about the trait or disease studied and ancestry information can be accessed:
 
-```{r}
+```{r trait_disease_ancestry}
 mavaddat2018_scores@samples[c('pgs_id', 'sample_id', 'stage', 'phenotype_description', 'ancestry')]
 ```
 
-Again, not so surprisingly, all samples are of European ancestry, a very well known bias. You can find more details about the ancestry category in the `ancestry_categories` variable. These have been defined by the NHGRI-EBI GWAS Catalog framework. We provide them in quincunx as the dataset `ancestry_categories`. See `?ancestry_categories` more details. To quickly lookup the definition of the _European_ ancestry:
+Again, not so surprisingly, all samples are of European ancestry, a bias recognized by the research community. You can find more details about the ancestry variable in the `ancestry_categories` column. These categories have been defined within the NHGRI-EBI GWAS Catalog framework. We provide these ancestry nomenclature in *quincunx* as a separate dataset named `ancestry_categories`. See `?ancestry_categories` more details. To quickly lookup the definition of the _European_ ancestry:
 
-```{r}
-filter(ancestry_categories, ancestry == 'European') %>%
-  glimpse()
+```{r ancestry_cat}
+# Quick look at the ancestries definitions
+ancestry_categories
 ```
 
 
+### scores object | demographics table
 
-### Demographics table
+The demographics table usually lists demographic information about each sample. For this study this table is however empty, meaning that this information was either not available from Mavaddat's publication, or not included in the PGS Catalog.
 
-The demographics table usually lists demographic information about each sample. For this study this table is however empty, meaning that this information was either not available from Mavaddat's or not included in the PGS Catalog for some other reason. 
-
-```{r}
+```{r scores_demographics}
 mavaddat2018_scores@demographics
 ```
 
-Nevertheless, the demographics variables, when present, are participant follow-up time and age. If you doubt that quincunx might not be getting exactly the same info as provided by the PGS Catalog in their website, you can always easily check how metadata for this PGP publication is coming out online:
+Nevertheless, the demographics variables, when present, are follow-up time, and age of study participants.   
 
-```{r}
+If you want to confirm that *quincunx* is retrieving exactly the same info as provided by the PGS Catalog web interface, you can always check this by showing online the metadata for your PGP publication of interest using the function `open_in_pgs_catalog`.
+
+```{r open_in_pgs_catalog}
 open_in_pgs_catalog('PGP000002', pgs_catalog_entity = 'pgp')
 ```
 
 
-### Cohorts table
+### scores object | cohorts table
 
-In the cohorts table you can check which cohorts associated with which samples. Note that the unique identification of a sample is given by the combination of the values of the first two columns: `pgs_id`, and `sample_id`.
+In the cohorts table you can check which cohorts are associated with which samples. Note that the unique identification of a sample is given by the combination of the values of the first two columns: `pgs_id`, and `sample_id`.   
+To learn more about the meaning of cohorts for the PGS Catalog, visit our check our [cheatsheet](https://github.com/ramiromagno/cheatsheets/blob/master/quincunx/quincunx_cheatsheet.pdf), section *Cohorts, Samples and Sample Sets*, second page.
 
-```{r}
+```{r scores_cohorts}
 mavaddat2018_scores@cohorts
 ```
 
-### Traits table
+### scores object | traits table
 
-Finally, in the traits table, you have access to the associated traits with these polygenic scores. With no surprise, all scores indicate breast cancer or a subtype thereof (column `trait`):
+Finally, in the traits table, you have access to the traits (phenotypes) associated with these polygenic scores. In this study, all scores indicate "breast cancer" or one of its subtypes (column `trait`):
 
-```{r}
+```{r scores_traits}
 mavaddat2018_scores@traits[c('pgs_id', 'efo_id', 'trait')]
 ```
 
-Compared to the author-reported trait (column `reported_trait` from table `scores`), the trait description in this table follows the controlled vocabulary of an ontology, i.e., the [Experimental Factor Ontology (EFO)](https://www.ebi.ac.uk/efo/). This way, traits are described objectively. This is very useful for comparing trait data among different studies where different reported trait descriptions might have been used. For example, if you wanted now to know what other polygenic scores may be deposited in the PGS Catalog that also study breast cancer --- namely, `r knitr::combine_words(unique(mavaddat2018_scores@traits[['trait']]))` --- then you could use their respective EFO identifiers (`r knitr::combine_words(unique(mavaddat2018_scores@traits[['efo_id']]))`) with the function `get_scores()`:
+Compared to the author-reported trait (column `reported_trait` from table `scores`), the trait description in this table follows the controlled vocabulary of an ontology, i.e., the [Experimental Factor Ontology (EFO)](https://www.ebi.ac.uk/efo/). This way, traits are described objectively. This is very useful for comparing trait data among different studies where different reported trait descriptions might have been used. For example, if you want now to know what other polygenic scores may be deposited in the PGS Catalog that also study breast cancer --- namely, `r knitr::combine_words(unique(mavaddat2018_scores@traits[['trait']]), and = " or ",)` --- then you could use their respective EFO identifiers (`r knitr::combine_words(unique(mavaddat2018_scores@traits[['efo_id']]), and = " or ",)`) with the function `get_scores()`:
 
 ```{r other_studies}
 scores_bc <- get_scores(efo_id = unique(mavaddat2018_scores@traits[['efo_id']]))
 quincunx::n(scores_bc)
 ```
 
-So there are `r quincunx::n(scores_bc)` scores present in the Catalog. Included in this set are the `r quincunx::n(mavaddat2018_scores)` scores originating from [Mavaddat et al. (2018)](https://doi.org/10.1016/j.ajhg.2018.11.002). If we wanted to proceed in analysing these other scores without those of Mavaddat's study, we could use the function `setdiff()` to remove them from the S4 scores object:
+So there are `r quincunx::n(scores_bc)` scores present in the PGS Catalog. Included in this set are the `r quincunx::n(mavaddat2018_scores)` scores originating from [Mavaddat et al. (2018)](https://doi.org/10.1016/j.ajhg.2018.11.002). If we want to proceed with analysing these other scores without including those from the Mavaddat's study, we could use the function `setdiff()` to remove them from the S4 `scores` object:
 
-```{r}
+```{r scores_setdiff}
 # Use quincunx::setdiff to avoid collision with dplyr::setdiff()
 bc_scores_not_mavaddat2018 <- quincunx::setdiff(scores_bc, mavaddat2018_scores)
 quincunx::n(bc_scores_not_mavaddat2018)
 bc_scores_not_mavaddat2018@scores[c('pgs_id', 'reported_trait','n_variants')]
 ```
 
-For other set operations check their documentation page: `union()`, `intersect()` and `setequal()`.
+For other set operations, check their documentation page: `union()`, `intersect()` and `setequal()`.
 
 ## Performance Metrics
 
-In this section we learn how to retrieve details about the evaluation of the polygenic scores development in Mavaddat et al. (2018). To do this, we start by querying performance metrics for our scores of interest. Recall that the scores with Mavaddat's publication are:
+According to the PGS Catalog team (https://doi.org/10.1101/2020.05.20.20108217):      
 
-```{r}
+> "Performance Metrics assess the validity of a PGS in a Sample Set, independent of the samples used for score development. Common metrics include standardised effect sizes (odds/hazard ratios [OR/HR], and regression coefficients [Beta]), classification accuracy metrics (e.g. AUROC, C-index, AUPRC), but other relevant metrics (e.g. calibration [Chi-square]) can also be recorded. The covariates used in the model (most commonly age, sex, and genetic principal components (PCs) to account of population structure) are also linking to each set of metrics. Multiple PGS can be evaluated on the same Sample Set and further indexed as directly comparable Performance Metrics."
+
+In this section we will learn how to retrieve details about the evaluation of the polygenic scores developed in Mavaddat *et al.* (2018). To do this, we start by querying the performance metrics for our scores of interest.   
+
+Please recall that the `pgs_ids` and `reported_traits` for the polygenic scores newly developed in Mavaddat's publication are:
+
+```{r performance_metrics}
 mavaddat2018_scores@scores[c('pgs_id', 'reported_trait')]
 ```
 
 So we use these PGS identifiers to query the PGS Catalog for performance metrics using the function `get_performance_metrics()`.
 
-```{r}
+```{r get_performance_metrics}
 mavaddat2018_ppm <- get_performance_metrics(pgs_id = mavaddat2018_scores@scores$pgs_id)
+```
+
+The output is an S4 object with `r length(slotNames(mavaddat2018_ppm))` tables:   
+
+- `r knitr::combine_words(slotNames(mavaddat2018_ppm))`.   
+
+Reminder | You can quickly check all variables from each table by consulting [quincunx cheatsheet](https://github.com/ramiromagno/cheatsheets/blob/master/quincunx/quincunx_cheatsheet.pdf).   
+Also, a description of each variable is annotated in the `performance_metrics` object help page that can be accessed with `class?performance_metrics`.
+
+### performance_metrics object | Performance Metrics table 
+
+In the first table `performance_metrics` we get one performance metrics entity per row, with the following columns: `r colnames(mavaddat2018_ppm@performance_metrics)`.   
+Note that all performance metrics are indexed with an unique identifier that starts with "PPM".
+
+```{r performance_metrics2}
 mavaddat2018_ppm@performance_metrics[1:4]
 ```
 
-The output is an S4 object with `r length(slotNames(mavaddat2018_ppm))` tables: `r knitr::combine_words(slotNames(mavaddat2018_ppm))`. Performance metrics are indexed with an unique identifier that starts with "PPM". In the first table `performance_metrics` we get one performance metrics per row:
+According to the PGS Catalog documentation (http://www.pgscatalog.org/docs/):
 
-We see that one polygenic score can be associated with several performance metrics (PPM), e.g., PGS000001 associates with `r nrow(dplyr::filter(mavaddat2018_ppm@performance_metrics, pgs_id == 'PGS000001'))`  PPMs:
+- The `reported_trait` displays the reported trait, often corresponding to the test set names reported in the publication, or more specific aspects of the phenotype being tested (e.g. if the disease cases are incident vs. recurrent events).        
+- The `covariates` column lists the covariates used in the prediction model to evaluate the PGS. Examples include: age, sex, smoking habits, etc.    
+- The `comments` column is a field where additional relevant information can be added to aid with understanding a particular performance metrics.   
 
-```{r}
-dplyr::filter(mavaddat2018_ppm@performance_metrics, pgs_id == 'PGS000001')
+    
+Looking at the `performance_metrics` table, we can see that one polygenic score (`pgs_id`) can be associated with several performance metrics (`ppm_id`), e.g., PGS000007 associates with `r nrow(dplyr::filter(mavaddat2018_ppm@performance_metrics, pgs_id == 'PGS000007'))`  PPMs:
+
+```{r performance_metrics_table}
+dplyr::filter(mavaddat2018_ppm@performance_metrics, pgs_id == 'PGS000007')
 ```
+
+This means that the polygenic score (PGS000007) has been validated several times, using different models. In this case, we can immediately see that PGS000007 performance has been evaluated, for example, for alternative breast cancer types (different `reported_traits`), namely:  
+
+- `r dplyr::filter(mavaddat2018_ppm@performance_metrics, pgs_id == "PGS000007") %>% dplyr::pull(reported_trait) %>% unique()`.
+
+Additionally, we can see that the same `reported_trait` (*Breast Cancer (personal history)*) has been validated by
+`r dplyr::filter(mavaddat2018_ppm@performance_metrics, pgs_id == "PGS000007", reported_trait == "Breast Cancer (personal history)") %>% dplyr::pull(ppm_id) %>% length()`
+different performance metrics (PPMs):
+`r dplyr::filter(mavaddat2018_ppm@performance_metrics, pgs_id == "PGS000007", reported_trait == "Breast Cancer (personal history)") %>% dplyr::pull(ppm_id)`;
+each having included different covariates in the model:
+`r dplyr::filter(mavaddat2018_ppm@performance_metrics, pgs_id == "PGS000007", reported_trait == "Breast Cancer (personal history)") %>% dplyr::pull(covariates)`.
+(NA means that data for this field is *Not Available* in the records).
+
+
+### performance_metrics object | Publications table
+
+The publications table is dedicated to hold information related to the publications associated with the performance metrics. The column `pgp_id` links each performance metrics to the respective publication where that performance metrics was reported and collected.
+
+```{r ppm_pub}
+mavaddat2018_ppm@publications
+```
+
+Here we can immediately see that there are more publications than just the Mavaddat *et al.* (pubmed_id = 30554720) that we started with.    
+This is expected because we requested all the performance metrics for the PGS scores that were newly **developed** by Mavaddat *et al.*; but these scores have been subsequently **evaluated** by other posterior publications, and accordingly have performance metrics reported in these posterior evaluations.     
+This is easily confirmed by checking that all other publications are dated after December 13th 2018, which is the date of publication of the original Mavaddat *et al.* paper. 
+
+```{r ppm_pub_dates}
+mavaddat2018_ppm@publications$publication_date %>% unique()
+```
+
+We can choose to look at those publications later to see what evaluations (performance metrics) were reported in them (for which traits, adjusting for which covariates, etc.).   
+
+But for now, we are only interested in studying the performance metrics reported by Mavaddat *et al.* for the PGS scores newly developed in this publication. So, lets proceed with creating a vector containing only the `ppm_ids` of interest. We will do this by filtering the `ppm_ids` for the `pubmed_id` corresponding to the Mavaddat publication. We will then use this vector to subset the following tables (to display only the metrics for these PPMs of interest).
+
+```{r ppm_vector}
+mavaddat2018_ppm_ids <- mavaddat2018_ppm@publications %>% dplyr::filter(pubmed_id == "30554720") %>% dplyr::pull(ppm_id)
+mavaddat2018_ppm_ids
+
+# Find the corresponding pgs_id, reported_trait, covariates, and comments
+mavaddat2018_ppm@performance_metrics %>% dplyr::filter(ppm_id %in% mavaddat2018_ppm_ids)
+```
+ 
+Here, we can immediately see that the Mavaddat publication has evaluated the PGS000004 twice, with two performance metrics (PPM000004 and PPM000005), that are different because they include a different set of SNPs (see the `comments` column for PPM000005).   
+
+### performance_metrics object | Sample Sets table
+
+The PGS Catalog provides a Sample Set Id (PSS) that links the PPMs to the sample sets that were used to evaluate the corresponding PGS. This mapping is stored in the `sample_sets` table.
+
+```{r ppm_sample_set}
+mavaddat2018_ppm@sample_sets %>% dplyr::filter(ppm_id %in% mavaddat2018_ppm_ids) 
+```
+
+### performance_metrics object | Samples table
+
+The `samples` table gathers more relevant information regarding the samples used for the relevant evaluations. This table contains the following columns:     
+
+- `r colnames(mavaddat2018_ppm@samples)`.
+
+Please note that the samples are not identified in PGS Catalog with a global unique identifier, but *quincunx* assigns a surrogate identifier (`sample_id`) to allow the mapping between tables.
+
+```{r ppm_samples}
+mavaddat2018_ppm@samples %>% dplyr::filter(ppm_id %in% mavaddat2018_ppm_ids)
+```
+
+Here we can, for example see that the sample sizes are very different for each evaluation. Let's take a quick look at their values.
+
+```{r ppm_samples_plot}
+mavaddat2018_ppm@samples %>%
+  dplyr::filter(ppm_id %in% mavaddat2018_ppm_ids) %>%
+  dplyr::select(ppm_id, sample_cases, sample_controls) %>%
+  tidyr::pivot_longer(!ppm_id, names_to = "sample_type", values_to = "count") %>%
+  ggplot2::ggplot(ggplot2::aes(fill=sample_type, y=count, x=ppm_id)) + 
+  ggplot2::geom_bar(position="dodge", stat="identity") +
+  ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 20, vjust = 0.5, hjust=0.5))
+
+```
+
+This plot clearly shows that PPM000005 uses a very large sample (particularly regarding the number of controls) when compared with all other reported PPMs. 
+
+### performance_metrics object | Demographics table
+
+The `demographics` table holds information regarding the demographics' variables of each `sample`. Each demographics' variable (row) is uniquely identified by the combination of values from the columns: `ppm_id`, `pss_id`, `sample_id`, and `variable`. Currently, the PGS Catalog only describes two demographic variables: *age of participants* and *follow-up time*. 
+
+The columns presented in the table are:
+
+- `r colnames(mavaddat2018_ppm@demographics)`
+
+```{r ppm_demographics}
+mavaddat2018_ppm@demographics %>% dplyr::glimpse()
+```
+
+Here we can see that neither of the PPMs shown is from the Mavaddat paper. This means that the performance metrics reported in the paper do not have any information regarding the demographics' variables that belong in this table (age and follow-up time).
+
+### performance_metrics object | Cohorts table
+
+Similarly to the `cohorts` table described above (in the `scores` object class), this table shows which cohorts are associated with each sample. However here, the unique identification of a sample can be obtained by combining the values of the first three columns: `ppm_id`, `pss_id` and `sample_id`. 
+
+```{r ppm_cohorts}
+mavaddat2018_ppm@cohorts %>% dplyr::filter(ppm_id %in% mavaddat2018_ppm_ids)
+```
+
+### performance_metrics object | PGS Effect Sizes & PGS Classification Metrics & PGS Other Metrics tables
+
+The three final tables of the `performance_metrics` object hold the performance metrics themselves used in the validation. Each table presents the same column structure with
+`r length(colnames(mavaddat2018_ppm@pgs_effect_sizes))`
+total columns, where the second column is different between the three tables. This column shows an id created by *quincunx* that is used to identify each of the individual metrics tables (`effect_size_id`, `classification_metrics_id`, or `other_metrics_id`). All other columns are for the same variables:
+
+- `r colnames(mavaddat2018_ppm@pgs_effect_sizes)`.
+
+(These column names are specifically from the `pgs_effect_sizes` table, as indicated by the second column name. All other columns are equally named in all three tables).
+
+According to the PGS Catalog online documentation (http://www.pgscatalog.org/docs/):
+
+> "The reported values of the performance metrics are all reported similarly (e.g. the estimate is recorded along with the 95% confidence interval (if supplied)) and grouped according to the type of statistic they represent:   
+ - **PGS Effect Sizes (per SD change)** | Standardized effect sizes, per standard deviation [SD] change in PGS. Examples include regression coefficients (Betas) for continuous traits, Odds ratios (OR) and/or Hazard ratios (HR) for dichotomous traits depending on the availability of time-to-event data.   
+ - **PGS Classification Metrics** | Examples include the Area under the Receiver Operating Characteristic (AUROC) or Harrell's C-index (Concordance statistic).   
+ - **Other Metrics** | Metrics that do not fit into the other two categories. Examples include: R2 (proportion of the variance explained), or reclassification metrics."
+
+Now, lets briefly explore the data in these tables (as usual filtered for only the PPMs that were newly reported in Mavaddat *et al.*).
+
+```{r ppm_metrics_tables}
+mavaddat2018_ppm@pgs_effect_sizes %>% dplyr::filter(ppm_id %in% mavaddat2018_ppm_ids)
+mavaddat2018_ppm@pgs_classification_metrics %>% dplyr::filter(ppm_id %in% mavaddat2018_ppm_ids)
+mavaddat2018_ppm@pgs_other_metrics %>% dplyr::filter(ppm_id %in% mavaddat2018_ppm_ids)
+```
+
+We can immediately see that the third table (reserved for metrics other than effect sizes and classification metrics) is empty; and that the effect sizes were estimated using Odds Ratio and Hazard Ratio, and the classification metric applied was AUROC.
+
+Now we can look at the reported values for each PPM metrics and decide if the validation is relevant, and therefore make an informed choice to use the associated PGS score for our own study, and eventually apply it to our own dataset.
+
+
+### Concluding remarks
+
+Useful reminders:
+
+  - You can quickly check all variables from each table by consulting [quincunx cheatsheet](https://github.com/ramiromagno/cheatsheets/blob/master/quincunx/quincunx_cheatsheet.pdf).   
+  - All *quincunx* functions are annotated with help pages accessed with `?function_name` (e.g. `?get_scores`, `?get_traits`, `?get_performance_metrics`).   
+  - All tables retrieved by *quincunx's* functions are annotated with help files that describe all variables present. These are accessible via `class?object_name` (e.g. `class?scores`, `class?performance_metrics`).
+  - The *quincunx* package has been published in a peer-reviewed journal. Use `citation(package="quincunx")` to get the full paper citation.
+
+
+
+
+
+
+
+
+
+
 
