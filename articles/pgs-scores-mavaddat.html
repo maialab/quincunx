@@ -840,7 +840,7 @@ This is easily confirmed by checking that all other publications are dated after
 </div>
 <div id="performance_metrics-object-cohorts-table" class="section level3">
 <h3 class="hasAnchor">
-<a href="#performance_metrics-object-cohorts-table" class="anchor"></a>performance_metrics object | Cohorts table</h3>
+<a href="#performance_metrics-object-cohorts-table" class="anchor"></a>performance_metrics object | cohorts table</h3>
 <p>Similarly to the <code>cohorts</code> table described above (in the <code>scores</code> object class), this table shows which cohorts are associated with each sample. However here, the unique identification of a sample can be obtained by combining the values of the first three columns: <code>ppm_id</code>, <code>pss_id</code> and <code>sample_id</code>.</p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mavaddat2018_ppm</span><span class="op">@</span><span class="va">cohorts</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">ppm_id</span> <span class="op">%in%</span> <span class="va">mavaddat2018_ppm_ids</span><span class="op">)</span>
