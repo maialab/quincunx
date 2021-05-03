@@ -12,12 +12,17 @@ Score (PGS) Catalog](https://www.pgscatalog.org/), an open resource for
 associated metadata describing their development and respective
 assessment.
 
+Browse the online documentation at
+[maialab.org/quincunx](https://maialab.org/quincunx) to get started.
+
 ## Installation
 
 You can install the current version of quincunx with:
 
-    # install.packages("remotes")
-    remotes::install_github("maialab/quincunx")
+``` r
+# install.packages("remotes")
+remotes::install_github("maialab/quincunx")
+```
 
 ## Cheatsheet
 
@@ -25,19 +30,23 @@ You can install the current version of quincunx with:
 
 ## Citing this work
 
-If you use data retrieved from the PGS Catalog by quincunx, please do
-not forget to cite the PGS Catalog project and the original authors who
-created the data. Currently, you can cite the PGS Catalog project by
-using its medRxiv preprint:
+Our bioRxiv preprint:
 
-> Samuel A. Lambert, Laurent Gil, Simon Jupp, View ORCID ProfileScott
-> Ritchie, Yu Xu, Annalisa Buniello, Gad Abraham, Michael Chapman, Helen
-> Parkinson, John Danesh, Jacqueline A. L. MacArthur, Michael Inouye.
-> The Polygenic Score Catalog: an open database for reproducibility and
-> systematic evaluation. medRxiv:
-> <a href="https://doi.org/10.1101/2020.05.20.20108217" class="uri">https://doi.org/10.1101/2020.05.20.20108217</a>.
+-   Magno, R., Duarte, I., Maia, A.T. quincunx: an R package to query,
+    download and wrangle PGS Catalog data. bioRxiv (2021). doi:
+    [10.1101/2021.02.19.431997v1](https://www.biorxiv.org/content/10.1101/2021.02.19.431997v1).
 
-Also, please cite quincunx’s publication: *To be added soon*.
+Also, please do not forget to cite the authors behind the original
+studies and the papers associated with the PGS Catalog project:
+
+-   Lambert, S.A., Gil, L., Jupp, S. et al. The Polygenic Score Catalog
+    as an open database for reproducibility and systematic evaluation.
+    Nat Genet 53, 420–425 (2021). doi:
+    [10.1038/s41588-021-00783-5](https://doi.org/10.1038/s41588-021-00783-5)
+-   Wand, H., Lambert, S.A., Tamburro, C. et al. Improving reporting
+    standards for polygenic scores in risk prediction studies. Nature
+    591, 211–219 (2021). doi:
+    [10.1038/s41586-021-03243-6](https://doi.org/10.1038/s41586-021-03243-6)
 
 ## Terms of use
 
