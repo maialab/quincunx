@@ -32,7 +32,7 @@ read_pgs_scoring_file_data <- function(file) {
 
 read_comment_block <- function(file, n_max = 200L) {
 
-  lines <- vroom::vroom_lines(file = file, n_max = n_max)
+  lines <- vroom::vroom_lines(file = file, n_max = n_max, progress = FALSE)
   comment_block <- grep('^#', lines, perl = TRUE, value = TRUE)
 
   return(comment_block)
