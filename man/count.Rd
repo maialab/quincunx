@@ -13,8 +13,8 @@ count(json_string)
 An integer value.
 }
 \description{
-This function takes a string with a JSON response and looks for the pattern
-\code{"count":(\\d+),} and returns the number. If it fails to match the
-pattern then it returns \code{NA_integer_}.
+This function takes a string with a JSON response and returns the value of
+the count field. If it fails to match the pattern then it returns
+\code{NA_integer_}.
 }
 \keyword{internal}
