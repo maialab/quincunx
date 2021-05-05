@@ -2,27 +2,16 @@
 % Please edit documentation in R/get_ancestry_categories.R
 \name{get_ancestry_categories}
 \alias{get_ancestry_categories}
-\title{Get PGS Catalog Ancestry Categories}
+\title{Get PGS Catalog Ancestry Categories and Classes}
 \usage{
-get_ancestry_categories(verbose = FALSE, warnings = TRUE, progress_bar = TRUE)
-}
-\arguments{
-\item{verbose}{A \code{logical} indicating whether the function should be
-verbose about the different queries or not.}
-
-\item{warnings}{A \code{logical} indicating whether to print warnings, if any.}
-
-\item{progress_bar}{Whether to show a progress bar indicating download
-progress from the REST API server.}
+get_ancestry_categories()
 }
 \value{
-Return a tibble of mappings between the ancestry symbols and their
-  name, e.g. EUR and European, respectively.
+A tibble with ancestry categories, classes and associated
+  information. See  \code{\link{ancestry_categories}} for details about each
+  column.
 }
 \description{
-Retrieves ancestry categories via the PGS Catalog REST API.
-}
-\examples{
-get_ancestry_categories()
-
+Retrieves Ancestry Categories and Classes. This function simply returns the
+object \code{\link{ancestry_categories}}.
 }

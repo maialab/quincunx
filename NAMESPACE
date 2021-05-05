@@ -3,6 +3,7 @@
 export("%>%")
 export(bind)
 export(clear_cache)
+export(get_ancestry_categories)
 export(get_cohorts)
 export(get_performance_metrics)
 export(get_publications)
