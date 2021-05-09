@@ -47,7 +47,16 @@ get_sample_sets_by_pgs_id <- function(pgs_id, limit = 20L, verbose = FALSE, warn
     purrr::pmap(dplyr::bind_rows)
 }
 
+get_sample_sets_all <- function(limit = 20L, verbose = FALSE, warnings = TRUE, progress_bar = TRUE) {
 
+  resource <- '/rest/sample_set/all'
+
+  get_sample_set(resource = resource,
+            limit = limit,
+            verbose = verbose,
+            warnings = warnings,
+            progress_bar = progress_bar)
+}
 
 #' Get PGS Catalog Sample Sets
 #'
@@ -123,6 +132,23 @@ get_sample_sets <- function(
   # If no criteria have been passed, i.e. all are NULL then got fetch all
   # Sample Sets.
   if(rlang::is_empty(list_of_pss)) {
+      #return(coerce_to_s4_sample_sets(NULL))
+    msg1 <- "You are about to download all sample sets from the PGS Catalog.\nThis might take a while."
+    msg2 <- 'Returning an empty sample_sets object!'
+    msg3 <- 'OK! Getting all sample sets then. This is going to take a while...'
+    if(interactive)
+      default_answer = NULL  # i.e., use interactive mode.
+    else
+      default_answer = 'y'
+    if (sure(
+      before_question = msg1,
+      after_saying_no = msg2,
+      after_saying_yes = msg3,
+      default_answer = default_answer
+    ))
+      return(coerce_to_s4_sample_sets(
+        get_sample_sets_all(verbose = verbose, warnings = warnings)))
+    else
       return(coerce_to_s4_sample_sets(NULL))
   } else {
 
