@@ -56,13 +56,13 @@ setOldClass(c("tbl_df", "tbl", "data.frame"))
 #' \item{sample_controls}{Number of controls.}
 #' \item{sample_percent_male}{Percentage of male participants.}
 #' \item{phenotype_description}{Detailed phenotype description.}
-#' \item{ancestry}{Author reported ancestry is mapped to the best matching
+#' \item{ancestry_category}{Author reported ancestry is mapped to the best matching
 #' ancestry category from the NHGRI-EBI GWAS Catalog framework (see
 #' \code{\link[quincunx]{ancestry_categories}}) for possible values.}
-#' \item{ancestry_description}{A more detailed description of sample ancestry
+#' \item{ancestry}{A more detailed description of sample ancestry
 #' that usually matches the most specific description described by the authors
 #' (e.g. French, Chinese).}
-#' \item{ancestry_country}{Author reported countries of recruitment (if available).}
+#' \item{country}{Author reported countries of recruitment (if available).}
 #' \item{ancestry_additional_description}{Any additional description not
 #' captured in the other columns (e.g. founder or genetically isolated
 #' populations, or further description of admixed samples).}
@@ -282,9 +282,9 @@ s4ppm_samples_tbl <- function(ppm_id = character(),
                               sample_controls = integer(),
                               sample_percent_male = double(),
                               phenotype_description = character(),
+                              ancestry_category = character(),
                               ancestry = character(),
-                              ancestry_description = character(),
-                              ancestry_country = character(),
+                              country = character(),
                               ancestry_additional_description = character(),
                               study_id = character(),
                               pubmed_id = character(),
@@ -300,9 +300,9 @@ s4ppm_samples_tbl <- function(ppm_id = character(),
     sample_controls = sample_controls,
     sample_percent_male = sample_percent_male,
     phenotype_description = phenotype_description,
+    ancestry_category = ancestry_category,
     ancestry = ancestry,
-    ancestry_description = ancestry_description,
-    ancestry_country = ancestry_country,
+    country = country,
     ancestry_additional_description = ancestry_additional_description,
     study_id = study_id,
     pubmed_id = pubmed_id,

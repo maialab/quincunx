@@ -30,13 +30,13 @@ is an observation (row) in the \code{sample_sets} table (first table).
 \item{sample_controls}{Number of controls.}
 \item{sample_percent_male}{Percentage of male participants.}
 \item{phenotype_description}{Detailed phenotype description.}
-\item{ancestry}{Author reported ancestry is mapped to the best matching
+\item{ancestry_category}{Author reported ancestry is mapped to the best matching
 ancestry category from the NHGRI-EBI GWAS Catalog framework (see
 \code{\link[quincunx]{ancestry_categories}}) for possible values.}
-\item{ancestry_description}{A more detailed description of sample ancestry
+\item{ancestry}{A more detailed description of sample ancestry
 that usually matches the most specific description described by the authors
 (e.g. French, Chinese).}
-\item{ancestry_country}{Author reported countries of recruitment (if available).}
+\item{country}{Author reported countries of recruitment (if available).}
 \item{ancestry_additional_description}{Any additional description not
 captured in the other columns (e.g. founder or genetically isolated
 populations, or further description of admixed samples).}
