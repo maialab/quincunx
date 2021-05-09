@@ -25,13 +25,21 @@ as_tidy_tables_scores <- function(tbl_json) {
     dplyr::select(-'trait_efo_id') %>%
     unwrap_efotrait()
 
+  ancestries_json <- collect_ancestries(tbl_json2)
+  stages_tally <- unwrap_ancestry_count(ancestries_json)
+  ancestry_frequencies <- unwrap_ancestry_frequencies(ancestries_json)
+  multi_ancestry_composition <- unwrap_multi_ancestry_composition(ancestries_json)
+
   tidy_scores_tables <- list(
     scores = scores,
     publications = publications,
     samples = samples,
     demographics = demographics,
     cohorts = cohorts,
-    traits = traits
+    traits = traits,
+    stages_tally = stages_tally,
+    ancestry_frequencies = ancestry_frequencies,
+    multi_ancestry_composition = multi_ancestry_composition
   ) %>%
     remap_id(old = 'id', new = 'pgs_id') %>%
     relocate_metadata_cols()
@@ -155,4 +163,60 @@ collect_samples <- function(tbl_json) {
     tidyjson::as.tbl_json(json.column = '..JSON') # Needed because of https://github.com/colearendt/tidyjson/issues/135.
 
   return(all_samples)
+}
+
+collect_ancestries <- function(tbl_json) {
+
+  tbl_json2 <-
+    tidyjson::spread_values(tbl_json, id = tidyjson::jstring('id'))
+
+  gwas_ancestry <- tbl_json2 %>%
+    tidyjson::enter_object('ancestry_distribution', 'gwas') %>%
+    tibble::add_column(stage = 'gwas')
+
+  dev_ancestry <- tbl_json2 %>%
+    tidyjson::enter_object('ancestry_distribution', 'dev') %>%
+    tibble::add_column(stage = 'dev')
+
+  eval_ancestry <- tbl_json2 %>%
+    tidyjson::enter_object('ancestry_distribution', 'eval') %>%
+    tibble::add_column(stage = 'eval')
+
+  all_ancestries <-
+    tidyjson::bind_rows(gwas_ancestry, dev_ancestry, eval_ancestry) %>%
+    dplyr::arrange(.data$..page, .data$array.index)
+
+  return(all_ancestries)
+}
+
+unwrap_multi_ancestry_composition <- function(tbl_json) {
+
+  tbl_json %>%
+    tidyjson::enter_object('multi') %>%
+    tidyjson::gather_array('array.index.2') %>%
+    tidyjson::append_values_string('multi_ancestry_composition') %>%
+    tidyjson::as_tibble() %>%
+    tidyr::separate(col = 'multi_ancestry_composition', into = c('multi_ancestry_class_symbol', 'ancestry_class_symbol'), sep = '_') %>%
+    dplyr::select(-'array.index.2') %>%
+    tidyjson::as_tibble()
+}
+
+unwrap_ancestry_count <- function(tbl_json) {
+
+  tbl_json %>%
+    tidyjson::spread_values(count = tidyjson::jnumber('count')) %>%
+    tidyjson::as_tibble() %>%
+    dplyr::mutate(count = as.integer(count)) %>%
+    dplyr::mutate(sample_size = dplyr::if_else(stage == 'gwas' | stage == 'dev', count, NA_integer_),
+                  n_sample_sets = dplyr::if_else(stage == 'eval', count, NA_integer_)) %>%
+    dplyr::select(-'count')
+}
+
+unwrap_ancestry_frequencies <- function(tbl_json) {
+
+  tbl_json %>%
+    tidyjson::enter_object('dist') %>%
+    tidyjson::gather_object('ancestry_class_symbol') %>%
+    tidyjson::append_values_number(column.name = 'frequency') %>%
+    tidyjson::as_tibble()
 }

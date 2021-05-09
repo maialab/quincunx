@@ -77,13 +77,13 @@ allow unpublished work (e.g. pre-prints) to be added to the catalog. Example:
 \item{sample_controls}{Number of controls.}
 \item{sample_percent_male}{Percentage of male participants.}
 \item{phenotype_description}{Detailed phenotype description.}
-\item{ancestry}{Author reported ancestry is mapped to the best matching
+\item{ancestry_category}{Author reported ancestry is mapped to the best matching
 ancestry category from the NHGRI-EBI GWAS Catalog framework (see
 \code{\link[quincunx]{ancestry_categories}}) for possible values.}
-\item{ancestry_description}{A more detailed description of sample ancestry
+\item{ancestry}{A more detailed description of sample ancestry
 that usually matches the most specific description described by the authors
 (e.g. French, Chinese).}
-\item{ancestry_country}{Author reported countries of recruitment (if available).}
+\item{country}{Author reported countries of recruitment (if available).}
 \item{ancestry_additional_description}{Any additional description not
 captured in the other columns (e.g. founder or genetically isolated
 populations, or further description of admixed samples).}
@@ -135,6 +135,30 @@ standard error (se) or standard deviation (sd).}
 \item{trait}{Trait name.}
 \item{description}{Detailed description of the trait from EFO.}
 \item{url}{External link to the EFO entry.}
+}}
+
+\item{\code{stages_tally}}{A table of sample sizes and number of samples sets at each stage.
+\describe{
+\item{pgs_id}{Polygenic Score (PGS) identifier.}
+\item{stage}{Sample stage: either \code{"gwas"}, \code{"dev"} or \code{"eval"}.}
+\item{sample_size}{Sample size.}
+\item{n_sample_sets}{Number of sample sets (only meaningful for the evaluation stage \code{"eval"})}
+}}
+
+\item{\code{ancestry_frequencies}}{This table describes the ancestry composition at each stage.
+\describe{
+\item{pgs_id}{Polygenic Score (PGS) identifier.}
+\item{stage}{Sample stage: either \code{"gwas"}, \code{"dev"} or \code{"eval"}.}
+\item{ancestry_class_symbol}{Ancestry class symbol.}
+\item{frequency}{Ancestry fraction (percentage).}
+}}
+
+\item{\code{multi_ancestry_composition}}{A table of a breakdown of the ancestries included in multi-ancestries.
+\describe{
+\item{pgs_id}{Polygenic Score (PGS) identifier.}
+\item{stage}{Sample stage: either \code{"gwas"}, \code{"dev"} or \code{"eval"}.}
+\item{multi_ancestry_class_symbol}{Multi-ancestry class symbol.}
+\item{ancestry_class_symbol}{Ancestry class symbol.}
 }}
 }}
 

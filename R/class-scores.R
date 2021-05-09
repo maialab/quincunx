@@ -69,13 +69,13 @@ setOldClass(c("tbl_df", "tbl", "data.frame"))
 #' \item{sample_controls}{Number of controls.}
 #' \item{sample_percent_male}{Percentage of male participants.}
 #' \item{phenotype_description}{Detailed phenotype description.}
-#' \item{ancestry}{Author reported ancestry is mapped to the best matching
+#' \item{ancestry_category}{Author reported ancestry is mapped to the best matching
 #' ancestry category from the NHGRI-EBI GWAS Catalog framework (see
 #' \code{\link[quincunx]{ancestry_categories}}) for possible values.}
-#' \item{ancestry_description}{A more detailed description of sample ancestry
+#' \item{ancestry}{A more detailed description of sample ancestry
 #' that usually matches the most specific description described by the authors
 #' (e.g. French, Chinese).}
-#' \item{ancestry_country}{Author reported countries of recruitment (if available).}
+#' \item{country}{Author reported countries of recruitment (if available).}
 #' \item{ancestry_additional_description}{Any additional description not
 #' captured in the other columns (e.g. founder or genetically isolated
 #' populations, or further description of admixed samples).}
@@ -125,6 +125,27 @@ setOldClass(c("tbl_df", "tbl", "data.frame"))
 #' \item{description}{Detailed description of the trait from EFO.}
 #' \item{url}{External link to the EFO entry.}
 #' }
+#' @slot stages_tally A table of sample sizes and number of samples sets at each stage.
+#' \describe{
+#' \item{pgs_id}{Polygenic Score (PGS) identifier.}
+#' \item{stage}{Sample stage: either \code{"gwas"}, \code{"dev"} or \code{"eval"}.}
+#' \item{sample_size}{Sample size.}
+#' \item{n_sample_sets}{Number of sample sets (only meaningful for the evaluation stage \code{"eval"})}
+#' }
+#' @slot ancestry_frequencies This table describes the ancestry composition at each stage.
+#' \describe{
+#' \item{pgs_id}{Polygenic Score (PGS) identifier.}
+#' \item{stage}{Sample stage: either \code{"gwas"}, \code{"dev"} or \code{"eval"}.}
+#' \item{ancestry_class_symbol}{Ancestry class symbol.}
+#' \item{frequency}{Ancestry fraction (percentage).}
+#' }
+#' @slot multi_ancestry_composition A table of a breakdown of the ancestries included in multi-ancestries.
+#' \describe{
+#' \item{pgs_id}{Polygenic Score (PGS) identifier.}
+#' \item{stage}{Sample stage: either \code{"gwas"}, \code{"dev"} or \code{"eval"}.}
+#' \item{multi_ancestry_class_symbol}{Multi-ancestry class symbol.}
+#' \item{ancestry_class_symbol}{Ancestry class symbol.}
+#' }
 #' @export
 setClass(
   "scores",
@@ -134,7 +155,10 @@ setClass(
     samples = "tbl_df",
     demographics = "tbl_df",
     cohorts = "tbl_df",
-    traits = "tbl_df"
+    traits = "tbl_df",
+    stages_tally = "tbl_df",
+    ancestry_frequencies = "tbl_df",
+    multi_ancestry_composition = "tbl_df"
   )
 )
 
@@ -157,7 +181,10 @@ scores <-
            samples = s4scores_samples_tbl(),
            demographics = s4scores_demographics_tbl(),
            cohorts = s4scores_cohorts_tbl(),
-           traits = s4scores_traits_tbl()) {
+           traits = s4scores_traits_tbl(),
+           stages_tally = s4scores_stages_tally_tbl(),
+           ancestry_frequencies = s4scores_ancestry_frequencies_tbl(),
+           multi_ancestry_composition = s4scores_multi_ancestry_composition_tbl()) {
 
     s4_scores <- methods::new(
       "scores",
@@ -166,7 +193,10 @@ scores <-
       samples = samples,
       demographics = demographics,
       cohorts = cohorts,
-      traits = traits
+      traits = traits,
+      stages_tally = stages_tally,
+      ancestry_frequencies = ancestry_frequencies,
+      multi_ancestry_composition = multi_ancestry_composition
     )
 
   return(s4_scores)
@@ -237,9 +267,9 @@ s4scores_samples_tbl <- function(
   sample_controls = integer(),
   sample_percent_male = double(),
   phenotype_description = character(),
+  ancestry_category = character(),
   ancestry = character(),
-  ancestry_description = character(),
-  ancestry_country = character(),
+  country = character(),
   ancestry_additional_description = character(),
   study_id = character(),
   pubmed_id = character(),
@@ -255,9 +285,9 @@ s4scores_samples_tbl <- function(
     sample_controls = sample_controls,
     sample_percent_male = sample_percent_male,
     phenotype_description = phenotype_description,
+    ancestry_category = ancestry_category,
     ancestry = ancestry,
-    ancestry_description = ancestry_description,
-    ancestry_country = ancestry_country,
+    country = country,
     ancestry_additional_description = ancestry_additional_description,
     study_id = study_id,
     pubmed_id = pubmed_id,
@@ -330,9 +360,55 @@ s4scores_traits_tbl <- function(
     description = description,
     url = url
   )
-
   return(tbl)
+}
 
+s4scores_stages_tally_tbl <- function(
+  pgs_id = character(),
+  stage = character(),
+  sample_size = integer(),
+  n_sample_sets = integer()
+) {
+
+  tbl <- tibble::tibble(
+    pgs_id = pgs_id,
+    stage = stage,
+    sample_size = sample_size,
+    n_sample_sets = n_sample_sets
+  )
+  return(tbl)
+}
+
+s4scores_ancestry_frequencies_tbl <- function(
+  pgs_id = character(),
+  stage = character(),
+  ancestry_class_symbol = character(),
+  frequency = double()
+) {
+
+  tbl <- tibble::tibble(
+    pgs_id = pgs_id,
+    stage = stage,
+    ancestry_class_symbol = ancestry_class_symbol,
+    frequency = frequency
+  )
+  return(tbl)
+}
+
+s4scores_multi_ancestry_composition_tbl <- function(
+  pgs_id = character(),
+  stage = character(),
+  multi_ancestry_class_symbol = character(),
+  ancestry_class_symbol = character()
+) {
+
+  tbl <- tibble::tibble(
+    pgs_id = pgs_id,
+    stage = stage,
+    multi_ancestry_class_symbol = multi_ancestry_class_symbol,
+    ancestry_class_symbol = ancestry_class_symbol
+  )
+  return(tbl)
 }
 
 coerce_to_s4_scores <- function(lst_tbl = NULL) {
@@ -348,7 +424,10 @@ coerce_to_s4_scores <- function(lst_tbl = NULL) {
       samples = lst_tbl$samples,
       demographics = lst_tbl$demographics,
       cohorts = lst_tbl$cohorts,
-      traits = lst_tbl$traits
+      traits = lst_tbl$traits,
+      stages_tally = lst_tbl$stages_tally,
+      ancestry_frequencies = lst_tbl$ancestry_frequencies,
+      multi_ancestry_composition = lst_tbl$multi_ancestry_composition
     )
 
     s4_scores@scores <- drop_metadata_cols(s4_scores@scores)
@@ -357,6 +436,9 @@ coerce_to_s4_scores <- function(lst_tbl = NULL) {
     s4_scores@demographics <- drop_metadata_cols(s4_scores@demographics)
     s4_scores@cohorts <- drop_metadata_cols(s4_scores@cohorts)
     s4_scores@traits <- drop_metadata_cols(s4_scores@traits)
+    s4_scores@stages_tally <- drop_metadata_cols(s4_scores@stages_tally)
+    s4_scores@ancestry_frequencies <- drop_metadata_cols(s4_scores@ancestry_frequencies)
+    s4_scores@multi_ancestry_composition <- drop_metadata_cols(s4_scores@multi_ancestry_composition)
 
   return(s4_scores)
 }

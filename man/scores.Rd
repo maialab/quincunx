@@ -10,7 +10,10 @@ scores(
   samples = s4scores_samples_tbl(),
   demographics = s4scores_demographics_tbl(),
   cohorts = s4scores_cohorts_tbl(),
-  traits = s4scores_traits_tbl()
+  traits = s4scores_traits_tbl(),
+  stages_tally = s4scores_stages_tally_tbl(),
+  ancestry_frequencies = s4scores_ancestry_frequencies_tbl(),
+  multi_ancestry_composition = s4scores_multi_ancestry_composition_tbl()
 )
 }
 \arguments{
