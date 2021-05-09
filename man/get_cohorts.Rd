@@ -12,7 +12,8 @@ get_cohorts(
 )
 }
 \arguments{
-\item{cohort_symbol}{A cohort symbol.}
+\item{cohort_symbol}{A cohort symbol or \code{NULL} if all cohorts are
+intended.}
 
 \item{verbose}{A \code{logical} indicating whether the function should be
 verbose about the different queries or not.}
@@ -26,9 +27,8 @@ progress from the REST API server.}
 An \linkS4class{cohorts} object.
 }
 \description{
-Retrieves cohorts via the PGS Catalog REST API. The REST API is queried
-multiple times with the criteria passed as arguments (see below). Please note
-that all search criteria are vectorised, thus allowing for batch mode search.
+Retrieves cohorts via the PGS Catalog REST API. Please note that all
+\code{cohort_symbol} is vectorised, thus allowing for batch mode search.
 }
 \examples{
 # TODO

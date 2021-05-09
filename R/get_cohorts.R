@@ -32,14 +32,24 @@ get_cohort_by_cohort_symbol <- function(cohort_symbol, limit = 20L, verbose = FA
     purrr::pmap(dplyr::bind_rows)
 }
 
+get_cohort_all <- function(limit = 20L, verbose = FALSE, warnings = TRUE, progress_bar = TRUE) {
+
+  resource <- '/rest/cohort/all'
+
+  get_cohort(resource = resource,
+            limit = limit,
+            verbose = verbose,
+            warnings = warnings,
+            progress_bar = progress_bar)
+}
 
 #' Get PGS Catalog Cohorts
 #'
-#' Retrieves cohorts via the PGS Catalog REST API. The REST API is queried
-#' multiple times with the criteria passed as arguments (see below). Please note
-#' that all search criteria are vectorised, thus allowing for batch mode search.
+#' Retrieves cohorts via the PGS Catalog REST API. Please note that all
+#' \code{cohort_symbol} is vectorised, thus allowing for batch mode search.
 #'
-#' @param cohort_symbol A cohort symbol.
+#' @param cohort_symbol A cohort symbol or \code{NULL} if all cohorts are
+#'   intended.
 #' @param verbose A \code{logical} indicating whether the function should be
 #'   verbose about the different queries or not.
 #' @param warnings A \code{logical} indicating whether to print warnings, if any.
@@ -75,6 +85,7 @@ get_cohorts <- function(
       return()
 
   } else {
-    return(coerce_to_s4_cohorts(NULL))
+    return(coerce_to_s4_cohorts(get_cohort_all(verbose = verbose, warnings = warnings, progress_bar = progress_bar)))
+    # return(coerce_to_s4_cohorts(NULL))
   }
 }
