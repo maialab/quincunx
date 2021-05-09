@@ -104,6 +104,7 @@ Collate:
     'remap_id.R'
     'request.R'
     's4-utils.R'
+    'stages.R'
     'sure.R'
     'unwrap_cohort.R'
     'unwrap_demographics.R'
