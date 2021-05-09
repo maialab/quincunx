@@ -7,6 +7,9 @@
 pgs_to_ppm(pgs_id, verbose = FALSE, warnings = TRUE, progress_bar = TRUE)
 }
 \arguments{
+\item{pgs_id}{A character vector of PGS identifiers,
+e.g., "PGS000001".}
+
 \item{verbose}{A \code{logical} indicating whether the function should be
 verbose about the different queries or not.}
 
@@ -15,9 +18,6 @@ any.}
 
 \item{progress_bar}{Whether to show a progress bar as the queries are
 performed.}
-
-\item{ppm_id}{A character vector of PPM identifiers,
-e.g., "PGS000001".}
 }
 \value{
 A data frame of two columns: \code{pgs_id} and \code{ppm_id}.

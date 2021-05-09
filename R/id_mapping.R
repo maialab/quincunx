@@ -348,7 +348,7 @@ pgs_to_pss <- function(pgs_id = NULL,
 #'
 #' Map PGS identifiers to PPM identifiers.
 #'
-#' @param ppm_id A character vector of PPM identifiers,
+#' @param pgs_id A character vector of PGS identifiers,
 #'   e.g., "PGS000001".
 #' @param verbose A \code{logical} indicating whether the function should be
 #'   verbose about the different queries or not.
