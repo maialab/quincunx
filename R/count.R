@@ -11,6 +11,12 @@
 #' @keywords internal
 count <- function(json_string) {
 
+  if(identical(json_string, ''))
+    return(NA_integer_)
+
+  if(tidyjson::is_json_null(json_string))
+    return(NA_integer_)
+
   count <-
     json_string %>%
     tidyjson::spread_values(count = tidyjson::jnumber('count')) %>%
