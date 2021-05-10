@@ -119,7 +119,7 @@ get_trait_by_trait_term <-
 #'   \code{'union'} binds together all results removing duplicates and
 #'   \code{'intersection'} only keeps same sample sets found with different
 #'   criteria.
-#' @param interactive A logical. If all sample sets are requested, whether to ask
+#' @param interactive A logical. If all traits are requested, whether to ask
 #'   interactively if we really want to proceed.
 #' @param verbose A \code{logical} indicating whether the function should be
 #'   verbose about the different queries or not.
