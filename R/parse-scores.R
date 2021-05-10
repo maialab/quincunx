@@ -76,14 +76,14 @@ unwrap_scores_samples <- function(tbl_json) {
 
   samples_variants <- tbl_json %>%
     tidyjson::enter_object('samples_variants') %>%
-    tibble::add_column(stage = 'discovery') %>%
+    tibble::add_column(stage = 'gwas') %>%
     tidyjson::gather_array(column.name = 'sample_id') %>%
     dplyr::select(-'sample_id') %>%
     unwrap_sample()
 
   samples_training <- tbl_json %>%
     tidyjson::enter_object('samples_training') %>%
-    tibble::add_column(stage = 'training') %>%
+    tibble::add_column(stage = 'dev') %>%
     tidyjson::gather_array(column.name = 'sample_id') %>%
     dplyr::select(-'sample_id') %>%
     unwrap_sample()

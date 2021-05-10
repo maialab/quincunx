@@ -17,7 +17,7 @@ setOldClass(c("tbl_df", "tbl", "data.frame"))
 #' \describe{
 #' \item{pss_id}{A PGS Sample Set identifier. Example: \code{"PSS000042"}.}
 #' \item{sample_id}{Sample identifier. This is a surrogate key to identify each sample.}
-#' \item{stage}{Sample stage: should be always \code{"evaluation"}.}
+#' \item{stage}{Sample stage: should be always Evaluation (\code{"eval"}).}
 #' \item{sample_size}{Number of individuals included in the sample.}
 #' \item{sample_cases}{Number of cases.}
 #' \item{sample_controls}{Number of controls.}

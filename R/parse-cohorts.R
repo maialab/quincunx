@@ -28,7 +28,7 @@ unwrap_cohort_extended <- function(tbl_json) {
     tidyjson::gather_array(column.name = 'development_id') %>%
     dplyr::select(-'development_id') %>%
     tidyjson::append_values_string(column.name = 'pgs_id') %>%
-    tibble::add_column(stage = 'development')
+    tibble::add_column(stage = 'gwas/dev')
 
   pgs_ids_at_evaluation <-
     tbl_json %>%
@@ -38,7 +38,7 @@ unwrap_cohort_extended <- function(tbl_json) {
     tidyjson::gather_array(column.name = 'evaluation_id') %>%
     dplyr::select(-'evaluation_id') %>%
     tidyjson::append_values_string(column.name = 'pgs_id') %>%
-    tibble::add_column(stage = 'evaluation')
+    tibble::add_column(stage = 'eval')
 
   pgs_ids <- dplyr::bind_rows(
     pgs_ids_at_development,

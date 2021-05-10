@@ -36,7 +36,7 @@ allow unpublished work (e.g. pre-prints) to be added to the catalog. Example:
 \describe{
 \item{pgp_id}{PGS Publication identifier. Example: \code{"PGP000001"}.}
 \item{pgs_id}{Polygenic Score (PGS) identifier.}
-\item{stage}{PGS stage: either "development" or "evaluation".}
+\item{stage}{PGS stage: either "gwas/dev" or "eval".}
 }}
 }}
 

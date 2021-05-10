@@ -31,7 +31,7 @@ unpack_performance_metric <- function(tbl_json) {
     tidyjson::spread_values(pss_id = tidyjson::jstring('id')) %>%
     tidyjson::enter_object('samples') %>%
     tidyjson::gather_array(column.name = 'sample_id') %>%
-    tibble::add_column(stage = 'evaluation') %>% # All PPM samples in evaluation stage.
+    tibble::add_column(stage = 'eval') %>% # All PPM samples in evaluation stage.
     unwrap_sample()
 
   demographics <-

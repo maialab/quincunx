@@ -25,7 +25,7 @@ Study"}.}
 \describe{
 \item{cohort_symbol}{Cohort symbol. Example: \code{"CECILE"}.}
 \item{pgs_id}{Polygenic Score (PGS) identifier.}
-\item{stage}{Sample stage: either \code{"development"} or \code{"evaluation"}.}
+\item{stage}{Sample stage: either \code{"gwas/dev"} or \code{"eval"}.}
 }}
 }}
 

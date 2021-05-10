@@ -67,7 +67,7 @@ collect_pgs_ids <- function(tbl_json) {
     tidyjson::gather_array(column.name = 'dummy') %>%
     dplyr::select(-'dummy') %>%
     tidyjson::append_values_string(column.name = 'pgs_id') %>%
-    tibble::add_column(stage = 'development')
+    tibble::add_column(stage = 'gwas/dev')
 
 
   evaluation_pgs_ids <- tbl_json %>%
@@ -75,7 +75,7 @@ collect_pgs_ids <- function(tbl_json) {
     tidyjson::gather_array(column.name = 'dummy') %>%
     dplyr::select(-'dummy') %>%
     tidyjson::append_values_string(column.name = 'pgs_id') %>%
-    tibble::add_column(stage = 'evaluation')
+    tibble::add_column(stage = 'eval')
 
   all_pgs_ids <-
     tidyjson::bind_rows(development_pgs_ids, evaluation_pgs_ids) %>%

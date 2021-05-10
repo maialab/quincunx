@@ -15,7 +15,7 @@ as_tidy_tables_sample_sets <- function(tbl_json) {
     tidyjson::spread_values(pss_id = tidyjson::jstring('id')) %>%
     tidyjson::enter_object('samples') %>%
     tidyjson::gather_array(column.name = 'sample_id') %>%
-    tibble::add_column(stage = 'evaluation') %>% # All samples in sample sets are in evaluation stage.
+    tibble::add_column(stage = 'eval') %>% # All samples in sample sets are in evaluation stage.
     unwrap_sample()
 
   demographics <-
