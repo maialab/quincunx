@@ -34,6 +34,13 @@ articles:
   - getting-cohorts
   - getting-releases
   - pgs-scoring-file
+- title: Wrangling PGS Catalog Data
+  desc: >
+    blah blah blah blah
+    blah blah blah blah
+  navbar: Wrangling PGS Catalog Data
+  contents:
+  - pgs-cat-ent-subsetting
 - title: Case Studies
   desc: >
     blah blah blah blah
@@ -60,6 +67,7 @@ reference:
   - get_traits
   - get_cohorts
   - get_trait_categories
+  - get_ancestry_categories
   - get_releases
 - title: "PGS Catalog Entities"
   desc: "S4 classes for scores, publications, performance_metrics, sample_sets and traits."
