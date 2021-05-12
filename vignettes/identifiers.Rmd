@@ -5,6 +5,8 @@ vignette: >
   %\VignetteIndexEntry{Identifiers}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
+resource_files:
+  - '../man/figures/id_mapping.svg'
 ---
 
 ```{r, include = FALSE}
@@ -13,6 +15,8 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
+
+## Introduction
 
 The data provided by quincunx includes various identifiers. This document serves as a quick reference list for the identifiers you might find in objects returned by quincunx functions.
 
@@ -35,4 +39,10 @@ Some of these identifiers are externally defined while others are created by qui
 
 ## Mapping between identifiers
 
-TODO (image explaining one-to-one mappings and one-to-many, also overview of mapping functions )
+In the table below you can see the type of mappings---one-to-one or one-to-many---possible between the main PGS Catalog entity identifiers. Those mappings indicated as N/A are not implemented yet. These mappings are provided by a set of functions of the form `<from_id>_to_<to_id>()`, e.g., the function `pgs_to_pgp()` provides the mapping of PGS identifiers (`pgs_id`) to PGP identifiers (`pgp_id`). You can find all available id-mapping functions under [Accession identifier mapping](https://maialab.org/quincunx/reference/index.html#section-accession-identifier-mapping).
+
+```{r  out.width = "90%", echo=FALSE}
+knitr::include_graphics('../man/figures/id_mapping.svg') 
+```
+
+As a technical side note, those mappings marked with ↯ are achieved by successive requests to different endpoints, e.g., for the function `pss_to_pgs()` to find the associated `pgs_id` with one or more `pss_id`, it needs first to map `pss_id` to `ppm_id`, and only then from those obtained `ppm_id` to `pgs_id`.
