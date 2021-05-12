@@ -36,7 +36,7 @@ tells how performance metrics retrieved by different criteria  should be combine
 \code{'intersection'} only keeps same sample sets found with different
 criteria.}
 
-\item{interactive}{A logical. If all sample sets are requested, whether to ask
+\item{interactive}{A logical. If all traits are requested, whether to ask
 interactively if we really want to proceed.}
 
 \item{verbose}{A \code{logical} indicating whether the function should be
