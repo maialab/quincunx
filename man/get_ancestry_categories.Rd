@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_ancestry_categories.R
 \name{get_ancestry_categories}
 \alias{get_ancestry_categories}
-\title{Get PGS Catalog Ancestry Categories and Classes}
+\title{Get ancestry categories and classes}
 \usage{
 get_ancestry_categories()
 }
@@ -12,6 +12,10 @@ A tibble with ancestry categories, classes and associated
   column.
 }
 \description{
-Retrieves Ancestry Categories and Classes. This function simply returns the
+Retrieves ancestry categories and classes. This function simply returns the
 object \code{\link{ancestry_categories}}.
+}
+\examples{
+get_ancestry_categories()
+
 }

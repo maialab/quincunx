@@ -60,14 +60,17 @@ get_ancestry_symbol_mappings <- function(verbose = FALSE,
     return()
 }
 
-#' Get PGS Catalog Ancestry Categories and Classes
+#' Get ancestry categories and classes
 #'
-#' Retrieves Ancestry Categories and Classes. This function simply returns the
+#' Retrieves ancestry categories and classes. This function simply returns the
 #' object \code{\link{ancestry_categories}}.
 #'
 #' @return A tibble with ancestry categories, classes and associated
 #'   information. See  \code{\link{ancestry_categories}} for details about each
 #'   column.
+#'
+#' @examples
+#' get_ancestry_categories()
 #'
 #' @export
 get_ancestry_categories <- function() {
