@@ -201,14 +201,15 @@ unwrap_multi_ancestry_composition <- function(tbl_json) {
     tidyjson::as_tibble()
 }
 
+#' @importFrom rlang .data
 unwrap_ancestry_count <- function(tbl_json) {
 
   tbl_json %>%
     tidyjson::spread_values(count = tidyjson::jnumber('count')) %>%
     tidyjson::as_tibble() %>%
     dplyr::mutate(count = as.integer(count)) %>%
-    dplyr::mutate(sample_size = dplyr::if_else(stage == 'gwas' | stage == 'dev', count, NA_integer_),
-                  n_sample_sets = dplyr::if_else(stage == 'eval', count, NA_integer_)) %>%
+    dplyr::mutate(sample_size = dplyr::if_else(.data$stage == 'gwas' | .data$stage == 'dev', .data$count, NA_integer_),
+                  n_sample_sets = dplyr::if_else(.data$stage == 'eval', .data$count, NA_integer_)) %>%
     dplyr::select(-'count')
 }
 
