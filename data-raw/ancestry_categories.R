@@ -154,3 +154,4 @@ ancestry_categories <-
 
 readr::write_csv(ancestry_categories, "data-raw/ancestry_categories.csv")
 usethis::use_data(ancestry_categories, compress = "xz", overwrite = TRUE, version = 2)
+usethis::use_data(ancestry_categories, internal = TRUE, compress = "xz", overwrite = TRUE, version = 2)

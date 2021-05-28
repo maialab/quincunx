@@ -74,5 +74,5 @@ get_ancestry_symbol_mappings <- function(verbose = FALSE,
 #'
 #' @export
 get_ancestry_categories <- function() {
-  ancestry_categories
+  quincunx::ancestry_categories
 }
