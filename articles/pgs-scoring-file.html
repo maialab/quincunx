@@ -101,7 +101,15 @@
       <a href="../articles/pgs-scoring-file.html">PGS scoring file</a>
     </li>
     <li class="divider">
+    <li class="dropdown-header">Wrangling PGS Catalog Data</li>
+    <li>
+      <a href="../articles/pgs-cat-ent-subsetting.html">PGS Catalog Entity Subsetting</a>
+    </li>
+    <li class="divider">
     <li class="dropdown-header">Case Studies</li>
+    <li>
+      <a href="../articles/risk-strat-brs-patients.html">Risk of Brugada syndrome patients</a>
+    </li>
     <li>
       <a href="../articles/pgs-scores-mavaddat.html">Exploring PGS scores by Mavaddat et al. (2018)</a>
     </li>
@@ -164,7 +172,7 @@
 <span class="co">#&gt; [1] "metadata" "data"</span></code></pre></div>
 <p>Now, each inner list comprises two elements: <code>metadata</code> and <code>data</code>. The metadata part contains the information retrieved from the initial comment block of the file:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">PGS000655</span><span class="op">$</span><span class="va">metadata</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">PGS000655</span><span class="op">$</span><span class="va">metadata</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 1</span>
 <span class="co">#&gt; Columns: 7</span>
 <span class="co">#&gt; $ pgs_id                &lt;chr&gt; "PGS000655"</span>
@@ -172,7 +180,7 @@
 <span class="co">#&gt; $ original_genome_build &lt;chr&gt; "GRCh37"</span>
 <span class="co">#&gt; $ number_of_variants    &lt;int&gt; 10</span>
 <span class="co">#&gt; $ pgp_id                &lt;chr&gt; "PGP000119"</span>
-<span class="co">#&gt; $ citation              &lt;chr&gt; "Namjou B et al. BMC Med (2019). doi:10.1186/s1…</span>
+<span class="co">#&gt; $ citation              &lt;chr&gt; "Namjou B et al. BMC Med (2019). doi:10.1186/s12…</span>
 <span class="co">#&gt; $ license               &lt;chr&gt; NA</span></code></pre></div>
 <p>From the metadata we can see that this score is for the trait <em>Non-alcoholic fatty liver disease</em>, and that it is composed of 10 variants. Remember that you can retrieve more metadata information about this score by using <code><a href="../reference/get_scores.html">get_scores('PGS000655')</a></code> or <code><a href="../reference/get_performance_metrics.html">get_performance_metrics('PGS000655')</a></code>.</p>
 <p>The data element contains the actual relevant information for calculating scores:</p>
@@ -215,7 +223,7 @@
 <p>To read only the metadata set the parameter <code>metadata_only</code> to <code>TRUE</code>:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_big_scoring_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_scoring_file.html">read_scoring_file</a></span><span class="op">(</span>source <span class="op">=</span> <span class="st">"PGS000013"</span>, metadata_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">my_big_scoring_file</span><span class="op">[[</span><span class="st">'PGS000013'</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">metadata</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">my_big_scoring_file</span><span class="op">[[</span><span class="st">'PGS000013'</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">metadata</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 1</span>
 <span class="co">#&gt; Columns: 7</span>
 <span class="co">#&gt; $ pgs_id                &lt;chr&gt; "PGS000013"</span>
@@ -223,8 +231,8 @@
 <span class="co">#&gt; $ original_genome_build &lt;chr&gt; "hg19"</span>
 <span class="co">#&gt; $ number_of_variants    &lt;int&gt; 6630150</span>
 <span class="co">#&gt; $ pgp_id                &lt;chr&gt; "PGP000006"</span>
-<span class="co">#&gt; $ citation              &lt;chr&gt; "Khera AV et al. Nat Genet (2018). doi:10.1038/…</span>
-<span class="co">#&gt; $ license               &lt;chr&gt; "Freely available to the academic community for…</span></code></pre></div>
+<span class="co">#&gt; $ citation              &lt;chr&gt; "Khera AV et al. Nat Genet (2018). doi:10.1038/s…</span>
+<span class="co">#&gt; $ license               &lt;chr&gt; "Freely available to the academic community for …</span></code></pre></div>
 <p>As can be seen from the variable <code>number_of_variants</code>, the number of variants is greater than 6 million. This means that reading this PGS scoring file has these many rows which can make it burdensome on some computers.</p>
 <p>To know how many variants are included in every score, you can take advantage of the <code><a href="../reference/get_scores.html">get_scores()</a></code> function:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">

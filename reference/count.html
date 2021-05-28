@@ -55,9 +55,9 @@
   
 
 <meta property="og:title" content="Extract the count field from a JSON response — count" />
-<meta property="og:description" content="This function takes a string with a JSON response and looks for the pattern
-&quot;count&quot;:(\d+), and returns the number. If it fails to match the
-pattern then it returns NA_integer_." />
+<meta property="og:description" content="This function takes a string with a JSON response and returns the value of
+the count field. If it fails to match the pattern then it returns
+NA_integer_." />
 <meta property="og:image" content="https://maialab.org/quincunx/logo.svg" />
 
 
@@ -150,7 +150,15 @@ pattern then it returns NA_integer_." />
       <a href="../articles/pgs-scoring-file.html">PGS scoring file</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">Wrangling PGS Catalog Data</li>
+    <li>
+      <a href="../articles/pgs-cat-ent-subsetting.html">PGS Catalog Entity Subsetting</a>
+    </li>
+    <li class="divider"></li>
     <li class="dropdown-header">Case Studies</li>
+    <li>
+      <a href="../articles/risk-strat-brs-patients.html">Risk of Brugada syndrome patients</a>
+    </li>
     <li>
       <a href="../articles/pgs-scores-mavaddat.html">Exploring PGS scores by Mavaddat et al. (2018)</a>
     </li>
@@ -188,9 +196,9 @@ pattern then it returns NA_integer_." />
     </div>
 
     <div class="ref-description">
-    <p>This function takes a string with a JSON response and looks for the pattern
-<code>"count":(\d+),</code> and returns the number. If it fails to match the
-pattern then it returns <code>NA_integer_</code>.</p>
+    <p>This function takes a string with a JSON response and returns the value of
+the count field. If it fails to match the pattern then it returns
+<code>NA_integer_</code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>count</span><span class='op'>(</span><span class='va'>json_string</span><span class='op'>)</span></pre>

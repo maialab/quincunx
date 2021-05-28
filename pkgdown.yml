@@ -11,11 +11,14 @@ articles:
   getting-releases: getting-releases.html
   getting-traits: getting-traits.html
   identifiers: identifiers.html
+  pgs-cat-ent-subsetting: pgs-cat-ent-subsetting.html
   pgs-construction-process: pgs-construction-process.html
   pgs-scores-mavaddat: pgs-scores-mavaddat.html
   pgs-scoring-file: pgs-scoring-file.html
   quincunx-development: quincunx-development.html
-last_built: 2021-02-19T15:30Z
+  quincunx-s-advantages: quincunx-s-advantages.html
+  risk-strat-brs-patients: risk-strat-brs-patients.html
+last_built: 2021-05-28T17:27Z
 urls:
   reference: https://maialab.org/quincunx/reference
   article: https://maialab.org/quincunx/articles

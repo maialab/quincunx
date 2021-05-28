@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ancestry categories — ancestry_categories • quincunx</title>
+<title>Ancestry categories and classes — ancestry_categories • quincunx</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -54,14 +54,16 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Ancestry categories — ancestry_categories" />
+<meta property="og:title" content="Ancestry categories and classes — ancestry_categories" />
 <meta property="og:description" content="A dataset containing the ancestry categories defined in NHGRI-EBI GWAS
 Catalog framework (Table 1,
 Morales et al. (2018)).
 Ancestry categories are assigned to samples with distinct and well-defined
 patterns of genetic variation. You will find these categories in the variable
-ancestry of the following objects: scores,
-performance_metrics and sample_sets." />
+ancestry_category of the following objects: scores,
+performance_metrics and sample_sets. Ancestry
+categories (ancestry_category) are further clustered into ancestry
+classes (ancestry_class)." />
 <meta property="og:image" content="https://maialab.org/quincunx/logo.svg" />
 
 
@@ -154,7 +156,15 @@ performance_metrics and sample_sets." />
       <a href="../articles/pgs-scoring-file.html">PGS scoring file</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">Wrangling PGS Catalog Data</li>
+    <li>
+      <a href="../articles/pgs-cat-ent-subsetting.html">PGS Catalog Entity Subsetting</a>
+    </li>
+    <li class="divider"></li>
     <li class="dropdown-header">Case Studies</li>
+    <li>
+      <a href="../articles/risk-strat-brs-patients.html">Risk of Brugada syndrome patients</a>
+    </li>
     <li>
       <a href="../articles/pgs-scores-mavaddat.html">Exploring PGS scores by Mavaddat et al. (2018)</a>
     </li>
@@ -186,7 +196,7 @@ performance_metrics and sample_sets." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Ancestry categories</h1>
+    <h1>Ancestry categories and classes</h1>
     
     <div class="hidden name"><code>ancestry_categories.Rd</code></div>
     </div>
@@ -197,8 +207,10 @@ Catalog framework (Table 1,
 <a href='https://doi.org/10.1186/s13059-018-1396-2'>Morales et al. (2018)</a>).
 Ancestry categories are assigned to samples with distinct and well-defined
 patterns of genetic variation. You will find these categories in the variable
-<code>ancestry</code> of the following objects: <a href='scores-class.html'>scores</a>,
-<a href='performance_metrics-class.html'>performance_metrics</a> and <a href='sample_sets-class.html'>sample_sets</a>.</p>
+<code>ancestry_category</code> of the following objects: <a href='scores-class.html'>scores</a>,
+<a href='performance_metrics-class.html'>performance_metrics</a> and <a href='sample_sets-class.html'>sample_sets</a>. Ancestry
+categories (<code>ancestry_category</code>) are further clustered into ancestry
+classes (<code>ancestry_class</code>).</p>
     </div>
 
     <pre class="usage"><span class='va'>ancestry_categories</span></pre>
@@ -206,41 +218,60 @@ patterns of genetic variation. You will find these categories in the variable
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A data frame with 17 rows and 3 columns:</p><dl>
-  <dt>ancestry</dt><dd><p>Ancestry category.</p></dd>
+    <p>A data frame with 19 ancestry categories (rows) and 6 columns:</p><dl>
+  <dt>ancestry_category</dt><dd><p>Ancestry category.</p></dd>
+  <dt>ancestry_class</dt><dd><p>To reduce the complexity associated with the many
+  ancestry categories, some have been merged into higher-level groupings
+  (<code>ancestry_class</code>). These groupings represent the current breadth of
+  data in the PGS Catalog and are likely to change as more data is added.</p></dd>
+  <dt>ancestry_class_symbol</dt><dd><p>3-letter code for the <code>ancestry_class</code>
+  e.g. <code>"EUR"</code> or <code>"MAE"</code>.</p></dd>
+  <dt>ancestry_class_colour</dt><dd><p>Hexadecimal colour code associated with
+  ancestry groupings (<code>ancestry_class</code>). This can be useful when
+  visually communicating about ancestries.</p></dd>
   <dt>definition</dt><dd><p>Description of the ancestry category.</p></dd>
-  <dt>examples</dt><dd><p>Examples of detailed descriptions for samples included in
-  the category.</p></dd>
+  <dt>examples</dt><dd><p>Examples of detailed descriptions of sample ancestries
+  included in the category.</p></dd>
 
 </dl>
 
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p><a href='https://genomebiology.biomedcentral.com/articles/10.1186/s13059-018-1396-2/tables/1'>https://genomebiology.biomedcentral.com/articles/10.1186/s13059-018-1396-2/tables/1</a></p>
+    
+<dl>
+  <dt>Table 1 of
+<a href='https://doi.org/10.1186/s13059-018-1396-2'>Morales et al. (2018)</a>:</dt><dd><p><a href='https://genomebiology.biomedcentral.com/articles/10.1186/s13059-018-1396-2/tables/1'>https://genomebiology.biomedcentral.com/articles/10.1186/s13059-018-1396-2/tables/1</a></p></dd>
+  <dt>PGS Catalog Ancestry Documentation:</dt><dd><p><a href='http://www.pgscatalog.org/docs/ancestry/'>http://www.pgscatalog.org/docs/ancestry/</a></p></dd>
+
+</dl>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>ancestry_categories</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 17 x 3</span><span>
-#&gt;    ancestry                    definition                       examples        
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                            </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           
-#&gt; </span><span style='color: #555555;'> 1</span><span> Aboriginal Australian       </span><span style='color: #555555;'>"</span><span>Includes individuals who eithe… Martu Australia…
-#&gt; </span><span style='color: #555555;'> 2</span><span> African American or Afro-C… </span><span style='color: #555555;'>"</span><span>Includes individuals who eithe… African America…
-#&gt; </span><span style='color: #555555;'> 3</span><span> African unspecified         </span><span style='color: #555555;'>"</span><span>Includes individuals that eith… African, non-Hi…
-#&gt; </span><span style='color: #555555;'> 4</span><span> Asian unspecified           </span><span style='color: #555555;'>"</span><span>Includes individuals that eith… Asian, Asian Am…
-#&gt; </span><span style='color: #555555;'> 5</span><span> Central Asian               </span><span style='color: #555555;'>"</span><span>Includes individuals who eithe… Silk Road (foun…
-#&gt; </span><span style='color: #555555;'> 6</span><span> East Asian                  </span><span style='color: #555555;'>"</span><span>Includes individuals who eithe… Chinese, Japane…
-#&gt; </span><span style='color: #555555;'> 7</span><span> European                    </span><span style='color: #555555;'>"</span><span>Includes individuals who eithe… Spanish, Swedish
-#&gt; </span><span style='color: #555555;'> 8</span><span> Greater Middle Eastern (Mi… </span><span style='color: #555555;'>"</span><span>Includes individuals who self-… Tunisian, Arab,…
-#&gt; </span><span style='color: #555555;'> 9</span><span> Hispanic or Latin American  </span><span style='color: #555555;'>"</span><span>Includes individuals who eithe… Brazilian, Mexi…
-#&gt; </span><span style='color: #555555;'>10</span><span> Native American             </span><span style='color: #555555;'>"</span><span>Includes indigenous individual… Pima Indian, Pl…
-#&gt; </span><span style='color: #555555;'>11</span><span> Not reported                </span><span style='color: #555555;'>"</span><span>Includes individuals for which… </span><span style='color: #BB0000;'>NA</span><span>              
-#&gt; </span><span style='color: #555555;'>12</span><span> Oceanian                    </span><span style='color: #555555;'>"</span><span>Includes individuals that eith… Solomon Islande…
-#&gt; </span><span style='color: #555555;'>13</span><span> Other                       </span><span style='color: #555555;'>"</span><span>Includes individuals where an … Surinamese, Rus…
-#&gt; </span><span style='color: #555555;'>14</span><span> Other admixed ancestry      </span><span style='color: #555555;'>"</span><span>Includes individuals who eithe… </span><span style='color: #BB0000;'>NA</span><span>              
-#&gt; </span><span style='color: #555555;'>15</span><span> South Asian                 </span><span style='color: #555555;'>"</span><span>Includes individuals who eithe… Bangladeshi, Sr…
-#&gt; </span><span style='color: #555555;'>16</span><span> South East Asian            </span><span style='color: #555555;'>"</span><span>Includes individuals who eithe… Thai, Malay     
-#&gt; </span><span style='color: #555555;'>17</span><span> Sub-Saharan African         </span><span style='color: #555555;'>"</span><span>Includes individuals who eithe… Yoruban, Gambian</div><div class='input'>
-</div></span></pre>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 19 x 6</span>
+#&gt;    ancestry_category ancestry_class ancestry_class_… ancestry_class_… definition
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     
+#&gt; <span style='color: #BCBCBC;'> 1</span> Aboriginal Austr… Additional Di… OTH              #999999          <span style='color: #949494;'>"</span>Includes…
+#&gt; <span style='color: #BCBCBC;'> 2</span> African American… African        AFR              #FFD900          <span style='color: #949494;'>"</span>Includes…
+#&gt; <span style='color: #BCBCBC;'> 3</span> African unspecif… African        AFR              #FFD900          <span style='color: #949494;'>"</span>Includes…
+#&gt; <span style='color: #BCBCBC;'> 4</span> Asian unspecified Additional As… ASN              #B15928          <span style='color: #949494;'>"</span>Includes…
+#&gt; <span style='color: #BCBCBC;'> 5</span> Central Asian     Additional As… ASN              #B15928          <span style='color: #949494;'>"</span>Includes…
+#&gt; <span style='color: #BCBCBC;'> 6</span> East Asian        East Asian     EAS              #4DAF4A          <span style='color: #949494;'>"</span>Includes…
+#&gt; <span style='color: #BCBCBC;'> 7</span> European          European       EUR              #377EB8          <span style='color: #949494;'>"</span>Includes…
+#&gt; <span style='color: #BCBCBC;'> 8</span> Greater Middle E… Greater Middl… GME              #00CED1          <span style='color: #949494;'>"</span>Includes…
+#&gt; <span style='color: #BCBCBC;'> 9</span> Hispanic or Lati… Hispanic or L… AMR              #E41A1C          <span style='color: #949494;'>"</span>Includes…
+#&gt; <span style='color: #BCBCBC;'>10</span> Native American   Additional Di… OTH              #999999          <span style='color: #949494;'>"</span>Includes…
+#&gt; <span style='color: #BCBCBC;'>11</span> Not reported      Ancestry Not … NR               #BBBBBB          <span style='color: #949494;'>"</span>Includes…
+#&gt; <span style='color: #BCBCBC;'>12</span> Oceanian          Additional Di… OTH              #999999          <span style='color: #949494;'>"</span>Includes…
+#&gt; <span style='color: #BCBCBC;'>13</span> Other             Additional Di… OTH              #999999          <span style='color: #949494;'>"</span>Includes…
+#&gt; <span style='color: #BCBCBC;'>14</span> Other admixed an… Additional Di… OTH              #999999          <span style='color: #949494;'>"</span>Includes…
+#&gt; <span style='color: #BCBCBC;'>15</span> South Asian       South Asian    SAS              #984EA3          <span style='color: #949494;'>"</span>Includes…
+#&gt; <span style='color: #BCBCBC;'>16</span> South East Asian  Additional As… ASN              #B15928          <span style='color: #949494;'>"</span>Includes…
+#&gt; <span style='color: #BCBCBC;'>17</span> Sub-Saharan Afri… African        AFR              #FFD900          <span style='color: #949494;'>"</span>Includes…
+#&gt; <span style='color: #BCBCBC;'>18</span> Multi-Ancestry (… Multi-Ancestr… MAE              #A6CEE3          <span style='color: #949494;'>"</span>Combined…
+#&gt; <span style='color: #BCBCBC;'>19</span> Multi-Ancestry (… Multi-Ancestr… MAO              #FF7F00          <span style='color: #949494;'>"</span>Combined…
+#&gt; <span style='color: #949494;'># … with 1 more variable: examples &lt;chr&gt;</span></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

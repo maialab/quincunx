@@ -101,7 +101,15 @@
       <a href="articles/pgs-scoring-file.html">PGS scoring file</a>
     </li>
     <li class="divider">
+    <li class="dropdown-header">Wrangling PGS Catalog Data</li>
+    <li>
+      <a href="articles/pgs-cat-ent-subsetting.html">PGS Catalog Entity Subsetting</a>
+    </li>
+    <li class="divider">
     <li class="dropdown-header">Case Studies</li>
+    <li>
+      <a href="articles/risk-strat-brs-patients.html">Risk of Brugada syndrome patients</a>
+    </li>
     <li>
       <a href="articles/pgs-scores-mavaddat.html">Exploring PGS scores by Mavaddat et al. (2018)</a>
     </li>
@@ -137,12 +145,14 @@
 <!-- badges: start -->
 <!-- badges: end -->
 <p>The goal of quincunx is to provide programmatic access to the <a href="https://www.pgscatalog.org/">Polygenic Score (PGS) Catalog</a>, an open resource for <a href="https://en.wikipedia.org/wiki/Polygenic_score">polygenic scores</a> and associated metadata describing their development and respective assessment.</p>
+<p>Browse the online documentation at <a href="https://maialab.org/quincunx">maialab.org/quincunx</a> to get started.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the current version of quincunx with:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># install.packages("remotes")</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"maialab/quincunx"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"maialab/quincunx"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="cheatsheet" class="section level2">
 <h2 class="hasAnchor">
@@ -152,11 +162,17 @@
 <div id="citing-this-work" class="section level2">
 <h2 class="hasAnchor">
 <a href="#citing-this-work" class="anchor"></a>Citing this work</h2>
-<p>If you use data retrieved from the PGS Catalog by quincunx, please do not forget to cite the PGS Catalog project and the original authors who created the data. Currently, you can cite the PGS Catalog project by using its medRxiv preprint:</p>
-<blockquote>
-<p>Samuel A. Lambert, Laurent Gil, Simon Jupp, View ORCID ProfileScott Ritchie, Yu Xu, Annalisa Buniello, Gad Abraham, Michael Chapman, Helen Parkinson, John Danesh, Jacqueline A. L. MacArthur, Michael Inouye. The Polygenic Score Catalog: an open database for reproducibility and systematic evaluation. medRxiv: <a href="https://doi.org/10.1101/2020.05.20.20108217" class="uri">https://doi.org/10.1101/2020.05.20.20108217</a>.</p>
-</blockquote>
-<p>Also, please cite quincunx’s publication: <em>To be added soon</em>.</p>
+<p>Our bioRxiv preprint:</p>
+<ul>
+<li>Magno, R., Duarte, I., Maia, A.T. quincunx: an R package to query, download and wrangle PGS Catalog data. bioRxiv (2021). doi: <a href="https://www.biorxiv.org/content/10.1101/2021.02.19.431997v1">10.1101/2021.02.19.431997v1</a>.</li>
+</ul>
+<p>Also, please do not forget to cite the authors behind the original studies and the papers associated with the PGS Catalog project:</p>
+<ul>
+<li>Lambert, S.A., Gil, L., Jupp, S. et al. The Polygenic Score Catalog as an open database for reproducibility and systematic evaluation. Nat Genet 53, 420–425 (2021). doi: <a href="https://doi.org/10.1038/s41588-021-00783-5">10.1038/s41588-021-00783-5</a>
+</li>
+<li>Wand, H., Lambert, S.A., Tamburro, C. et al. Improving reporting standards for polygenic scores in risk prediction studies. Nature 591, 211–219 (2021). doi: <a href="https://doi.org/10.1038/s41586-021-03243-6">10.1038/s41586-021-03243-6</a>
+</li>
+</ul>
 </div>
 <div id="terms-of-use" class="section level2">
 <h2 class="hasAnchor">

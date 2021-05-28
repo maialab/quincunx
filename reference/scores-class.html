@@ -150,7 +150,15 @@ is an observation (row) in the scores table (the first table)." />
       <a href="../articles/pgs-scoring-file.html">PGS scoring file</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">Wrangling PGS Catalog Data</li>
+    <li>
+      <a href="../articles/pgs-cat-ent-subsetting.html">PGS Catalog Entity Subsetting</a>
+    </li>
+    <li class="divider"></li>
     <li class="dropdown-header">Case Studies</li>
+    <li>
+      <a href="../articles/risk-strat-brs-patients.html">Risk of Brugada syndrome patients</a>
+    </li>
     <li>
       <a href="../articles/pgs-scores-mavaddat.html">Exploring PGS scores by Mavaddat et al. (2018)</a>
     </li>
@@ -263,13 +271,13 @@ allow unpublished work (e.g. pre-prints) to be added to the catalog. Example:
 <dt>sample_controls</dt><dd><p>Number of controls.</p></dd>
 <dt>sample_percent_male</dt><dd><p>Percentage of male participants.</p></dd>
 <dt>phenotype_description</dt><dd><p>Detailed phenotype description.</p></dd>
-<dt>ancestry</dt><dd><p>Author reported ancestry is mapped to the best matching
+<dt>ancestry_category</dt><dd><p>Author reported ancestry is mapped to the best matching
 ancestry category from the NHGRI-EBI GWAS Catalog framework (see
 <code><a href='ancestry_categories.html'>ancestry_categories</a></code>) for possible values.</p></dd>
-<dt>ancestry_description</dt><dd><p>A more detailed description of sample ancestry
+<dt>ancestry</dt><dd><p>A more detailed description of sample ancestry
 that usually matches the most specific description described by the authors
 (e.g. French, Chinese).</p></dd>
-<dt>ancestry_country</dt><dd><p>Author reported countries of recruitment (if available).</p></dd>
+<dt>country</dt><dd><p>Author reported countries of recruitment (if available).</p></dd>
 <dt>ancestry_additional_description</dt><dd><p>Any additional description not
 captured in the other columns (e.g. founder or genetically isolated
 populations, or further description of admixed samples).</p></dd>
@@ -318,6 +326,27 @@ standard error (se) or standard deviation (sd).</p></dd>
 <dt>trait</dt><dd><p>Trait name.</p></dd>
 <dt>description</dt><dd><p>Detailed description of the trait from EFO.</p></dd>
 <dt>url</dt><dd><p>External link to the EFO entry.</p></dd></dl></p></dd>
+
+<dt><code>stages_tally</code></dt><dd><p>A table of sample sizes and number of samples sets at each stage.
+<dl>
+<dt>pgs_id</dt><dd><p>Polygenic Score (PGS) identifier.</p></dd>
+<dt>stage</dt><dd><p>Sample stage: either <code>"gwas"</code>, <code>"dev"</code> or <code>"eval"</code>.</p></dd>
+<dt>sample_size</dt><dd><p>Sample size.</p></dd>
+<dt>n_sample_sets</dt><dd><p>Number of sample sets (only meaningful for the evaluation stage <code>"eval"</code>)</p></dd></dl></p></dd>
+
+<dt><code>ancestry_frequencies</code></dt><dd><p>This table describes the ancestry composition at each stage.
+<dl>
+<dt>pgs_id</dt><dd><p>Polygenic Score (PGS) identifier.</p></dd>
+<dt>stage</dt><dd><p>Sample stage: either <code>"gwas"</code>, <code>"dev"</code> or <code>"eval"</code>.</p></dd>
+<dt>ancestry_class_symbol</dt><dd><p>Ancestry class symbol.</p></dd>
+<dt>frequency</dt><dd><p>Ancestry fraction (percentage).</p></dd></dl></p></dd>
+
+<dt><code>multi_ancestry_composition</code></dt><dd><p>A table of a breakdown of the ancestries included in multi-ancestries.
+<dl>
+<dt>pgs_id</dt><dd><p>Polygenic Score (PGS) identifier.</p></dd>
+<dt>stage</dt><dd><p>Sample stage: either <code>"gwas"</code>, <code>"dev"</code> or <code>"eval"</code>.</p></dd>
+<dt>multi_ancestry_class_symbol</dt><dd><p>Multi-ancestry class symbol.</p></dd>
+<dt>ancestry_class_symbol</dt><dd><p>Ancestry class symbol.</p></dd></dl></p></dd>
 
 </dl>
 

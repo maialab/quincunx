@@ -151,7 +151,15 @@ table)." />
       <a href="../articles/pgs-scoring-file.html">PGS scoring file</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">Wrangling PGS Catalog Data</li>
+    <li>
+      <a href="../articles/pgs-cat-ent-subsetting.html">PGS Catalog Entity Subsetting</a>
+    </li>
+    <li class="divider"></li>
     <li class="dropdown-header">Case Studies</li>
+    <li>
+      <a href="../articles/risk-strat-brs-patients.html">Risk of Brugada syndrome patients</a>
+    </li>
     <li>
       <a href="../articles/pgs-scores-mavaddat.html">Exploring PGS scores by Mavaddat et al. (2018)</a>
     </li>
@@ -245,19 +253,19 @@ allow unpublished work (e.g. pre-prints) to be added to the catalog. Example:
 <dt>ppm_id</dt><dd><p>A PGS Performance Metrics identifier. Example: <code>"PPM000001"</code>.</p></dd>
 <dt>pss_id</dt><dd><p>A PGS Sample Set identifier. Example: <code>"PSS000042"</code>.</p></dd>
 <dt>sample_id</dt><dd><p>Sample identifier. This is a surrogate key to identify each sample.</p></dd>
-<dt>stage</dt><dd><p>Sample stage: should be always <code>"evaluation"</code>.</p></dd>
+<dt>stage</dt><dd><p>Sample stage: should be always Evaluation (<code>"eval"</code>).</p></dd>
 <dt>sample_size</dt><dd><p>Number of individuals included in the sample.</p></dd>
 <dt>sample_cases</dt><dd><p>Number of cases.</p></dd>
 <dt>sample_controls</dt><dd><p>Number of controls.</p></dd>
 <dt>sample_percent_male</dt><dd><p>Percentage of male participants.</p></dd>
 <dt>phenotype_description</dt><dd><p>Detailed phenotype description.</p></dd>
-<dt>ancestry</dt><dd><p>Author reported ancestry is mapped to the best matching
+<dt>ancestry_category</dt><dd><p>Author reported ancestry is mapped to the best matching
 ancestry category from the NHGRI-EBI GWAS Catalog framework (see
 <code><a href='ancestry_categories.html'>ancestry_categories</a></code>) for possible values.</p></dd>
-<dt>ancestry_description</dt><dd><p>A more detailed description of sample ancestry
+<dt>ancestry</dt><dd><p>A more detailed description of sample ancestry
 that usually matches the most specific description described by the authors
 (e.g. French, Chinese).</p></dd>
-<dt>ancestry_country</dt><dd><p>Author reported countries of recruitment (if available).</p></dd>
+<dt>country</dt><dd><p>Author reported countries of recruitment (if available).</p></dd>
 <dt>ancestry_additional_description</dt><dd><p>Any additional description not
 captured in the other columns (e.g. founder or genetically isolated
 populations, or further description of admixed samples).</p></dd>

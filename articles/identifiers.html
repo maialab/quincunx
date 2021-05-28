@@ -101,7 +101,15 @@
       <a href="../articles/pgs-scoring-file.html">PGS scoring file</a>
     </li>
     <li class="divider">
+    <li class="dropdown-header">Wrangling PGS Catalog Data</li>
+    <li>
+      <a href="../articles/pgs-cat-ent-subsetting.html">PGS Catalog Entity Subsetting</a>
+    </li>
+    <li class="divider">
     <li class="dropdown-header">Case Studies</li>
+    <li>
+      <a href="../articles/risk-strat-brs-patients.html">Risk of Brugada syndrome patients</a>
+    </li>
     <li>
       <a href="../articles/pgs-scores-mavaddat.html">Exploring PGS scores by Mavaddat et al. (2018)</a>
     </li>
@@ -141,6 +149,9 @@
 
     
     
+<div id="introduction" class="section level2">
+<h2 class="hasAnchor">
+<a href="#introduction" class="anchor"></a>Introduction</h2>
 <p>The data provided by quincunx includes various identifiers. This document serves as a quick reference list for the identifiers you might find in objects returned by quincunx functions.</p>
 <p>Some of these identifiers are externally defined while others are created by quincunx to aid linking rows among tables. The external identifiers have global scope, i.e., their meaning is valid regardless of context, e.g., a PGS identifier is unique and always identifies the same polygenic score. Identifiers whose scope is local are surrogate IDs that help relating data observations across tables, and do not have any other special meaning outside the tables they appear (<code>sample_id</code>, <code>effect_size_id</code>, <code>classification_metrics_id</code> and <code>other_metrics_id</code>.)</p>
 <table class="table">
@@ -249,10 +260,13 @@
 </tr>
 </tbody>
 </table>
+</div>
 <div id="mapping-between-identifiers" class="section level2">
 <h2 class="hasAnchor">
 <a href="#mapping-between-identifiers" class="anchor"></a>Mapping between identifiers</h2>
-<p>TODO (image explaining one-to-one mappings and one-to-many, also overview of mapping functions )</p>
+<p>In the table below you can see the type of mappings—one-to-one or one-to-many—possible between the main PGS Catalog entity identifiers. Those mappings indicated as N/A are not implemented yet. These mappings are provided by a set of functions of the form <code>&lt;from_id&gt;_to_&lt;to_id&gt;()</code>, e.g., the function <code><a href="../reference/pgs_to_pgp.html">pgs_to_pgp()</a></code> provides the mapping of PGS identifiers (<code>pgs_id</code>) to PGP identifiers (<code>pgp_id</code>). You can find all available id-mapping functions under <a href="https://maialab.org/quincunx/reference/index.html#section-accession-identifier-mapping">Accession identifier mapping</a>.</p>
+<p><img src="../man/figures/id_mapping.svg" width="90%"></p>
+<p>As a technical side note, those mappings marked with ↯ are achieved by successive requests to different endpoints, e.g., for the function <code><a href="../reference/pss_to_pgs.html">pss_to_pgs()</a></code> to find the associated <code>pgs_id</code> with one or more <code>pss_id</code>, it needs first to map <code>pss_id</code> to <code>ppm_id</code>, and only then from those obtained <code>ppm_id</code> to <code>pgs_id</code>.</p>
 </div>
   </div>
 

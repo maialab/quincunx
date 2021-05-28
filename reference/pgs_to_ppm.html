@@ -148,7 +148,15 @@
       <a href="../articles/pgs-scoring-file.html">PGS scoring file</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">Wrangling PGS Catalog Data</li>
+    <li>
+      <a href="../articles/pgs-cat-ent-subsetting.html">PGS Catalog Entity Subsetting</a>
+    </li>
+    <li class="divider"></li>
     <li class="dropdown-header">Case Studies</li>
+    <li>
+      <a href="../articles/risk-strat-brs-patients.html">Risk of Brugada syndrome patients</a>
+    </li>
     <li>
       <a href="../articles/pgs-scores-mavaddat.html">Exploring PGS scores by Mavaddat et al. (2018)</a>
     </li>
@@ -195,6 +203,11 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>pgs_id</th>
+      <td><p>A character vector of PGS identifiers,
+e.g., "PGS000001".</p></td>
+    </tr>
+    <tr>
       <th>verbose</th>
       <td><p>A <code>logical</code> indicating whether the function should be
 verbose about the different queries or not.</p></td>
@@ -208,11 +221,6 @@ any.</p></td>
       <th>progress_bar</th>
       <td><p>Whether to show a progress bar as the queries are
 performed.</p></td>
-    </tr>
-    <tr>
-      <th>ppm_id</th>
-      <td><p>A character vector of PPM identifiers,
-e.g., "PGS000001".</p></td>
     </tr>
     </table>
 

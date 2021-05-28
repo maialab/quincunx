@@ -37,6 +37,12 @@
     <loc>https://maialab.org/quincunx/reference/first_non_na.html</loc>
   </url>
   <url>
+    <loc>https://maialab.org/quincunx/reference/get_ancestry_categories.html</loc>
+  </url>
+  <url>
+    <loc>https://maialab.org/quincunx/reference/get_ancestry_symbol_mappings.html</loc>
+  </url>
+  <url>
     <loc>https://maialab.org/quincunx/reference/get_cohorts.html</loc>
   </url>
   <url>
@@ -202,6 +208,9 @@
     <loc>https://maialab.org/quincunx/reference/setop.html</loc>
   </url>
   <url>
+    <loc>https://maialab.org/quincunx/reference/stages.html</loc>
+  </url>
+  <url>
     <loc>https://maialab.org/quincunx/reference/study_to_pgs.html</loc>
   </url>
   <url>
@@ -277,6 +286,9 @@
     <loc>https://maialab.org/quincunx/articles/identifiers.html</loc>
   </url>
   <url>
+    <loc>https://maialab.org/quincunx/articles/pgs-cat-ent-subsetting.html</loc>
+  </url>
+  <url>
     <loc>https://maialab.org/quincunx/articles/pgs-construction-process.html</loc>
   </url>
   <url>
@@ -287,5 +299,11 @@
   </url>
   <url>
     <loc>https://maialab.org/quincunx/articles/quincunx-development.html</loc>
+  </url>
+  <url>
+    <loc>https://maialab.org/quincunx/articles/quincunx-s-advantages.html</loc>
+  </url>
+  <url>
+    <loc>https://maialab.org/quincunx/articles/risk-strat-brs-patients.html</loc>
   </url>
 </urlset>
