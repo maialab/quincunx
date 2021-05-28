@@ -12,18 +12,12 @@ template:
 
 articles:
 - title: PGS Catalog Concepts
-  desc: >
-    blah blah blah blah
-    blah blah blah blah
   navbar: PGS Catalog Concepts
   contents:
   - identifiers
   - pgs-construction-process
   - cohorts-samples-sample-sets
 - title: Getting PGS Catalog Data
-  desc: >
-    blah blah blah blah
-    blah blah blah blah
   navbar: Getting PGS Catalog Data
   contents:
   - getting-pgs-scores
@@ -35,23 +29,15 @@ articles:
   - getting-releases
   - pgs-scoring-file
 - title: Wrangling PGS Catalog Data
-  desc: >
-    blah blah blah blah
-    blah blah blah blah
   navbar: Wrangling PGS Catalog Data
   contents:
   - pgs-cat-ent-subsetting
 - title: Case Studies
-  desc: >
-    blah blah blah blah
-    blah blah blah blah
   navbar: Case Studies
   contents:
+  - risk-strat-brs-patients
   - pgs-scores-mavaddat
 - title: More info
-  desc: >
-    blah blah blah blah
-    blah blah blah blah
   contents:
   - quincunx-development
 
