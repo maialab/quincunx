@@ -36,6 +36,11 @@ jobs:
           install.packages("pkgdown", type = "binary")
         shell: Rscript {0}
 
+      - name: Install X11 dependencies on MacOS
+        if: runner.os == 'macOS'
+        run: |
+          brew install xquartz --cask
+
       - name: Install package
         run: R CMD INSTALL .
 
