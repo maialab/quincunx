@@ -152,10 +152,10 @@
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
-<p>In this example we walk you through an hypothetical usage case of a quincunx application with the goal of calculating the risk of developing a specific disease. For illustrative purposes, the disease here chosen is the Brugada syndrome (for details about the origin of the name, see <a href="https://www.ecrjournal.com/articles/featuring-josep-brugada">Featuring: Josep Brugada</a>).</p>
+<p>In this example we walk you through an hypothetical usage case of a quincunx application with the goal of calculating the risk of developing a specific disease. For illustrative purposes, the disease chosen here is the Brugada syndrome (for details about the origin of the name, see <a href="https://www.ecrjournal.com/articles/featuring-josep-brugada">Featuring: Josep Brugada</a>).</p>
 <p>Brugada syndrome is a rare, inherited cardiac disease leading to ventricular fibrillation and sudden cardiac death in structurally normal hearts. People with Brugada syndrome have an increased risk of having irregular heart rhythms beginning in the lower chambers of the heart (ventricles) (<a href="https://doi.org/10.1038/gim.2015.35">10.1038/gim.2015.35</a>).</p>
-<p>The prevalence varies among regions and ethnicities, affecting mostly males. The risk stratification and management of patients, principally asymptomatic, still remains challenging. Currently, despite several genes identified, SCN5A has attracted most attention, and in approximately 30% of patients, a genetic variant may be implicated in causation after a comprehensive analysis (<a href="https://doi.org/10.1016/j.jacc.2018.06.037">10.1016/j.jacc.2018.06.037</a>).</p>
-<p>In the walk-through below, we show how to use quincunx to search for Brugada syndrome related polygenic scores and how to compute the associated risk depending on the risk alleles of the associated genetic variants.</p>
+<p>The prevalence varies among regions and ethnicities, affecting mostly males. The risk stratification and management of patients, predominantly asymptomatic, still remains challenging. Currently, despite several genes identified, SCN5A has attracted the most attention, and in approximately 30% of patients, a genetic variant may be implicated as causal factor after a comprehensive analysis (<a href="https://doi.org/10.1016/j.jacc.2018.06.037">10.1016/j.jacc.2018.06.037</a>).</p>
+<p>In the walk-through below, we show how to use quincunx to search for Brugada syndrome related polygenic scores, and how to compute the associated risk depending on the risk alleles of the associated genetic variants.</p>
 </div>
 <div id="searching-for-brugada-syndrome-in-the-pgs-catalog" class="section level2">
 <h2 class="hasAnchor">
@@ -165,9 +165,9 @@
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">quincunx</span><span class="op">)</span></code></pre></div>
 <p>Now, we start by searching for the Brugada syndrome in the PGS Catalog. To do this we search for any traits/diseases that might include the term <code>"brugada"</code> in the trait description using the function <code><a href="../reference/get_traits.html">get_traits()</a></code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Search for the Catalog for traits/diseases containing the term "brugada"</span>
+<code class="sourceCode R"><span class="co"># Search in PGS Catalog for traits/diseases containing the term "brugada"</span>
 <span class="va">brs_traits</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_traits.html">get_traits</a></span><span class="op">(</span>trait_term <span class="op">=</span> <span class="st">'brugada'</span>, exact_term <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<p>We can see that indeed there is one trait specifically associated with the Brugada syndrome, and that it has the EFO trait Orphanet_130 and its description confirms that is a <em>genetic disease ventricular arrhythmia that may result in sudden death</em>. In addition, from the table <code>pgs_ids</code> we can retrieve the associated PGS score identifiers. As of the writing of this example, only one polygenic score is associated with the Brugada syndrome: PGS000737.</p>
+<p>We can see that indeed there is one trait specifically associated with the Brugada syndrome, and that it has the EFO trait Orphanet_130, whose description confirms it to be a <em>genetic disease ventricular arrhythmia that may result in sudden death</em>. In addition, from the table <code>pgs_ids</code> we can retrieve the associated PGS score identifiers. To date, only one polygenic score is associated with the Brugada syndrome: PGS000737.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># EFO Id</span>
 <span class="va">brs_traits</span><span class="op">@</span><span class="va">traits</span><span class="op">$</span><span class="va">efo_id</span>
@@ -189,11 +189,11 @@
 <li>The name given to the polygenic score PGS000737 is <em>PRS_BrS</em>
 </li>
 <li>
-<em>PRS_BrS</em> definition is in the Catalog the same as the one in the original publication, because <code>matches_publication</code> is <code>TRUE</code>
+<em>PRS_BrS</em> definition is in the PGS Catalog the same as the one in the original publication, because <code>matches_publication</code> is <code>TRUE</code>
 </li>
 <li>The original authors’ reported trait was <em>Brugada syndrome</em>
 </li>
-<li>And finally, the number of variants comprising <em>PRS_BrS</em> is just three.</li>
+<li>And finally, the number of variants comprising <em>PRS_BrS</em> is three.</li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">brs_pgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_scores.html">get_scores</a></span><span class="op">(</span>pgs_id <span class="op">=</span> <span class="st">'PGS000737'</span><span class="op">)</span>
@@ -249,8 +249,8 @@
 <div id="sample-ancestry" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sample-ancestry" class="anchor"></a>Sample ancestry</h2>
-<p>To get a feeling for the applicability of this polygenic score it is important to know the genetic diversity of the participants involved in the development of the risk score. We can get details on the ancestry composition of the samples used to develop PRS_BrS by looking into the <code>samples</code> table. In this table we can see that one sample (<code>sample_id = 1</code>) of 1427 individuals was used at the gwas stage. The ancestry category associated with these individuals is European. You can use quincunx’s internal dataset on possible ancestry categories: <code>ancestry_categories</code>.</p>
-<p>From this data one might presuppose that the applicability of this risk score should probably be restricted to people from European ancestry.</p>
+<p>To get a feeling for the applicability of this polygenic score, it is important to know the genetic diversity of the participants involved in the development of the risk score. We can get details on the ancestry composition of the samples used to develop PRS_BrS by looking into the <code>samples</code> table. In this table we can see that one sample (<code>sample_id = 1</code>) of 1427 individuals was used at the gwas stage. The ancestry category associated with these individuals is European. You can use quincunx’s internal dataset on possible ancestry categories: <code>ancestry_categories</code>.</p>
+<p>From this data, one may assume that the applicability of this risk score should probably be restricted to people from European ancestry.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Stage</span>
 <span class="va">brs_pgs</span><span class="op">@</span><span class="va">samples</span><span class="op">$</span><span class="va">stage</span>
@@ -298,9 +298,9 @@
 <span class="co">#&gt; 2 rs10428132 3            38777554 G             T                        -0.94</span>
 <span class="co">#&gt; 3 rs9388451  6           126090377 C             T                         0.46</span>
 <span class="co">#&gt; # … with 2 more variables: weight_type &lt;chr&gt;, locus_name &lt;chr&gt;</span></code></pre></div>
-<p>This PGS is comprised of only three variants: rs11708996, rs10428132, and rs9388451. These variants are located near well-know loci to be associated with the Brugada syndrome: SCN5A, SCN10A, NCOA7 and HEY2. From the <code>effect_weight</code> column, we can see that the effect allele (<code>"C"</code> in both cases) of variants rs11708996 and rs9388451 increases the risk score (<span class="math inline">\(\beta = 0.55\)</span> and <span class="math inline">\(\beta = 0.46\)</span>, respectively), whereas the <code>"G"</code> allele of rs10428132 has a protective effect relative to <code>"T"</code> allele (<span class="math inline">\(\beta = -0.94\)</span>).</p>
-<p>Now, to illustrate the calculation of <em>PRS_BrS</em> on some patient-level data, we will generate all possible genotypes for these variants, and calculate their respective risk scores. Each biallelic variant has three possible genotypes: A/A, A/a or a/a. Given that the score is also comprised of three variants, the total number of possible genotypes is <span class="math inline">\(3\times3\times3= 27\)</span>.</p>
-<p>The function <code>genotypes</code> defined below generates the three genotypes for given variant alleles:</p>
+<p>This PGS is comprised of only three variants: rs11708996, rs10428132, and rs9388451. These variants are located near loci well-know to be associated with the Brugada syndrome: SCN5A, SCN10A, NCOA7, and HEY2. From the <code>effect_weight</code> column, we can see that the effect allele (<code>"C"</code> in both cases) of variants rs11708996 and rs9388451 increases the risk score (<span class="math inline">\(\beta = 0.55\)</span> and <span class="math inline">\(\beta = 0.46\)</span>, respectively), whereas the <code>"G"</code> allele of rs10428132 has a protective effect relative to the <code>"T"</code> allele (<span class="math inline">\(\beta = -0.94\)</span>).</p>
+<p>Now, to illustrate the calculation of <em>PRS_BrS</em> using appropriate patient-level data, we will generate all possible genotypes for these three variants, and calculate their respective risk scores. (We are not using real patient data here since such human datasets are not open). Each biallelic variant has three possible genotypes: A/A, A/a or a/a. Given that the score is also comprised of three variants, the total number of possible genotypes is <span class="math inline">\(3\times3\times3= 27\)</span>.</p>
+<p>The function <code>genotypes</code> defined below generates the three genotypes for the given variant alleles:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">genotypes</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">allele1</span>, <span class="va">allele2</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">alleles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">allele1</span>, <span class="va">allele2</span><span class="op">)</span>
@@ -351,12 +351,12 @@
 <span class="co">#&gt; 25      25 C/C        G/G        T/T      </span>
 <span class="co">#&gt; 26      26 C/C        G/G        T/C      </span>
 <span class="co">#&gt; 27      27 C/C        G/G        C/C</span></code></pre></div>
-<p>In <code>BrS_genotypes</code> we have a table of all possible genotypes comprising the three variants of <em>PRS_BrS</em>. We have prepended a column with a dummy patient identifier (<code>patient</code>) to refer to each one of the 27 possible genotypes in an unambiguous way.</p>
+<p>In <code>BrS_genotypes</code> we have now a table of all possible genotypes comprising the three variants of <em>PRS_BrS</em>. We have prepended a column with a dummy patient identifier (<code>patient</code>) to refer to each one of the 27 possible genotypes in an unambiguous way.</p>
 </div>
 <div id="prs_brs-calculation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#prs_brs-calculation" class="anchor"></a>PRS_BrS calculation</h2>
-<p>If we assume an additive genetic architecture, with independence of risk variants, then the calculation of PRS_BrS is pretty straightforward: simply multiply the number of effect alleles in the genotype by the <code>effect_weight</code>, and add up everything together:</p>
+<p>If we assume an additive genetic architecture, with independence of risk variants, then the calculation of PRS_BrS is straightforward: simply multiply the number of effect alleles in the genotype by the <code>effect_weight</code>, and add up everything:</p>
 <p><span class="math display">\[{PRS_{BrS}} = \beta_{\text{rs11708996}} \times x_{rs11708996} + \beta_{\text{rs10428132}} \times x_{rs10428132} + \beta_{\text{rs9388451}} \times x_{rs9388451}\]</span> where, e.g., <span class="math inline">\(\beta_{\text{rs11708996}} = 0.55\)</span>, and <span class="math inline">\(x_{rs11708996}\)</span> is either <span class="math inline">\(0\)</span>, for genotype “G/G”, <span class="math inline">\(1\)</span>, for genotype “G/C” or <span class="math inline">\(2\)</span>, for genotype “C/C”.</p>
 <p>As a side note, although simplistic, the additive model reflects our best estimate of genetic architecture of common complex disorders, where little evidence of interaction between genetic variants is detected. And although this type of model ignores any gene-gene or gene-environment interactions (<a href="https://doi.org/10.1002/gepi.21989">10.1002/gepi.21989</a>), it seems, nevertheless, that the largest meta-analysis of heritability from twin studies supports a simple additive model in most of the traits examined (<a href="https://doi.org/10.1038/ng.3285">10.1038/ng.3285</a>).</p>
 <p>Next we calculate PRS_BrS for the genotypes <code>BrS_genotypes</code>:</p>
@@ -413,13 +413,13 @@
 <span class="co">#&gt; 27      27 C/C        G/G        C/C        0.140</span></code></pre></div>
 <p>And below a graphical visualisation of the risk scores from lowest (top) to highest (bottom):</p>
 <p><img src="risk-strat-brs-patients_files/figure-html/unnamed-chunk-13-1.svg" width="100%"></p>
-<p>The polygenic risk score spans a range from (almost) <span class="math inline">\(-2\)</span> to (litle more than) <span class="math inline">\(2\)</span>. Those genotypes with a negative score carry mostly “protective” alleles, e.g., the most extreme case being <code>G/G-G/G-T/T</code> (containing only “protective” alleles)—individuals carrying this genotype have the lowest risk of developing the Brugada syndrome; on the other hand, individuals carrying the genotype <code>C/C-T/T-C/C</code> have the highest risk, and should be probably subject of closer follow-up in clinical settings.</p>
+<p>The polygenic risk score spans a range from (almost) <span class="math inline">\(-2\)</span> to (litle more than) <span class="math inline">\(2\)</span>. Those genotypes with a negative score carry mostly “protective” alleles, e.g., the most extreme case being <code>G/G-G/G-T/T</code> (containing only “protective” alleles)—individuals carrying this genotype have the lowest risk of developing the Brugada syndrome; on the other hand, individuals carrying the genotype <code>C/C-T/T-C/C</code> have the highest risk, and should probably be subject to closer clinical follow-up.</p>
 </div>
 <div id="final-remarks" class="section level2">
 <h2 class="hasAnchor">
 <a href="#final-remarks" class="anchor"></a>Final remarks</h2>
-<p>The question of how to use the obtained risk scores, namely, how to proceed clinically, is an open on-going discussion in the medical community that typically needs to be considered in the larger context of each individual characteristics. A good place to start looking into this discussion is the original paper which published this polygenic risk score: <a href="https://academic.oup.com/eurheartj/article/40/37/3097/5559542">https://academic.oup.com/eurheartj/article/40/37/3097/5559542</a>.</p>
-<p>Furthermore, this vignette had the objective of showing how to go from a trait or disease of interest to calculating actual scores for particular individuals. In this example, the individuals are hypothetical, and are represented by their constructed genotypes. While trying to apply the same workflow to other traits or diseases things are likely to be different from this simple example, namely, the number of variants will likely be larger, and polygenic risk score model could be more complicated than the simple additive architecture assumed here; also, you will probably want to take advantage of a dedicated tool that specialises in score computation instead of using your own custom R code, e.g., you could use the <a href="https://privefl.github.io/bigsnpr/articles/LDpred2.html">bigsnpr</a> package.</p>
+<p>The question of how to use the risk scores obtained, namely, how to proceed clinically, is an open and on-going discussion in the medical community that typically needs to be considered in the larger context of each individual characteristics. A good place to start looking into this discussion is the original paper which published this polygenic risk score: <a href="https://academic.oup.com/eurheartj/article/40/37/3097/5559542">https://academic.oup.com/eurheartj/article/40/37/3097/5559542</a>.</p>
+<p>Furthermore, the purpose of this vignette is to show how to start from a trait or disease of interest, and end up by actually calculating the risk scores for particular individuals (if the user has real patient data). In this example, the individuals are hypothetical, and are represented by their in silico constructed genotypes. While trying to apply the same workflow to other traits or diseases, things are likely to be different from this simple example, namely, the number of variants will likely be much larger, and the polygenic risk score model applied could be more complex than the simple additive architecture assumed here. Also, you will probably want to take advantage of a dedicated tool that specialises in score computation instead of using your own custom R code, e.g., you could use the popular <a href="https://privefl.github.io/bigsnpr/articles/LDpred2.html">bigsnpr</a> package.</p>
 </div>
   </div>
 
