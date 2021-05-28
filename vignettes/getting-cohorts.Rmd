@@ -1,5 +1,10 @@
 ---
 title: "Getting Cohorts"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting Cohorts}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}

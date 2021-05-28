@@ -1,5 +1,10 @@
 ---
 title: "Cohorts, Samples and Sample Sets"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Cohorts, Samples and Sample Sets}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}

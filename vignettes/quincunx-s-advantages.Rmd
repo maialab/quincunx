@@ -1,0 +1,128 @@
+---
+title: "quincunx vs REST API direct access"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{quincunx vs REST API direct access}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+In this vignette we provided a set of advantages to using quincunx when compared
+to a direct access of the PGS Catalog REST API.
+
+## Handling of lower-level tasks
+
+quincunx automatically handles lower-level tasks related to the GET requests,
+such as pagination and handling of errors. When a user of quincunx calls a `get
+functions`, .e.g, `get_scores()`, this will translate to GET requests on one of
+the following endpoints: `/rest/score/all`, `/rest/score/{pgs_id}`, or
+`/rest/score/search`. The first and last endpoints return paginated JSON
+responses, meaning that we need logic on the client side that iterates over all
+the paginated resources, making the respective GET requests such that all the
+data is fetched. quincunx automatically detects if the endpoint is returning a
+paginated response or not (because it is not always paginated), and iterates
+automatically. Also, quincunx's `get functions` gracefully handle http errors
+that might arise along the process, not breaking the execution, and collecting
+the data from those responses that were successful, while generating warnings
+for those that failed. Moreover, user control is offered on these warnings, and
+a verbose flag is also provided in our functions for easy debugging of the
+underlying requests. All these are menial features that, nevertheless, are
+important for a smooth usage of the REST API.
+
+## Endpoint abstraction
+
+quincunx's set of `get_<entity>()` functions provide an API that abstracts
+away the REST API endpoint construction and that best matches user expectations,
+i.e., one `get` function for each type of Catalog entity. For example, a
+quincunx's user only needs to know the `get_scores()` to retrieve metadata about
+Polygenic Scores. A more direct access to the REST API implies knowing the three
+endpoints and how to pass them their parameters. Also, by having one function
+for all related endpoints, this means that we can provide a single interface for
+all search criteria. For example, in the case of `get_scores()`, the user may
+search by PGS identifier (`pgs_id`), Trait id (`efo_id`) or by PubMed id
+(`pubmed_id`), or even get all polygenic scores by not supplying any criteria.
+quincunx's accepts all these options in a single interface, and provides an
+extra argument (`set_operation`) on how to combine the results obtained with the
+different criteria. Without a client like quincunx all of this logic would have
+to be implemented anew.
+
+## Automatic JSON deserialization
+
+Retrieving data from a REST API to an environment, such as the R programming
+language, requires the conversion of JSON text into R objects, i.e., JSON
+deserialization. Here, we hinge on the R package
+[tidyjson](https://github.com/colearendt/tidyjson). Some other more direct
+access method to the REST API would require the users to either learn to use a
+similar tool or implement it themselves.
+
+## Relational database representation of Catalog entities
+
+Most importantly, besides JSON deserialization, we chose to represent each
+Catalog entity as a relational database (quincunx's S4 objects). This does not
+follow automatically from the data structure in the JSON responses. This process
+required careful analysis of the Catalog data and of the relationships between
+the different data structures, since this information is not explicit in the
+Catalog documentation. Specifically, we partly reverse engineered by studying
+the JSON responses and frequently communicated with the Catalog team during the
+development of our package.
+
+## Tidyverse friendly for easy data wrangling and visualisation
+
+The actual implementation of the in-memory relational databases based on
+lists of tibbles provides a commonly used interface in the R community nowadays,
+i.e., the use of so-called tidy data, which allows taking advantage of the
+[tidyverse](https://www.tidyverse.org/) toolkit for direct data
+analysis/modeling and visualization, e.g. with
+[ggplot2](https://ggplot2.tidyverse.org/).
+
+## Variable name harmonisation
+
+Each table in quincunx's relational databases is not simply an automatic
+result of the parsing of the JSON responses. The majority of the column names
+have been unified to follow a common naming scheme and, whenever possible,
+simplified to better communicate their biological meaning. For example, in
+nearly all JSON responses, there is an `id` element, which, depending on the
+endpoint, can stand for PGS id, PGP id, PSS id, PPM id, Trait id, etc.; in
+quincunx, these have been aptly mapped to `pgs_id`, `pgp_id`, `pss_id`, `ppm_id`
+or `efo_id` for clarity and to prevent `id` mistakes. Moreover, new identifiers
+have been created in quincunx's objects, allowing the connection of information
+between tables. These new identifiers are indicated as having a "local" scope
+(see `vignette('identifiers')`.
+
+## Correct variable type coercion
+
+Basic data types, such as booleans, strings, integers and doubles are
+correctly mapped to R's equivalent basic types in quincunx's tables. Note that
+in JSON there is no distinction between integers and doubles, an ambiguity that
+can only be resolved by analysis of the data variables' meaning. Also, various
+representations of missing data (e.g., `"NR"`, `"Not Reported"`, `null`, `""`,
+etc.) are correctly mapped to `NA` in R. In the case of `null` JSON objects that
+have a nested schema, the corresponding relational tables are recreated with the
+correct columns and types (albeit empty) so that the scripts do not break. This
+data structure consistency is an important feature allowing posterior data
+wrangling, such as combination of results that have the same structure. So
+although our tables inside the S4 objects might seem raw, they are actually the
+result of data tidying and cleaning, and of reverse engineering of the
+relationships between objects such that they can be made into relational tables.
+
+
+## Database level subsetting of tables
+
+A very useful feature of our S4 objects is the subsetting based on indices or
+identifiers. Moreover, subsetting quincunx's objects conveniently permeates to
+all tables (slots).
+
+## Part of the hapiverse
+
+quincunx's is a sibling package of [gwasrapidd](https://github.com/ramiromagno/gwasrapidd/)---  providing access to the
+GWAS Catalog---, and incorporates the same design principles, particularly when
+it comes to the data representation and wrangling. So users working in this
+field that have already used one of the tools, will see their knowledge easily
+transferred to the other one.

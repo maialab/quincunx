@@ -1,5 +1,10 @@
 ---
 title: "PGS Construction Process"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{PGS Construction Process}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}

@@ -1,5 +1,10 @@
 ---
 title: "Contributing to quincunx development"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Contributing to quincunx development}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 resource_files:
   - '../man/figures/quincunx_core_fns_nofonts.svg'
 ---

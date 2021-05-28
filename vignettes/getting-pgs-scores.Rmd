@@ -1,5 +1,10 @@
 ---
 title: "Getting PGS Scores"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting PGS Scores}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}
