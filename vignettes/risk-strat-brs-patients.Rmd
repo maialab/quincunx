@@ -1,0 +1,261 @@
+---
+title: "Risk of Brugada syndrome patients"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Risk of Brugada syndrome patients}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Introduction
+
+In this example we walk you through an hypothetical usage case of a quincunx
+application with the goal of calculating the risk of developing a specific
+disease. For illustrative purposes, the disease here chosen is the Brugada
+syndrome (for details about the origin of the name, see [Featuring: Josep
+Brugada](https://www.ecrjournal.com/articles/featuring-josep-brugada)).
+
+Brugada syndrome is a rare, inherited cardiac disease leading to ventricular
+fibrillation and sudden cardiac death in structurally normal hearts. People with
+Brugada syndrome have an increased risk of having irregular heart rhythms
+beginning in the lower chambers of the heart (ventricles)
+([10.1038/gim.2015.35](https://doi.org/10.1038/gim.2015.35)).
+
+The prevalence varies among regions and ethnicities, affecting mostly males. The
+risk stratification and management of patients, principally asymptomatic, still
+remains challenging. Currently, despite several genes identified, SCN5A has
+attracted most attention, and in approximately 30% of patients, a genetic
+variant may be implicated in causation after a comprehensive analysis
+([10.1016/j.jacc.2018.06.037](https://doi.org/10.1016/j.jacc.2018.06.037)).
+
+In the walk-through below, we show how to use quincunx to search for Brugada
+syndrome related polygenic scores and how to compute the associated risk
+depending on the risk alleles of the associated genetic variants.
+
+## Searching for Brugada syndrome in the PGS Catalog
+
+Before anything, let us load quincunx:
+
+```{r setup}
+library(quincunx)
+```
+
+Now, we start by searching for the Brugada syndrome in the PGS Catalog. To do this we search for any traits/diseases that might include the term `"brugada"` in the trait description using the function `get_traits()`:
+
+```{r cache=TRUE}
+# Search for the Catalog for traits/diseases containing the term "brugada"
+brs_traits <- get_traits(trait_term = 'brugada', exact_term = FALSE)
+```
+
+We can see that indeed there is one trait specifically associated with the
+Brugada syndrome, and that it has the EFO trait `r brs_traits@traits$efo_id` and
+its description confirms that is a *genetic disease ventricular arrhythmia that
+may result in sudden death*. In addition, from the table `pgs_ids` we can
+retrieve the associated PGS score identifiers. As of the writing of this
+example, only one polygenic score is associated with the Brugada syndrome:
+PGS000737.
+
+```{r}
+# EFO Id
+brs_traits@traits$efo_id
+
+# Brugada syndrome description as defined by the Experimental Factor Ontology
+brs_traits@traits$description
+
+# PGS scores associated with Brugada syndrome
+brs_traits@pgs_ids$pgs_id
+```
+
+## Getting details about the polygenic score PGS000737
+
+From the main table, `scores`,  in `brs_pgs` object, we can see the following details:
+
+- The name given to the polygenic score PGS000737 is *PRS_BrS*
+- *PRS_BrS* definition is in the Catalog the same as the one in the original publication, because `matches_publication` is `TRUE`
+- The original authors' reported trait was *Brugada syndrome*
+- And finally, the number of variants comprising *PRS_BrS* is just three.
+
+```{r cache=TRUE}
+brs_pgs <- get_scores(pgs_id = 'PGS000737')
+
+# PGS code name
+brs_pgs@scores$pgs_name
+
+# Does the PGS score matches the one in the source publication?
+brs_pgs@scores$matches_publication
+
+# Authors' own description of the trait
+brs_pgs@scores$reported_trait
+
+# Number of variants included in the polygenic risk score
+brs_pgs@scores$n_variants
+```
+
+## Original publication that developed PGS000737
+
+From the table `publications`,  in `brs_pgs` object, we can see, *inter alia*, the following details about the publication behind the PGS PGS000737:
+
+- The Catalog identifier assigned to this publication is `r brs_pgs@publications$pgp_id`
+- The publication PubMed id is `r brs_pgs@publications$pubmed_id``
+- It has been published in `r brs_pgs@publications$publication_date`
+- The publication title is: `r brs_pgs@publications$title`
+
+```{r}
+# PGP id
+brs_pgs@publications$pgp_id
+
+# PubMed id
+brs_pgs@publications$pubmed_id
+
+# Publication date
+brs_pgs@publications$publication_date
+
+# Journal
+brs_pgs@publications$publication
+
+# Title
+brs_pgs@publications$title
+```
+
+To view this publication online: `open_in_pubmed(brs_pgs@publications$pubmed_id)`.
+
+## Sample ancestry
+
+To get a feeling for the applicability of this polygenic score it is important to know the genetic diversity of the participants involved in the development of the risk score. We can get details on the ancestry composition of the samples used to develop `r brs_pgs@scores$pgs_name` by looking into the `samples` table. In this table we can see that one sample (`sample_id = 1`) of `r brs_pgs@samples$sample_size` individuals was used at the `r brs_pgs@samples$stage` stage. The ancestry category associated with these individuals is `r brs_pgs@samples$ancestry_category`. You can use quincunx's internal dataset on possible ancestry categories: `ancestry_categories`.
+
+From this data one might presuppose that the applicability of this risk score should probably be restricted to people from European ancestry.
+
+```{r}
+# Stage
+brs_pgs@samples$stage
+
+# Sample size
+brs_pgs@samples$sample_size
+
+# Ancestry
+brs_pgs@samples$ancestry_category
+
+# Definition of European ancestry
+ancestry_categories[ancestry_categories$ancestry_category == 'European', 'definition', drop = TRUE]
+
+# Cohort
+brs_pgs@cohorts
+```
+
+## The genetic composition of PRS_BrS 
+
+To get the polygenic risk score _PRS_BrS_ (i.e., PGS000737), we start by downloading it using the function `read_scoring_file`:
+
+```{r cache=TRUE}
+PRS_BrS <- read_scoring_file('PGS000737')
+PRS_BrS
+```
+
+This PGS is comprised of only three variants: `r knitr::combine_words(dplyr::pull(PRS_BrS$PGS000737$data, 'rsID'))`. These variants are located near well-know loci to be associated with the Brugada syndrome: SCN5A, SCN10A, NCOA7 and HEY2. From the `effect_weight` column, we can see that the effect allele (`"C"` in both cases) of variants rs11708996 and rs9388451 increases the risk score ($\beta = 0.55$ and $\beta = 0.46$, respectively), whereas the `"G"` allele of rs10428132 has a protective effect relative to `"T"` allele ($\beta = -0.94$).
+
+Now, to illustrate the calculation of _PRS_BrS_ on some patient-level data, we will generate all possible genotypes for these variants, and calculate their respective risk scores. Each biallelic variant has three possible genotypes: A/A, A/a or a/a. Given that the score is also comprised of three variants, the total number of possible genotypes is $3\times3\times3= 27$.
+
+The function `genotypes` defined below generates the three genotypes for given variant alleles:
+
+```{r}
+genotypes <- function(allele1, allele2) {
+  alleles <- c(allele1, allele2)
+  m <- tidyr::expand_grid(allele1 = alleles, allele2 = alleles)[-3,]
+  paste(m[, 1, drop = TRUE], m[, 2, drop = TRUE], sep = '/')
+}
+```
+
+For example, rs11708996 genotypes are:
+
+```{r}
+genotypes('G', 'C')
+```
+
+The set of all 27 genotypes can be generated as follows:
+
+```{r}
+BrS_genotypes <- tidyr::expand_grid(
+  rs11708996 = genotypes('G', 'C'),
+  rs10428132 = genotypes('T', 'G'),
+  rs9388451 = genotypes('T', 'C')
+) %>%
+  tibble::rowid_to_column('patient')
+
+print(BrS_genotypes, n = Inf)
+```
+
+In `BrS_genotypes` we have a table of all possible genotypes comprising the three variants of _PRS_BrS_. We have prepended a column with a dummy patient identifier (`patient`) to refer to each one of the 27 possible genotypes in an unambiguous way.
+
+## PRS_BrS calculation
+
+If we assume an additive genetic architecture, with independence of risk variants, then the calculation of PRS_BrS is pretty straightforward: simply multiply the number of effect alleles in the genotype by the `effect_weight`, and add up everything together:
+
+$${PRS_{BrS}} = \beta_{\text{rs11708996}} \times x_{rs11708996} + \beta_{\text{rs10428132}} \times x_{rs10428132} + \beta_{\text{rs9388451}} \times x_{rs9388451}$$
+where, e.g., $\beta_{\text{rs11708996}} = 0.55$, and $x_{rs11708996}$ is either $0$, for genotype "G/G", $1$, for genotype "G/C" or $2$, for genotype "C/C".
+
+As a side note, although simplistic, the additive model reflects our best estimate of genetic architecture of common complex disorders, where little evidence of
+interaction between genetic variants is detected. And although this type of model ignores any gene-gene or gene-environment interactions ([10.1002/gepi.21989](https://doi.org/10.1002/gepi.21989)), it seems, nevertheless, that the largest meta-analysis of heritability from twin studies supports a simple additive model in most of the traits examined ([10.1038/ng.3285](https://doi.org/10.1038/ng.3285)).
+
+Next we calculate PRS_BrS for the genotypes `BrS_genotypes`:
+
+```{r}
+prs <- Vectorize(function(scoring, variant_id, genotype) {
+  alleles <- unlist(strsplit(genotype, '/'))
+  eff <-
+    scoring[scoring$rsID == variant_id, 'effect_allele', drop = TRUE]
+  weight <-
+    scoring[scoring$rsID == variant_id, 'effect_weight', drop = TRUE]
+  
+  (alleles[1] == eff) * weight + (alleles[2] == eff) * weight
+}, vectorize.args = 'genotype')
+```
+
+And, *voilà*, here are the risk scores for all possible genotypes:
+
+```{r}
+s <- PRS_BrS$PGS000737$data
+scores <- BrS_genotypes %>%
+  dplyr::mutate(
+    score = prs(s, 'rs11708996', rs11708996) +
+      prs(s, 'rs10428132', rs10428132) +
+      prs(s, 'rs9388451', rs9388451)
+  )
+
+print(scores, n = Inf)
+```
+
+And below a graphical visualisation of the risk scores from lowest (top) to highest (bottom):
+
+```{r echo=FALSE, dev='svg', fig.ext='svg', out.width='100%'}
+library(ggplot2)
+
+risk_plot <-
+  scores %>%
+  dplyr::mutate(genotype = paste(rs11708996, rs10428132, rs9388451, sep = '-')) %>%
+  dplyr::arrange(score) %>%
+  ggplot(aes(x = reorder(genotype, -score), y = score, fill = score < 0)) +
+  geom_col() +
+  coord_flip() +
+  xlab('Genotype') +
+  ylab('Risk Score PRS_BrS') +
+  scale_fill_discrete(guide = FALSE, type = c('#FF5757', '#65FF57')) +
+  theme_bw() +
+  theme(axis.text.y = element_text(family = "mono"))
+
+risk_plot
+```
+
+The polygenic risk score spans a range from (almost) $-2$ to (litle more than) $2$. Those genotypes with a negative score carry mostly "protective" alleles, e.g., the most extreme case being `G/G-G/G-T/T` (containing only "protective" alleles)---individuals carrying this genotype have the lowest risk of developing the Brugada syndrome; on the other hand, individuals carrying the genotype `C/C-T/T-C/C` have the highest risk, and should be probably subject of closer follow-up in clinical settings.
+
+## Final remarks
+
+The question of how to use the obtained risk scores, namely, how to proceed clinically, is an open on-going discussion in the medical community that typically needs to be considered in the larger context of each individual characteristics. A good place to start looking into this discussion is the original paper which published this polygenic risk score: [https://academic.oup.com/eurheartj/article/40/37/3097/5559542](https://academic.oup.com/eurheartj/article/40/37/3097/5559542).
+
+Furthermore, this vignette had the objective of showing how to go from a trait or disease of interest to calculating actual scores for particular individuals. In this example, the individuals are hypothetical, and are represented by their constructed genotypes. While trying to apply the same workflow to other traits or diseases things are likely to be different from this simple example, namely, the number of variants will likely be larger, and polygenic risk score model could be more complicated than the simple additive architecture assumed here; also, you will probably want to take advantage of a dedicated tool that specialises in score computation instead of using your own custom R code, e.g., you could use the [bigsnpr](https://privefl.github.io/bigsnpr/articles/LDpred2.html) package.
