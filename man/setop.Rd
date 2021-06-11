@@ -39,21 +39,21 @@ entities, whereas \code{\link[quincunx]{bind}()} does not.
 #
 # union()
 #
-# TODO
+# Coming soon...
 
 #
 # intersect()
 #
-# TODO
+# Coming soon...
 
 #
 # setdiff()
 #
-# TODO
+# Coming soon...
 
 #
 # setequal()
 #
-# TODO
+# Coming soon...
 
 }

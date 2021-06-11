@@ -47,7 +47,7 @@ get_trait_category_all <- function(limit = 20L, verbose = FALSE, warnings = TRUE
 #'
 #' @return An \linkS4class{trait_categories} object.
 #' @examples
-#' # TODO
+#' # Coming soon...
 #'
 #' @export
 get_trait_categories <- function(verbose = FALSE,

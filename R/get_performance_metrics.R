@@ -92,7 +92,7 @@ get_performance_by_pgs_id <- function(pgs_id, limit = 20L, verbose = FALSE, warn
 #'
 #' @return An \linkS4class{performance_metrics} object.
 #' @examples
-#' # TODO
+#' # Coming soon...
 #'
 #' @export
 get_performance_metrics <- function(

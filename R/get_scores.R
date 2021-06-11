@@ -108,7 +108,7 @@ get_score_by_trait_id <- function(efo_id, limit = 20L, verbose = FALSE, warnings
 #'
 #' @return An \linkS4class{scores} object.
 #' @examples
-#' # TODO
+#' # Coming soon...
 #'
 #' @export
 get_scores <- function(pgs_id = NULL,

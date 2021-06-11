@@ -160,7 +160,7 @@ get_publication_by_author <-
 #'
 #' @return An \linkS4class{publications} object.
 #' @examples
-#' # TODO
+#' # Coming soon...
 #'
 #' @export
 get_publications <- function(pgp_id = NULL,

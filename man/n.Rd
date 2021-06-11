@@ -45,6 +45,6 @@ An integer scalar.
 This function returns the number of unique entities in a PGS Catalog object.
 }
 \examples{
-# TODO
+# Coming soon...
 
 }

@@ -31,6 +31,6 @@ Retrieves cohorts via the PGS Catalog REST API. Please note that all
 \code{cohort_symbol} is vectorised, thus allowing for batch mode search.
 }
 \examples{
-# TODO
+# Coming soon...
 
 }

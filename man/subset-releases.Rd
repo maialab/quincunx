@@ -35,7 +35,7 @@ You can subset \linkS4class{releases} by identifier or by position using the
 \code{`[`} operator.
 }
 \examples{
-# TODO
+# Coming soon...
 
 }
 \keyword{internal}

@@ -54,7 +54,7 @@ NULL
 #' #
 #' # union()
 #' #
-#' # TODO
+#' # Coming soon...
 #'
 #' @export
 setGeneric('union', function(x, y) standardGeneric('union'))
@@ -65,7 +65,7 @@ setGeneric('union', function(x, y) standardGeneric('union'))
 #' #
 #' # intersect()
 #' #
-#' # TODO
+#' # Coming soon...
 #'
 #' @export
 setGeneric('intersect', function(x, y) standardGeneric('intersect'))
@@ -76,7 +76,7 @@ setGeneric('intersect', function(x, y) standardGeneric('intersect'))
 #' #
 #' # setdiff()
 #' #
-#' # TODO
+#' # Coming soon...
 #'
 #' @export
 setGeneric('setdiff', function(x, y) standardGeneric('setdiff'))
@@ -87,7 +87,7 @@ setGeneric('setdiff', function(x, y) standardGeneric('setdiff'))
 #' #
 #' # setequal()
 #' #
-#' # TODO
+#' # Coming soon...
 #'
 #' @export
 setGeneric('setequal', function(x, y) standardGeneric('setequal'))
@@ -246,7 +246,7 @@ setMethod("setequal",
 #'
 #' @return An object of the same class as \code{x}.
 #' @examples
-#' # TODO
+#' # Coming soon...
 #'
 #' @export
 setGeneric('bind', function(x, ...) standardGeneric('bind'))
@@ -443,7 +443,7 @@ setMethod("filter_by_id",
 #'
 #' @return A \linkS4class{scores} object.
 #' @examples
-#' # TODO
+#' # Coming soon...
 #'
 #' @name subset-scores
 NULL
@@ -490,7 +490,7 @@ setMethod("[",
 #'
 #' @return A \linkS4class{publications} object.
 #' @examples
-#' # TODO
+#' # Coming soon...
 #'
 #' @name subset-publications
 NULL
@@ -537,7 +537,7 @@ setMethod("[",
 #'
 #' @return A \linkS4class{traits} object.
 #' @examples
-#' # TODO
+#' # Coming soon...
 #'
 #' @name subset-traits
 NULL
@@ -584,7 +584,7 @@ setMethod("[",
 #'
 #' @return A \linkS4class{performance_metrics} object.
 #' @examples
-#' # TODO
+#' # Coming soon...
 #'
 #' @name subset-performance_metrics
 NULL
@@ -631,7 +631,7 @@ setMethod("[",
 #'
 #' @return A \linkS4class{sample_sets} object.
 #' @examples
-#' # TODO
+#' # Coming soon...
 #'
 #' @name subset-sample_sets
 NULL
@@ -677,7 +677,7 @@ setMethod("[",
 #'
 #' @return A \linkS4class{cohorts} object.
 #' @examples
-#' # TODO
+#' # Coming soon...
 #'
 #' @name subset-cohorts
 NULL
@@ -723,7 +723,7 @@ setMethod("[",
 #'
 #' @return A \linkS4class{trait_categories} object.
 #' @examples
-#' # TODO
+#' # Coming soon...
 #'
 #' @name subset-trait_categories
 NULL
@@ -769,7 +769,7 @@ setMethod("[",
 #'
 #' @return A \linkS4class{releases} object.
 #' @examples
-#' # TODO
+#' # Coming soon...
 #'
 #' @name subset-releases
 NULL
@@ -829,7 +829,7 @@ setGeneric('n', function(x, unique = FALSE) standardGeneric('n'))
 
 #' @rdname n
 #' @examples
-#' # TODO
+#' # Coming soon...
 #'
 #' @export
 setMethod("n",

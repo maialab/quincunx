@@ -58,7 +58,7 @@ get_cohort_all <- function(limit = 20L, verbose = FALSE, warnings = TRUE, progre
 #'
 #' @return An \linkS4class{cohorts} object.
 #' @examples
-#' # TODO
+#' # Coming soon...
 #'
 #' @export
 get_cohorts <- function(

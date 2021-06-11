@@ -129,7 +129,7 @@ get_trait_by_trait_term <-
 #'
 #' @return An \linkS4class{traits} object.
 #' @examples
-#' # TODO
+#' # Coming soon...
 #'
 #' @export
 get_traits <- function(efo_id = NULL,

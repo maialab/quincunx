@@ -5,9 +5,7 @@ as_tidy_tables_publications <- function(tbl_json) {
     tidyjson::gather_array()
 
   publication_ext <- unwrap_publication_extended(tbl_json2)
-  # TODO: Waiting for feedback on: https://github.com/PGScatalog/PGS_Catalog/issues/163
   publication_pgs_ids <- unwrap_publication_pgs_ids(tbl_json2)
-  # publication_pgs_ids <- tibble::tibble(..page = integer(), array.index = integer(), ..resource = character(), ..timestamp = lubridate::as_datetime(character()))
 
   tidy_publications_tables <-
     list(publications = publication_ext,

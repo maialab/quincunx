@@ -32,6 +32,6 @@ Please note that all search criteria are vectorised, thus allowing for batch
 mode search.
 }
 \examples{
-# TODO
+# Coming soon...
 
 }

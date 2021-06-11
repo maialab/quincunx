@@ -22,6 +22,6 @@ Binds together PGS Catalog objects of the same class. Note that
 \code{\link[quincunx:setop]{union}} does not.
 }
 \examples{
-# TODO
+# Coming soon...
 
 }

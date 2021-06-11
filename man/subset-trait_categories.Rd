@@ -32,7 +32,7 @@ You can subset \linkS4class{trait_categories} by identifier or by position using
 \code{`[`} operator.
 }
 \examples{
-# TODO
+# Coming soon...
 
 }
 \keyword{internal}

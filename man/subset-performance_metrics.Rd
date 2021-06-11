@@ -32,7 +32,7 @@ You can subset \linkS4class{performance_metrics} by identifier or by position us
 \code{`[`} operator.
 }
 \examples{
-# TODO
+# Coming soon...
 
 }
 \keyword{internal}
