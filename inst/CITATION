@@ -1,0 +1,19 @@
+citHeader("To cite quincunx in publications use:")
+
+citEntry(
+  entry    = "Article",
+  title    = "quincunx: an R package to query, download and wrangle PGS Catalog data",
+  author   = "Ramiro Magno, Isabel Duarte, and Ana-Teresa Maia",
+  journal  = "Bioinformatics",
+  year     = "2021",
+  volume   = "",
+  number   = "",
+  pages    = "1--3",
+  url      = "https://doi.org/10.1093/bioinformatics/btab522",
+  textVersion = paste(
+  "Ramiro Magno, Isabel Duarte, Ana-Teresa Maia, ",
+  "quincunx: an R package to query, download and wrangle PGS Catalog data, ",
+  "Bioinformatics, btab522, 16 July 2021, Pages 1-3, ",
+  " https://doi.org/10.1093/bioinformatics/btz605"
+  )
+)
