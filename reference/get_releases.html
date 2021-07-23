@@ -259,186 +259,174 @@ progress from the REST API server.</p></td>
 <span class='fu'>get_releases</span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; An object of class "releases"
 #&gt; Slot "releases":
-#&gt; <span style='color: #949494;'># A tibble: 1 x 5</span>
+#&gt; <span style='color: #949494;'># A tibble: 1 × 5</span>
 #&gt;   date       n_pgs n_ppm n_pgp notes                                            
 #&gt;   <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                                            
-#&gt; <span style='color: #BCBCBC;'>1</span> 2021-06-11    13    63     6 This release contains 13 new Score(s), 6 new Pub…
+#&gt; <span style='color: #BCBCBC;'>1</span> 2021-07-02     6    35     7 This release contains 6 new Score(s), 7 new Publ…
 #&gt; 
 #&gt; Slot "pgs_ids":
-#&gt; <span style='color: #949494;'># A tibble: 13 x 2</span>
-#&gt;    date       pgs_id   
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
-#&gt; <span style='color: #BCBCBC;'> 1</span> 2021-06-11 PGS000759
-#&gt; <span style='color: #BCBCBC;'> 2</span> 2021-06-11 PGS000760
-#&gt; <span style='color: #BCBCBC;'> 3</span> 2021-06-11 PGS000761
-#&gt; <span style='color: #BCBCBC;'> 4</span> 2021-06-11 PGS000799
-#&gt; <span style='color: #BCBCBC;'> 5</span> 2021-06-11 PGS000800
-#&gt; <span style='color: #BCBCBC;'> 6</span> 2021-06-11 PGS000801
-#&gt; <span style='color: #BCBCBC;'> 7</span> 2021-06-11 PGS000802
-#&gt; <span style='color: #BCBCBC;'> 8</span> 2021-06-11 PGS000803
-#&gt; <span style='color: #BCBCBC;'> 9</span> 2021-06-11 PGS000804
-#&gt; <span style='color: #BCBCBC;'>10</span> 2021-06-11 PGS000805
-#&gt; <span style='color: #BCBCBC;'>11</span> 2021-06-11 PGS000806
-#&gt; <span style='color: #BCBCBC;'>12</span> 2021-06-11 PGS000807
-#&gt; <span style='color: #BCBCBC;'>13</span> 2021-06-11 PGS000808
+#&gt; <span style='color: #949494;'># A tibble: 6 × 2</span>
+#&gt;   date       pgs_id   
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
+#&gt; <span style='color: #BCBCBC;'>1</span> 2021-07-02 PGS000809
+#&gt; <span style='color: #BCBCBC;'>2</span> 2021-07-02 PGS000810
+#&gt; <span style='color: #BCBCBC;'>3</span> 2021-07-02 PGS000811
+#&gt; <span style='color: #BCBCBC;'>4</span> 2021-07-02 PGS000812
+#&gt; <span style='color: #BCBCBC;'>5</span> 2021-07-02 PGS000813
+#&gt; <span style='color: #BCBCBC;'>6</span> 2021-07-02 PGS000814
 #&gt; 
 #&gt; Slot "ppm_ids":
-#&gt; <span style='color: #949494;'># A tibble: 63 x 2</span>
+#&gt; <span style='color: #949494;'># A tibble: 35 × 2</span>
 #&gt;    date       ppm_id   
 #&gt;    <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
-#&gt; <span style='color: #BCBCBC;'> 1</span> 2021-06-11 PPM001934
-#&gt; <span style='color: #BCBCBC;'> 2</span> 2021-06-11 PPM001935
-#&gt; <span style='color: #BCBCBC;'> 3</span> 2021-06-11 PPM001936
-#&gt; <span style='color: #BCBCBC;'> 4</span> 2021-06-11 PPM002077
-#&gt; <span style='color: #BCBCBC;'> 5</span> 2021-06-11 PPM002078
-#&gt; <span style='color: #BCBCBC;'> 6</span> 2021-06-11 PPM002079
-#&gt; <span style='color: #BCBCBC;'> 7</span> 2021-06-11 PPM002080
-#&gt; <span style='color: #BCBCBC;'> 8</span> 2021-06-11 PPM002081
-#&gt; <span style='color: #BCBCBC;'> 9</span> 2021-06-11 PPM002082
-#&gt; <span style='color: #BCBCBC;'>10</span> 2021-06-11 PPM002083
-#&gt; <span style='color: #949494;'># … with 53 more rows</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> 2021-07-02 PPM002137
+#&gt; <span style='color: #BCBCBC;'> 2</span> 2021-07-02 PPM002138
+#&gt; <span style='color: #BCBCBC;'> 3</span> 2021-07-02 PPM002139
+#&gt; <span style='color: #BCBCBC;'> 4</span> 2021-07-02 PPM002140
+#&gt; <span style='color: #BCBCBC;'> 5</span> 2021-07-02 PPM002141
+#&gt; <span style='color: #BCBCBC;'> 6</span> 2021-07-02 PPM002142
+#&gt; <span style='color: #BCBCBC;'> 7</span> 2021-07-02 PPM002143
+#&gt; <span style='color: #BCBCBC;'> 8</span> 2021-07-02 PPM002144
+#&gt; <span style='color: #BCBCBC;'> 9</span> 2021-07-02 PPM002145
+#&gt; <span style='color: #BCBCBC;'>10</span> 2021-07-02 PPM002146
+#&gt; <span style='color: #949494;'># … with 25 more rows</span>
 #&gt; 
 #&gt; Slot "pgp_ids":
-#&gt; <span style='color: #949494;'># A tibble: 6 x 2</span>
+#&gt; <span style='color: #949494;'># A tibble: 7 × 2</span>
 #&gt;   date       pgp_id   
 #&gt;   <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
-#&gt; <span style='color: #BCBCBC;'>1</span> 2021-06-11 PGP000164
-#&gt; <span style='color: #BCBCBC;'>2</span> 2021-06-11 PGP000189
-#&gt; <span style='color: #BCBCBC;'>3</span> 2021-06-11 PGP000190
-#&gt; <span style='color: #BCBCBC;'>4</span> 2021-06-11 PGP000191
-#&gt; <span style='color: #BCBCBC;'>5</span> 2021-06-11 PGP000192
-#&gt; <span style='color: #BCBCBC;'>6</span> 2021-06-11 PGP000193
+#&gt; <span style='color: #BCBCBC;'>1</span> 2021-07-02 PGP000194
+#&gt; <span style='color: #BCBCBC;'>2</span> 2021-07-02 PGP000195
+#&gt; <span style='color: #BCBCBC;'>3</span> 2021-07-02 PGP000196
+#&gt; <span style='color: #BCBCBC;'>4</span> 2021-07-02 PGP000197
+#&gt; <span style='color: #BCBCBC;'>5</span> 2021-07-02 PGP000198
+#&gt; <span style='color: #BCBCBC;'>6</span> 2021-07-02 PGP000199
+#&gt; <span style='color: #BCBCBC;'>7</span> 2021-07-02 PGP000200
 #&gt; </div><div class='input'><span class='fu'>get_releases</span><span class='op'>(</span>date <span class='op'>=</span> <span class='st'>'latest'</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; An object of class "releases"
 #&gt; Slot "releases":
-#&gt; <span style='color: #949494;'># A tibble: 1 x 5</span>
+#&gt; <span style='color: #949494;'># A tibble: 1 × 5</span>
 #&gt;   date       n_pgs n_ppm n_pgp notes                                            
 #&gt;   <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                                            
-#&gt; <span style='color: #BCBCBC;'>1</span> 2021-06-11    13    63     6 This release contains 13 new Score(s), 6 new Pub…
+#&gt; <span style='color: #BCBCBC;'>1</span> 2021-07-02     6    35     7 This release contains 6 new Score(s), 7 new Publ…
 #&gt; 
 #&gt; Slot "pgs_ids":
-#&gt; <span style='color: #949494;'># A tibble: 13 x 2</span>
-#&gt;    date       pgs_id   
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
-#&gt; <span style='color: #BCBCBC;'> 1</span> 2021-06-11 PGS000759
-#&gt; <span style='color: #BCBCBC;'> 2</span> 2021-06-11 PGS000760
-#&gt; <span style='color: #BCBCBC;'> 3</span> 2021-06-11 PGS000761
-#&gt; <span style='color: #BCBCBC;'> 4</span> 2021-06-11 PGS000799
-#&gt; <span style='color: #BCBCBC;'> 5</span> 2021-06-11 PGS000800
-#&gt; <span style='color: #BCBCBC;'> 6</span> 2021-06-11 PGS000801
-#&gt; <span style='color: #BCBCBC;'> 7</span> 2021-06-11 PGS000802
-#&gt; <span style='color: #BCBCBC;'> 8</span> 2021-06-11 PGS000803
-#&gt; <span style='color: #BCBCBC;'> 9</span> 2021-06-11 PGS000804
-#&gt; <span style='color: #BCBCBC;'>10</span> 2021-06-11 PGS000805
-#&gt; <span style='color: #BCBCBC;'>11</span> 2021-06-11 PGS000806
-#&gt; <span style='color: #BCBCBC;'>12</span> 2021-06-11 PGS000807
-#&gt; <span style='color: #BCBCBC;'>13</span> 2021-06-11 PGS000808
+#&gt; <span style='color: #949494;'># A tibble: 6 × 2</span>
+#&gt;   date       pgs_id   
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
+#&gt; <span style='color: #BCBCBC;'>1</span> 2021-07-02 PGS000809
+#&gt; <span style='color: #BCBCBC;'>2</span> 2021-07-02 PGS000810
+#&gt; <span style='color: #BCBCBC;'>3</span> 2021-07-02 PGS000811
+#&gt; <span style='color: #BCBCBC;'>4</span> 2021-07-02 PGS000812
+#&gt; <span style='color: #BCBCBC;'>5</span> 2021-07-02 PGS000813
+#&gt; <span style='color: #BCBCBC;'>6</span> 2021-07-02 PGS000814
 #&gt; 
 #&gt; Slot "ppm_ids":
-#&gt; <span style='color: #949494;'># A tibble: 63 x 2</span>
+#&gt; <span style='color: #949494;'># A tibble: 35 × 2</span>
 #&gt;    date       ppm_id   
 #&gt;    <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
-#&gt; <span style='color: #BCBCBC;'> 1</span> 2021-06-11 PPM001934
-#&gt; <span style='color: #BCBCBC;'> 2</span> 2021-06-11 PPM001935
-#&gt; <span style='color: #BCBCBC;'> 3</span> 2021-06-11 PPM001936
-#&gt; <span style='color: #BCBCBC;'> 4</span> 2021-06-11 PPM002077
-#&gt; <span style='color: #BCBCBC;'> 5</span> 2021-06-11 PPM002078
-#&gt; <span style='color: #BCBCBC;'> 6</span> 2021-06-11 PPM002079
-#&gt; <span style='color: #BCBCBC;'> 7</span> 2021-06-11 PPM002080
-#&gt; <span style='color: #BCBCBC;'> 8</span> 2021-06-11 PPM002081
-#&gt; <span style='color: #BCBCBC;'> 9</span> 2021-06-11 PPM002082
-#&gt; <span style='color: #BCBCBC;'>10</span> 2021-06-11 PPM002083
-#&gt; <span style='color: #949494;'># … with 53 more rows</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> 2021-07-02 PPM002137
+#&gt; <span style='color: #BCBCBC;'> 2</span> 2021-07-02 PPM002138
+#&gt; <span style='color: #BCBCBC;'> 3</span> 2021-07-02 PPM002139
+#&gt; <span style='color: #BCBCBC;'> 4</span> 2021-07-02 PPM002140
+#&gt; <span style='color: #BCBCBC;'> 5</span> 2021-07-02 PPM002141
+#&gt; <span style='color: #BCBCBC;'> 6</span> 2021-07-02 PPM002142
+#&gt; <span style='color: #BCBCBC;'> 7</span> 2021-07-02 PPM002143
+#&gt; <span style='color: #BCBCBC;'> 8</span> 2021-07-02 PPM002144
+#&gt; <span style='color: #BCBCBC;'> 9</span> 2021-07-02 PPM002145
+#&gt; <span style='color: #BCBCBC;'>10</span> 2021-07-02 PPM002146
+#&gt; <span style='color: #949494;'># … with 25 more rows</span>
 #&gt; 
 #&gt; Slot "pgp_ids":
-#&gt; <span style='color: #949494;'># A tibble: 6 x 2</span>
+#&gt; <span style='color: #949494;'># A tibble: 7 × 2</span>
 #&gt;   date       pgp_id   
 #&gt;   <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
-#&gt; <span style='color: #BCBCBC;'>1</span> 2021-06-11 PGP000164
-#&gt; <span style='color: #BCBCBC;'>2</span> 2021-06-11 PGP000189
-#&gt; <span style='color: #BCBCBC;'>3</span> 2021-06-11 PGP000190
-#&gt; <span style='color: #BCBCBC;'>4</span> 2021-06-11 PGP000191
-#&gt; <span style='color: #BCBCBC;'>5</span> 2021-06-11 PGP000192
-#&gt; <span style='color: #BCBCBC;'>6</span> 2021-06-11 PGP000193
+#&gt; <span style='color: #BCBCBC;'>1</span> 2021-07-02 PGP000194
+#&gt; <span style='color: #BCBCBC;'>2</span> 2021-07-02 PGP000195
+#&gt; <span style='color: #BCBCBC;'>3</span> 2021-07-02 PGP000196
+#&gt; <span style='color: #BCBCBC;'>4</span> 2021-07-02 PGP000197
+#&gt; <span style='color: #BCBCBC;'>5</span> 2021-07-02 PGP000198
+#&gt; <span style='color: #BCBCBC;'>6</span> 2021-07-02 PGP000199
+#&gt; <span style='color: #BCBCBC;'>7</span> 2021-07-02 PGP000200
 #&gt; </div><div class='input'>
 <span class='co'># Get all releases</span>
 <span class='fu'>get_releases</span><span class='op'>(</span>date <span class='op'>=</span> <span class='st'>'all'</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; An object of class "releases"
 #&gt; Slot "releases":
-#&gt; <span style='color: #949494;'># A tibble: 29 x 5</span>
+#&gt; <span style='color: #949494;'># A tibble: 30 × 5</span>
 #&gt;    date       n_pgs n_ppm n_pgp notes                                           
 #&gt;    <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                                           
-#&gt; <span style='color: #BCBCBC;'> 1</span> 2021-06-11    13    63     6 This release contains 13 new Score(s), 6 new Pu…
-#&gt; <span style='color: #BCBCBC;'> 2</span> 2021-05-28    33   115    17 This release contains 33 new Score(s), 17 new P…
-#&gt; <span style='color: #BCBCBC;'> 3</span> 2021-04-28     4    25     7 This release contains 4 new Score(s), 7 new Pub…
-#&gt; <span style='color: #BCBCBC;'> 4</span> 2021-04-07     6    22     5 This release contains 6 new Score(s), 5 new Pub…
-#&gt; <span style='color: #BCBCBC;'> 5</span> 2021-03-22    13   144    11 This release contains 13 new Score(s), 11 new P…
-#&gt; <span style='color: #BCBCBC;'> 6</span> 2021-02-23    17   118    11 This release contains 17 new Score(s), 11 new P…
-#&gt; <span style='color: #BCBCBC;'> 7</span> 2021-02-03    58   265     8 This release contains 58 new Score(s), 8 new Pu…
-#&gt; <span style='color: #BCBCBC;'> 8</span> 2021-01-07     6    31     6 This release contains 6 new Score(s), 6 new Pub…
-#&gt; <span style='color: #BCBCBC;'> 9</span> 2020-12-15   306   313     4 This release contains 306 new Score(s), 4 new P…
-#&gt; <span style='color: #BCBCBC;'>10</span> 2020-12-08     9    65     6 This release contains 9 new Score(s), 6 new Pub…
-#&gt; <span style='color: #949494;'># … with 19 more rows</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> 2021-07-02     6    35     7 This release contains 6 new Score(s), 7 new Pub…
+#&gt; <span style='color: #BCBCBC;'> 2</span> 2021-06-11    13    63     6 This release contains 13 new Score(s), 6 new Pu…
+#&gt; <span style='color: #BCBCBC;'> 3</span> 2021-05-28    33   115    17 This release contains 33 new Score(s), 17 new P…
+#&gt; <span style='color: #BCBCBC;'> 4</span> 2021-04-28     4    25     7 This release contains 4 new Score(s), 7 new Pub…
+#&gt; <span style='color: #BCBCBC;'> 5</span> 2021-04-07     6    22     5 This release contains 6 new Score(s), 5 new Pub…
+#&gt; <span style='color: #BCBCBC;'> 6</span> 2021-03-22    13   144    11 This release contains 13 new Score(s), 11 new P…
+#&gt; <span style='color: #BCBCBC;'> 7</span> 2021-02-23    17   118    11 This release contains 17 new Score(s), 11 new P…
+#&gt; <span style='color: #BCBCBC;'> 8</span> 2021-02-03    58   265     8 This release contains 58 new Score(s), 8 new Pu…
+#&gt; <span style='color: #BCBCBC;'> 9</span> 2021-01-07     6    31     6 This release contains 6 new Score(s), 6 new Pub…
+#&gt; <span style='color: #BCBCBC;'>10</span> 2020-12-15   306   313     4 This release contains 306 new Score(s), 4 new P…
+#&gt; <span style='color: #949494;'># … with 20 more rows</span>
 #&gt; 
 #&gt; Slot "pgs_ids":
-#&gt; <span style='color: #949494;'># A tibble: 806 x 2</span>
+#&gt; <span style='color: #949494;'># A tibble: 812 × 2</span>
 #&gt;    date       pgs_id   
 #&gt;    <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
-#&gt; <span style='color: #BCBCBC;'> 1</span> 2021-06-11 PGS000759
-#&gt; <span style='color: #BCBCBC;'> 2</span> 2021-06-11 PGS000760
-#&gt; <span style='color: #BCBCBC;'> 3</span> 2021-06-11 PGS000761
-#&gt; <span style='color: #BCBCBC;'> 4</span> 2021-06-11 PGS000799
-#&gt; <span style='color: #BCBCBC;'> 5</span> 2021-06-11 PGS000800
-#&gt; <span style='color: #BCBCBC;'> 6</span> 2021-06-11 PGS000801
-#&gt; <span style='color: #BCBCBC;'> 7</span> 2021-06-11 PGS000802
-#&gt; <span style='color: #BCBCBC;'> 8</span> 2021-06-11 PGS000803
-#&gt; <span style='color: #BCBCBC;'> 9</span> 2021-06-11 PGS000804
-#&gt; <span style='color: #BCBCBC;'>10</span> 2021-06-11 PGS000805
-#&gt; <span style='color: #949494;'># … with 796 more rows</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> 2021-07-02 PGS000809
+#&gt; <span style='color: #BCBCBC;'> 2</span> 2021-07-02 PGS000810
+#&gt; <span style='color: #BCBCBC;'> 3</span> 2021-07-02 PGS000811
+#&gt; <span style='color: #BCBCBC;'> 4</span> 2021-07-02 PGS000812
+#&gt; <span style='color: #BCBCBC;'> 5</span> 2021-07-02 PGS000813
+#&gt; <span style='color: #BCBCBC;'> 6</span> 2021-07-02 PGS000814
+#&gt; <span style='color: #BCBCBC;'> 7</span> 2021-06-11 PGS000759
+#&gt; <span style='color: #BCBCBC;'> 8</span> 2021-06-11 PGS000760
+#&gt; <span style='color: #BCBCBC;'> 9</span> 2021-06-11 PGS000761
+#&gt; <span style='color: #BCBCBC;'>10</span> 2021-06-11 PGS000799
+#&gt; <span style='color: #949494;'># … with 802 more rows</span>
 #&gt; 
 #&gt; Slot "ppm_ids":
-#&gt; <span style='color: #949494;'># A tibble: 2,019 x 2</span>
+#&gt; <span style='color: #949494;'># A tibble: 2,054 × 2</span>
 #&gt;    date       ppm_id   
 #&gt;    <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
-#&gt; <span style='color: #BCBCBC;'> 1</span> 2021-06-11 PPM001934
-#&gt; <span style='color: #BCBCBC;'> 2</span> 2021-06-11 PPM001935
-#&gt; <span style='color: #BCBCBC;'> 3</span> 2021-06-11 PPM001936
-#&gt; <span style='color: #BCBCBC;'> 4</span> 2021-06-11 PPM002077
-#&gt; <span style='color: #BCBCBC;'> 5</span> 2021-06-11 PPM002078
-#&gt; <span style='color: #BCBCBC;'> 6</span> 2021-06-11 PPM002079
-#&gt; <span style='color: #BCBCBC;'> 7</span> 2021-06-11 PPM002080
-#&gt; <span style='color: #BCBCBC;'> 8</span> 2021-06-11 PPM002081
-#&gt; <span style='color: #BCBCBC;'> 9</span> 2021-06-11 PPM002082
-#&gt; <span style='color: #BCBCBC;'>10</span> 2021-06-11 PPM002083
-#&gt; <span style='color: #949494;'># … with 2,009 more rows</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> 2021-07-02 PPM002137
+#&gt; <span style='color: #BCBCBC;'> 2</span> 2021-07-02 PPM002138
+#&gt; <span style='color: #BCBCBC;'> 3</span> 2021-07-02 PPM002139
+#&gt; <span style='color: #BCBCBC;'> 4</span> 2021-07-02 PPM002140
+#&gt; <span style='color: #BCBCBC;'> 5</span> 2021-07-02 PPM002141
+#&gt; <span style='color: #BCBCBC;'> 6</span> 2021-07-02 PPM002142
+#&gt; <span style='color: #BCBCBC;'> 7</span> 2021-07-02 PPM002143
+#&gt; <span style='color: #BCBCBC;'> 8</span> 2021-07-02 PPM002144
+#&gt; <span style='color: #BCBCBC;'> 9</span> 2021-07-02 PPM002145
+#&gt; <span style='color: #BCBCBC;'>10</span> 2021-07-02 PPM002146
+#&gt; <span style='color: #949494;'># … with 2,044 more rows</span>
 #&gt; 
 #&gt; Slot "pgp_ids":
-#&gt; <span style='color: #949494;'># A tibble: 190 x 2</span>
+#&gt; <span style='color: #949494;'># A tibble: 197 × 2</span>
 #&gt;    date       pgp_id   
 #&gt;    <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
-#&gt; <span style='color: #BCBCBC;'> 1</span> 2021-06-11 PGP000164
-#&gt; <span style='color: #BCBCBC;'> 2</span> 2021-06-11 PGP000189
-#&gt; <span style='color: #BCBCBC;'> 3</span> 2021-06-11 PGP000190
-#&gt; <span style='color: #BCBCBC;'> 4</span> 2021-06-11 PGP000191
-#&gt; <span style='color: #BCBCBC;'> 5</span> 2021-06-11 PGP000192
-#&gt; <span style='color: #BCBCBC;'> 6</span> 2021-06-11 PGP000193
-#&gt; <span style='color: #BCBCBC;'> 7</span> 2021-05-28 PGP000172
-#&gt; <span style='color: #BCBCBC;'> 8</span> 2021-05-28 PGP000173
-#&gt; <span style='color: #BCBCBC;'> 9</span> 2021-05-28 PGP000174
-#&gt; <span style='color: #BCBCBC;'>10</span> 2021-05-28 PGP000175
-#&gt; <span style='color: #949494;'># … with 180 more rows</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> 2021-07-02 PGP000194
+#&gt; <span style='color: #BCBCBC;'> 2</span> 2021-07-02 PGP000195
+#&gt; <span style='color: #BCBCBC;'> 3</span> 2021-07-02 PGP000196
+#&gt; <span style='color: #BCBCBC;'> 4</span> 2021-07-02 PGP000197
+#&gt; <span style='color: #BCBCBC;'> 5</span> 2021-07-02 PGP000198
+#&gt; <span style='color: #BCBCBC;'> 6</span> 2021-07-02 PGP000199
+#&gt; <span style='color: #BCBCBC;'> 7</span> 2021-07-02 PGP000200
+#&gt; <span style='color: #BCBCBC;'> 8</span> 2021-06-11 PGP000164
+#&gt; <span style='color: #BCBCBC;'> 9</span> 2021-06-11 PGP000189
+#&gt; <span style='color: #BCBCBC;'>10</span> 2021-06-11 PGP000190
+#&gt; <span style='color: #949494;'># … with 187 more rows</span>
 #&gt; </div><div class='input'>
 <span class='co'># Get a specific release by date</span>
 <span class='fu'>get_releases</span><span class='op'>(</span>date <span class='op'>=</span> <span class='st'>'2020-08-19'</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; An object of class "releases"
 #&gt; Slot "releases":
-#&gt; <span style='color: #949494;'># A tibble: 1 x 5</span>
+#&gt; <span style='color: #949494;'># A tibble: 1 × 5</span>
 #&gt;   date       n_pgs n_ppm n_pgp notes                                            
 #&gt;   <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                                            
 #&gt; <span style='color: #BCBCBC;'>1</span> 2020-08-19    22    67     5 This release contains 22 new Score(s), 5 new Pub…
 #&gt; 
 #&gt; Slot "pgs_ids":
-#&gt; <span style='color: #949494;'># A tibble: 22 x 2</span>
+#&gt; <span style='color: #949494;'># A tibble: 22 × 2</span>
 #&gt;    date       pgs_id   
 #&gt;    <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
 #&gt; <span style='color: #BCBCBC;'> 1</span> 2020-08-19 PGS000296
@@ -454,7 +442,7 @@ progress from the REST API server.</p></td>
 #&gt; <span style='color: #949494;'># … with 12 more rows</span>
 #&gt; 
 #&gt; Slot "ppm_ids":
-#&gt; <span style='color: #949494;'># A tibble: 67 x 2</span>
+#&gt; <span style='color: #949494;'># A tibble: 67 × 2</span>
 #&gt;    date       ppm_id   
 #&gt;    <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
 #&gt; <span style='color: #BCBCBC;'> 1</span> 2020-08-19 PPM000743
@@ -470,7 +458,7 @@ progress from the REST API server.</p></td>
 #&gt; <span style='color: #949494;'># … with 57 more rows</span>
 #&gt; 
 #&gt; Slot "pgp_ids":
-#&gt; <span style='color: #949494;'># A tibble: 5 x 2</span>
+#&gt; <span style='color: #949494;'># A tibble: 5 × 2</span>
 #&gt;   date       pgp_id   
 #&gt;   <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
 #&gt; <span style='color: #BCBCBC;'>1</span> 2020-08-19 PGP000090

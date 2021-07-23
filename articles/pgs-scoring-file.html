@@ -186,7 +186,7 @@
 <p>The data element contains the actual relevant information for calculating scores:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">PGS000655</span><span class="op">$</span><span class="va">data</span>
-<span class="co">#&gt; # A tibble: 10 x 5</span>
+<span class="co">#&gt; # A tibble: 10 × 5</span>
 <span class="co">#&gt;    rsID       effect_allele effect_weight weight_type    OR</span>
 <span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;</span>
 <span class="co">#&gt;  1 rs1260326  T                    0.0571 beta         1.14</span>
@@ -202,7 +202,7 @@
 <p>The minimal information for calculating scores are: variant identification information, and its effect allele, as well as the corresponding score weight. Currently, the PGS Catalog project, identifies a variant by either its rsID (column <code>rsID</code>), or by its genomic position (columns <code>chr_name</code> and <code>chr_position</code>). The effect allele and the score weight are given in the columns <code>effect_allele</code> and <code>effect_weight</code>, respectively.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">PGS000655</span><span class="op">$</span><span class="va">data</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'rsID'</span>, <span class="st">'effect_allele'</span>, <span class="st">'effect_weight'</span><span class="op">)</span><span class="op">]</span>
-<span class="co">#&gt; # A tibble: 10 x 3</span>
+<span class="co">#&gt; # A tibble: 10 × 3</span>
 <span class="co">#&gt;    rsID       effect_allele effect_weight</span>
 <span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;                 &lt;dbl&gt;</span>
 <span class="co">#&gt;  1 rs1260326  T                    0.0571</span>

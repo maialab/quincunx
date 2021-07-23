@@ -179,7 +179,7 @@
 <p>The object <code>my_scores</code> is an S4 object of class <code>scores</code>, see <code><a href="../reference/scores-class.html">class?scores</a></code> for details. In quincunx, each S4 object contains at least one (the first) table where each observation refers to an entity. To access tables in S4 objects you use the <code><a href="https://rdrr.io/r/base/slotOp.html">@</a></code> operator. The first table in <code>my_scores</code> is <code>scores</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_scores</span><span class="op">@</span><span class="va">scores</span>
-<span class="co">#&gt; # A tibble: 10 x 12</span>
+<span class="co">#&gt; # A tibble: 10 × 12</span>
 <span class="co">#&gt;    pgs_id pgs_name scoring_file matches_publica… reported_trait trait_additiona…</span>
 <span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;        &lt;lgl&gt;            &lt;chr&gt;          &lt;chr&gt;           </span>
 <span class="co">#&gt;  1 PGS00… PRS77_BC http://ftp.… TRUE             Breast Cancer  &lt;NA&gt;            </span>
@@ -205,7 +205,7 @@
 <p>It is important to know the number of scores if you plan to subset the <code>my_scores</code> object by position. In this case there are 10 scores. If you want to subset the first, fifth, and tenth score, then you could do:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_scores</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">10</span><span class="op">)</span><span class="op">]</span><span class="op">@</span><span class="va">scores</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>
-<span class="co">#&gt; # A tibble: 3 x 2</span>
+<span class="co">#&gt; # A tibble: 3 × 2</span>
 <span class="co">#&gt;   pgs_id    pgs_name    </span>
 <span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;       </span>
 <span class="co">#&gt; 1 PGS000001 PRS77_BC    </span>
@@ -216,7 +216,7 @@
 <p>Before subsetting:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_scores</span><span class="op">@</span><span class="va">samples</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>
-<span class="co">#&gt; # A tibble: 22 x 4</span>
+<span class="co">#&gt; # A tibble: 22 × 4</span>
 <span class="co">#&gt;    pgs_id    sample_id stage sample_size</span>
 <span class="co">#&gt;    &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;       &lt;int&gt;</span>
 <span class="co">#&gt;  1 PGS000001         1 gwas        22627</span>
@@ -233,7 +233,7 @@
 <p>After subsetting with <code><a href="https://rdrr.io/r/base/c.html">c(1, 5, 10)</a></code>:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_scores</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">10</span><span class="op">)</span><span class="op">]</span><span class="op">@</span><span class="va">samples</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>
-<span class="co">#&gt; # A tibble: 5 x 4</span>
+<span class="co">#&gt; # A tibble: 5 × 4</span>
 <span class="co">#&gt;   pgs_id    sample_id stage sample_size</span>
 <span class="co">#&gt;   &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;       &lt;int&gt;</span>
 <span class="co">#&gt; 1 PGS000001         1 gwas        22627</span>
@@ -248,7 +248,7 @@
 <p>To subset by identifier you simply use a character vector with the identifiers of interest. Let us say now you want two identifiers: <code>"PGS000002"</code> and <code>"PGS000008"</code>. Then only you need to do is:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_scores</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'PGS000002'</span>, <span class="st">'PGS000008'</span><span class="op">)</span><span class="op">]</span><span class="op">@</span><span class="va">scores</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>
-<span class="co">#&gt; # A tibble: 2 x 2</span>
+<span class="co">#&gt; # A tibble: 2 × 2</span>
 <span class="co">#&gt;   pgs_id    pgs_name     </span>
 <span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;        </span>
 <span class="co">#&gt; 1 PGS000002 PRS77_ERpos  </span>
@@ -260,7 +260,7 @@
 <p>Please note that if you repeat the same position or identifier, you will get that score repeated:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_scores</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'PGS000003'</span>, <span class="st">'PGS000003'</span><span class="op">)</span><span class="op">]</span><span class="op">@</span><span class="va">scores</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>
-<span class="co">#&gt; # A tibble: 2 x 2</span>
+<span class="co">#&gt; # A tibble: 2 × 2</span>
 <span class="co">#&gt;   pgs_id    pgs_name   </span>
 <span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;      </span>
 <span class="co">#&gt; 1 PGS000003 PRS77_ERneg</span>
@@ -271,7 +271,7 @@
 <p>Or using the third position twice:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_scores</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span><span class="op">]</span><span class="op">@</span><span class="va">scores</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>
-<span class="co">#&gt; # A tibble: 2 x 2</span>
+<span class="co">#&gt; # A tibble: 2 × 2</span>
 <span class="co">#&gt;   pgs_id    pgs_name   </span>
 <span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;      </span>
 <span class="co">#&gt; 1 PGS000003 PRS77_ERneg</span>
@@ -287,7 +287,7 @@
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Notice the minus sign before c(1, 5, 10)</span>
 <span class="va">my_scores</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">10</span><span class="op">)</span><span class="op">]</span><span class="op">@</span><span class="va">scores</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>
-<span class="co">#&gt; # A tibble: 7 x 2</span>
+<span class="co">#&gt; # A tibble: 7 × 2</span>
 <span class="co">#&gt;   pgs_id    pgs_name     </span>
 <span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;        </span>
 <span class="co">#&gt; 1 PGS000002 PRS77_ERpos  </span>
@@ -304,7 +304,7 @@
 <p>If you request a position or identifier that does not match in the object, the result is an empty object. For example, the 11th position is not present in <code>my_scores</code> so the returned object is empty:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_scores</span><span class="op">[</span><span class="fl">11</span><span class="op">]</span><span class="op">@</span><span class="va">scores</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>
-<span class="co">#&gt; # A tibble: 0 x 2</span>
+<span class="co">#&gt; # A tibble: 0 × 2</span>
 <span class="co">#&gt; # … with 2 variables: pgs_id &lt;chr&gt;, pgs_name &lt;chr&gt;</span>
 
 <span class="fu"><a href="../reference/n.html">n</a></span><span class="op">(</span><span class="va">my_scores</span><span class="op">[</span><span class="fl">11</span><span class="op">]</span><span class="op">)</span>
@@ -312,7 +312,7 @@
 <p>Please note that the returned object is still a valid <code>scores</code> object and that it contains all the expected tables of such an object. It is just that all tables have no rows. The same behaviour is to be expected if you try to subset with non-existing identifiers:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_scores</span><span class="op">[</span><span class="st">'PGS000011'</span><span class="op">]</span><span class="op">@</span><span class="va">scores</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>
-<span class="co">#&gt; # A tibble: 0 x 2</span>
+<span class="co">#&gt; # A tibble: 0 × 2</span>
 <span class="co">#&gt; # … with 2 variables: pgs_id &lt;chr&gt;, pgs_name &lt;chr&gt;</span>
 
 <span class="fu"><a href="../reference/n.html">n</a></span><span class="op">(</span><span class="va">my_scores</span><span class="op">[</span><span class="st">'PGS000011'</span><span class="op">]</span><span class="op">)</span>
@@ -329,7 +329,7 @@
 
 <span class="co"># Note that the column `author_fullname` corresponds to the first author.</span>
 <span class="va">my_publ</span><span class="op">@</span><span class="va">publications</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'pgp_id'</span>, <span class="st">'pubmed_id'</span>, <span class="st">'publication_date'</span>, <span class="st">'author_fullname'</span><span class="op">)</span><span class="op">]</span>
-<span class="co">#&gt; # A tibble: 7 x 4</span>
+<span class="co">#&gt; # A tibble: 7 × 4</span>
 <span class="co">#&gt;   pgp_id    pubmed_id publication_date author_fullname</span>
 <span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;     &lt;date&gt;           &lt;chr&gt;          </span>
 <span class="co">#&gt; 1 PGP000005 27655226  2016-09-21       Abraham G      </span>
@@ -343,7 +343,7 @@
 <p>To keep only those publications we subset the publication object <code>my_publ</code> by those PGP identifiers:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_publ</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'PGP000005'</span>, <span class="st">'PGP000027'</span>, <span class="st">'PGP000028'</span>, <span class="st">'PGP000029'</span><span class="op">)</span><span class="op">]</span><span class="op">@</span><span class="va">publications</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'pgp_id'</span>, <span class="st">'pubmed_id'</span>, <span class="st">'publication_date'</span>, <span class="st">'author_fullname'</span><span class="op">)</span><span class="op">]</span>
-<span class="co">#&gt; # A tibble: 4 x 4</span>
+<span class="co">#&gt; # A tibble: 4 × 4</span>
 <span class="co">#&gt;   pgp_id    pubmed_id publication_date author_fullname</span>
 <span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;     &lt;date&gt;           &lt;chr&gt;          </span>
 <span class="co">#&gt; 1 PGP000005 27655226  2016-09-21       Abraham G      </span>
@@ -363,7 +363,7 @@
 <code class="sourceCode R"><span class="va">lymph_traits_positions</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">'lymph'</span>, <span class="va">all_traits</span><span class="op">@</span><span class="va">traits</span><span class="op">$</span><span class="va">trait</span><span class="op">)</span>
 
 <span class="va">all_traits</span><span class="op">[</span><span class="va">lymph_traits_positions</span><span class="op">]</span><span class="op">@</span><span class="va">traits</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'efo_id'</span>, <span class="st">'trait'</span><span class="op">)</span><span class="op">]</span>
-<span class="co">#&gt; # A tibble: 7 x 2</span>
+<span class="co">#&gt; # A tibble: 7 × 2</span>
 <span class="co">#&gt;   efo_id        trait                              </span>
 <span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;                              </span>
 <span class="co">#&gt; 1 EFO_0000095   chronic lymphocytic leukemia       </span>
@@ -385,7 +385,7 @@
 <p>Confirm that indeed only those traits with <code>"lymph"</code> in the name are present:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">traits_only_lymph</span><span class="op">@</span><span class="va">traits</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span><span class="op">]</span>
-<span class="co">#&gt; # A tibble: 7 x 2</span>
+<span class="co">#&gt; # A tibble: 7 × 2</span>
 <span class="co">#&gt;   efo_id        trait                              </span>
 <span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;                              </span>
 <span class="co">#&gt; 1 EFO_0000095   chronic lymphocytic leukemia       </span>
@@ -412,7 +412,7 @@
 
 <span class="co"># Table `samples` contains the samples that comprise this Sample Set</span>
 <span class="va">my_sample_sets</span><span class="op">[</span><span class="st">'PSS000008'</span><span class="op">]</span><span class="op">@</span><span class="va">samples</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>
-<span class="co">#&gt; # A tibble: 3 x 6</span>
+<span class="co">#&gt; # A tibble: 3 × 6</span>
 <span class="co">#&gt;   pss_id    sample_id stage sample_size sample_cases sample_controls</span>
 <span class="co">#&gt;   &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;       &lt;int&gt;        &lt;int&gt;           &lt;int&gt;</span>
 <span class="co">#&gt; 1 PSS000008         1 eval         6978          149            6829</span>
@@ -428,7 +428,7 @@
 
 <span class="co"># Table `samples` contains the samples that comprise this Performance Metrics</span>
 <span class="va">my_perf_metrics</span><span class="op">[</span><span class="st">'PPM000002'</span><span class="op">]</span><span class="op">@</span><span class="va">samples</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>
-<span class="co">#&gt; # A tibble: 1 x 6</span>
+<span class="co">#&gt; # A tibble: 1 × 6</span>
 <span class="co">#&gt;   ppm_id    pss_id    sample_id stage sample_size sample_cases</span>
 <span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;       &lt;int&gt;        &lt;int&gt;</span>
 <span class="co">#&gt; 1 PPM000002 PSS000003         1 eval        53923        21365</span></code></pre></div>
