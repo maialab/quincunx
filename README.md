@@ -43,7 +43,7 @@ citation('quincunx')
 #>   Ramiro Magno, Isabel Duarte, Ana-Teresa Maia, quincunx: an R package
 #>   to query, download and wrangle PGS Catalog data, Bioinformatics,
 #>   btab522, 16 July 2021, Pages 1-3,
-#>   https://doi.org/10.1093/bioinformatics/btz605
+#>   https://doi.org/10.1093/bioinformatics/btab522
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
