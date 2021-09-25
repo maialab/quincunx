@@ -39,7 +39,7 @@ verbose about the different queries or not.}
 performed.}
 }
 \value{
-An \linkS4class{performance_metrics} object.
+A \linkS4class{performance_metrics} object.
 }
 \description{
 Retrieves performance metrics via the PGS Catalog REST API. The REST
@@ -55,6 +55,16 @@ Please note that all search criteria are vectorised, thus allowing for batch
 mode search.
 }
 \examples{
-# Coming soon...
+# Get performance metrics catalogued with identifier 'PPM000001'
+get_performance_metrics(ppm_id = 'PPM000001')
+
+# Get performance metrics associated with polygenic score id 'PGS000001'
+get_performance_metrics(pgs_id = 'PGS000001')
+
+# To retrieve all catalogued performed metrics in PGS Catalog you simply
+# leave the parameters `ppm_id` and `pgs_id` as `NULL`.
+\dontrun{
+get_performance_metrics()
+}
 
 }

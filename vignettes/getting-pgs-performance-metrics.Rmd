@@ -14,8 +14,61 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+## PGS performance metrics
+
+Performance metrics assess the validity of a PGS in a Sample Set. This
+assessment is performed on samples not used for score development.
+
+Performance metrics are retrieved with the function `get_performance_metrics()`.
+The returned data is provided as an S4 object of class `performance_metrics`.
+
+Common metrics include:
+
+- standardized effect sizes: odds ratios or hazard ratios, and regression
+coefficients $\beta$, see slot `pgs_effect_sizes`;
+- classification accuracy metrics: area under the receiver operating
+characteristic curve, C-index and area under the precision-recall curve, see
+slot `pgs_classification_metrics`;
+- other relevant metrics: calibration ($\chi^2$)), see slot `pgs_other_metrics`.
+
+The covariates used in the model (most commonly age, sex and genetic principal
+components to account for the population structure) are also recorded for each
+set of metrics. These can be found in the slot `demographics`.
+
+## Getting PGS performance metrics
+
+In the PGS Catalog, performance metrics have been catalogued and have an
+associated identifier that starts with the prefix `"PPM"`. To retrieve the
+performance metrics associated with one assessment of a polygenic score, you can
+use directly its identifier:
+
+```{r}
 library(quincunx)
+
+get_performance_metrics(ppm_id = 'PPM000001')
 ```
 
-Coming soon.
+## Searching by PGS identifier
+
+Alternatively, you could also search by the associated PGS identifier, i.e.
+`"PGS000001"`:
+
+```{r}
+get_performance_metrics(pgs_id = 'PGS000001')
+```
+
+As you can see, when you search by `'PGS000001'`, we get multiple PPM
+identifiers (PPM000001 included). This is because a PGS could have been assessed
+multiple independent times, each assessment resulting in its own performance
+metrics data entry, with its own associated identifier.
+
+## Vectorised search
+
+The function `get_performance_metrics()` is vectorised over `ppm_id` and
+`pgs_id` and you could readily retrieve performance metrics for a set of
+polygenic scores by providing a vector of identifiers (e.g. PGSes 42 thru 46):
+
+```{r}
+ppm <- get_performance_metrics(pgs_id = sprintf("PGS%06d", 42:46))
+print(ppm@performance_metrics, n = Inf)
+```

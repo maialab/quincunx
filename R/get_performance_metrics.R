@@ -90,9 +90,19 @@ get_performance_by_pgs_id <- function(pgs_id, limit = 20L, verbose = FALSE, warn
 #' @param progress_bar Whether to show a progress bar as the queries are
 #'   performed.
 #'
-#' @return An \linkS4class{performance_metrics} object.
+#' @return A \linkS4class{performance_metrics} object.
 #' @examples
-#' # Coming soon...
+#' # Get performance metrics catalogued with identifier 'PPM000001'
+#' get_performance_metrics(ppm_id = 'PPM000001')
+#'
+#' # Get performance metrics associated with polygenic score id 'PGS000001'
+#' get_performance_metrics(pgs_id = 'PGS000001')
+#'
+#' # To retrieve all catalogued performed metrics in PGS Catalog you simply
+#' # leave the parameters `ppm_id` and `pgs_id` as `NULL`.
+#' \dontrun{
+#' get_performance_metrics()
+#' }
 #'
 #' @export
 get_performance_metrics <- function(
