@@ -24,13 +24,19 @@ verbose about the different queries or not.}
 progress from the REST API server.}
 }
 \value{
-An \linkS4class{cohorts} object.
+A \linkS4class{cohorts} object.
 }
 \description{
 Retrieves cohorts via the PGS Catalog REST API. Please note that all
 \code{cohort_symbol} is vectorised, thus allowing for batch mode search.
 }
 \examples{
-# Coming soon...
+# Get information about specific cohorts by their symbols (acronyms)
+get_cohorts(cohort_symbol = c('23andMe', 'IPOBCS'))
+
+# Get info on all cohorts (may take a few minutes to download)
+\dontrun{
+get_cohorts()
+}
 
 }

@@ -56,9 +56,15 @@ get_cohort_all <- function(limit = 20L, verbose = FALSE, warnings = TRUE, progre
 #' @param progress_bar Whether to show a progress bar indicating download
 #'   progress from the REST API server.
 #'
-#' @return An \linkS4class{cohorts} object.
+#' @return A \linkS4class{cohorts} object.
 #' @examples
-#' # Coming soon...
+#' # Get information about specific cohorts by their symbols (acronyms)
+#' get_cohorts(cohort_symbol = c('23andMe', 'IPOBCS'))
+#'
+#' # Get info on all cohorts (may take a few minutes to download)
+#' \dontrun{
+#' get_cohorts()
+#' }
 #'
 #' @export
 get_cohorts <- function(
