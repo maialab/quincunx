@@ -55,7 +55,7 @@
   
 
 <meta property="og:title" content="Get PGS Catalog Publications — get_publications" />
-<meta property="og:description" content="Retrieves polygenic publications via the PGS Catalog REST API. The REST
+<meta property="og:description" content="Retrieves PGS publications via the PGS Catalog REST API. The REST
 API is queried multiple times with the criteria passed as arguments (see
 below). By default all publications that match the criteria supplied in the
 arguments are retrieved: this corresponds to the default option
@@ -200,7 +200,7 @@ set_operation to 'intersection'." />
     </div>
 
     <div class="ref-description">
-    <p>Retrieves polygenic publications via the PGS Catalog REST API. The REST
+    <p>Retrieves PGS publications via the PGS Catalog REST API. The REST
 API is queried multiple times with the criteria passed as arguments (see
 below). By default all publications that match the criteria supplied in the
 arguments are retrieved: this corresponds to the default option
@@ -275,15 +275,125 @@ performed.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An <a href='publications-class.html'>publications</a> object.</p>
+    <p>A <a href='publications-class.html'>publications</a> object.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Please note that all search criteria are vectorised, thus allowing for batch
-mode search.</p>
+mode search. For more details see the help vignette:
+<code><a href='../articles/getting-pgs-publications.html'>vignette("getting-pgs-publications", package = "quincunx")</a></code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Coming soon...</span>
-
+    <pre class="examples"><div class='input'><span class='co'># Get PGS publications by their identifier</span>
+<span class='fu'>get_publications</span><span class='op'>(</span>pgp_id <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'PGP000001'</span>, <span class='st'>'PGP000002'</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; An object of class "publications"
+#&gt; Slot "publications":
+#&gt; <span style='color: #949494;'># A tibble: 2 × 8</span>
+#&gt;   pgp_id    pubmed_id publication_date publication  title  author_fullname doi  
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> PGP000001 25855707  2015-04-08       J Natl Canc… Predi… Mavaddat N      10.1…
+#&gt; <span style='color: #BCBCBC;'>2</span> PGP000002 30554720  2018-12-13       Am J Hum Ge… Polyg… Mavaddat N      10.1…
+#&gt; <span style='color: #949494;'># … with 1 more variable: authors &lt;chr&gt;</span>
+#&gt; 
+#&gt; Slot "pgs_ids":
+#&gt; <span style='color: #949494;'># A tibble: 21 × 3</span>
+#&gt;    pgp_id    pgs_id    stage   
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   
+#&gt; <span style='color: #BCBCBC;'> 1</span> PGP000001 PGS000001 gwas/dev
+#&gt; <span style='color: #BCBCBC;'> 2</span> PGP000001 PGS000002 gwas/dev
+#&gt; <span style='color: #BCBCBC;'> 3</span> PGP000001 PGS000003 gwas/dev
+#&gt; <span style='color: #BCBCBC;'> 4</span> PGP000001 PGS000001 eval    
+#&gt; <span style='color: #BCBCBC;'> 5</span> PGP000001 PGS000002 eval    
+#&gt; <span style='color: #BCBCBC;'> 6</span> PGP000001 PGS000003 eval    
+#&gt; <span style='color: #BCBCBC;'> 7</span> PGP000002 PGS000004 gwas/dev
+#&gt; <span style='color: #BCBCBC;'> 8</span> PGP000002 PGS000005 gwas/dev
+#&gt; <span style='color: #BCBCBC;'> 9</span> PGP000002 PGS000006 gwas/dev
+#&gt; <span style='color: #BCBCBC;'>10</span> PGP000002 PGS000007 gwas/dev
+#&gt; <span style='color: #949494;'># … with 11 more rows</span>
+#&gt; </div><div class='input'>
+<span class='co'># By polygenic score identifier</span>
+<span class='fu'>get_publications</span><span class='op'>(</span>pgs_id <span class='op'>=</span> <span class='st'>'PGS000003'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; An object of class "publications"
+#&gt; Slot "publications":
+#&gt; <span style='color: #949494;'># A tibble: 1 × 8</span>
+#&gt;   pgp_id    pubmed_id publication_date publication  title  author_fullname doi  
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> PGP000001 25855707  2015-04-08       J Natl Canc… Predi… Mavaddat N      10.1…
+#&gt; <span style='color: #949494;'># … with 1 more variable: authors &lt;chr&gt;</span>
+#&gt; 
+#&gt; Slot "pgs_ids":
+#&gt; <span style='color: #949494;'># A tibble: 6 × 3</span>
+#&gt;   pgp_id    pgs_id    stage   
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   
+#&gt; <span style='color: #BCBCBC;'>1</span> PGP000001 PGS000001 gwas/dev
+#&gt; <span style='color: #BCBCBC;'>2</span> PGP000001 PGS000002 gwas/dev
+#&gt; <span style='color: #BCBCBC;'>3</span> PGP000001 PGS000003 gwas/dev
+#&gt; <span style='color: #BCBCBC;'>4</span> PGP000001 PGS000001 eval    
+#&gt; <span style='color: #BCBCBC;'>5</span> PGP000001 PGS000002 eval    
+#&gt; <span style='color: #BCBCBC;'>6</span> PGP000001 PGS000003 eval    
+#&gt; </div><div class='input'>
+<span class='co'># By PubMed identifier</span>
+<span class='fu'>get_publications</span><span class='op'>(</span>pubmed_id <span class='op'>=</span> <span class='st'>'30554720'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; An object of class "publications"
+#&gt; Slot "publications":
+#&gt; <span style='color: #949494;'># A tibble: 1 × 8</span>
+#&gt;   pgp_id    pubmed_id publication_date publication  title  author_fullname doi  
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> PGP000002 30554720  2018-12-13       Am J Hum Ge… Polyg… Mavaddat N      10.1…
+#&gt; <span style='color: #949494;'># … with 1 more variable: authors &lt;chr&gt;</span>
+#&gt; 
+#&gt; Slot "pgs_ids":
+#&gt; <span style='color: #949494;'># A tibble: 15 × 3</span>
+#&gt;    pgp_id    pgs_id    stage   
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   
+#&gt; <span style='color: #BCBCBC;'> 1</span> PGP000002 PGS000004 gwas/dev
+#&gt; <span style='color: #BCBCBC;'> 2</span> PGP000002 PGS000005 gwas/dev
+#&gt; <span style='color: #BCBCBC;'> 3</span> PGP000002 PGS000006 gwas/dev
+#&gt; <span style='color: #BCBCBC;'> 4</span> PGP000002 PGS000007 gwas/dev
+#&gt; <span style='color: #BCBCBC;'> 5</span> PGP000002 PGS000008 gwas/dev
+#&gt; <span style='color: #BCBCBC;'> 6</span> PGP000002 PGS000009 gwas/dev
+#&gt; <span style='color: #BCBCBC;'> 7</span> PGP000002 PGS000001 eval    
+#&gt; <span style='color: #BCBCBC;'> 8</span> PGP000002 PGS000002 eval    
+#&gt; <span style='color: #BCBCBC;'> 9</span> PGP000002 PGS000003 eval    
+#&gt; <span style='color: #BCBCBC;'>10</span> PGP000002 PGS000004 eval    
+#&gt; <span style='color: #BCBCBC;'>11</span> PGP000002 PGS000005 eval    
+#&gt; <span style='color: #BCBCBC;'>12</span> PGP000002 PGS000006 eval    
+#&gt; <span style='color: #BCBCBC;'>13</span> PGP000002 PGS000007 eval    
+#&gt; <span style='color: #BCBCBC;'>14</span> PGP000002 PGS000008 eval    
+#&gt; <span style='color: #BCBCBC;'>15</span> PGP000002 PGS000009 eval    
+#&gt; </div><div class='input'>
+<span class='co'># By author's last name</span>
+<span class='fu'>get_publications</span><span class='op'>(</span>author <span class='op'>=</span> <span class='st'>'Natarajan'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; An object of class "publications"
+#&gt; Slot "publications":
+#&gt; <span style='color: #949494;'># A tibble: 8 × 8</span>
+#&gt;   pgp_id    pubmed_id publication_date publication  title  author_fullname doi  
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> PGP000006 30104762  2018-08-13       Nat Genet    Genom… Khera AV        10.1…
+#&gt; <span style='color: #BCBCBC;'>2</span> PGP000030 31676865  2019-11-01       Nat Genet    Genom… Klarin D        10.1…
+#&gt; <span style='color: #BCBCBC;'>3</span> PGP000042 28223407  2017-02-21       Circulation  Polyg… Natarajan P     10.1…
+#&gt; <span style='color: #BCBCBC;'>4</span> PGP000060 30586733  2019-03-01       Circulation  Whole… Khera AV        10.1…
+#&gt; <span style='color: #BCBCBC;'>5</span> PGP000076 27959714  2016-11-13       N Engl J Med Genet… Khera AV        10.1…
+#&gt; <span style='color: #BCBCBC;'>6</span> PGP000116 32498804  2020-06-01       J Am Coll C… Limit… Aragam KG       10.1…
+#&gt; <span style='color: #BCBCBC;'>7</span> PGP000127 33021622  2020-10-06       JAMA Cardiol Clini… Trinder M       10.1…
+#&gt; <span style='color: #BCBCBC;'>8</span> PGP000159 32981348  2020-09-28       Circulation  Genet… Klarin D        10.1…
+#&gt; <span style='color: #949494;'># … with 1 more variable: authors &lt;chr&gt;</span>
+#&gt; 
+#&gt; Slot "pgs_ids":
+#&gt; <span style='color: #949494;'># A tibble: 21 × 3</span>
+#&gt;    pgp_id    pgs_id    stage   
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   
+#&gt; <span style='color: #BCBCBC;'> 1</span> PGP000006 PGS000013 gwas/dev
+#&gt; <span style='color: #BCBCBC;'> 2</span> PGP000006 PGS000014 gwas/dev
+#&gt; <span style='color: #BCBCBC;'> 3</span> PGP000006 PGS000015 gwas/dev
+#&gt; <span style='color: #BCBCBC;'> 4</span> PGP000006 PGS000016 gwas/dev
+#&gt; <span style='color: #BCBCBC;'> 5</span> PGP000006 PGS000017 gwas/dev
+#&gt; <span style='color: #BCBCBC;'> 6</span> PGP000006 PGS000013 eval    
+#&gt; <span style='color: #BCBCBC;'> 7</span> PGP000006 PGS000014 eval    
+#&gt; <span style='color: #BCBCBC;'> 8</span> PGP000006 PGS000015 eval    
+#&gt; <span style='color: #BCBCBC;'> 9</span> PGP000006 PGS000016 eval    
+#&gt; <span style='color: #BCBCBC;'>10</span> PGP000006 PGS000017 eval    
+#&gt; <span style='color: #949494;'># … with 11 more rows</span>
+#&gt; </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

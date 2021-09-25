@@ -175,14 +175,14 @@ However, if these scores have already been indexed and manually curated by the <
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pub_by_mavaddat</span><span class="op">@</span><span class="va">publications</span>
 <span class="co">#&gt; # A tibble: 6 × 8</span>
-<span class="co">#&gt;   pgp_id  pubmed_id publication_date publication title    author_fullname doi   </span>
-<span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;date&gt;           &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;           &lt;chr&gt; </span>
-<span class="co">#&gt; 1 PGP000… 25855707  2015-04-08       J Natl Can… Predict… Mavaddat N      10.10…</span>
-<span class="co">#&gt; 2 PGP000… 30554720  2018-12-13       Am J Hum G… Polygen… Mavaddat N      10.10…</span>
-<span class="co">#&gt; 3 PGP000… 28376175  2017-07-01       J Natl Can… Evaluat… Kuchenbaecker … 10.10…</span>
-<span class="co">#&gt; 4 PGP000… 33022221  2020-10-05       Am J Hum G… Breast … Kramer I        10.10…</span>
-<span class="co">#&gt; 5 PGP000… 32737321  2020-07-31       Nat Commun  Europea… Ho WK           10.10…</span>
-<span class="co">#&gt; 6 PGP000… 32665703  2020-07-15       Genet Med   Polygen… Barnes DR       10.10…</span>
+<span class="co">#&gt;   pgp_id    pubmed_id publication_date publication  title  author_fullname doi  </span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;     &lt;date&gt;           &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;</span>
+<span class="co">#&gt; 1 PGP000001 25855707  2015-04-08       J Natl Canc… Predi… Mavaddat N      10.1…</span>
+<span class="co">#&gt; 2 PGP000002 30554720  2018-12-13       Am J Hum Ge… Polyg… Mavaddat N      10.1…</span>
+<span class="co">#&gt; 3 PGP000033 28376175  2017-07-01       J Natl Canc… Evalu… Kuchenbaecker … 10.1…</span>
+<span class="co">#&gt; 4 PGP000109 33022221  2020-10-05       Am J Hum Ge… Breas… Kramer I        10.1…</span>
+<span class="co">#&gt; 5 PGP000112 32737321  2020-07-31       Nat Commun   Europ… Ho WK           10.1…</span>
+<span class="co">#&gt; 6 PGP000117 32665703  2020-07-15       Genet Med    Polyg… Barnes DR       10.1…</span>
 <span class="co">#&gt; # … with 1 more variable: authors &lt;chr&gt;</span></code></pre></div>
 <p>Seemingly there are 6 publications indexed in the PGS Catalog. Each publication added to the PGS Catalog gets an unique identifier. This identifier is in the first column (<code>pgp_id</code>) of the <code>publications</code> table. The number of publications can be obtained by using the function <code><a href="../reference/n.html">n()</a></code> on the S4 object <code>pub_by_mavaddat</code>, or by asking directly the number of rows of the <code>publications</code> table:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -203,9 +203,9 @@ However, if these scores have already been indexed and manually curated by the <
 <span class="co">#&gt; An object of class "publications"</span>
 <span class="co">#&gt; Slot "publications":</span>
 <span class="co">#&gt; # A tibble: 1 × 8</span>
-<span class="co">#&gt;   pgp_id  pubmed_id publication_date publication title    author_fullname doi   </span>
-<span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;date&gt;           &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;           &lt;chr&gt; </span>
-<span class="co">#&gt; 1 PGP000… 30554720  2018-12-13       Am J Hum G… Polygen… Mavaddat N      10.10…</span>
+<span class="co">#&gt;   pgp_id    pubmed_id publication_date publication  title  author_fullname doi  </span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;     &lt;date&gt;           &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;</span>
+<span class="co">#&gt; 1 PGP000002 30554720  2018-12-13       Am J Hum Ge… Polyg… Mavaddat N      10.1…</span>
 <span class="co">#&gt; # … with 1 more variable: authors &lt;chr&gt;</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Slot "pgs_ids":</span>
@@ -243,9 +243,9 @@ However, if these scores have already been indexed and manually curated by the <
 <span class="co">#&gt; An object of class "publications"</span>
 <span class="co">#&gt; Slot "publications":</span>
 <span class="co">#&gt; # A tibble: 1 × 8</span>
-<span class="co">#&gt;   pgp_id  pubmed_id publication_date publication title    author_fullname doi   </span>
-<span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;date&gt;           &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;           &lt;chr&gt; </span>
-<span class="co">#&gt; 1 PGP000… 30554720  2018-12-13       Am J Hum G… Polygen… Mavaddat N      10.10…</span>
+<span class="co">#&gt;   pgp_id    pubmed_id publication_date publication  title  author_fullname doi  </span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;     &lt;date&gt;           &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;</span>
+<span class="co">#&gt; 1 PGP000002 30554720  2018-12-13       Am J Hum Ge… Polyg… Mavaddat N      10.1…</span>
 <span class="co">#&gt; # … with 1 more variable: authors &lt;chr&gt;</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Slot "pgs_ids":</span>
@@ -306,7 +306,6 @@ However, if these scores have already been indexed and manually curated by the <
 <span class="va">pub_by_pmid_30554720</span><span class="op">@</span><span class="va">pgs_ids</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">stage</span> <span class="op">==</span> <span class="st">"development"</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 0 × 3</span>
 <span class="co">#&gt; # … with 3 variables: pgp_id &lt;chr&gt;, pgs_id &lt;chr&gt;, stage &lt;chr&gt;</span>
-
 <span class="co"># All PGS scores evaluated (evaluation stage)  </span>
 <span class="va">pub_by_pmid_30554720</span><span class="op">@</span><span class="va">pgs_ids</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">stage</span> <span class="op">==</span> <span class="st">"evaluation"</span><span class="op">)</span> 
 <span class="co">#&gt; # A tibble: 0 × 3</span>
@@ -362,8 +361,8 @@ A description of each variable is annotated in the <code>scores</code> object he
 <span class="co">#&gt; # A tibble: 6 × 2</span>
 <span class="co">#&gt;   pgs_id    pgs_name     </span>
 <span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;        </span>
-<span class="co">#&gt; 1 PGS000007 PRS3820_BC   </span>
-<span class="co">#&gt; 2 PGS000008 PRS3820_ERpos</span>
+<span class="co">#&gt; 1 PGS000008 PRS3820_ERpos</span>
+<span class="co">#&gt; 2 PGS000007 PRS3820_BC   </span>
 <span class="co">#&gt; 3 PGS000009 PRS3820_ERneg</span>
 <span class="co">#&gt; 4 PGS000004 PRS313_BC    </span>
 <span class="co">#&gt; 5 PGS000006 PRS313_ERneg </span>
@@ -374,12 +373,12 @@ A description of each variable is annotated in the <code>scores</code> object he
 <span class="co">#&gt; # A tibble: 6 × 1</span>
 <span class="co">#&gt;   scoring_file                                                                  </span>
 <span class="co">#&gt;   &lt;chr&gt;                                                                         </span>
-<span class="co">#&gt; 1 http://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000007/ScoringFiles/PGS…</span>
-<span class="co">#&gt; 2 http://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000008/ScoringFiles/PGS…</span>
-<span class="co">#&gt; 3 http://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000009/ScoringFiles/PGS…</span>
-<span class="co">#&gt; 4 http://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000004/ScoringFiles/PGS…</span>
-<span class="co">#&gt; 5 http://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000006/ScoringFiles/PGS…</span>
-<span class="co">#&gt; 6 http://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000005/ScoringFiles/PGS…</span></code></pre></div>
+<span class="co">#&gt; 1 https://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000008/ScoringFiles/PG…</span>
+<span class="co">#&gt; 2 https://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000007/ScoringFiles/PG…</span>
+<span class="co">#&gt; 3 https://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000009/ScoringFiles/PG…</span>
+<span class="co">#&gt; 4 https://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000004/ScoringFiles/PG…</span>
+<span class="co">#&gt; 5 https://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000006/ScoringFiles/PG…</span>
+<span class="co">#&gt; 6 https://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000005/ScoringFiles/PG…</span></code></pre></div>
 <p>The column <code>scoring_file</code> contains the URL for the FTP location containing the corresponding PGS scoring files. PGS scoring files are the text files provided by the PGS Catalog team containing the source data that you can use to compute polygenic scores for particular individuals, i.e. that allow you to apply these scores to your individual samples. Learn more about scoring files in <code><a href="../articles/pgs-scoring-file.html">vignette("pgs-scoring-file")</a></code>. For a quick consultation of the file format of PGS scoring files you may also check the second page of <a href="https://github.com/ramiromagno/cheatsheets/blob/master/quincunx/quincunx_cheatsheet.pdf">quincunx cheatsheet</a>.</p>
 <p>As an additional feature, <em>quincunx</em> allows you to download the relevant PGS scoring files directly into R using the function <code><a href="../reference/read_scoring_file.html">read_scoring_file()</a></code>, making the data immediately available in R for further analysis.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
@@ -387,8 +386,8 @@ A description of each variable is annotated in the <code>scores</code> object he
 <span class="co">#&gt; # A tibble: 6 × 2</span>
 <span class="co">#&gt;   pgs_id    matches_publication</span>
 <span class="co">#&gt;   &lt;chr&gt;     &lt;lgl&gt;              </span>
-<span class="co">#&gt; 1 PGS000007 TRUE               </span>
-<span class="co">#&gt; 2 PGS000008 TRUE               </span>
+<span class="co">#&gt; 1 PGS000008 TRUE               </span>
+<span class="co">#&gt; 2 PGS000007 TRUE               </span>
 <span class="co">#&gt; 3 PGS000009 TRUE               </span>
 <span class="co">#&gt; 4 PGS000004 TRUE               </span>
 <span class="co">#&gt; 5 PGS000006 TRUE               </span>
@@ -398,14 +397,14 @@ A description of each variable is annotated in the <code>scores</code> object he
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mavaddat2018_scores</span><span class="op">@</span><span class="va">scores</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'pgs_name'</span>, <span class="st">'pgs_method_name'</span>, <span class="st">'pgs_method_params'</span>, <span class="st">'n_variants'</span>, <span class="st">'assembly'</span><span class="op">)</span><span class="op">]</span>
 <span class="co">#&gt; # A tibble: 6 × 5</span>
-<span class="co">#&gt;   pgs_name    pgs_method_name               pgs_method_para… n_variants assembly</span>
-<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;                         &lt;chr&gt;                 &lt;int&gt; &lt;chr&gt;   </span>
-<span class="co">#&gt; 1 PRS3820_BC  LASSO penalized regression    p &lt; 0.001              3820 GRCh37  </span>
-<span class="co">#&gt; 2 PRS3820_ER… LASSO penalized regression    p &lt; 0.001              3820 GRCh37  </span>
-<span class="co">#&gt; 3 PRS3820_ER… LASSO penalized regression    p &lt; 0.001              3820 GRCh37  </span>
-<span class="co">#&gt; 4 PRS313_BC   Hard-Thresholding Stepwise F… p &lt; 10^-5               313 GRCh37  </span>
-<span class="co">#&gt; 5 PRS313_ERn… Hard-Thresholding Stepwise F… p &lt; 10^-5               313 GRCh37  </span>
-<span class="co">#&gt; 6 PRS313_ERp… Hard-Thresholding Stepwise F… p &lt; 10^-5               313 GRCh37</span></code></pre></div>
+<span class="co">#&gt;   pgs_name      pgs_method_name             pgs_method_para… n_variants assembly</span>
+<span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;                       &lt;chr&gt;                 &lt;int&gt; &lt;chr&gt;   </span>
+<span class="co">#&gt; 1 PRS3820_ERpos LASSO penalized regression  p &lt; 0.001              3820 GRCh37  </span>
+<span class="co">#&gt; 2 PRS3820_BC    LASSO penalized regression  p &lt; 0.001              3820 GRCh37  </span>
+<span class="co">#&gt; 3 PRS3820_ERneg LASSO penalized regression  p &lt; 0.001              3820 GRCh37  </span>
+<span class="co">#&gt; 4 PRS313_BC     Hard-Thresholding Stepwise… p &lt; 10^-5               313 GRCh37  </span>
+<span class="co">#&gt; 5 PRS313_ERneg  Hard-Thresholding Stepwise… p &lt; 10^-5               313 GRCh37  </span>
+<span class="co">#&gt; 6 PRS313_ERpos  Hard-Thresholding Stepwise… p &lt; 10^-5               313 GRCh37</span></code></pre></div>
 <p>For example, columns such as <code>pgs_method_name</code> and <code>pgs_method_params</code> provide extra details about the PGS development method. Finally, <code>n_variants</code> informs about the number of variants comprising each polygenic risk score, and <code>assembly</code> indicates the genome assembly version used.</p>
 </div>
 <div id="scores-object-publications-table" class="section level3">
@@ -417,8 +416,8 @@ A description of each variable is annotated in the <code>scores</code> object he
 <span class="co">#&gt; # A tibble: 6 × 4</span>
 <span class="co">#&gt;   pgs_id    pgp_id    publication_date author_fullname</span>
 <span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;     &lt;date&gt;           &lt;chr&gt;          </span>
-<span class="co">#&gt; 1 PGS000007 PGP000002 2018-12-13       Mavaddat N     </span>
-<span class="co">#&gt; 2 PGS000008 PGP000002 2018-12-13       Mavaddat N     </span>
+<span class="co">#&gt; 1 PGS000008 PGP000002 2018-12-13       Mavaddat N     </span>
+<span class="co">#&gt; 2 PGS000007 PGP000002 2018-12-13       Mavaddat N     </span>
 <span class="co">#&gt; 3 PGS000009 PGP000002 2018-12-13       Mavaddat N     </span>
 <span class="co">#&gt; 4 PGS000004 PGP000002 2018-12-13       Mavaddat N     </span>
 <span class="co">#&gt; 5 PGS000006 PGP000002 2018-12-13       Mavaddat N     </span>
@@ -436,14 +435,14 @@ If this sounds confusing check our <a href="https://github.com/ramiromagno/cheat
 <code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">mavaddat2018_scores</span><span class="op">@</span><span class="va">samples</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 18</span>
 <span class="co">#&gt; Columns: 15</span>
-<span class="co">#&gt; $ pgs_id                          &lt;chr&gt; "PGS000007", "PGS000007", "PGS000007",…</span>
+<span class="co">#&gt; $ pgs_id                          &lt;chr&gt; "PGS000008", "PGS000008", "PGS000008",…</span>
 <span class="co">#&gt; $ sample_id                       &lt;int&gt; 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1,…</span>
 <span class="co">#&gt; $ stage                           &lt;chr&gt; "gwas", "dev", "dev", "gwas", "dev", "…</span>
-<span class="co">#&gt; $ sample_size                     &lt;int&gt; 139274, 158648, 10444, 139274, 87368, …</span>
-<span class="co">#&gt; $ sample_cases                    &lt;int&gt; NA, 88916, 5159, NA, 55391, 4233, NA, …</span>
-<span class="co">#&gt; $ sample_controls                 &lt;int&gt; NA, 69732, 5285, NA, 31977, 926, NA, 7…</span>
+<span class="co">#&gt; $ sample_size                     &lt;int&gt; 139274, 87368, 5159, 139274, 158648, 1…</span>
+<span class="co">#&gt; $ sample_cases                    &lt;int&gt; NA, 55391, 4233, NA, 88916, 5159, NA, …</span>
+<span class="co">#&gt; $ sample_controls                 &lt;int&gt; NA, 31977, 926, NA, 69732, 5285, NA, 7…</span>
 <span class="co">#&gt; $ sample_percent_male             &lt;dbl&gt; NA, 0, 0, NA, 0, 0, NA, 0, 0, NA, 0, 0…</span>
-<span class="co">#&gt; $ phenotype_description           &lt;chr&gt; NA, "Invasive breast cancer-affected",…</span>
+<span class="co">#&gt; $ phenotype_description           &lt;chr&gt; NA, "ER-positive breast cancer cases",…</span>
 <span class="co">#&gt; $ ancestry_category               &lt;chr&gt; "European", "European", "European", "E…</span>
 <span class="co">#&gt; $ ancestry                        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</span>
 <span class="co">#&gt; $ country                         &lt;chr&gt; "Canada, U.S., Australia, Belgium, Fra…</span>
@@ -457,12 +456,12 @@ If this sounds confusing check our <a href="https://github.com/ramiromagno/cheat
 <span class="co">#&gt; # A tibble: 18 × 6</span>
 <span class="co">#&gt;    pgs_id    sample_id stage sample_size sample_cases sample_controls</span>
 <span class="co">#&gt;    &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;       &lt;int&gt;        &lt;int&gt;           &lt;int&gt;</span>
-<span class="co">#&gt;  1 PGS000007         1 gwas       139274           NA              NA</span>
-<span class="co">#&gt;  2 PGS000007         2 dev        158648        88916           69732</span>
-<span class="co">#&gt;  3 PGS000007         3 dev         10444         5159            5285</span>
-<span class="co">#&gt;  4 PGS000008         1 gwas       139274           NA              NA</span>
-<span class="co">#&gt;  5 PGS000008         2 dev         87368        55391           31977</span>
-<span class="co">#&gt;  6 PGS000008         3 dev          5159         4233             926</span>
+<span class="co">#&gt;  1 PGS000008         1 gwas       139274           NA              NA</span>
+<span class="co">#&gt;  2 PGS000008         2 dev         87368        55391           31977</span>
+<span class="co">#&gt;  3 PGS000008         3 dev          5159         4233             926</span>
+<span class="co">#&gt;  4 PGS000007         1 gwas       139274           NA              NA</span>
+<span class="co">#&gt;  5 PGS000007         2 dev        158648        88916           69732</span>
+<span class="co">#&gt;  6 PGS000007         3 dev         10444         5159            5285</span>
 <span class="co">#&gt;  7 PGS000009         1 gwas       139274           NA              NA</span>
 <span class="co">#&gt;  8 PGS000009         2 dev         87368        15404           71964</span>
 <span class="co">#&gt;  9 PGS000009         3 dev          5159          926            4233</span>
@@ -481,12 +480,12 @@ If this sounds confusing check our <a href="https://github.com/ramiromagno/cheat
 <span class="co">#&gt; # A tibble: 18 × 4</span>
 <span class="co">#&gt;    pgs_id    sample_id stage sample_percent_male</span>
 <span class="co">#&gt;    &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;               &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 PGS000007         1 gwas                   NA</span>
-<span class="co">#&gt;  2 PGS000007         2 dev                     0</span>
-<span class="co">#&gt;  3 PGS000007         3 dev                     0</span>
-<span class="co">#&gt;  4 PGS000008         1 gwas                   NA</span>
-<span class="co">#&gt;  5 PGS000008         2 dev                     0</span>
-<span class="co">#&gt;  6 PGS000008         3 dev                     0</span>
+<span class="co">#&gt;  1 PGS000008         1 gwas                   NA</span>
+<span class="co">#&gt;  2 PGS000008         2 dev                     0</span>
+<span class="co">#&gt;  3 PGS000008         3 dev                     0</span>
+<span class="co">#&gt;  4 PGS000007         1 gwas                   NA</span>
+<span class="co">#&gt;  5 PGS000007         2 dev                     0</span>
+<span class="co">#&gt;  6 PGS000007         3 dev                     0</span>
 <span class="co">#&gt;  7 PGS000009         1 gwas                   NA</span>
 <span class="co">#&gt;  8 PGS000009         2 dev                     0</span>
 <span class="co">#&gt;  9 PGS000009         3 dev                     0</span>
@@ -505,12 +504,12 @@ If this sounds confusing check our <a href="https://github.com/ramiromagno/cheat
 <span class="co">#&gt; # A tibble: 18 × 5</span>
 <span class="co">#&gt;    pgs_id    sample_id stage phenotype_description           ancestry</span>
 <span class="co">#&gt;    &lt;chr&gt;         &lt;int&gt; &lt;chr&gt; &lt;chr&gt;                           &lt;chr&gt;   </span>
-<span class="co">#&gt;  1 PGS000007         1 gwas  &lt;NA&gt;                            &lt;NA&gt;    </span>
-<span class="co">#&gt;  2 PGS000007         2 dev   Invasive breast cancer-affected &lt;NA&gt;    </span>
-<span class="co">#&gt;  3 PGS000007         3 dev   Invasive breast cancer-affected &lt;NA&gt;    </span>
-<span class="co">#&gt;  4 PGS000008         1 gwas  &lt;NA&gt;                            &lt;NA&gt;    </span>
-<span class="co">#&gt;  5 PGS000008         2 dev   ER-positive breast cancer cases &lt;NA&gt;    </span>
-<span class="co">#&gt;  6 PGS000008         3 dev   ER-positive breast cancer cases &lt;NA&gt;    </span>
+<span class="co">#&gt;  1 PGS000008         1 gwas  &lt;NA&gt;                            &lt;NA&gt;    </span>
+<span class="co">#&gt;  2 PGS000008         2 dev   ER-positive breast cancer cases &lt;NA&gt;    </span>
+<span class="co">#&gt;  3 PGS000008         3 dev   ER-positive breast cancer cases &lt;NA&gt;    </span>
+<span class="co">#&gt;  4 PGS000007         1 gwas  &lt;NA&gt;                            &lt;NA&gt;    </span>
+<span class="co">#&gt;  5 PGS000007         2 dev   Invasive breast cancer-affected &lt;NA&gt;    </span>
+<span class="co">#&gt;  6 PGS000007         3 dev   Invasive breast cancer-affected &lt;NA&gt;    </span>
 <span class="co">#&gt;  7 PGS000009         1 gwas  &lt;NA&gt;                            &lt;NA&gt;    </span>
 <span class="co">#&gt;  8 PGS000009         2 dev   ER-negative breast cancer cases &lt;NA&gt;    </span>
 <span class="co">#&gt;  9 PGS000009         3 dev   ER-negative breast cancer cases &lt;NA&gt;    </span>
@@ -577,16 +576,16 @@ To learn more about the meaning of cohorts for the PGS Catalog, visit our check 
 <span class="co">#&gt; # A tibble: 558 × 4</span>
 <span class="co">#&gt;    pgs_id    sample_id cohort_symbol cohort_name                                </span>
 <span class="co">#&gt;    &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;                                      </span>
-<span class="co">#&gt;  1 PGS000007         2 ABCFS         Australian Breast Cancer Family Study      </span>
-<span class="co">#&gt;  2 PGS000007         2 MCCS          Melbourne Collaborative Cohort Study       </span>
-<span class="co">#&gt;  3 PGS000007         2 HMBCS         Hannover-Minsk Breast Cancer Study         </span>
-<span class="co">#&gt;  4 PGS000007         2 LMBC          Leuven Multidisciplinary Breast Centre     </span>
-<span class="co">#&gt;  5 PGS000007         2 MTLGEBCS      Montreal Gene-Environment Breast Cancer St…</span>
-<span class="co">#&gt;  6 PGS000007         2 CGPS          Copenhagen General Population Study        </span>
-<span class="co">#&gt;  7 PGS000007         2 KBCP          Kuopio Breast Cancer Project               </span>
-<span class="co">#&gt;  8 PGS000007         2 OBCS          Oulu Breast Cancer Study                   </span>
-<span class="co">#&gt;  9 PGS000007         2 CECILE        CECILE Breast Cancer Study                 </span>
-<span class="co">#&gt; 10 PGS000007         2 BBCC          Bavarian Breast Cancer Cases and Controls  </span>
+<span class="co">#&gt;  1 PGS000008         2 ABCFS         Australian Breast Cancer Family Study      </span>
+<span class="co">#&gt;  2 PGS000008         2 MCCS          Melbourne Collaborative Cohort Study       </span>
+<span class="co">#&gt;  3 PGS000008         2 HMBCS         Hannover-Minsk Breast Cancer Study         </span>
+<span class="co">#&gt;  4 PGS000008         2 LMBC          Leuven Multidisciplinary Breast Centre     </span>
+<span class="co">#&gt;  5 PGS000008         2 MTLGEBCS      Montreal Gene-Environment Breast Cancer St…</span>
+<span class="co">#&gt;  6 PGS000008         2 CGPS          Copenhagen General Population Study        </span>
+<span class="co">#&gt;  7 PGS000008         2 KBCP          Kuopio Breast Cancer Project               </span>
+<span class="co">#&gt;  8 PGS000008         2 OBCS          Oulu Breast Cancer Study                   </span>
+<span class="co">#&gt;  9 PGS000008         2 CECILE        CECILE Breast Cancer Study                 </span>
+<span class="co">#&gt; 10 PGS000008         2 BBCC          Bavarian Breast Cancer Cases and Controls  </span>
 <span class="co">#&gt; # … with 548 more rows</span></code></pre></div>
 </div>
 <div id="scores-object-traits-table" class="section level3">
@@ -598,38 +597,38 @@ To learn more about the meaning of cohorts for the PGS Catalog, visit our check 
 <span class="co">#&gt; # A tibble: 6 × 3</span>
 <span class="co">#&gt;   pgs_id    efo_id      trait                                   </span>
 <span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;                                   </span>
-<span class="co">#&gt; 1 PGS000007 EFO_0000305 breast carcinoma                        </span>
-<span class="co">#&gt; 2 PGS000008 EFO_1000649 estrogen-receptor positive breast cancer</span>
+<span class="co">#&gt; 1 PGS000008 EFO_1000649 estrogen-receptor positive breast cancer</span>
+<span class="co">#&gt; 2 PGS000007 EFO_0000305 breast carcinoma                        </span>
 <span class="co">#&gt; 3 PGS000009 EFO_1000650 estrogen-receptor negative breast cancer</span>
 <span class="co">#&gt; 4 PGS000004 EFO_0000305 breast carcinoma                        </span>
 <span class="co">#&gt; 5 PGS000006 EFO_1000650 estrogen-receptor negative breast cancer</span>
 <span class="co">#&gt; 6 PGS000005 EFO_1000649 estrogen-receptor positive breast cancer</span></code></pre></div>
-<p>Compared to the author-reported trait (column <code>reported_trait</code> from table <code>scores</code>), the trait description in this table follows the controlled vocabulary of an ontology, i.e., the <a href="https://www.ebi.ac.uk/efo/">Experimental Factor Ontology (EFO)</a>. This way, traits are described objectively. This is very useful for comparing trait data among different studies where different reported trait descriptions might have been used. For example, if you want now to know what other polygenic scores may be deposited in the PGS Catalog that also study breast cancer — namely, breast carcinoma, estrogen-receptor positive breast cancer, or estrogen-receptor negative breast cancer — then you could use their respective EFO identifiers (EFO_0000305, EFO_1000649, or EFO_1000650) with the function <code><a href="../reference/get_scores.html">get_scores()</a></code>:</p>
+<p>Compared to the author-reported trait (column <code>reported_trait</code> from table <code>scores</code>), the trait description in this table follows the controlled vocabulary of an ontology, i.e., the <a href="https://www.ebi.ac.uk/efo/">Experimental Factor Ontology (EFO)</a>. This way, traits are described objectively. This is very useful for comparing trait data among different studies where different reported trait descriptions might have been used. For example, if you want now to know what other polygenic scores may be deposited in the PGS Catalog that also study breast cancer — namely, estrogen-receptor positive breast cancer, breast carcinoma, or estrogen-receptor negative breast cancer — then you could use their respective EFO identifiers (EFO_1000649, EFO_0000305, or EFO_1000650) with the function <code><a href="../reference/get_scores.html">get_scores()</a></code>:</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">scores_bc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_scores.html">get_scores</a></span><span class="op">(</span>efo_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">mavaddat2018_scores</span><span class="op">@</span><span class="va">traits</span><span class="op">[[</span><span class="st">'efo_id'</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
 <span class="fu">quincunx</span><span class="fu">::</span><span class="fu"><a href="../reference/n.html">n</a></span><span class="op">(</span><span class="va">scores_bc</span><span class="op">)</span>
-<span class="co">#&gt; [1] 100</span></code></pre></div>
-<p>So there are 100 scores present in the PGS Catalog. Included in this set are the 6 scores originating from <a href="https://doi.org/10.1016/j.ajhg.2018.11.002">Mavaddat et al. (2018)</a>. If we want to proceed with analysing these other scores without including those from the Mavaddat’s study, we could use the function <code><a href="../reference/setop.html">setdiff()</a></code> to remove them from the S4 <code>scores</code> object:</p>
+<span class="co">#&gt; [1] 101</span></code></pre></div>
+<p>So there are 101 scores present in the PGS Catalog. Included in this set are the 6 scores originating from <a href="https://doi.org/10.1016/j.ajhg.2018.11.002">Mavaddat et al. (2018)</a>. If we want to proceed with analysing these other scores without including those from the Mavaddat’s study, we could use the function <code><a href="../reference/setop.html">setdiff()</a></code> to remove them from the S4 <code>scores</code> object:</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Use quincunx::setdiff to avoid collision with dplyr::setdiff()</span>
 <span class="va">bc_scores_not_mavaddat2018</span> <span class="op">&lt;-</span> <span class="fu">quincunx</span><span class="fu">::</span><span class="fu"><a href="../reference/setop.html">setdiff</a></span><span class="op">(</span><span class="va">scores_bc</span>, <span class="va">mavaddat2018_scores</span><span class="op">)</span>
 <span class="fu">quincunx</span><span class="fu">::</span><span class="fu"><a href="../reference/n.html">n</a></span><span class="op">(</span><span class="va">bc_scores_not_mavaddat2018</span><span class="op">)</span>
-<span class="co">#&gt; [1] 94</span>
+<span class="co">#&gt; [1] 95</span>
 <span class="va">bc_scores_not_mavaddat2018</span><span class="op">@</span><span class="va">scores</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'pgs_id'</span>, <span class="st">'reported_trait'</span>,<span class="st">'n_variants'</span><span class="op">)</span><span class="op">]</span>
-<span class="co">#&gt; # A tibble: 94 × 3</span>
-<span class="co">#&gt;    pgs_id    reported_trait         n_variants</span>
-<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;                       &lt;int&gt;</span>
-<span class="co">#&gt;  1 PGS000050 Breast cancer                  44</span>
-<span class="co">#&gt;  2 PGS000485 Breast cancer (female)         62</span>
-<span class="co">#&gt;  3 PGS000153 Breast cancer                  66</span>
-<span class="co">#&gt;  4 PGS000488 Breast cancer (female)         79</span>
-<span class="co">#&gt;  5 PGS000773 Breast cancer                 179</span>
-<span class="co">#&gt;  6 PGS000479 Breast cancer (female)       2267</span>
-<span class="co">#&gt;  7 PGS000335 Breast cancer             1079089</span>
-<span class="co">#&gt;  8 PGS000332 Breast cancer             6390808</span>
-<span class="co">#&gt;  9 PGS000501 Breast cancer (female)       1142</span>
-<span class="co">#&gt; 10 PGS000537 Breast cancer (female)        363</span>
-<span class="co">#&gt; # … with 84 more rows</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 95 × 3</span>
+<span class="co">#&gt;    pgs_id    reported_trait                                n_variants</span>
+<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;                                              &lt;int&gt;</span>
+<span class="co">#&gt;  1 PGS000002 ER-positive Breast Cancer                             77</span>
+<span class="co">#&gt;  2 PGS000046 Estrogen receptor [ER]-positive breast cancer         87</span>
+<span class="co">#&gt;  3 PGS000347 Estrogen receptor positive breast cancer             287</span>
+<span class="co">#&gt;  4 PGS000774 Estrogen receptor positive breast cancer             179</span>
+<span class="co">#&gt;  5 PGS000050 Breast cancer                                         44</span>
+<span class="co">#&gt;  6 PGS000153 Breast cancer                                         66</span>
+<span class="co">#&gt;  7 PGS000488 Breast cancer (female)                                79</span>
+<span class="co">#&gt;  8 PGS000485 Breast cancer (female)                                62</span>
+<span class="co">#&gt;  9 PGS000524 Breast cancer (female)                              2708</span>
+<span class="co">#&gt; 10 PGS000773 Breast cancer                                        179</span>
+<span class="co">#&gt; # … with 85 more rows</span></code></pre></div>
 <p>For other set operations, check their documentation page: <code><a href="../reference/setop.html">union()</a></code>, <code><a href="../reference/setop.html">intersect()</a></code> and <code><a href="../reference/setop.html">setequal()</a></code>.</p>
 </div>
 </div>
@@ -647,8 +646,8 @@ To learn more about the meaning of cohorts for the PGS Catalog, visit our check 
 <span class="co">#&gt; # A tibble: 6 × 2</span>
 <span class="co">#&gt;   pgs_id    reported_trait           </span>
 <span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;                    </span>
-<span class="co">#&gt; 1 PGS000007 Breast Cancer            </span>
-<span class="co">#&gt; 2 PGS000008 ER-positive Breast Cancer</span>
+<span class="co">#&gt; 1 PGS000008 ER-positive Breast Cancer</span>
+<span class="co">#&gt; 2 PGS000007 Breast Cancer            </span>
 <span class="co">#&gt; 3 PGS000009 ER-negative Breast Cancer</span>
 <span class="co">#&gt; 4 PGS000004 Breast Cancer            </span>
 <span class="co">#&gt; 5 PGS000006 ER-negative Breast Cancer</span>
@@ -670,18 +669,18 @@ Note that all performance metrics are indexed with an unique identifier that sta
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mavaddat2018_ppm</span><span class="op">@</span><span class="va">performance_metrics</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>
 <span class="co">#&gt; # A tibble: 89 × 4</span>
-<span class="co">#&gt;    ppm_id   pgs_id   reported_trait                             covariates      </span>
-<span class="co">#&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;                                      &lt;chr&gt;           </span>
-<span class="co">#&gt;  1 PPM0000… PGS0000… Invasive breast cancer                     study, genetic …</span>
-<span class="co">#&gt;  2 PPM0003… PGS0000… Breast Cancer (personal history)           age at menarche </span>
-<span class="co">#&gt;  3 PPM0003… PGS0000… Breast Cancer (personal history)           age, sex        </span>
-<span class="co">#&gt;  4 PPM0003… PGS0000… Breast Cancer (personal history)           &lt;NA&gt;            </span>
-<span class="co">#&gt;  5 PPM0000… PGS0000… ER-positive breast cancer                  study, genetic …</span>
-<span class="co">#&gt;  6 PPM0000… PGS0000… ER-negative breast cancer                  study, genetic …</span>
-<span class="co">#&gt;  7 PPM0000… PGS0000… Invasive breast cancer                     study, genetic …</span>
-<span class="co">#&gt;  8 PPM0000… PGS0000… Incident breast cancer cases               study, genetic …</span>
-<span class="co">#&gt;  9 PPM0006… PGS0000… Breast cancer intrinsic-like subtype (lum… &lt;NA&gt;            </span>
-<span class="co">#&gt; 10 PPM0006… PGS0000… Breast cancer intrinsic-like subtype (lum… &lt;NA&gt;            </span>
+<span class="co">#&gt;    ppm_id    pgs_id    reported_trait                           covariates      </span>
+<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;                                    &lt;chr&gt;           </span>
+<span class="co">#&gt;  1 PPM000009 PGS000008 ER-positive breast cancer                study, genetic …</span>
+<span class="co">#&gt;  2 PPM000008 PGS000007 Invasive breast cancer                   study, genetic …</span>
+<span class="co">#&gt;  3 PPM000384 PGS000007 Breast Cancer (personal history)         age at menarche </span>
+<span class="co">#&gt;  4 PPM000386 PGS000007 Breast Cancer (personal history)         age, sex        </span>
+<span class="co">#&gt;  5 PPM000388 PGS000007 Breast Cancer (personal history)         &lt;NA&gt;            </span>
+<span class="co">#&gt;  6 PPM000010 PGS000009 ER-negative breast cancer                study, genetic …</span>
+<span class="co">#&gt;  7 PPM000004 PGS000004 Invasive breast cancer                   study, genetic …</span>
+<span class="co">#&gt;  8 PPM000005 PGS000004 Incident breast cancer cases             study, genetic …</span>
+<span class="co">#&gt;  9 PPM000650 PGS000004 Breast cancer intrinsic-like subtype (l… &lt;NA&gt;            </span>
+<span class="co">#&gt; 10 PPM000653 PGS000004 Breast cancer intrinsic-like subtype (l… &lt;NA&gt;            </span>
 <span class="co">#&gt; # … with 79 more rows</span></code></pre></div>
 <p>According to the PGS Catalog documentation (<a href="http://www.pgscatalog.org/docs/" class="uri">http://www.pgscatalog.org/docs/</a>):</p>
 <ul>
@@ -695,12 +694,12 @@ Note that all performance metrics are indexed with an unique identifier that sta
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">mavaddat2018_ppm</span><span class="op">@</span><span class="va">performance_metrics</span>, <span class="va">pgs_id</span> <span class="op">==</span> <span class="st">'PGS000007'</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 4 × 5</span>
-<span class="co">#&gt;   ppm_id    pgs_id    reported_trait               covariates           comments</span>
-<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;                        &lt;chr&gt;                &lt;chr&gt;   </span>
-<span class="co">#&gt; 1 PPM000008 PGS000007 Invasive breast cancer       study, genetic PCs … &lt;NA&gt;    </span>
-<span class="co">#&gt; 2 PPM000384 PGS000007 Breast Cancer (personal his… age at menarche      &lt;NA&gt;    </span>
-<span class="co">#&gt; 3 PPM000386 PGS000007 Breast Cancer (personal his… age, sex             &lt;NA&gt;    </span>
-<span class="co">#&gt; 4 PPM000388 PGS000007 Breast Cancer (personal his… &lt;NA&gt;                 &lt;NA&gt;</span></code></pre></div>
+<span class="co">#&gt;   ppm_id    pgs_id    reported_trait                   covariates       comments</span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;                            &lt;chr&gt;            &lt;chr&gt;   </span>
+<span class="co">#&gt; 1 PPM000008 PGS000007 Invasive breast cancer           study, genetic … &lt;NA&gt;    </span>
+<span class="co">#&gt; 2 PPM000384 PGS000007 Breast Cancer (personal history) age at menarche  &lt;NA&gt;    </span>
+<span class="co">#&gt; 3 PPM000386 PGS000007 Breast Cancer (personal history) age, sex         &lt;NA&gt;    </span>
+<span class="co">#&gt; 4 PPM000388 PGS000007 Breast Cancer (personal history) &lt;NA&gt;             &lt;NA&gt;</span></code></pre></div>
 <p>This means that the polygenic score (PGS000007) has been validated several times, using different models. In this case, we can immediately see that PGS000007 performance has been evaluated, for example, for alternative breast cancer types (different <code>reported_traits</code>), namely:</p>
 <ul>
 <li>Invasive breast cancer, Breast Cancer (personal history).</li>
@@ -714,18 +713,18 @@ Note that all performance metrics are indexed with an unique identifier that sta
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mavaddat2018_ppm</span><span class="op">@</span><span class="va">publications</span>
 <span class="co">#&gt; # A tibble: 89 × 8</span>
-<span class="co">#&gt;    ppm_id  pgp_id pubmed_id publication_date publication title   author_fullname</span>
-<span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;date&gt;           &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;          </span>
-<span class="co">#&gt;  1 PPM000… PGP00… 30554720  2018-12-13       Am J Hum G… Polyge… Mavaddat N     </span>
-<span class="co">#&gt;  2 PPM000… PGP00… 31771638  2019-11-26       Genome Med  Low co… Homburger JR   </span>
-<span class="co">#&gt;  3 PPM000… PGP00… 31771638  2019-11-26       Genome Med  Low co… Homburger JR   </span>
-<span class="co">#&gt;  4 PPM000… PGP00… 31771638  2019-11-26       Genome Med  Low co… Homburger JR   </span>
-<span class="co">#&gt;  5 PPM000… PGP00… 30554720  2018-12-13       Am J Hum G… Polyge… Mavaddat N     </span>
-<span class="co">#&gt;  6 PPM000… PGP00… 30554720  2018-12-13       Am J Hum G… Polyge… Mavaddat N     </span>
-<span class="co">#&gt;  7 PPM000… PGP00… 30554720  2018-12-13       Am J Hum G… Polyge… Mavaddat N     </span>
-<span class="co">#&gt;  8 PPM000… PGP00… 30554720  2018-12-13       Am J Hum G… Polyge… Mavaddat N     </span>
-<span class="co">#&gt;  9 PPM000… PGP00… 32424353  2020-05-18       Nat Genet   Genome… Zhang H        </span>
-<span class="co">#&gt; 10 PPM000… PGP00… 32424353  2020-05-18       Nat Genet   Genome… Zhang H        </span>
+<span class="co">#&gt;    ppm_id    pgp_id    pubmed_id publication_date publication title author_fullname</span>
+<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;date&gt;           &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;          </span>
+<span class="co">#&gt;  1 PPM000009 PGP000002 30554720  2018-12-13       Am J Hum G… Poly… Mavaddat N     </span>
+<span class="co">#&gt;  2 PPM000008 PGP000002 30554720  2018-12-13       Am J Hum G… Poly… Mavaddat N     </span>
+<span class="co">#&gt;  3 PPM000384 PGP000057 31771638  2019-11-26       Genome Med  Low … Homburger JR   </span>
+<span class="co">#&gt;  4 PPM000386 PGP000057 31771638  2019-11-26       Genome Med  Low … Homburger JR   </span>
+<span class="co">#&gt;  5 PPM000388 PGP000057 31771638  2019-11-26       Genome Med  Low … Homburger JR   </span>
+<span class="co">#&gt;  6 PPM000010 PGP000002 30554720  2018-12-13       Am J Hum G… Poly… Mavaddat N     </span>
+<span class="co">#&gt;  7 PPM000004 PGP000002 30554720  2018-12-13       Am J Hum G… Poly… Mavaddat N     </span>
+<span class="co">#&gt;  8 PPM000005 PGP000002 30554720  2018-12-13       Am J Hum G… Poly… Mavaddat N     </span>
+<span class="co">#&gt;  9 PPM000650 PGP000088 32424353  2020-05-18       Nat Genet   Geno… Zhang H        </span>
+<span class="co">#&gt; 10 PPM000653 PGP000088 32424353  2020-05-18       Nat Genet   Geno… Zhang H        </span>
 <span class="co">#&gt; # … with 79 more rows, and 1 more variable: doi &lt;chr&gt;</span></code></pre></div>
 <p>Here we can immediately see that there are more publications than just the Mavaddat <em>et al.</em> (pubmed_id = 30554720) that we started with.<br>
 This is expected because we requested all the performance metrics for the PGS scores that were newly <strong>developed</strong> by Mavaddat <em>et al.</em>; but these scores have been subsequently <strong>evaluated</strong> by other posterior publications, and accordingly have performance metrics reported in these posterior evaluations.<br>
@@ -739,21 +738,20 @@ This is easily confirmed by checking that all other publications are dated after
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mavaddat2018_ppm_ids</span> <span class="op">&lt;-</span> <span class="va">mavaddat2018_ppm</span><span class="op">@</span><span class="va">publications</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">pubmed_id</span> <span class="op">==</span> <span class="st">"30554720"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">ppm_id</span><span class="op">)</span>
 <span class="va">mavaddat2018_ppm_ids</span>
-<span class="co">#&gt; [1] "PPM000008" "PPM000009" "PPM000010" "PPM000004" "PPM000005" "PPM000007"</span>
+<span class="co">#&gt; [1] "PPM000009" "PPM000008" "PPM000010" "PPM000004" "PPM000005" "PPM000007"</span>
 <span class="co">#&gt; [7] "PPM000006"</span>
-
 <span class="co"># Find the corresponding pgs_id, reported_trait, covariates, and comments</span>
 <span class="va">mavaddat2018_ppm</span><span class="op">@</span><span class="va">performance_metrics</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">ppm_id</span> <span class="op">%in%</span> <span class="va">mavaddat2018_ppm_ids</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 7 × 5</span>
-<span class="co">#&gt;   ppm_id   pgs_id   reported_trait         covariates       comments            </span>
-<span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;                  &lt;chr&gt;            &lt;chr&gt;               </span>
-<span class="co">#&gt; 1 PPM0000… PGS0000… Invasive breast cancer study, genetic … &lt;NA&gt;                </span>
-<span class="co">#&gt; 2 PPM0000… PGS0000… ER-positive breast ca… study, genetic … &lt;NA&gt;                </span>
-<span class="co">#&gt; 3 PPM0000… PGS0000… ER-negative breast ca… study, genetic … &lt;NA&gt;                </span>
-<span class="co">#&gt; 4 PPM0000… PGS0000… Invasive breast cancer study, genetic … &lt;NA&gt;                </span>
-<span class="co">#&gt; 5 PPM0000… PGS0000… Incident breast cance… study, genetic … Included only 306 o…</span>
-<span class="co">#&gt; 6 PPM0000… PGS0000… ER-negative breast ca… study, genetic … &lt;NA&gt;                </span>
-<span class="co">#&gt; 7 PPM0000… PGS0000… ER-positive breast ca… study, genetic … &lt;NA&gt;</span></code></pre></div>
+<span class="co">#&gt;   ppm_id    pgs_id    reported_trait               covariates     comments      </span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;                        &lt;chr&gt;          &lt;chr&gt;         </span>
+<span class="co">#&gt; 1 PPM000009 PGS000008 ER-positive breast cancer    study, geneti… &lt;NA&gt;          </span>
+<span class="co">#&gt; 2 PPM000008 PGS000007 Invasive breast cancer       study, geneti… &lt;NA&gt;          </span>
+<span class="co">#&gt; 3 PPM000010 PGS000009 ER-negative breast cancer    study, geneti… &lt;NA&gt;          </span>
+<span class="co">#&gt; 4 PPM000004 PGS000004 Invasive breast cancer       study, geneti… &lt;NA&gt;          </span>
+<span class="co">#&gt; 5 PPM000005 PGS000004 Incident breast cancer cases study, geneti… Included only…</span>
+<span class="co">#&gt; 6 PPM000007 PGS000006 ER-negative breast cancer    study, geneti… &lt;NA&gt;          </span>
+<span class="co">#&gt; 7 PPM000006 PGS000005 ER-positive breast cancer    study, geneti… &lt;NA&gt;</span></code></pre></div>
 <p>Here, we can immediately see that the Mavaddat publication has evaluated the PGS000004 twice, with two performance metrics (PPM000004 and PPM000005), that are different because they include a different set of SNPs (see the <code>comments</code> column for PPM000005).</p>
 </div>
 <div id="performance_metrics-object-sample_sets-table" class="section level3">
@@ -765,8 +763,8 @@ This is easily confirmed by checking that all other publications are dated after
 <span class="co">#&gt; # A tibble: 7 × 2</span>
 <span class="co">#&gt;   ppm_id    pss_id   </span>
 <span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;    </span>
-<span class="co">#&gt; 1 PPM000008 PSS000004</span>
-<span class="co">#&gt; 2 PPM000009 PSS000005</span>
+<span class="co">#&gt; 1 PPM000009 PSS000005</span>
+<span class="co">#&gt; 2 PPM000008 PSS000004</span>
 <span class="co">#&gt; 3 PPM000010 PSS000006</span>
 <span class="co">#&gt; 4 PPM000004 PSS000004</span>
 <span class="co">#&gt; 5 PPM000005 PSS000007</span>
@@ -786,8 +784,8 @@ This is easily confirmed by checking that all other publications are dated after
 <span class="co">#&gt; # A tibble: 7 × 16</span>
 <span class="co">#&gt;   ppm_id    pss_id    sample_id stage sample_size sample_cases sample_controls</span>
 <span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;       &lt;int&gt;        &lt;int&gt;           &lt;int&gt;</span>
-<span class="co">#&gt; 1 PPM000008 PSS000004         1 eval        29751        11428           18323</span>
-<span class="co">#&gt; 2 PPM000009 PSS000005         1 eval        11428         7992            3436</span>
+<span class="co">#&gt; 1 PPM000009 PSS000005         1 eval        11428         7992            3436</span>
+<span class="co">#&gt; 2 PPM000008 PSS000004         1 eval        29751        11428           18323</span>
 <span class="co">#&gt; 3 PPM000010 PSS000006         1 eval        11428         1259           10169</span>
 <span class="co">#&gt; 4 PPM000004 PSS000004         1 eval        29751        11428           18323</span>
 <span class="co">#&gt; 5 PPM000005 PSS000007         1 eval       190040         3215          186825</span>
@@ -842,18 +840,18 @@ This is easily confirmed by checking that all other publications are dated after
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mavaddat2018_ppm</span><span class="op">@</span><span class="va">cohorts</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">ppm_id</span> <span class="op">%in%</span> <span class="va">mavaddat2018_ppm_ids</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 61 × 5</span>
-<span class="co">#&gt;    ppm_id   pss_id  sample_id cohort_symbol cohort_name                         </span>
-<span class="co">#&gt;    &lt;chr&gt;    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;                               </span>
-<span class="co">#&gt;  1 PPM0000… PSS000…         1 NHS           Nurses Health Study                 </span>
-<span class="co">#&gt;  2 PPM0000… PSS000…         1 AHS           Agricultural Health Study           </span>
-<span class="co">#&gt;  3 PPM0000… PSS000…         1 BGS           Breakthrough Generations Study      </span>
-<span class="co">#&gt;  4 PPM0000… PSS000…         1 EPIC          European Prospective Investigation …</span>
-<span class="co">#&gt;  5 PPM0000… PSS000…         1 FHRISK        Family History Clinic in Manchester </span>
-<span class="co">#&gt;  6 PPM0000… PSS000…         1 PLCO          Prostate, Lung, Colorectal, and Ova…</span>
-<span class="co">#&gt;  7 PPM0000… PSS000…         1 PROCAS        Breast Screening Programme (NHSBSP)…</span>
-<span class="co">#&gt;  8 PPM0000… PSS000…         1 NHS2          Nurses Health Study II              </span>
-<span class="co">#&gt;  9 PPM0000… PSS000…         1 KARMA         Karolinska Mammography Project for …</span>
-<span class="co">#&gt; 10 PPM0000… PSS000…         1 SISTER        The Sister Study                    </span>
+<span class="co">#&gt;    ppm_id    pss_id    sample_id cohort_symbol cohort_name                      </span>
+<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;                            </span>
+<span class="co">#&gt;  1 PPM000009 PSS000005         1 NHS           Nurses Health Study              </span>
+<span class="co">#&gt;  2 PPM000009 PSS000005         1 AHS           Agricultural Health Study        </span>
+<span class="co">#&gt;  3 PPM000009 PSS000005         1 BGS           Breakthrough Generations Study   </span>
+<span class="co">#&gt;  4 PPM000009 PSS000005         1 EPIC          European Prospective Investigati…</span>
+<span class="co">#&gt;  5 PPM000009 PSS000005         1 FHRISK        Family History Clinic in Manches…</span>
+<span class="co">#&gt;  6 PPM000009 PSS000005         1 PLCO          Prostate, Lung, Colorectal, and …</span>
+<span class="co">#&gt;  7 PPM000009 PSS000005         1 PROCAS        Breast Screening Programme (NHSB…</span>
+<span class="co">#&gt;  8 PPM000009 PSS000005         1 NHS2          Nurses Health Study II           </span>
+<span class="co">#&gt;  9 PPM000009 PSS000005         1 KARMA         Karolinska Mammography Project f…</span>
+<span class="co">#&gt; 10 PPM000009 PSS000005         1 SISTER        The Sister Study                 </span>
 <span class="co">#&gt; # … with 51 more rows</span></code></pre></div>
 </div>
 <div id="performance_metrics-object-pgs-effect-sizes-pgs-classification-metrics-pgs-other-metrics-tables" class="section level3">
@@ -877,8 +875,8 @@ This is easily confirmed by checking that all other publications are dated after
 <span class="co">#&gt; # A tibble: 7 × 11</span>
 <span class="co">#&gt;   ppm_id    effect_size_id estimate_type_long estimate_type estimate unit </span>
 <span class="co">#&gt;   &lt;chr&gt;              &lt;int&gt; &lt;chr&gt;              &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;</span>
-<span class="co">#&gt; 1 PPM000008              1 Odds Ratio         OR                1.66 &lt;NA&gt; </span>
-<span class="co">#&gt; 2 PPM000009              1 Odds Ratio         OR                1.73 &lt;NA&gt; </span>
+<span class="co">#&gt; 1 PPM000009              1 Odds Ratio         OR                1.73 &lt;NA&gt; </span>
+<span class="co">#&gt; 2 PPM000008              1 Odds Ratio         OR                1.66 &lt;NA&gt; </span>
 <span class="co">#&gt; 3 PPM000010              1 Odds Ratio         OR                1.44 &lt;NA&gt; </span>
 <span class="co">#&gt; 4 PPM000004              1 Odds Ratio         OR                1.61 &lt;NA&gt; </span>
 <span class="co">#&gt; 5 PPM000005              1 Hazard Ratio       HR                1.59 &lt;NA&gt; </span>
@@ -888,14 +886,14 @@ This is easily confirmed by checking that all other publications are dated after
 <span class="co">#&gt; #   interval_type &lt;chr&gt;, interval_lower &lt;dbl&gt;, interval_upper &lt;dbl&gt;</span>
 <span class="va">mavaddat2018_ppm</span><span class="op">@</span><span class="va">pgs_classification_metrics</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">ppm_id</span> <span class="op">%in%</span> <span class="va">mavaddat2018_ppm_ids</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 × 11</span>
-<span class="co">#&gt;   ppm_id  classification_me… estimate_type_long     estimate_type estimate unit </span>
-<span class="co">#&gt;   &lt;chr&gt;                &lt;int&gt; &lt;chr&gt;                  &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;</span>
-<span class="co">#&gt; 1 PPM000…                  1 Area Under the Receiv… AUROC            0.636 &lt;NA&gt; </span>
-<span class="co">#&gt; 2 PPM000…                  1 Area Under the Receiv… AUROC            0.647 &lt;NA&gt; </span>
-<span class="co">#&gt; 3 PPM000…                  1 Area Under the Receiv… AUROC            0.6   &lt;NA&gt; </span>
-<span class="co">#&gt; 4 PPM000…                  1 Area Under the Receiv… AUROC            0.63  &lt;NA&gt; </span>
-<span class="co">#&gt; 5 PPM000…                  1 Area Under the Receiv… AUROC            0.601 &lt;NA&gt; </span>
-<span class="co">#&gt; 6 PPM000…                  1 Area Under the Receiv… AUROC            0.641 &lt;NA&gt; </span>
+<span class="co">#&gt;   ppm_id    classification_me… estimate_type_long   estimate_type estimate unit </span>
+<span class="co">#&gt;   &lt;chr&gt;                  &lt;int&gt; &lt;chr&gt;                &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;</span>
+<span class="co">#&gt; 1 PPM000009                  1 Area Under the Rece… AUROC            0.647 &lt;NA&gt; </span>
+<span class="co">#&gt; 2 PPM000008                  1 Area Under the Rece… AUROC            0.636 &lt;NA&gt; </span>
+<span class="co">#&gt; 3 PPM000010                  1 Area Under the Rece… AUROC            0.6   &lt;NA&gt; </span>
+<span class="co">#&gt; 4 PPM000004                  1 Area Under the Rece… AUROC            0.63  &lt;NA&gt; </span>
+<span class="co">#&gt; 5 PPM000007                  1 Area Under the Rece… AUROC            0.601 &lt;NA&gt; </span>
+<span class="co">#&gt; 6 PPM000006                  1 Area Under the Rece… AUROC            0.641 &lt;NA&gt; </span>
 <span class="co">#&gt; # … with 5 more variables: variability_type &lt;chr&gt;, variability &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   interval_type &lt;chr&gt;, interval_lower &lt;dbl&gt;, interval_upper &lt;dbl&gt;</span>
 <span class="va">mavaddat2018_ppm</span><span class="op">@</span><span class="va">pgs_other_metrics</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">ppm_id</span> <span class="op">%in%</span> <span class="va">mavaddat2018_ppm_ids</span><span class="op">)</span>

@@ -263,14 +263,235 @@ performed.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An <a href='performance_metrics-class.html'>performance_metrics</a> object.</p>
+    <p>A <a href='performance_metrics-class.html'>performance_metrics</a> object.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Please note that all search criteria are vectorised, thus allowing for batch
 mode search.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Coming soon...</span>
+    <pre class="examples"><div class='input'><span class='co'># Get performance metrics catalogued with identifier 'PPM000001'</span>
+<span class='fu'>get_performance_metrics</span><span class='op'>(</span>ppm_id <span class='op'>=</span> <span class='st'>'PPM000001'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; An object of class "performance_metrics"
+#&gt; Slot "performance_metrics":
+#&gt; <span style='color: #949494;'># A tibble: 1 × 5</span>
+#&gt;   ppm_id    pgs_id    reported_trait    covariates comments
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   
+#&gt; <span style='color: #BCBCBC;'>1</span> PPM000001 PGS000001 All breast cancer <span style='color: #BB0000;'>NA</span>         <span style='color: #BB0000;'>NA</span>      
+#&gt; 
+#&gt; Slot "publications":
+#&gt; <span style='color: #949494;'># A tibble: 1 × 8</span>
+#&gt;   ppm_id    pgp_id    pubmed_id publication_date publication title author_fullname
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          
+#&gt; <span style='color: #BCBCBC;'>1</span> PPM000001 PGP000001 25855707  2015-04-08       J Natl Can… Pred… Mavaddat N     
+#&gt; <span style='color: #949494;'># … with 1 more variable: doi &lt;chr&gt;</span>
+#&gt; 
+#&gt; Slot "sample_sets":
+#&gt; <span style='color: #949494;'># A tibble: 1 × 2</span>
+#&gt;   ppm_id    pss_id   
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
+#&gt; <span style='color: #BCBCBC;'>1</span> PPM000001 PSS000001
+#&gt; 
+#&gt; Slot "samples":
+#&gt; <span style='color: #949494;'># A tibble: 1 × 16</span>
+#&gt;   ppm_id    pss_id    sample_id stage sample_size sample_cases sample_controls
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> PPM000001 PSS000001         1 eval        <span style='text-decoration: underline;'>67</span>054        <span style='text-decoration: underline;'>33</span>673           <span style='text-decoration: underline;'>33</span>381
+#&gt; <span style='color: #949494;'># … with 9 more variables: sample_percent_male &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   phenotype_description &lt;chr&gt;, ancestry_category &lt;chr&gt;, ancestry &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   country &lt;chr&gt;, ancestry_additional_description &lt;chr&gt;, study_id &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   pubmed_id &lt;chr&gt;, cohorts_additional_description &lt;chr&gt;</span>
+#&gt; 
+#&gt; Slot "demographics":
+#&gt; <span style='color: #949494;'># A tibble: 0 × 12</span>
+#&gt; <span style='color: #949494;'># … with 12 variables: ppm_id &lt;chr&gt;, pss_id &lt;chr&gt;, sample_id &lt;int&gt;,</span>
+#&gt; <span style='color: #949494;'>#   variable &lt;chr&gt;, estimate_type &lt;chr&gt;, estimate &lt;dbl&gt;, unit &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   variability_type &lt;chr&gt;, variability &lt;dbl&gt;, interval_type &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   interval_lower &lt;dbl&gt;, interval_upper &lt;dbl&gt;</span>
+#&gt; 
+#&gt; Slot "cohorts":
+#&gt; <span style='color: #949494;'># A tibble: 33 × 5</span>
+#&gt;    ppm_id    pss_id    sample_id cohort_symbol cohort_name                      
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                            
+#&gt; <span style='color: #BCBCBC;'> 1</span> PPM000001 PSS000001         1 DEMOKRITOS    Hellenic Cooperative Oncology Gr…
+#&gt; <span style='color: #BCBCBC;'> 2</span> PPM000001 PSS000001         1 SBCS          Shanghai Breast Cancer Study     
+#&gt; <span style='color: #BCBCBC;'> 3</span> PPM000001 PSS000001         1 SEARCH        Study of Epidemiology and Risk F…
+#&gt; <span style='color: #BCBCBC;'> 4</span> PPM000001 PSS000001         1 MCBCS         Mayo Clinic Breast Cancer Study  
+#&gt; <span style='color: #BCBCBC;'> 5</span> PPM000001 PSS000001         1 RPCI          Roswell Park Cancer Institute    
+#&gt; <span style='color: #BCBCBC;'> 6</span> PPM000001 PSS000001         1 OSU           The Stefanie Spielman Breast Ban…
+#&gt; <span style='color: #BCBCBC;'> 7</span> PPM000001 PSS000001         1 GENICA        Gene Environment Interaction and…
+#&gt; <span style='color: #BCBCBC;'> 8</span> PPM000001 PSS000001         1 MARIE         Mammary Carcinoma Risk Factor In…
+#&gt; <span style='color: #BCBCBC;'> 9</span> PPM000001 PSS000001         1 SKKDKFZS      St_dtisches Klinikum Karlsruhe D…
+#&gt; <span style='color: #BCBCBC;'>10</span> PPM000001 PSS000001         1 BIGGS         Breast Cancer In Galway Genetic …
+#&gt; <span style='color: #949494;'># … with 23 more rows</span>
+#&gt; 
+#&gt; Slot "pgs_effect_sizes":
+#&gt; <span style='color: #949494;'># A tibble: 1 × 11</span>
+#&gt;   ppm_id    effect_size_id estimate_type_long estimate_type estimate unit 
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> PPM000001              1 Odds Ratio         OR                1.55 <span style='color: #BB0000;'>NA</span>   
+#&gt; <span style='color: #949494;'># … with 5 more variables: variability_type &lt;chr&gt;, variability &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   interval_type &lt;chr&gt;, interval_lower &lt;dbl&gt;, interval_upper &lt;dbl&gt;</span>
+#&gt; 
+#&gt; Slot "pgs_classification_metrics":
+#&gt; <span style='color: #949494;'># A tibble: 1 × 11</span>
+#&gt;   ppm_id    classification_metr… estimate_type_long estimate_type estimate unit 
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                    <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> PPM000001                    1 Concordance Stati… C-index          0.622 <span style='color: #BB0000;'>NA</span>   
+#&gt; <span style='color: #949494;'># … with 5 more variables: variability_type &lt;chr&gt;, variability &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   interval_type &lt;chr&gt;, interval_lower &lt;dbl&gt;, interval_upper &lt;dbl&gt;</span>
+#&gt; 
+#&gt; Slot "pgs_other_metrics":
+#&gt; <span style='color: #949494;'># A tibble: 0 × 11</span>
+#&gt; <span style='color: #949494;'># … with 11 variables: ppm_id &lt;chr&gt;, other_metrics_id &lt;int&gt;,</span>
+#&gt; <span style='color: #949494;'>#   estimate_type_long &lt;chr&gt;, estimate_type &lt;chr&gt;, estimate &lt;dbl&gt;, unit &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   variability_type &lt;chr&gt;, variability &lt;dbl&gt;, interval_type &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   interval_lower &lt;dbl&gt;, interval_upper &lt;dbl&gt;</span>
+#&gt; </div><div class='input'>
+<span class='co'># Get performance metrics associated with polygenic score id 'PGS000001'</span>
+<span class='fu'>get_performance_metrics</span><span class='op'>(</span>pgs_id <span class='op'>=</span> <span class='st'>'PGS000001'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; An object of class "performance_metrics"
+#&gt; Slot "performance_metrics":
+#&gt; <span style='color: #949494;'># A tibble: 13 × 5</span>
+#&gt;    ppm_id    pgs_id    reported_trait        covariates         comments        
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                 <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           
+#&gt; <span style='color: #BCBCBC;'> 1</span> PPM000001 PGS000001 All breast cancer     <span style='color: #BB0000;'>NA</span>                 <span style='color: #BB0000;'>NA</span>              
+#&gt; <span style='color: #BCBCBC;'> 2</span> PPM000011 PGS000001 Invasive breast canc… study, genetic PC… <span style='color: #BB0000;'>NA</span>              
+#&gt; <span style='color: #BCBCBC;'> 3</span> PPM000114 PGS000001 Breast cancer in BRC… Country, birth ye… <span style='color: #BB0000;'>NA</span>              
+#&gt; <span style='color: #BCBCBC;'> 4</span> PPM000117 PGS000001 Breast cancer in BRC… Country, birth ye… <span style='color: #BB0000;'>NA</span>              
+#&gt; <span style='color: #BCBCBC;'> 5</span> PPM000944 PGS000001 Metachronous contral… Country            <span style='color: #BB0000;'>NA</span>              
+#&gt; <span style='color: #BCBCBC;'> 6</span> PPM000945 PGS000001 Invasive metachronou… Country            <span style='color: #BB0000;'>NA</span>              
+#&gt; <span style='color: #BCBCBC;'> 7</span> PPM000961 PGS000001 Metachronous contral… Country            <span style='color: #BB0000;'>NA</span>              
+#&gt; <span style='color: #BCBCBC;'> 8</span> PPM000962 PGS000001 Invasive metachronou… Country            <span style='color: #BB0000;'>NA</span>              
+#&gt; <span style='color: #BCBCBC;'> 9</span> PPM002150 PGS000001 Breast cancer in CHE… Year of birth, co… Only 70 of the …
+#&gt; <span style='color: #BCBCBC;'>10</span> PPM002151 PGS000001 Breast cancer in CHE… Year of birth, co… Only 70 of the …
+#&gt; <span style='color: #BCBCBC;'>11</span> PPM002152 PGS000001 Breast cancer in CHE… Year of birth, co… Only 70 of the …
+#&gt; <span style='color: #BCBCBC;'>12</span> PPM002153 PGS000001 Breast cancer in CHE… Year of birth, co… Only 70 of the …
+#&gt; <span style='color: #BCBCBC;'>13</span> PPM002154 PGS000001 Breast cancer in CHE… Year of birth, co… Only 70 of the …
+#&gt; 
+#&gt; Slot "publications":
+#&gt; <span style='color: #949494;'># A tibble: 13 × 8</span>
+#&gt;    ppm_id    pgp_id    pubmed_id publication_date publication title author_fullname
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          
+#&gt; <span style='color: #BCBCBC;'> 1</span> PPM000001 PGP000001 25855707  2015-04-08       J Natl Can… Pred… Mavaddat N     
+#&gt; <span style='color: #BCBCBC;'> 2</span> PPM000011 PGP000002 30554720  2018-12-13       Am J Hum G… Poly… Mavaddat N     
+#&gt; <span style='color: #BCBCBC;'> 3</span> PPM000114 PGP000033 28376175  2017-07-01       J Natl Can… Eval… Kuchenbaecker …
+#&gt; <span style='color: #BCBCBC;'> 4</span> PPM000117 PGP000033 28376175  2017-07-01       J Natl Can… Eval… Kuchenbaecker …
+#&gt; <span style='color: #BCBCBC;'> 5</span> PPM000944 PGP000109 33022221  2020-10-05       Am J Hum G… Brea… Kramer I       
+#&gt; <span style='color: #BCBCBC;'> 6</span> PPM000945 PGP000109 33022221  2020-10-05       Am J Hum G… Brea… Kramer I       
+#&gt; <span style='color: #BCBCBC;'> 7</span> PPM000961 PGP000109 33022221  2020-10-05       Am J Hum G… Brea… Kramer I       
+#&gt; <span style='color: #BCBCBC;'> 8</span> PPM000962 PGP000109 33022221  2020-10-05       Am J Hum G… Brea… Kramer I       
+#&gt; <span style='color: #BCBCBC;'> 9</span> PPM002150 PGP000198 33372680  2020-12-29       J Natl Can… Perf… Borde J        
+#&gt; <span style='color: #BCBCBC;'>10</span> PPM002151 PGP000198 33372680  2020-12-29       J Natl Can… Perf… Borde J        
+#&gt; <span style='color: #BCBCBC;'>11</span> PPM002152 PGP000198 33372680  2020-12-29       J Natl Can… Perf… Borde J        
+#&gt; <span style='color: #BCBCBC;'>12</span> PPM002153 PGP000198 33372680  2020-12-29       J Natl Can… Perf… Borde J        
+#&gt; <span style='color: #BCBCBC;'>13</span> PPM002154 PGP000198 33372680  2020-12-29       J Natl Can… Perf… Borde J        
+#&gt; <span style='color: #949494;'># … with 1 more variable: doi &lt;chr&gt;</span>
+#&gt; 
+#&gt; Slot "sample_sets":
+#&gt; <span style='color: #949494;'># A tibble: 13 × 2</span>
+#&gt;    ppm_id    pss_id   
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
+#&gt; <span style='color: #BCBCBC;'> 1</span> PPM000001 PSS000001
+#&gt; <span style='color: #BCBCBC;'> 2</span> PPM000011 PSS000004
+#&gt; <span style='color: #BCBCBC;'> 3</span> PPM000114 PSS000070
+#&gt; <span style='color: #BCBCBC;'> 4</span> PPM000117 PSS000071
+#&gt; <span style='color: #BCBCBC;'> 5</span> PPM000944 PSS000484
+#&gt; <span style='color: #BCBCBC;'> 6</span> PPM000945 PSS000486
+#&gt; <span style='color: #BCBCBC;'> 7</span> PPM000961 PSS000484
+#&gt; <span style='color: #BCBCBC;'> 8</span> PPM000962 PSS000486
+#&gt; <span style='color: #BCBCBC;'> 9</span> PPM002150 PSS001054
+#&gt; <span style='color: #BCBCBC;'>10</span> PPM002151 PSS001054
+#&gt; <span style='color: #BCBCBC;'>11</span> PPM002152 PSS001054
+#&gt; <span style='color: #BCBCBC;'>12</span> PPM002153 PSS001054
+#&gt; <span style='color: #BCBCBC;'>13</span> PPM002154 PSS001054
+#&gt; 
+#&gt; Slot "samples":
+#&gt; <span style='color: #949494;'># A tibble: 13 × 16</span>
+#&gt;    ppm_id    pss_id    sample_id stage sample_size sample_cases sample_controls
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> PPM000001 PSS000001         1 eval        <span style='text-decoration: underline;'>67</span>054        <span style='text-decoration: underline;'>33</span>673           <span style='text-decoration: underline;'>33</span>381
+#&gt; <span style='color: #BCBCBC;'> 2</span> PPM000011 PSS000004         1 eval        <span style='text-decoration: underline;'>29</span>751        <span style='text-decoration: underline;'>11</span>428           <span style='text-decoration: underline;'>18</span>323
+#&gt; <span style='color: #BCBCBC;'> 3</span> PPM000114 PSS000070         1 eval        <span style='text-decoration: underline;'>15</span>252         <span style='text-decoration: underline;'>7</span>797            <span style='text-decoration: underline;'>7</span>455
+#&gt; <span style='color: #BCBCBC;'> 4</span> PPM000117 PSS000071         1 eval         <span style='text-decoration: underline;'>8</span>211         <span style='text-decoration: underline;'>4</span>330            <span style='text-decoration: underline;'>3</span>881
+#&gt; <span style='color: #BCBCBC;'> 5</span> PPM000944 PSS000484         1 eval        <span style='text-decoration: underline;'>56</span>068         <span style='text-decoration: underline;'>1</span>027           <span style='text-decoration: underline;'>55</span>041
+#&gt; <span style='color: #BCBCBC;'> 6</span> PPM000945 PSS000486         1 eval        <span style='text-decoration: underline;'>56</span>068          923           <span style='text-decoration: underline;'>55</span>145
+#&gt; <span style='color: #BCBCBC;'> 7</span> PPM000961 PSS000484         1 eval        <span style='text-decoration: underline;'>56</span>068         <span style='text-decoration: underline;'>1</span>027           <span style='text-decoration: underline;'>55</span>041
+#&gt; <span style='color: #BCBCBC;'> 8</span> PPM000962 PSS000486         1 eval        <span style='text-decoration: underline;'>56</span>068          923           <span style='text-decoration: underline;'>55</span>145
+#&gt; <span style='color: #BCBCBC;'> 9</span> PPM002150 PSS001054         1 eval          760          561             199
+#&gt; <span style='color: #BCBCBC;'>10</span> PPM002151 PSS001054         1 eval          760          561             199
+#&gt; <span style='color: #BCBCBC;'>11</span> PPM002152 PSS001054         1 eval          760          561             199
+#&gt; <span style='color: #BCBCBC;'>12</span> PPM002153 PSS001054         1 eval          760          561             199
+#&gt; <span style='color: #BCBCBC;'>13</span> PPM002154 PSS001054         1 eval          760          561             199
+#&gt; <span style='color: #949494;'># … with 9 more variables: sample_percent_male &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   phenotype_description &lt;chr&gt;, ancestry_category &lt;chr&gt;, ancestry &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   country &lt;chr&gt;, ancestry_additional_description &lt;chr&gt;, study_id &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   pubmed_id &lt;chr&gt;, cohorts_additional_description &lt;chr&gt;</span>
+#&gt; 
+#&gt; Slot "demographics":
+#&gt; <span style='color: #949494;'># A tibble: 0 × 12</span>
+#&gt; <span style='color: #949494;'># … with 12 variables: ppm_id &lt;chr&gt;, pss_id &lt;chr&gt;, sample_id &lt;int&gt;,</span>
+#&gt; <span style='color: #949494;'>#   variable &lt;chr&gt;, estimate_type &lt;chr&gt;, estimate &lt;dbl&gt;, unit &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   variability_type &lt;chr&gt;, variability &lt;dbl&gt;, interval_type &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   interval_lower &lt;dbl&gt;, interval_upper &lt;dbl&gt;</span>
+#&gt; 
+#&gt; Slot "cohorts":
+#&gt; <span style='color: #949494;'># A tibble: 218 × 5</span>
+#&gt;    ppm_id    pss_id    sample_id cohort_symbol cohort_name                      
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                            
+#&gt; <span style='color: #BCBCBC;'> 1</span> PPM000001 PSS000001         1 ABCFS         Australian Breast Cancer Family …
+#&gt; <span style='color: #BCBCBC;'> 2</span> PPM000001 PSS000001         1 MCCS          Melbourne Collaborative Cohort S…
+#&gt; <span style='color: #BCBCBC;'> 3</span> PPM000001 PSS000001         1 HMBCS         Hannover-Minsk Breast Cancer Stu…
+#&gt; <span style='color: #BCBCBC;'> 4</span> PPM000001 PSS000001         1 LMBC          Leuven Multidisciplinary Breast …
+#&gt; <span style='color: #BCBCBC;'> 5</span> PPM000001 PSS000001         1 MTLGEBCS      Montreal Gene-Environment Breast…
+#&gt; <span style='color: #BCBCBC;'> 6</span> PPM000001 PSS000001         1 CGPS          Copenhagen General Population St…
+#&gt; <span style='color: #BCBCBC;'> 7</span> PPM000001 PSS000001         1 KBCP          Kuopio Breast Cancer Project     
+#&gt; <span style='color: #BCBCBC;'> 8</span> PPM000001 PSS000001         1 OBCS          Oulu Breast Cancer Study         
+#&gt; <span style='color: #BCBCBC;'> 9</span> PPM000001 PSS000001         1 CECILE        CECILE Breast Cancer Study       
+#&gt; <span style='color: #BCBCBC;'>10</span> PPM000001 PSS000001         1 BBCC          Bavarian Breast Cancer Cases and…
+#&gt; <span style='color: #949494;'># … with 208 more rows</span>
+#&gt; 
+#&gt; Slot "pgs_effect_sizes":
+#&gt; <span style='color: #949494;'># A tibble: 13 × 11</span>
+#&gt;    ppm_id    effect_size_id estimate_type_long estimate_type estimate unit 
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> PPM000001              1 Odds Ratio         OR                1.55 <span style='color: #BB0000;'>NA</span>   
+#&gt; <span style='color: #BCBCBC;'> 2</span> PPM000011              1 Odds Ratio         OR                1.46 <span style='color: #BB0000;'>NA</span>   
+#&gt; <span style='color: #BCBCBC;'> 3</span> PPM000114              1 Hazard Ratio       HR                1.13 <span style='color: #BB0000;'>NA</span>   
+#&gt; <span style='color: #BCBCBC;'> 4</span> PPM000117              1 Hazard Ratio       HR                1.22 <span style='color: #BB0000;'>NA</span>   
+#&gt; <span style='color: #BCBCBC;'> 5</span> PPM000944              1 Hazard Ratio       HR                1.21 <span style='color: #BB0000;'>NA</span>   
+#&gt; <span style='color: #BCBCBC;'> 6</span> PPM000945              1 Hazard Ratio       HR                1.21 <span style='color: #BB0000;'>NA</span>   
+#&gt; <span style='color: #BCBCBC;'> 7</span> PPM000961              1 Hazard Ratio       HR                1.21 <span style='color: #BB0000;'>NA</span>   
+#&gt; <span style='color: #BCBCBC;'> 8</span> PPM000962              1 Hazard Ratio       HR                1.21 <span style='color: #BB0000;'>NA</span>   
+#&gt; <span style='color: #BCBCBC;'> 9</span> PPM002150              1 Hazard Ratio       HR                1.71 <span style='color: #BB0000;'>NA</span>   
+#&gt; <span style='color: #BCBCBC;'>10</span> PPM002151              1 Hazard Ratio       HR                2.29 <span style='color: #BB0000;'>NA</span>   
+#&gt; <span style='color: #BCBCBC;'>11</span> PPM002152              1 Hazard Ratio       HR                1.43 <span style='color: #BB0000;'>NA</span>   
+#&gt; <span style='color: #BCBCBC;'>12</span> PPM002153              1 Hazard Ratio       HR                2.32 <span style='color: #BB0000;'>NA</span>   
+#&gt; <span style='color: #BCBCBC;'>13</span> PPM002154              1 Hazard Ratio       HR                1.59 <span style='color: #BB0000;'>NA</span>   
+#&gt; <span style='color: #949494;'># … with 5 more variables: variability_type &lt;chr&gt;, variability &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   interval_type &lt;chr&gt;, interval_lower &lt;dbl&gt;, interval_upper &lt;dbl&gt;</span>
+#&gt; 
+#&gt; Slot "pgs_classification_metrics":
+#&gt; <span style='color: #949494;'># A tibble: 2 × 11</span>
+#&gt;   ppm_id    classification_me… estimate_type_long   estimate_type estimate unit 
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                  <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> PPM000001                  1 Concordance Statist… C-index          0.622 <span style='color: #BB0000;'>NA</span>   
+#&gt; <span style='color: #BCBCBC;'>2</span> PPM000011                  1 Area Under the Rece… AUROC            0.603 <span style='color: #BB0000;'>NA</span>   
+#&gt; <span style='color: #949494;'># … with 5 more variables: variability_type &lt;chr&gt;, variability &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   interval_type &lt;chr&gt;, interval_lower &lt;dbl&gt;, interval_upper &lt;dbl&gt;</span>
+#&gt; 
+#&gt; Slot "pgs_other_metrics":
+#&gt; <span style='color: #949494;'># A tibble: 0 × 11</span>
+#&gt; <span style='color: #949494;'># … with 11 variables: ppm_id &lt;chr&gt;, other_metrics_id &lt;int&gt;,</span>
+#&gt; <span style='color: #949494;'>#   estimate_type_long &lt;chr&gt;, estimate_type &lt;chr&gt;, estimate &lt;dbl&gt;, unit &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   variability_type &lt;chr&gt;, variability &lt;dbl&gt;, interval_type &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   interval_lower &lt;dbl&gt;, interval_upper &lt;dbl&gt;</span>
+#&gt; </div><div class='input'>
+<span class='co'># To retrieve all catalogued performed metrics in PGS Catalog you simply</span>
+<span class='co'># leave the parameters `ppm_id` and `pgs_id` as `NULL`.</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'>get_performance_metrics</span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>}</span>
 
 </div></pre>
   </div>

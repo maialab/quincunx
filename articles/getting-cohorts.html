@@ -149,14 +149,71 @@
 
     
     
+<div id="cohorts" class="section level2">
+<h2 class="hasAnchor">
+<a href="#cohorts" class="anchor"></a>Cohorts</h2>
+<p>A cohort is a group of individuals with a shared characteristic. Cohorts are identified in quincunx by the <code>cohort_symbol</code> variable. Participants in cohorts are used to define samples, which in turn, are used to assemble sample sets. For more details on the relationship between the concepts of cohorts, samples and sample sets, see <code><a href="../articles/cohorts-samples-sample-sets.html">vignette('cohorts-samples-sample-sets')</a></code>.</p>
+<p>Given that study participants typically come from one or more catalogued cohorts and that cohorts can have a strong bias ancestry composition — i.e., most cohorts are mostly composed of European-ancestry individuals —, it can be really important to know which cohorts have been used at the different stages of a Polygenic Score (PGS) life cycle to assess the transferability of PGS performance.<span class="citation"><sup>1–3</sup></span></p>
+</div>
+<div id="getting-cohorts" class="section level2">
+<h2 class="hasAnchor">
+<a href="#getting-cohorts" class="anchor"></a>Getting cohorts</h2>
+<p>If you know beforehand the cohort acronyms (e.g., <code>"23andMe"</code>) that you are interested in, then you can get their full name and associated PGS identifiers using the <code><a href="../reference/get_cohorts.html">get_cohorts()</a></code> function by providing their symbols with the parameter <code>cohort_symbol</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">quincunx</span><span class="op">)</span></code></pre></div>
-<p>Coming soon.</p>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">quincunx</span><span class="op">)</span>
+<span class="fu"><a href="../reference/get_cohorts.html">get_cohorts</a></span><span class="op">(</span>cohort_symbol <span class="op">=</span> <span class="st">'23andMe'</span><span class="op">)</span>
+<span class="co">#&gt; An object of class "cohorts"</span>
+<span class="co">#&gt; Slot "cohorts":</span>
+<span class="co">#&gt; # A tibble: 1 × 2</span>
+<span class="co">#&gt;   cohort_symbol cohort_name</span>
+<span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;      </span>
+<span class="co">#&gt; 1 23andMe       23andMe    </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "pgs_ids":</span>
+<span class="co">#&gt; # A tibble: 16 × 3</span>
+<span class="co">#&gt;    cohort_symbol pgs_id    stage   </span>
+<span class="co">#&gt;    &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;   </span>
+<span class="co">#&gt;  1 23andMe       PGS000336 gwas/dev</span>
+<span class="co">#&gt;  2 23andMe       PGS000730 gwas/dev</span>
+<span class="co">#&gt;  3 23andMe       PGS000731 gwas/dev</span>
+<span class="co">#&gt;  4 23andMe       PGS000732 gwas/dev</span>
+<span class="co">#&gt;  5 23andMe       PGS000766 gwas/dev</span>
+<span class="co">#&gt;  6 23andMe       PGS000767 gwas/dev</span>
+<span class="co">#&gt;  7 23andMe       PGS000780 gwas/dev</span>
+<span class="co">#&gt;  8 23andMe       PGS000790 gwas/dev</span>
+<span class="co">#&gt;  9 23andMe       PGS000800 gwas/dev</span>
+<span class="co">#&gt; 10 23andMe       PGS000810 gwas/dev</span>
+<span class="co">#&gt; 11 23andMe       PGS000867 gwas/dev</span>
+<span class="co">#&gt; 12 23andMe       PGS000902 gwas/dev</span>
+<span class="co">#&gt; 13 23andMe       PGS000903 gwas/dev</span>
+<span class="co">#&gt; 14 23andMe       PGS000730 eval    </span>
+<span class="co">#&gt; 15 23andMe       PGS000731 eval    </span>
+<span class="co">#&gt; 16 23andMe       PGS000732 eval</span></code></pre></div>
+<p>The <code>pg_ids</code> lists associated PGS identifiers with the queried cohorts. The <code>stage</code> variable indicates the PGS stage in which the cohort was used.</p>
+<p>To get all catalogued cohorts in the PGS Catalog, leave the <code>cohort_symbol</code> parameter as <code>NULL</code> (default). Note that, in this case, it may take a few minutes for the download to complete.</p>
+</div>
+<div id="references" class="section level2 unnumbered">
+<h2 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h2>
+<div id="refs" class="references">
+<div id="ref-reisberg2017">
+<p>1. Reisberg, S., Iljasenko, T., Läll, K., Fischer, K. &amp; Vilo, J. Comparing distributions of polygenic risk scores of type 2 diabetes and coronary heart disease within different populations. <em>PLOS ONE</em> <strong>12</strong>, e0179238 (2017).</p>
+</div>
+<div id="ref-martin2019">
+<p>2. Martin, A. R. <em>et al.</em> Clinical use of current polygenic risk scores may exacerbate health disparities. <em>Nature Genetics</em> <strong>51</strong>, 584–591 (2019).</p>
+</div>
+<div id="ref-duncan2019">
+<p>3. Duncan, L. <em>et al.</em> Analysis of polygenic risk score usage and performance in diverse human populations. <em>Nature Communications</em> <strong>10</strong>, (2019).</p>
+</div>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
 
 </div>
 

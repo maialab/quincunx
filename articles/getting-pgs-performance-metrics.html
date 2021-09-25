@@ -149,14 +149,290 @@
 
     
     
+<div id="pgs-performance-metrics" class="section level2">
+<h2 class="hasAnchor">
+<a href="#pgs-performance-metrics" class="anchor"></a>PGS performance metrics</h2>
+<p>Performance metrics assess the validity of a PGS in a Sample Set. This assessment is performed on samples not used for score development.</p>
+<p>Performance metrics are retrieved with the function <code><a href="../reference/get_performance_metrics.html">get_performance_metrics()</a></code>. The returned data is provided as an S4 object of class <code>performance_metrics</code>.</p>
+<p>Common metrics include:</p>
+<ul>
+<li>standardized effect sizes: odds ratios or hazard ratios, and regression coefficients <span class="math inline">\(\beta\)</span>, see slot <code>pgs_effect_sizes</code>;</li>
+<li>classification accuracy metrics: area under the receiver operating characteristic curve, C-index and area under the precision-recall curve, see slot <code>pgs_classification_metrics</code>;</li>
+<li>other relevant metrics: calibration (<span class="math inline">\(\chi^2\)</span>)), see slot <code>pgs_other_metrics</code>.</li>
+</ul>
+<p>The covariates used in the model (most commonly age, sex and genetic principal components to account for the population structure) are also recorded for each set of metrics. These can be found in the slot <code>demographics</code>.</p>
+</div>
+<div id="getting-pgs-performance-metrics" class="section level2">
+<h2 class="hasAnchor">
+<a href="#getting-pgs-performance-metrics" class="anchor"></a>Getting PGS performance metrics</h2>
+<p>In the PGS Catalog, performance metrics have been catalogued and have an associated identifier that starts with the prefix <code>"PPM"</code>. To retrieve the performance metrics associated with one assessment of a polygenic score, you can use directly its identifier:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">quincunx</span><span class="op">)</span></code></pre></div>
-<p>Coming soon.</p>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">quincunx</span><span class="op">)</span>
+
+<span class="fu"><a href="../reference/get_performance_metrics.html">get_performance_metrics</a></span><span class="op">(</span>ppm_id <span class="op">=</span> <span class="st">'PPM000001'</span><span class="op">)</span>
+<span class="co">#&gt; An object of class "performance_metrics"</span>
+<span class="co">#&gt; Slot "performance_metrics":</span>
+<span class="co">#&gt; # A tibble: 1 × 5</span>
+<span class="co">#&gt;   ppm_id    pgs_id    reported_trait    covariates comments</span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;             &lt;chr&gt;      &lt;chr&gt;   </span>
+<span class="co">#&gt; 1 PPM000001 PGS000001 All breast cancer &lt;NA&gt;       &lt;NA&gt;    </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "publications":</span>
+<span class="co">#&gt; # A tibble: 1 × 8</span>
+<span class="co">#&gt;   ppm_id    pgp_id    pubmed_id publication_date publication title author_fullname</span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;date&gt;           &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;          </span>
+<span class="co">#&gt; 1 PPM000001 PGP000001 25855707  2015-04-08       J Natl Can… Pred… Mavaddat N     </span>
+<span class="co">#&gt; # … with 1 more variable: doi &lt;chr&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "sample_sets":</span>
+<span class="co">#&gt; # A tibble: 1 × 2</span>
+<span class="co">#&gt;   ppm_id    pss_id   </span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;    </span>
+<span class="co">#&gt; 1 PPM000001 PSS000001</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "samples":</span>
+<span class="co">#&gt; # A tibble: 1 × 16</span>
+<span class="co">#&gt;   ppm_id    pss_id    sample_id stage sample_size sample_cases sample_controls</span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;       &lt;int&gt;        &lt;int&gt;           &lt;int&gt;</span>
+<span class="co">#&gt; 1 PPM000001 PSS000001         1 eval        67054        33673           33381</span>
+<span class="co">#&gt; # … with 9 more variables: sample_percent_male &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   phenotype_description &lt;chr&gt;, ancestry_category &lt;chr&gt;, ancestry &lt;chr&gt;,</span>
+<span class="co">#&gt; #   country &lt;chr&gt;, ancestry_additional_description &lt;chr&gt;, study_id &lt;chr&gt;,</span>
+<span class="co">#&gt; #   pubmed_id &lt;chr&gt;, cohorts_additional_description &lt;chr&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "demographics":</span>
+<span class="co">#&gt; # A tibble: 0 × 12</span>
+<span class="co">#&gt; # … with 12 variables: ppm_id &lt;chr&gt;, pss_id &lt;chr&gt;, sample_id &lt;int&gt;,</span>
+<span class="co">#&gt; #   variable &lt;chr&gt;, estimate_type &lt;chr&gt;, estimate &lt;dbl&gt;, unit &lt;chr&gt;,</span>
+<span class="co">#&gt; #   variability_type &lt;chr&gt;, variability &lt;dbl&gt;, interval_type &lt;chr&gt;,</span>
+<span class="co">#&gt; #   interval_lower &lt;dbl&gt;, interval_upper &lt;dbl&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "cohorts":</span>
+<span class="co">#&gt; # A tibble: 33 × 5</span>
+<span class="co">#&gt;    ppm_id    pss_id    sample_id cohort_symbol cohort_name                      </span>
+<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;                            </span>
+<span class="co">#&gt;  1 PPM000001 PSS000001         1 DEMOKRITOS    Hellenic Cooperative Oncology Gr…</span>
+<span class="co">#&gt;  2 PPM000001 PSS000001         1 SBCS          Shanghai Breast Cancer Study     </span>
+<span class="co">#&gt;  3 PPM000001 PSS000001         1 SEARCH        Study of Epidemiology and Risk F…</span>
+<span class="co">#&gt;  4 PPM000001 PSS000001         1 MCBCS         Mayo Clinic Breast Cancer Study  </span>
+<span class="co">#&gt;  5 PPM000001 PSS000001         1 RPCI          Roswell Park Cancer Institute    </span>
+<span class="co">#&gt;  6 PPM000001 PSS000001         1 OSU           The Stefanie Spielman Breast Ban…</span>
+<span class="co">#&gt;  7 PPM000001 PSS000001         1 GENICA        Gene Environment Interaction and…</span>
+<span class="co">#&gt;  8 PPM000001 PSS000001         1 MARIE         Mammary Carcinoma Risk Factor In…</span>
+<span class="co">#&gt;  9 PPM000001 PSS000001         1 SKKDKFZS      St_dtisches Klinikum Karlsruhe D…</span>
+<span class="co">#&gt; 10 PPM000001 PSS000001         1 BIGGS         Breast Cancer In Galway Genetic …</span>
+<span class="co">#&gt; # … with 23 more rows</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "pgs_effect_sizes":</span>
+<span class="co">#&gt; # A tibble: 1 × 11</span>
+<span class="co">#&gt;   ppm_id    effect_size_id estimate_type_long estimate_type estimate unit </span>
+<span class="co">#&gt;   &lt;chr&gt;              &lt;int&gt; &lt;chr&gt;              &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;</span>
+<span class="co">#&gt; 1 PPM000001              1 Odds Ratio         OR                1.55 &lt;NA&gt; </span>
+<span class="co">#&gt; # … with 5 more variables: variability_type &lt;chr&gt;, variability &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   interval_type &lt;chr&gt;, interval_lower &lt;dbl&gt;, interval_upper &lt;dbl&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "pgs_classification_metrics":</span>
+<span class="co">#&gt; # A tibble: 1 × 11</span>
+<span class="co">#&gt;   ppm_id    classification_metr… estimate_type_long estimate_type estimate unit </span>
+<span class="co">#&gt;   &lt;chr&gt;                    &lt;int&gt; &lt;chr&gt;              &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;</span>
+<span class="co">#&gt; 1 PPM000001                    1 Concordance Stati… C-index          0.622 &lt;NA&gt; </span>
+<span class="co">#&gt; # … with 5 more variables: variability_type &lt;chr&gt;, variability &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   interval_type &lt;chr&gt;, interval_lower &lt;dbl&gt;, interval_upper &lt;dbl&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "pgs_other_metrics":</span>
+<span class="co">#&gt; # A tibble: 0 × 11</span>
+<span class="co">#&gt; # … with 11 variables: ppm_id &lt;chr&gt;, other_metrics_id &lt;int&gt;,</span>
+<span class="co">#&gt; #   estimate_type_long &lt;chr&gt;, estimate_type &lt;chr&gt;, estimate &lt;dbl&gt;, unit &lt;chr&gt;,</span>
+<span class="co">#&gt; #   variability_type &lt;chr&gt;, variability &lt;dbl&gt;, interval_type &lt;chr&gt;,</span>
+<span class="co">#&gt; #   interval_lower &lt;dbl&gt;, interval_upper &lt;dbl&gt;</span></code></pre></div>
+</div>
+<div id="searching-by-pgs-identifier" class="section level2">
+<h2 class="hasAnchor">
+<a href="#searching-by-pgs-identifier" class="anchor"></a>Searching by PGS identifier</h2>
+<p>Alternatively, you could also search by the associated PGS identifier, i.e. <code>"PGS000001"</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get_performance_metrics.html">get_performance_metrics</a></span><span class="op">(</span>pgs_id <span class="op">=</span> <span class="st">'PGS000001'</span><span class="op">)</span>
+<span class="co">#&gt; An object of class "performance_metrics"</span>
+<span class="co">#&gt; Slot "performance_metrics":</span>
+<span class="co">#&gt; # A tibble: 13 × 5</span>
+<span class="co">#&gt;    ppm_id    pgs_id    reported_trait        covariates         comments        </span>
+<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;                 &lt;chr&gt;              &lt;chr&gt;           </span>
+<span class="co">#&gt;  1 PPM000001 PGS000001 All breast cancer     &lt;NA&gt;               &lt;NA&gt;            </span>
+<span class="co">#&gt;  2 PPM000011 PGS000001 Invasive breast canc… study, genetic PC… &lt;NA&gt;            </span>
+<span class="co">#&gt;  3 PPM000114 PGS000001 Breast cancer in BRC… Country, birth ye… &lt;NA&gt;            </span>
+<span class="co">#&gt;  4 PPM000117 PGS000001 Breast cancer in BRC… Country, birth ye… &lt;NA&gt;            </span>
+<span class="co">#&gt;  5 PPM000944 PGS000001 Metachronous contral… Country            &lt;NA&gt;            </span>
+<span class="co">#&gt;  6 PPM000945 PGS000001 Invasive metachronou… Country            &lt;NA&gt;            </span>
+<span class="co">#&gt;  7 PPM000961 PGS000001 Metachronous contral… Country            &lt;NA&gt;            </span>
+<span class="co">#&gt;  8 PPM000962 PGS000001 Invasive metachronou… Country            &lt;NA&gt;            </span>
+<span class="co">#&gt;  9 PPM002150 PGS000001 Breast cancer in CHE… Year of birth, co… Only 70 of the …</span>
+<span class="co">#&gt; 10 PPM002151 PGS000001 Breast cancer in CHE… Year of birth, co… Only 70 of the …</span>
+<span class="co">#&gt; 11 PPM002152 PGS000001 Breast cancer in CHE… Year of birth, co… Only 70 of the …</span>
+<span class="co">#&gt; 12 PPM002153 PGS000001 Breast cancer in CHE… Year of birth, co… Only 70 of the …</span>
+<span class="co">#&gt; 13 PPM002154 PGS000001 Breast cancer in CHE… Year of birth, co… Only 70 of the …</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "publications":</span>
+<span class="co">#&gt; # A tibble: 13 × 8</span>
+<span class="co">#&gt;    ppm_id    pgp_id    pubmed_id publication_date publication title author_fullname</span>
+<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;date&gt;           &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;          </span>
+<span class="co">#&gt;  1 PPM000001 PGP000001 25855707  2015-04-08       J Natl Can… Pred… Mavaddat N     </span>
+<span class="co">#&gt;  2 PPM000011 PGP000002 30554720  2018-12-13       Am J Hum G… Poly… Mavaddat N     </span>
+<span class="co">#&gt;  3 PPM000114 PGP000033 28376175  2017-07-01       J Natl Can… Eval… Kuchenbaecker …</span>
+<span class="co">#&gt;  4 PPM000117 PGP000033 28376175  2017-07-01       J Natl Can… Eval… Kuchenbaecker …</span>
+<span class="co">#&gt;  5 PPM000944 PGP000109 33022221  2020-10-05       Am J Hum G… Brea… Kramer I       </span>
+<span class="co">#&gt;  6 PPM000945 PGP000109 33022221  2020-10-05       Am J Hum G… Brea… Kramer I       </span>
+<span class="co">#&gt;  7 PPM000961 PGP000109 33022221  2020-10-05       Am J Hum G… Brea… Kramer I       </span>
+<span class="co">#&gt;  8 PPM000962 PGP000109 33022221  2020-10-05       Am J Hum G… Brea… Kramer I       </span>
+<span class="co">#&gt;  9 PPM002150 PGP000198 33372680  2020-12-29       J Natl Can… Perf… Borde J        </span>
+<span class="co">#&gt; 10 PPM002151 PGP000198 33372680  2020-12-29       J Natl Can… Perf… Borde J        </span>
+<span class="co">#&gt; 11 PPM002152 PGP000198 33372680  2020-12-29       J Natl Can… Perf… Borde J        </span>
+<span class="co">#&gt; 12 PPM002153 PGP000198 33372680  2020-12-29       J Natl Can… Perf… Borde J        </span>
+<span class="co">#&gt; 13 PPM002154 PGP000198 33372680  2020-12-29       J Natl Can… Perf… Borde J        </span>
+<span class="co">#&gt; # … with 1 more variable: doi &lt;chr&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "sample_sets":</span>
+<span class="co">#&gt; # A tibble: 13 × 2</span>
+<span class="co">#&gt;    ppm_id    pss_id   </span>
+<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;    </span>
+<span class="co">#&gt;  1 PPM000001 PSS000001</span>
+<span class="co">#&gt;  2 PPM000011 PSS000004</span>
+<span class="co">#&gt;  3 PPM000114 PSS000070</span>
+<span class="co">#&gt;  4 PPM000117 PSS000071</span>
+<span class="co">#&gt;  5 PPM000944 PSS000484</span>
+<span class="co">#&gt;  6 PPM000945 PSS000486</span>
+<span class="co">#&gt;  7 PPM000961 PSS000484</span>
+<span class="co">#&gt;  8 PPM000962 PSS000486</span>
+<span class="co">#&gt;  9 PPM002150 PSS001054</span>
+<span class="co">#&gt; 10 PPM002151 PSS001054</span>
+<span class="co">#&gt; 11 PPM002152 PSS001054</span>
+<span class="co">#&gt; 12 PPM002153 PSS001054</span>
+<span class="co">#&gt; 13 PPM002154 PSS001054</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "samples":</span>
+<span class="co">#&gt; # A tibble: 13 × 16</span>
+<span class="co">#&gt;    ppm_id    pss_id    sample_id stage sample_size sample_cases sample_controls</span>
+<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;       &lt;int&gt;        &lt;int&gt;           &lt;int&gt;</span>
+<span class="co">#&gt;  1 PPM000001 PSS000001         1 eval        67054        33673           33381</span>
+<span class="co">#&gt;  2 PPM000011 PSS000004         1 eval        29751        11428           18323</span>
+<span class="co">#&gt;  3 PPM000114 PSS000070         1 eval        15252         7797            7455</span>
+<span class="co">#&gt;  4 PPM000117 PSS000071         1 eval         8211         4330            3881</span>
+<span class="co">#&gt;  5 PPM000944 PSS000484         1 eval        56068         1027           55041</span>
+<span class="co">#&gt;  6 PPM000945 PSS000486         1 eval        56068          923           55145</span>
+<span class="co">#&gt;  7 PPM000961 PSS000484         1 eval        56068         1027           55041</span>
+<span class="co">#&gt;  8 PPM000962 PSS000486         1 eval        56068          923           55145</span>
+<span class="co">#&gt;  9 PPM002150 PSS001054         1 eval          760          561             199</span>
+<span class="co">#&gt; 10 PPM002151 PSS001054         1 eval          760          561             199</span>
+<span class="co">#&gt; 11 PPM002152 PSS001054         1 eval          760          561             199</span>
+<span class="co">#&gt; 12 PPM002153 PSS001054         1 eval          760          561             199</span>
+<span class="co">#&gt; 13 PPM002154 PSS001054         1 eval          760          561             199</span>
+<span class="co">#&gt; # … with 9 more variables: sample_percent_male &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   phenotype_description &lt;chr&gt;, ancestry_category &lt;chr&gt;, ancestry &lt;chr&gt;,</span>
+<span class="co">#&gt; #   country &lt;chr&gt;, ancestry_additional_description &lt;chr&gt;, study_id &lt;chr&gt;,</span>
+<span class="co">#&gt; #   pubmed_id &lt;chr&gt;, cohorts_additional_description &lt;chr&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "demographics":</span>
+<span class="co">#&gt; # A tibble: 0 × 12</span>
+<span class="co">#&gt; # … with 12 variables: ppm_id &lt;chr&gt;, pss_id &lt;chr&gt;, sample_id &lt;int&gt;,</span>
+<span class="co">#&gt; #   variable &lt;chr&gt;, estimate_type &lt;chr&gt;, estimate &lt;dbl&gt;, unit &lt;chr&gt;,</span>
+<span class="co">#&gt; #   variability_type &lt;chr&gt;, variability &lt;dbl&gt;, interval_type &lt;chr&gt;,</span>
+<span class="co">#&gt; #   interval_lower &lt;dbl&gt;, interval_upper &lt;dbl&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "cohorts":</span>
+<span class="co">#&gt; # A tibble: 218 × 5</span>
+<span class="co">#&gt;    ppm_id    pss_id    sample_id cohort_symbol cohort_name                      </span>
+<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;                            </span>
+<span class="co">#&gt;  1 PPM000001 PSS000001         1 ABCFS         Australian Breast Cancer Family …</span>
+<span class="co">#&gt;  2 PPM000001 PSS000001         1 MCCS          Melbourne Collaborative Cohort S…</span>
+<span class="co">#&gt;  3 PPM000001 PSS000001         1 HMBCS         Hannover-Minsk Breast Cancer Stu…</span>
+<span class="co">#&gt;  4 PPM000001 PSS000001         1 LMBC          Leuven Multidisciplinary Breast …</span>
+<span class="co">#&gt;  5 PPM000001 PSS000001         1 MTLGEBCS      Montreal Gene-Environment Breast…</span>
+<span class="co">#&gt;  6 PPM000001 PSS000001         1 CGPS          Copenhagen General Population St…</span>
+<span class="co">#&gt;  7 PPM000001 PSS000001         1 KBCP          Kuopio Breast Cancer Project     </span>
+<span class="co">#&gt;  8 PPM000001 PSS000001         1 OBCS          Oulu Breast Cancer Study         </span>
+<span class="co">#&gt;  9 PPM000001 PSS000001         1 CECILE        CECILE Breast Cancer Study       </span>
+<span class="co">#&gt; 10 PPM000001 PSS000001         1 BBCC          Bavarian Breast Cancer Cases and…</span>
+<span class="co">#&gt; # … with 208 more rows</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "pgs_effect_sizes":</span>
+<span class="co">#&gt; # A tibble: 13 × 11</span>
+<span class="co">#&gt;    ppm_id    effect_size_id estimate_type_long estimate_type estimate unit </span>
+<span class="co">#&gt;    &lt;chr&gt;              &lt;int&gt; &lt;chr&gt;              &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;</span>
+<span class="co">#&gt;  1 PPM000001              1 Odds Ratio         OR                1.55 &lt;NA&gt; </span>
+<span class="co">#&gt;  2 PPM000011              1 Odds Ratio         OR                1.46 &lt;NA&gt; </span>
+<span class="co">#&gt;  3 PPM000114              1 Hazard Ratio       HR                1.13 &lt;NA&gt; </span>
+<span class="co">#&gt;  4 PPM000117              1 Hazard Ratio       HR                1.22 &lt;NA&gt; </span>
+<span class="co">#&gt;  5 PPM000944              1 Hazard Ratio       HR                1.21 &lt;NA&gt; </span>
+<span class="co">#&gt;  6 PPM000945              1 Hazard Ratio       HR                1.21 &lt;NA&gt; </span>
+<span class="co">#&gt;  7 PPM000961              1 Hazard Ratio       HR                1.21 &lt;NA&gt; </span>
+<span class="co">#&gt;  8 PPM000962              1 Hazard Ratio       HR                1.21 &lt;NA&gt; </span>
+<span class="co">#&gt;  9 PPM002150              1 Hazard Ratio       HR                1.71 &lt;NA&gt; </span>
+<span class="co">#&gt; 10 PPM002151              1 Hazard Ratio       HR                2.29 &lt;NA&gt; </span>
+<span class="co">#&gt; 11 PPM002152              1 Hazard Ratio       HR                1.43 &lt;NA&gt; </span>
+<span class="co">#&gt; 12 PPM002153              1 Hazard Ratio       HR                2.32 &lt;NA&gt; </span>
+<span class="co">#&gt; 13 PPM002154              1 Hazard Ratio       HR                1.59 &lt;NA&gt; </span>
+<span class="co">#&gt; # … with 5 more variables: variability_type &lt;chr&gt;, variability &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   interval_type &lt;chr&gt;, interval_lower &lt;dbl&gt;, interval_upper &lt;dbl&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "pgs_classification_metrics":</span>
+<span class="co">#&gt; # A tibble: 2 × 11</span>
+<span class="co">#&gt;   ppm_id    classification_me… estimate_type_long   estimate_type estimate unit </span>
+<span class="co">#&gt;   &lt;chr&gt;                  &lt;int&gt; &lt;chr&gt;                &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;</span>
+<span class="co">#&gt; 1 PPM000001                  1 Concordance Statist… C-index          0.622 &lt;NA&gt; </span>
+<span class="co">#&gt; 2 PPM000011                  1 Area Under the Rece… AUROC            0.603 &lt;NA&gt; </span>
+<span class="co">#&gt; # … with 5 more variables: variability_type &lt;chr&gt;, variability &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   interval_type &lt;chr&gt;, interval_lower &lt;dbl&gt;, interval_upper &lt;dbl&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "pgs_other_metrics":</span>
+<span class="co">#&gt; # A tibble: 0 × 11</span>
+<span class="co">#&gt; # … with 11 variables: ppm_id &lt;chr&gt;, other_metrics_id &lt;int&gt;,</span>
+<span class="co">#&gt; #   estimate_type_long &lt;chr&gt;, estimate_type &lt;chr&gt;, estimate &lt;dbl&gt;, unit &lt;chr&gt;,</span>
+<span class="co">#&gt; #   variability_type &lt;chr&gt;, variability &lt;dbl&gt;, interval_type &lt;chr&gt;,</span>
+<span class="co">#&gt; #   interval_lower &lt;dbl&gt;, interval_upper &lt;dbl&gt;</span></code></pre></div>
+<p>As you can see, when you search by <code>'PGS000001'</code>, we get multiple PPM identifiers (PPM000001 included). This is because a PGS could have been assessed multiple independent times, each assessment resulting in its own performance metrics data entry, with its own associated identifier.</p>
+</div>
+<div id="vectorised-search" class="section level2">
+<h2 class="hasAnchor">
+<a href="#vectorised-search" class="anchor"></a>Vectorised search</h2>
+<p>The function <code><a href="../reference/get_performance_metrics.html">get_performance_metrics()</a></code> is vectorised over <code>ppm_id</code> and <code>pgs_id</code> and you could readily retrieve performance metrics for a set of polygenic scores by providing a vector of identifiers (e.g. PGSes 42 thru 46):</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ppm</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_performance_metrics.html">get_performance_metrics</a></span><span class="op">(</span>pgs_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"PGS%06d"</span>, <span class="fl">42</span><span class="op">:</span><span class="fl">46</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">ppm</span><span class="op">@</span><span class="va">performance_metrics</span>, n <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 25 × 5</span>
+<span class="co">#&gt;    ppm_id    pgs_id    reported_trait         covariates         comments       </span>
+<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;                  &lt;chr&gt;              &lt;chr&gt;          </span>
+<span class="co">#&gt;  1 PPM000101 PGS000042 Coeliac disease in HL… &lt;NA&gt;               &lt;NA&gt;           </span>
+<span class="co">#&gt;  2 PPM000102 PGS000043 Venous thromboembolism age, sex, 5 PCs o… &lt;NA&gt;           </span>
+<span class="co">#&gt;  3 PPM000103 PGS000043 Venous thromboembolism age, 10 PCs of an… &lt;NA&gt;           </span>
+<span class="co">#&gt;  4 PPM001639 PGS000043 Thromboembolic diseas… Age at last visit… Included 265/2…</span>
+<span class="co">#&gt;  5 PPM001640 PGS000043 Thromboembolic diseas… Disease duration,… Included 265/2…</span>
+<span class="co">#&gt;  6 PPM001641 PGS000043 Thromboembolic diseas… Age at last visit… Included 265/2…</span>
+<span class="co">#&gt;  7 PPM001939 PGS000043 Venous Thromboembolism Age, sex, PCs(1-5… 273 of origina…</span>
+<span class="co">#&gt;  8 PPM001940 PGS000043 Venous Thromboembolism Age, sex, PCs(1-5… 273 of origina…</span>
+<span class="co">#&gt;  9 PPM001941 PGS000043 Venous Thromboembolism &lt;NA&gt;               273 of origina…</span>
+<span class="co">#&gt; 10 PPM001942 PGS000043 Venous Thromboembolism Age, obesity(BMI≥… 273 of origina…</span>
+<span class="co">#&gt; 11 PPM001943 PGS000043 Venous Thromboembolis… Age, sex, PCs(1-5… 273 of origina…</span>
+<span class="co">#&gt; 12 PPM001944 PGS000043 Venous Thromboembolis… Age, sex, PCs(1-5… 273 of origina…</span>
+<span class="co">#&gt; 13 PPM000104 PGS000044 Elevated serum prosta… cancer stage, Gle… &lt;NA&gt;           </span>
+<span class="co">#&gt; 14 PPM000105 PGS000044 aggressive prostate c… &lt;NA&gt;               &lt;NA&gt;           </span>
+<span class="co">#&gt; 15 PPM000106 PGS000045 Breast cancer in BRCA… Country, birth ye… &lt;NA&gt;           </span>
+<span class="co">#&gt; 16 PPM000107 PGS000045 Breast cancer in BRCA… Country, birth ye… &lt;NA&gt;           </span>
+<span class="co">#&gt; 17 PPM000120 PGS000045 Breast cancer in male… 3 PCs of ancestry… PGS predicting…</span>
+<span class="co">#&gt; 18 PPM002155 PGS000045 Breast cancer in CHEK… Year of birth, co… Only 81 of the…</span>
+<span class="co">#&gt; 19 PPM002156 PGS000045 Breast cancer in CHEK… Year of birth, co… Only 81 of the…</span>
+<span class="co">#&gt; 20 PPM002157 PGS000045 Breast cancer in CHEK… Year of birth, co… Only 81 of the…</span>
+<span class="co">#&gt; 21 PPM002158 PGS000045 Breast cancer in CHEK… Year of birth, co… Only 81 of the…</span>
+<span class="co">#&gt; 22 PPM002159 PGS000045 Breast cancer in CHEK… Year of birth, co… Only 81 of the…</span>
+<span class="co">#&gt; 23 PPM000108 PGS000046 Breast cancer in BRCA… Country, birth ye… &lt;NA&gt;           </span>
+<span class="co">#&gt; 24 PPM000109 PGS000046 Breast cancer in BRCA… Country, birth ye… &lt;NA&gt;           </span>
+<span class="co">#&gt; 25 PPM000121 PGS000046 Breast cancer in male… 3 PCs of ancestry… PGS predicting…</span></code></pre></div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
 
 </div>
 

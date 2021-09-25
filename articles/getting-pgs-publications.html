@@ -149,14 +149,208 @@
 
     
     
+<div id="pgs-publications" class="section level2">
+<h2 class="hasAnchor">
+<a href="#pgs-publications" class="anchor"></a>PGS Publications</h2>
+<p>PGS publications are those published works that underlie the data provided by the PGS Catalog.</p>
+<p>To retrieve these publications use the function <code><a href="../reference/get_publications.html">get_publications()</a></code>. You may use one of the following search criteria (or a combination thereof):</p>
+<ul>
+<li>
+<code>pgp_id</code>: the publication identifier assigned by the PGS Catalog;</li>
+<li>
+<code>pgs_id</code>: the polygenic score identifier;</li>
+<li>
+<code>pubmed_id</code>: PubMed identifier;</li>
+<li>
+<code>author</code>: an author last name.</li>
+</ul>
+<p>If you do not pass any of the criteria above, then <code><a href="../reference/get_publications.html">get_publications()</a></code> will retrieve all publications in the Catalog.</p>
+</div>
+<div id="getting-pgs-publications" class="section level2">
+<h2 class="hasAnchor">
+<a href="#getting-pgs-publications" class="anchor"></a>Getting PGS Publications</h2>
+<p>Getting PGS publications by their identifiers:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">quincunx</span><span class="op">)</span></code></pre></div>
-<p>Coming soon.</p>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">quincunx</span><span class="op">)</span>
+
+<span class="fu"><a href="../reference/get_publications.html">get_publications</a></span><span class="op">(</span>pgp_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'PGP000001'</span>, <span class="st">'PGP000002'</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; An object of class "publications"</span>
+<span class="co">#&gt; Slot "publications":</span>
+<span class="co">#&gt; # A tibble: 2 × 8</span>
+<span class="co">#&gt;   pgp_id    pubmed_id publication_date publication  title  author_fullname doi  </span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;     &lt;date&gt;           &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;</span>
+<span class="co">#&gt; 1 PGP000001 25855707  2015-04-08       J Natl Canc… Predi… Mavaddat N      10.1…</span>
+<span class="co">#&gt; 2 PGP000002 30554720  2018-12-13       Am J Hum Ge… Polyg… Mavaddat N      10.1…</span>
+<span class="co">#&gt; # … with 1 more variable: authors &lt;chr&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "pgs_ids":</span>
+<span class="co">#&gt; # A tibble: 21 × 3</span>
+<span class="co">#&gt;    pgp_id    pgs_id    stage   </span>
+<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;   </span>
+<span class="co">#&gt;  1 PGP000001 PGS000001 gwas/dev</span>
+<span class="co">#&gt;  2 PGP000001 PGS000002 gwas/dev</span>
+<span class="co">#&gt;  3 PGP000001 PGS000003 gwas/dev</span>
+<span class="co">#&gt;  4 PGP000001 PGS000001 eval    </span>
+<span class="co">#&gt;  5 PGP000001 PGS000002 eval    </span>
+<span class="co">#&gt;  6 PGP000001 PGS000003 eval    </span>
+<span class="co">#&gt;  7 PGP000002 PGS000004 gwas/dev</span>
+<span class="co">#&gt;  8 PGP000002 PGS000005 gwas/dev</span>
+<span class="co">#&gt;  9 PGP000002 PGS000006 gwas/dev</span>
+<span class="co">#&gt; 10 PGP000002 PGS000007 gwas/dev</span>
+<span class="co">#&gt; # … with 11 more rows</span></code></pre></div>
+<p>By <code>pgs_id</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">quincunx</span><span class="op">)</span>
+
+<span class="fu"><a href="../reference/get_publications.html">get_publications</a></span><span class="op">(</span>pgs_id <span class="op">=</span> <span class="st">'PGS000003'</span><span class="op">)</span>
+<span class="co">#&gt; An object of class "publications"</span>
+<span class="co">#&gt; Slot "publications":</span>
+<span class="co">#&gt; # A tibble: 1 × 8</span>
+<span class="co">#&gt;   pgp_id    pubmed_id publication_date publication  title  author_fullname doi  </span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;     &lt;date&gt;           &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;</span>
+<span class="co">#&gt; 1 PGP000001 25855707  2015-04-08       J Natl Canc… Predi… Mavaddat N      10.1…</span>
+<span class="co">#&gt; # … with 1 more variable: authors &lt;chr&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "pgs_ids":</span>
+<span class="co">#&gt; # A tibble: 6 × 3</span>
+<span class="co">#&gt;   pgp_id    pgs_id    stage   </span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;   </span>
+<span class="co">#&gt; 1 PGP000001 PGS000001 gwas/dev</span>
+<span class="co">#&gt; 2 PGP000001 PGS000002 gwas/dev</span>
+<span class="co">#&gt; 3 PGP000001 PGS000003 gwas/dev</span>
+<span class="co">#&gt; 4 PGP000001 PGS000001 eval    </span>
+<span class="co">#&gt; 5 PGP000001 PGS000002 eval    </span>
+<span class="co">#&gt; 6 PGP000001 PGS000003 eval</span></code></pre></div>
+<p>By <code>pubmed_id</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">quincunx</span><span class="op">)</span>
+
+<span class="fu"><a href="../reference/get_publications.html">get_publications</a></span><span class="op">(</span>pubmed_id <span class="op">=</span> <span class="st">'30554720'</span><span class="op">)</span>
+<span class="co">#&gt; An object of class "publications"</span>
+<span class="co">#&gt; Slot "publications":</span>
+<span class="co">#&gt; # A tibble: 1 × 8</span>
+<span class="co">#&gt;   pgp_id    pubmed_id publication_date publication  title  author_fullname doi  </span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;     &lt;date&gt;           &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;</span>
+<span class="co">#&gt; 1 PGP000002 30554720  2018-12-13       Am J Hum Ge… Polyg… Mavaddat N      10.1…</span>
+<span class="co">#&gt; # … with 1 more variable: authors &lt;chr&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "pgs_ids":</span>
+<span class="co">#&gt; # A tibble: 15 × 3</span>
+<span class="co">#&gt;    pgp_id    pgs_id    stage   </span>
+<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;   </span>
+<span class="co">#&gt;  1 PGP000002 PGS000004 gwas/dev</span>
+<span class="co">#&gt;  2 PGP000002 PGS000005 gwas/dev</span>
+<span class="co">#&gt;  3 PGP000002 PGS000006 gwas/dev</span>
+<span class="co">#&gt;  4 PGP000002 PGS000007 gwas/dev</span>
+<span class="co">#&gt;  5 PGP000002 PGS000008 gwas/dev</span>
+<span class="co">#&gt;  6 PGP000002 PGS000009 gwas/dev</span>
+<span class="co">#&gt;  7 PGP000002 PGS000001 eval    </span>
+<span class="co">#&gt;  8 PGP000002 PGS000002 eval    </span>
+<span class="co">#&gt;  9 PGP000002 PGS000003 eval    </span>
+<span class="co">#&gt; 10 PGP000002 PGS000004 eval    </span>
+<span class="co">#&gt; 11 PGP000002 PGS000005 eval    </span>
+<span class="co">#&gt; 12 PGP000002 PGS000006 eval    </span>
+<span class="co">#&gt; 13 PGP000002 PGS000007 eval    </span>
+<span class="co">#&gt; 14 PGP000002 PGS000008 eval    </span>
+<span class="co">#&gt; 15 PGP000002 PGS000009 eval</span></code></pre></div>
+<p>By <code>author</code>:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">quincunx</span><span class="op">)</span>
+
+<span class="fu"><a href="../reference/get_publications.html">get_publications</a></span><span class="op">(</span>author <span class="op">=</span> <span class="st">'Natarajan'</span><span class="op">)</span>
+<span class="co">#&gt; An object of class "publications"</span>
+<span class="co">#&gt; Slot "publications":</span>
+<span class="co">#&gt; # A tibble: 8 × 8</span>
+<span class="co">#&gt;   pgp_id    pubmed_id publication_date publication  title  author_fullname doi  </span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;     &lt;date&gt;           &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;</span>
+<span class="co">#&gt; 1 PGP000006 30104762  2018-08-13       Nat Genet    Genom… Khera AV        10.1…</span>
+<span class="co">#&gt; 2 PGP000030 31676865  2019-11-01       Nat Genet    Genom… Klarin D        10.1…</span>
+<span class="co">#&gt; 3 PGP000042 28223407  2017-02-21       Circulation  Polyg… Natarajan P     10.1…</span>
+<span class="co">#&gt; 4 PGP000060 30586733  2019-03-01       Circulation  Whole… Khera AV        10.1…</span>
+<span class="co">#&gt; 5 PGP000076 27959714  2016-11-13       N Engl J Med Genet… Khera AV        10.1…</span>
+<span class="co">#&gt; 6 PGP000116 32498804  2020-06-01       J Am Coll C… Limit… Aragam KG       10.1…</span>
+<span class="co">#&gt; 7 PGP000127 33021622  2020-10-06       JAMA Cardiol Clini… Trinder M       10.1…</span>
+<span class="co">#&gt; 8 PGP000159 32981348  2020-09-28       Circulation  Genet… Klarin D        10.1…</span>
+<span class="co">#&gt; # … with 1 more variable: authors &lt;chr&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "pgs_ids":</span>
+<span class="co">#&gt; # A tibble: 21 × 3</span>
+<span class="co">#&gt;    pgp_id    pgs_id    stage   </span>
+<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;   </span>
+<span class="co">#&gt;  1 PGP000006 PGS000013 gwas/dev</span>
+<span class="co">#&gt;  2 PGP000006 PGS000014 gwas/dev</span>
+<span class="co">#&gt;  3 PGP000006 PGS000015 gwas/dev</span>
+<span class="co">#&gt;  4 PGP000006 PGS000016 gwas/dev</span>
+<span class="co">#&gt;  5 PGP000006 PGS000017 gwas/dev</span>
+<span class="co">#&gt;  6 PGP000006 PGS000013 eval    </span>
+<span class="co">#&gt;  7 PGP000006 PGS000014 eval    </span>
+<span class="co">#&gt;  8 PGP000006 PGS000015 eval    </span>
+<span class="co">#&gt;  9 PGP000006 PGS000016 eval    </span>
+<span class="co">#&gt; 10 PGP000006 PGS000017 eval    </span>
+<span class="co">#&gt; # … with 11 more rows</span></code></pre></div>
+</div>
+<div id="getting-pgs-publications-by-other-criteria" class="section level2">
+<h2 class="hasAnchor">
+<a href="#getting-pgs-publications-by-other-criteria" class="anchor"></a>Getting PGS Publications by other criteria</h2>
+<p>The PGS Catalog REST API only supports searches by those criteria mentioned above. If you would like to get results by other criteria, e.g., <code>publication_date</code>, then you need to retrieve all publications and filter them afterwards.</p>
+<p>As an example, let’s download all publications and then keep only those publications published in 2021:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">all_pub</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_publications.html">get_publications</a></span><span class="op">(</span>interactive <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="va">all_pub</span><span class="op">@</span><span class="va">publications</span>
+<span class="co">#&gt; # A tibble: 231 × 8</span>
+<span class="co">#&gt;    pgp_id    pubmed_id publication_date publication  title author_fullname doi  </span>
+<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;date&gt;           &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;</span>
+<span class="co">#&gt;  1 PGP000001 25855707  2015-04-08       J Natl Canc… Pred… Mavaddat N      10.1…</span>
+<span class="co">#&gt;  2 PGP000002 30554720  2018-12-13       Am J Hum Ge… Poly… Mavaddat N      10.1…</span>
+<span class="co">#&gt;  3 PGP000003 25748612  2015-03-04       Lancet       Gene… Mega JL         10.1…</span>
+<span class="co">#&gt;  4 PGP000004 26392438  2015-09-20       Eur Heart J  Risk… Tada H          10.1…</span>
+<span class="co">#&gt;  5 PGP000005 27655226  2016-09-21       Eur Heart J  Geno… Abraham G       10.1…</span>
+<span class="co">#&gt;  6 PGP000006 30104762  2018-08-13       Nat Genet    Geno… Khera AV        10.1…</span>
+<span class="co">#&gt;  7 PGP000007 30309464  2018-10-01       J Am Coll C… Geno… Inouye M        10.1…</span>
+<span class="co">#&gt;  8 PGP000008 31184202  2019-06-11       Circ Genom … Vali… Wünnemann F     10.1…</span>
+<span class="co">#&gt;  9 PGP000009 28456682  2017-04-06       J Clin Lipi… Poly… Paquette M      10.1…</span>
+<span class="co">#&gt; 10 PGP000010 27513194  2016-08-11       Genet Med    Pers… Läll K          10.1…</span>
+<span class="co">#&gt; # … with 221 more rows, and 1 more variable: authors &lt;chr&gt;</span></code></pre></div>
+<p>Filtering based on the year 2021:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span>, warn.conflicts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+
+<span class="co"># Determine the PGP ids whose publication date falls within 2021.</span>
+<span class="va">pgp_ids_2021</span> <span class="op">&lt;-</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>
+    <span class="va">all_pub</span><span class="op">@</span><span class="va">publications</span>,
+    <span class="va">publication_date</span> <span class="op">&gt;=</span> <span class="st">'2021-01-01'</span> <span class="op">&amp;</span>
+      <span class="va">publication_date</span> <span class="op">&lt;=</span> <span class="st">'2021-12-31'</span>
+  <span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="st">'pgp_id'</span><span class="op">)</span>
+
+<span class="co"># Filtering based on the PGP ids</span>
+<span class="va">pub_2021</span> <span class="op">&lt;-</span> <span class="va">all_pub</span><span class="op">[</span><span class="va">pgp_ids_2021</span><span class="op">]</span>
+
+<span class="co"># Print the first 10 PGS publications</span>
+<span class="va">pub_2021</span><span class="op">@</span><span class="va">publications</span>
+<span class="co">#&gt; # A tibble: 46 × 8</span>
+<span class="co">#&gt;    pgp_id    pubmed_id publication_date publication  title author_fullname doi  </span>
+<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;date&gt;           &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;</span>
+<span class="co">#&gt;  1 PGP000050 33579919  2021-02-12       Nat Commun   Cros… Graff RE        10.1…</span>
+<span class="co">#&gt;  2 PGP000121 33608049  2021-02-19       Genome Med   Deve… Tam CHT         10.1…</span>
+<span class="co">#&gt;  3 PGP000122 33398198  2021-01-04       Nat Genet    Tran… Conti DV        10.1…</span>
+<span class="co">#&gt;  4 PGP000128 33462484  2021-01-18       Nat Genet    Gene… Sinnott-Armstr… 10.1…</span>
+<span class="co">#&gt;  5 PGP000138 33420020  2021-01-08       Nat Commun   Dise… Fontanillas P   10.1…</span>
+<span class="co">#&gt;  6 PGP000146 33495597  2021-01-25       Nat Genet    Comm… Harper AR       10.1…</span>
+<span class="co">#&gt;  7 PGP000147 33623009  2021-02-23       Nat Commun   Whol… Thareja G       10.1…</span>
+<span class="co">#&gt;  8 PGP000148 33472890  2021-01-20       Cancer Res   Asse… Hung RJ         10.1…</span>
+<span class="co">#&gt;  9 PGP000149 33623038  2021-02-23       Nat Commun   Poly… Huynh-Le MP     10.1…</span>
+<span class="co">#&gt; 10 PGP000150 33420416  2021-01-08       Prostate Ca… Addi… Karunamuni RA   10.1…</span>
+<span class="co">#&gt; # … with 36 more rows, and 1 more variable: authors &lt;chr&gt;</span></code></pre></div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
 
 </div>
 

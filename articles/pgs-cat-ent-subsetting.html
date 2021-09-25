@@ -180,22 +180,21 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_scores</span><span class="op">@</span><span class="va">scores</span>
 <span class="co">#&gt; # A tibble: 10 × 12</span>
-<span class="co">#&gt;    pgs_id pgs_name scoring_file matches_publica… reported_trait trait_additiona…</span>
-<span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;        &lt;lgl&gt;            &lt;chr&gt;          &lt;chr&gt;           </span>
-<span class="co">#&gt;  1 PGS00… PRS77_BC http://ftp.… TRUE             Breast Cancer  &lt;NA&gt;            </span>
-<span class="co">#&gt;  2 PGS00… PRS77_E… http://ftp.… TRUE             ER-positive B… &lt;NA&gt;            </span>
-<span class="co">#&gt;  3 PGS00… PRS77_E… http://ftp.… TRUE             ER-negative B… &lt;NA&gt;            </span>
-<span class="co">#&gt;  4 PGS00… PRS313_… http://ftp.… TRUE             Breast Cancer  &lt;NA&gt;            </span>
-<span class="co">#&gt;  5 PGS00… PRS313_… http://ftp.… TRUE             ER-positive B… &lt;NA&gt;            </span>
-<span class="co">#&gt;  6 PGS00… PRS313_… http://ftp.… TRUE             ER-negative B… &lt;NA&gt;            </span>
-<span class="co">#&gt;  7 PGS00… PRS3820… http://ftp.… TRUE             Breast Cancer  &lt;NA&gt;            </span>
-<span class="co">#&gt;  8 PGS00… PRS3820… http://ftp.… TRUE             ER-positive B… &lt;NA&gt;            </span>
-<span class="co">#&gt;  9 PGS00… PRS3820… http://ftp.… TRUE             ER-negative B… &lt;NA&gt;            </span>
-<span class="co">#&gt; 10 PGS00… GRS27    http://ftp.… TRUE             Coronary hear… &lt;NA&gt;            </span>
+<span class="co">#&gt;    pgs_id    pgs_name      scoring_file matches_publica… reported_trait trait_additiona…</span>
+<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;         &lt;chr&gt;        &lt;lgl&gt;            &lt;chr&gt;          &lt;chr&gt;           </span>
+<span class="co">#&gt;  1 PGS000001 PRS77_BC      https://ftp… TRUE             Breast Cancer  &lt;NA&gt;            </span>
+<span class="co">#&gt;  2 PGS000002 PRS77_ERpos   https://ftp… TRUE             ER-positive B… &lt;NA&gt;            </span>
+<span class="co">#&gt;  3 PGS000003 PRS77_ERneg   https://ftp… TRUE             ER-negative B… &lt;NA&gt;            </span>
+<span class="co">#&gt;  4 PGS000004 PRS313_BC     https://ftp… TRUE             Breast Cancer  &lt;NA&gt;            </span>
+<span class="co">#&gt;  5 PGS000005 PRS313_ERpos  https://ftp… TRUE             ER-positive B… &lt;NA&gt;            </span>
+<span class="co">#&gt;  6 PGS000006 PRS313_ERneg  https://ftp… TRUE             ER-negative B… &lt;NA&gt;            </span>
+<span class="co">#&gt;  7 PGS000007 PRS3820_BC    https://ftp… TRUE             Breast Cancer  &lt;NA&gt;            </span>
+<span class="co">#&gt;  8 PGS000008 PRS3820_ERpos https://ftp… TRUE             ER-positive B… &lt;NA&gt;            </span>
+<span class="co">#&gt;  9 PGS000009 PRS3820_ERneg https://ftp… TRUE             ER-negative B… &lt;NA&gt;            </span>
+<span class="co">#&gt; 10 PGS000010 GRS27         https://ftp… TRUE             Coronary hear… &lt;NA&gt;            </span>
 <span class="co">#&gt; # … with 6 more variables: pgs_method_name &lt;chr&gt;, pgs_method_params &lt;chr&gt;,</span>
 <span class="co">#&gt; #   n_variants &lt;int&gt;, n_variants_interactions &lt;int&gt;, assembly &lt;chr&gt;,</span>
 <span class="co">#&gt; #   license &lt;chr&gt;</span>
-
 <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">my_scores</span><span class="op">@</span><span class="va">scores</span><span class="op">)</span>
 <span class="co">#&gt; [1] 10</span></code></pre></div>
 <p>This table has as many rows as polygenic scores. This is one way of knowing how many scores there are in the object. Alternatively, you can use the function <code><a href="../reference/n.html">n()</a></code> on the object:</p>
@@ -265,7 +264,6 @@
 <span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;      </span>
 <span class="co">#&gt; 1 PGS000003 PRS77_ERneg</span>
 <span class="co">#&gt; 2 PGS000003 PRS77_ERneg</span>
-
 <span class="fu"><a href="../reference/n.html">n</a></span><span class="op">(</span><span class="va">my_scores</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'PGS000003'</span>, <span class="st">'PGS000003'</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; [1] 2</span></code></pre></div>
 <p>Or using the third position twice:</p>
@@ -276,7 +274,6 @@
 <span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;      </span>
 <span class="co">#&gt; 1 PGS000003 PRS77_ERneg</span>
 <span class="co">#&gt; 2 PGS000003 PRS77_ERneg</span>
-
 <span class="fu"><a href="../reference/n.html">n</a></span><span class="op">(</span><span class="va">my_scores</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; [1] 2</span></code></pre></div>
 </div>
@@ -306,7 +303,6 @@
 <code class="sourceCode R"><span class="va">my_scores</span><span class="op">[</span><span class="fl">11</span><span class="op">]</span><span class="op">@</span><span class="va">scores</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>
 <span class="co">#&gt; # A tibble: 0 × 2</span>
 <span class="co">#&gt; # … with 2 variables: pgs_id &lt;chr&gt;, pgs_name &lt;chr&gt;</span>
-
 <span class="fu"><a href="../reference/n.html">n</a></span><span class="op">(</span><span class="va">my_scores</span><span class="op">[</span><span class="fl">11</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; [1] 0</span></code></pre></div>
 <p>Please note that the returned object is still a valid <code>scores</code> object and that it contains all the expected tables of such an object. It is just that all tables have no rows. The same behaviour is to be expected if you try to subset with non-existing identifiers:</p>
@@ -314,7 +310,6 @@
 <code class="sourceCode R"><span class="va">my_scores</span><span class="op">[</span><span class="st">'PGS000011'</span><span class="op">]</span><span class="op">@</span><span class="va">scores</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>
 <span class="co">#&gt; # A tibble: 0 × 2</span>
 <span class="co">#&gt; # … with 2 variables: pgs_id &lt;chr&gt;, pgs_name &lt;chr&gt;</span>
-
 <span class="fu"><a href="../reference/n.html">n</a></span><span class="op">(</span><span class="va">my_scores</span><span class="op">[</span><span class="st">'PGS000011'</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; [1] 0</span></code></pre></div>
 </div>
@@ -329,7 +324,7 @@
 
 <span class="co"># Note that the column `author_fullname` corresponds to the first author.</span>
 <span class="va">my_publ</span><span class="op">@</span><span class="va">publications</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'pgp_id'</span>, <span class="st">'pubmed_id'</span>, <span class="st">'publication_date'</span>, <span class="st">'author_fullname'</span><span class="op">)</span><span class="op">]</span>
-<span class="co">#&gt; # A tibble: 7 × 4</span>
+<span class="co">#&gt; # A tibble: 8 × 4</span>
 <span class="co">#&gt;   pgp_id    pubmed_id publication_date author_fullname</span>
 <span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;     &lt;date&gt;           &lt;chr&gt;          </span>
 <span class="co">#&gt; 1 PGP000005 27655226  2016-09-21       Abraham G      </span>
@@ -338,7 +333,8 @@
 <span class="co">#&gt; 4 PGP000028 24550740  2014-02-13       Abraham G      </span>
 <span class="co">#&gt; 5 PGP000029 26244058  2015-07-16       Abraham G      </span>
 <span class="co">#&gt; 6 PGP000052 32887683  2020-09-04       Cánovas R      </span>
-<span class="co">#&gt; 7 PGP000137 &lt;NA&gt;      2019-12-19       Ritchie SC</span></code></pre></div>
+<span class="co">#&gt; 7 PGP000137 &lt;NA&gt;      2019-12-19       Ritchie SC     </span>
+<span class="co">#&gt; 8 PGP000209 34039031  2021-05-27       Neumann JT</span></code></pre></div>
 <p>By visual inspection we can see that Abraham G is the first author in PGP000005, PGP000027, PGP000028, and PGP000029.</p>
 <p>To keep only those publications we subset the publication object <code>my_publ</code> by those PGP identifiers:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
