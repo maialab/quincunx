@@ -103,9 +103,9 @@ brs_pgs@scores$n_variants
 From the table `publications`,  in `brs_pgs` object, we can see, *inter alia*, the following details about the publication behind the PGS PGS000737:
 
 - The Catalog identifier assigned to this publication is `r brs_pgs@publications$pgp_id`
-- The publication PubMed id is `r brs_pgs@publications$pubmed_id``
+- The publication PubMed id is `r brs_pgs@publications$pubmed_id`
 - It has been published in `r brs_pgs@publications$publication_date`
-- The publication title is: `r brs_pgs@publications$title`
+- The publication title is: *`r brs_pgs@publications$title`*
 
 ```{r}
 # PGP id
