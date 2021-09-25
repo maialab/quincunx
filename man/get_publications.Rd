@@ -47,10 +47,10 @@ verbose about the different queries or not.}
 performed.}
 }
 \value{
-An \linkS4class{publications} object.
+A \linkS4class{publications} object.
 }
 \description{
-Retrieves polygenic publications via the PGS Catalog REST API. The REST
+Retrieves PGS publications via the PGS Catalog REST API. The REST
 API is queried multiple times with the criteria passed as arguments (see
 below). By default all publications that match the criteria supplied in the
 arguments are retrieved: this corresponds to the default option
@@ -60,9 +60,20 @@ associations that match simultaneously all criteria provided, then set
 }
 \details{
 Please note that all search criteria are vectorised, thus allowing for batch
-mode search.
+mode search. For more details see the help vignette:
+\code{vignette("getting-pgs-publications", package = "quincunx")}.
 }
 \examples{
-# Coming soon...
+# Get PGS publications by their identifier
+get_publications(pgp_id = c('PGP000001', 'PGP000002'))
+
+# By polygenic score identifier
+get_publications(pgs_id = 'PGS000003')
+
+# By PubMed identifier
+get_publications(pubmed_id = '30554720')
+
+# By author's last name
+get_publications(author = 'Natarajan')
 
 }

@@ -14,8 +14,84 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+## PGS Publications
+
+PGS publications are those published works that underlie the data provided by
+the PGS Catalog.
+
+To retrieve these publications use the function `get_publications()`. You may
+use one of the following search criteria (or a combination thereof):
+
+- `pgp_id`: the publication identifier assigned by the PGS Catalog;
+- `pgs_id`: the polygenic score identifier;
+- `pubmed_id`: PubMed identifier;
+- `author`: an author last name.
+
+If you do not pass any of the criteria above, then `get_publications()` will
+retrieve all publications in the Catalog.
+
+## Getting PGS Publications
+
+Getting PGS publications by their identifiers:
+
+```{r}
 library(quincunx)
+
+get_publications(pgp_id = c('PGP000001', 'PGP000002'))
 ```
 
-Coming soon.
+By `pgs_id`:
+
+```{r}
+library(quincunx)
+
+get_publications(pgs_id = 'PGS000003')
+```
+
+By `pubmed_id`:
+
+```{r}
+library(quincunx)
+
+get_publications(pubmed_id = '30554720')
+```
+
+By `author`:
+
+```{r}
+library(quincunx)
+
+get_publications(author = 'Natarajan')
+```
+
+## Getting PGS Publications by other criteria
+
+The PGS Catalog REST API only supports searches by those criteria mentioned above. If you would like to get results by other criteria, e.g., `publication_date`, then you need to retrieve all publications and filter them afterwards.
+
+As an example, let's download all publications and then keep only those publications published in 2021:
+
+```{r}
+all_pub <- get_publications(interactive = FALSE)
+all_pub@publications
+```
+
+Filtering based on the year 2021:
+
+```{r}
+library(dplyr, warn.conflicts = FALSE)
+
+# Determine the PGP ids whose publication date falls within 2021.
+pgp_ids_2021 <-
+  filter(
+    all_pub@publications,
+    publication_date >= '2021-01-01' &
+      publication_date <= '2021-12-31'
+  ) %>%
+  pull('pgp_id')
+
+# Filtering based on the PGP ids
+pub_2021 <- all_pub[pgp_ids_2021]
+
+# Print the first 10 PGS publications
+pub_2021@publications
+```

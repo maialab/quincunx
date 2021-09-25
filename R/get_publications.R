@@ -126,7 +126,7 @@ get_publication_by_author <-
 
 #' Get PGS Catalog Publications
 #'
-#' Retrieves polygenic publications via the PGS Catalog REST API. The REST
+#' Retrieves PGS publications via the PGS Catalog REST API. The REST
 #' API is queried multiple times with the criteria passed as arguments (see
 #' below). By default all publications that match the criteria supplied in the
 #' arguments are retrieved: this corresponds to the default option
@@ -135,7 +135,8 @@ get_publication_by_author <-
 #' \code{set_operation} to \code{'intersection'}.
 #'
 #' Please note that all search criteria are vectorised, thus allowing for batch
-#' mode search.
+#' mode search. For more details see the help vignette:
+#' \code{vignette("getting-pgs-publications", package = "quincunx")}.
 #'
 #' @param pgp_id A character vector of PGS Catalog publication accession
 #'   identifiers.
@@ -158,9 +159,19 @@ get_publication_by_author <-
 #' @param progress_bar Whether to show a progress bar as the queries are
 #'   performed.
 #'
-#' @return An \linkS4class{publications} object.
+#' @return A \linkS4class{publications} object.
 #' @examples
-#' # Coming soon...
+#' # Get PGS publications by their identifier
+#' get_publications(pgp_id = c('PGP000001', 'PGP000002'))
+#'
+#' # By polygenic score identifier
+#' get_publications(pgs_id = 'PGS000003')
+#'
+#' # By PubMed identifier
+#' get_publications(pubmed_id = '30554720')
+#'
+#' # By author's last name
+#' get_publications(author = 'Natarajan')
 #'
 #' @export
 get_publications <- function(pgp_id = NULL,
