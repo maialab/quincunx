@@ -31,7 +31,7 @@ performance.
 
 ## Getting cohorts
 
-If you know before hand the cohort acronyms (e.g., `"23andMe"`) that you are
+If you know beforehand the cohort acronyms (e.g., `"23andMe"`) that you are
 interested in, then you can get their full name and associated PGS identifiers
 using the `get_cohorts()` function by providing their symbols with the
 parameter `cohort_symbol`:
