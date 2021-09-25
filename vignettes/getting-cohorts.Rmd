@@ -14,8 +14,38 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+## Cohorts
+
+A cohort is a group of individuals with a shared characteristic. Cohorts are
+identified in quincunx by the `cohort_symbol` variable. Participants in cohorts
+are used to define samples, which in turn, are used to assemble sample sets.
+For more details on the relationship between the concepts of cohorts, samples
+and sample sets, see `vignette('cohorts-samples-sample-sets')`.
+
+Given that study participants typically come from one or more catalogued cohorts
+and that cohorts can have a strong bias ancestry composition --- i.e., most
+cohorts are mostly composed of European-ancestry individuals ---, it can be
+really important to know which cohorts have been used at the different stages of
+a Polygenic Score (PGS) life cycle to assess the transferability of PGS
+performance.
+
+## Getting cohorts
+
+If you know before hand the cohort acronyms (e.g., `"23andMe"`) that you are
+interested in, then you can get their full name and associated PGS identifiers
+using the `get_cohorts()` function by providing their symbols with the
+parameter `cohort_symbol`:
+
+```{r}
 library(quincunx)
+get_cohorts(cohort_symbol = '23andMe')
 ```
 
-Coming soon.
+The `pg_ids` lists associated PGS identifiers with the queried cohorts. The
+`stage` variable indicates the PGS stage in which the cohort was used.
+
+To get all catalogued cohorts in the PGS Catalog, leave the `cohort_symbol`
+parameter as `NULL` (default). Note that, in this case, it may take a few
+minutes for the download to complete.
+
+
