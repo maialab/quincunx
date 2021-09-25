@@ -5807,9 +5807,9 @@
     }
 }
 
-/*                          */
+/*                        */
 /* quincunx customisation */
-/*                          */
+/*                        */
 
 .navbar {
   background-color: rgb(232, 239, 250);
@@ -5851,4 +5851,25 @@ navbar-link .fa .fa-home .fa-lg {
   margin-top: -40px;
 }
 
-
+/* Date 25 Sep 2021 -- meanwhile this might be fixed in pkgdown */
+/* Because of https://github.com/r-lib/pkgdown/issues/1469 */
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}

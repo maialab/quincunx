@@ -5,6 +5,8 @@ vignette: >
   %\VignetteIndexEntry{Getting Cohorts}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+bibliography: "`r system.file('references.bib', package = 'quincunx')`"
+csl: "`r system.file('nature.csl', package = 'quincunx')`"
 ---
 
 ```{r, include = FALSE}
@@ -27,7 +29,7 @@ and that cohorts can have a strong bias ancestry composition --- i.e., most
 cohorts are mostly composed of European-ancestry individuals ---, it can be
 really important to know which cohorts have been used at the different stages of
 a Polygenic Score (PGS) life cycle to assess the transferability of PGS
-performance.
+performance [@reisberg2017;@martin2019;@duncan2019].
 
 ## Getting cohorts
 
@@ -48,4 +50,4 @@ To get all catalogued cohorts in the PGS Catalog, leave the `cohort_symbol`
 parameter as `NULL` (default). Note that, in this case, it may take a few
 minutes for the download to complete.
 
-
+`r if (knitr::is_html_output()) '## References'`
