@@ -245,7 +245,7 @@ risk_plot <-
   coord_flip() +
   xlab('Genotype') +
   ylab('Risk Score PRS_BrS') +
-  scale_fill_discrete(guide = FALSE, type = c('#FF5757', '#65FF57')) +
+  scale_fill_discrete(guide = 'none', type = c('#FF5757', '#65FF57')) +
   theme_bw() +
   theme(axis.text.y = element_text(family = "mono"))
 
