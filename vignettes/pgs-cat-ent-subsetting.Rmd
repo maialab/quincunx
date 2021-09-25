@@ -40,7 +40,7 @@ library(quincunx)
 
 For illustrative purposes, let us get some arbitrary polygenic scores objects, say, the first 10 PGSs in the catalog:
 
-```{r cache=TRUE}
+```{r}
 pgs_ids <- sprintf('PGS%06d', 1:10)
 my_scores <- get_scores(pgs_ids)
 ```
@@ -139,7 +139,7 @@ n(my_scores['PGS000011'])
 
 Subsetting publications objects, or any other S4 object in quincunx, works exactly the same way as described for scores. The only difference is that identifiers have to be changed accordingly. So in the next sections we only show how to subset using the respective identifiers.
 
-```{r cache=TRUE}
+```{r}
 # Get all publications where Abraham G is an author
 my_publ <- get_publications(author = 'Abraham G')
 
@@ -161,7 +161,7 @@ To illustrate subsetting of a traits object with EFO identifiers, let us say you
 
 Get all traits:
 
-```{r cache=TRUE}
+```{r}
 all_traits <- get_traits(interactive = FALSE)
 ```
 
