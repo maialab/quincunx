@@ -48,7 +48,7 @@ verbose about the different queries or not.}
 progress from the REST API server.}
 }
 \value{
-An \linkS4class{traits} object.
+A \linkS4class{traits} object.
 }
 \description{
 Retrieves traits via the PGS Catalog REST API. The REST

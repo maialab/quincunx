@@ -127,7 +127,7 @@ get_trait_by_trait_term <-
 #' @param progress_bar Whether to show a progress bar indicating download
 #'   progress from the REST API server.
 #'
-#' @return An \linkS4class{traits} object.
+#' @return A \linkS4class{traits} object.
 #' @examples
 #' # Coming soon...
 #'
