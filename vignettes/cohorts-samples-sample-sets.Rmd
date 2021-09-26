@@ -5,6 +5,10 @@ vignette: >
   %\VignetteIndexEntry{Cohorts, Samples and Sample Sets}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+resource_files:
+  - '../man/figures/cohorts.svg'
+  - '../man/figures/samples.svg'
+  - '../man/figures/sample_sets.svg'
 ---
 
 ```{r, include = FALSE}
@@ -12,10 +16,91 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-```
-
-```{r setup}
 library(quincunx)
 ```
 
-Coming soon.
+## Cohorts
+
+A cohort is a group of individuals with a shared characteristic. Cohorts are
+identified in quincunx by the `cohort_symbol` variable. See
+`vignette('getting-cohorts')` on how to find associated polygenic scores.
+
+```{r  out.width = "90%", echo=FALSE}
+knitr::include_graphics('../man/figures/cohorts.svg') 
+```
+
+Using `get_cohorts()` to retrieve associated PGS identifiers with cohort
+`"PROMIS"`:
+
+```{r}
+get_cohorts('PROMIS')
+```
+
+## Samples
+
+A sample is a group of participants associated with none, one or more catalogued
+cohorts. The selection from a cohort can be either a subset or its totality.
+Samples are not identified in PGS Catalog with a global unique identifier, but
+quincunx assigns a surrogate identifier (`sample_id`) to allow relations between
+tables.
+
+```{r  out.width = "90%", echo=FALSE}
+knitr::include_graphics('../man/figures/samples.svg') 
+```
+
+Sample composition is provided in slot `cohorts` from objects `scores` returned
+by the `get_scores()` function.
+
+```{r}
+library(dplyr, warn.conflicts = FALSE)
+
+# PGS000001 is one of the polygenic scores that is based upon participants from
+# cohort PROMIS
+pgs_11 <- get_scores('PGS000011')
+
+# Cohort PROMIS is included in sample no. 2, along with LOLIPOP
+filter(pgs_11@cohorts, sample_id == 2L)
+```
+
+To know a few more details about samples, look into the `samples` slot of the
+object `scores`:
+
+```{r}
+filter(pgs_11@samples, sample_id == 2L)
+```
+
+## Sample sets
+
+A sample set is a group of samples used in a polygenic score evaluation. Each
+sample set is identified in the PGS Catalog by a unique sample set identifier
+(`pss_id`).
+
+```{r  out.width = "90%", echo=FALSE}
+knitr::include_graphics('../man/figures/sample_sets.svg') 
+```
+
+To find the sample sets that included a specific cohort, we start by getting
+the PGS identifiers associated with a cohort, e.g. MHI:
+
+```{r}
+# Note that by the definition of sample set, samples included in sample sets
+# are only used at PGS evaluation stages.
+filter(get_cohorts('MHI')@pgs_ids, stage == 'eval')
+```
+
+PGS000013 is one of the polygenic scores whose evaluation used participants from the cohort
+MHI. We retrieve now the sample sets used in the evaluation of PGS000013:
+
+```{r}
+# Sample sets used in the evaluation of the PGS000013
+pgs_13_sset <- get_sample_sets(pgs_id = 'PGS000013')
+glimpse(pgs_13_sset@sample_sets)
+```
+
+One of the sample sets used to evaluate PGS000013 is PSS000020. We can retrieve
+a `sample_set` object that contains its composition, i.e., the samples and
+cohorts included, along with other details:
+
+```{r}
+get_sample_sets('PSS000020')
+```
