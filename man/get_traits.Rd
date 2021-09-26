@@ -56,7 +56,7 @@ API is queried multiple times with the criteria passed as arguments (see
 below). By default all traits that match the criteria supplied in the
 arguments are retrieved: this corresponds to the default option
 \code{set_operation} set to \code{'union'}. If you rather have only the
-associations that match simultaneously all criteria provided, then set
+traits that match simultaneously all criteria provided, then set
 \code{set_operation} to \code{'intersection'}.
 }
 \details{
