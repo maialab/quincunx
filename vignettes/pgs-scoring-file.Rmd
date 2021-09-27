@@ -23,7 +23,7 @@ PGS scoring files are the files provided by the PGS Catalog that allow you to co
 
 Essentially, each scoring file contains variant identification, effect alleles and respective score weights. The file is formatted to be a gzipped tab-delimited text file. The file starts with an header that contains brief metadata about the score.
 
-```{r  out.width = "90%", echo=FALSE}
+```{r  out.width = "100%", echo=FALSE}
 knitr::include_graphics('../man/figures/pgs_scoring_file.svg') 
 ```
 
