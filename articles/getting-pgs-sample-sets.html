@@ -149,14 +149,246 @@
 
     
     
+<div id="sample-sets" class="section level2">
+<h2 class="hasAnchor">
+<a href="#sample-sets" class="anchor"></a>Sample sets</h2>
+<p>A sample set is a group of samples used in a polygenic score evaluation.Each sample set is identified in the PGS Catalog by a unique sample set identifier (<code>pss_id</code>). See <code><a href="../articles/cohorts-samples-sample-sets.html">vignette('cohorts-samples-sample-sets')</a></code> for more details on the relationship between cohorts, samples, and sample sets.</p>
+</div>
+<div id="getting-sample-sets" class="section level2">
+<h2 class="hasAnchor">
+<a href="#getting-sample-sets" class="anchor"></a>Getting sample sets</h2>
+<p>To get information on sample sets you can either search by the associated polygenic score identifiers, or by the sample set identifiers themselves (if you know them beforehand).</p>
+<div id="by-the-pgs-identifier" class="section level3">
+<h3 class="hasAnchor">
+<a href="#by-the-pgs-identifier" class="anchor"></a>By the PGS identifier</h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">quincunx</span><span class="op">)</span></code></pre></div>
-<p>Coming soon.</p>
+<code class="sourceCode R"><span class="co"># Sample sets used in the evaluation of the PGS000013</span>
+<span class="op">(</span><span class="va">pgs_13_sset</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_sample_sets.html">get_sample_sets</a></span><span class="op">(</span>pgs_id <span class="op">=</span> <span class="st">'PGS000013'</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; An object of class "sample_sets"</span>
+<span class="co">#&gt; Slot "sample_sets":</span>
+<span class="co">#&gt; # A tibble: 41 × 1</span>
+<span class="co">#&gt;    pss_id   </span>
+<span class="co">#&gt;    &lt;chr&gt;    </span>
+<span class="co">#&gt;  1 PSS000015</span>
+<span class="co">#&gt;  2 PSS000019</span>
+<span class="co">#&gt;  3 PSS000020</span>
+<span class="co">#&gt;  4 PSS000021</span>
+<span class="co">#&gt;  5 PSS000022</span>
+<span class="co">#&gt;  6 PSS000219</span>
+<span class="co">#&gt;  7 PSS000227</span>
+<span class="co">#&gt;  8 PSS000228</span>
+<span class="co">#&gt;  9 PSS000229</span>
+<span class="co">#&gt; 10 PSS000230</span>
+<span class="co">#&gt; # … with 31 more rows</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "samples":</span>
+<span class="co">#&gt; # A tibble: 45 × 15</span>
+<span class="co">#&gt;    pss_id    sample_id stage sample_size sample_cases sample_controls</span>
+<span class="co">#&gt;    &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;       &lt;int&gt;        &lt;int&gt;           &lt;int&gt;</span>
+<span class="co">#&gt;  1 PSS000015         1 eval       288978         8676          280302</span>
+<span class="co">#&gt;  2 PSS000019         1 eval         5762          173            5589</span>
+<span class="co">#&gt;  3 PSS000020         1 eval          862          446             416</span>
+<span class="co">#&gt;  4 PSS000020         2 eval         2333          937            1396</span>
+<span class="co">#&gt;  5 PSS000021         1 eval         1964          974             976</span>
+<span class="co">#&gt;  6 PSS000022         1 eval         3309         2492             817</span>
+<span class="co">#&gt;  7 PSS000219         1 eval        11010          126           10884</span>
+<span class="co">#&gt;  8 PSS000227         1 eval          544           40             504</span>
+<span class="co">#&gt;  9 PSS000228         1 eval         1298          336             962</span>
+<span class="co">#&gt; 10 PSS000229         1 eval          919          168             751</span>
+<span class="co">#&gt; # … with 35 more rows, and 9 more variables: sample_percent_male &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   phenotype_description &lt;chr&gt;, ancestry_category &lt;chr&gt;, ancestry &lt;chr&gt;,</span>
+<span class="co">#&gt; #   country &lt;chr&gt;, ancestry_additional_description &lt;chr&gt;, study_id &lt;chr&gt;,</span>
+<span class="co">#&gt; #   pubmed_id &lt;chr&gt;, cohorts_additional_description &lt;chr&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "demographics":</span>
+<span class="co">#&gt; # A tibble: 16 × 11</span>
+<span class="co">#&gt;    pss_id    sample_id variable       estimate_type estimate unit  variability_type</span>
+<span class="co">#&gt;    &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;          &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;           </span>
+<span class="co">#&gt;  1 PSS000365         1 age            mean              34   years &lt;NA&gt;            </span>
+<span class="co">#&gt;  2 PSS000365         2 age            mean              33   years &lt;NA&gt;            </span>
+<span class="co">#&gt;  3 PSS000366         1 age            mean              54   years &lt;NA&gt;            </span>
+<span class="co">#&gt;  4 PSS000366         2 age            mean              55   years &lt;NA&gt;            </span>
+<span class="co">#&gt;  5 PSS000367         1 age            mean              60.6 years &lt;NA&gt;            </span>
+<span class="co">#&gt;  6 PSS000367         2 age            mean              52.8 years &lt;NA&gt;            </span>
+<span class="co">#&gt;  7 PSS000331         1 follow_up_time median             9.2 years &lt;NA&gt;            </span>
+<span class="co">#&gt;  8 PSS000332         1 follow_up_time median             9.2 years &lt;NA&gt;            </span>
+<span class="co">#&gt;  9 PSS000333         1 follow_up_time median            11.7 years &lt;NA&gt;            </span>
+<span class="co">#&gt; 10 PSS000334         1 follow_up_time median            11.7 years &lt;NA&gt;            </span>
+<span class="co">#&gt; 11 PSS000335         1 follow_up_time median            10.4 years &lt;NA&gt;            </span>
+<span class="co">#&gt; 12 PSS000336         1 follow_up_time median            10.4 years &lt;NA&gt;            </span>
+<span class="co">#&gt; 13 PSS000467         1 follow_up_time median            21.3 years &lt;NA&gt;            </span>
+<span class="co">#&gt; 14 PSS000468         1 follow_up_time median            23.2 years &lt;NA&gt;            </span>
+<span class="co">#&gt; 15 PSS000469         1 follow_up_time median             8.1 years &lt;NA&gt;            </span>
+<span class="co">#&gt; 16 PSS001063         1 follow_up_time median            14   years &lt;NA&gt;            </span>
+<span class="co">#&gt; # … with 4 more variables: variability &lt;dbl&gt;, interval_type &lt;chr&gt;,</span>
+<span class="co">#&gt; #   interval_lower &lt;dbl&gt;, interval_upper &lt;dbl&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "cohorts":</span>
+<span class="co">#&gt; # A tibble: 115 × 4</span>
+<span class="co">#&gt;    pss_id    sample_id cohort_symbol cohort_name                                </span>
+<span class="co">#&gt;    &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;                                      </span>
+<span class="co">#&gt;  1 PSS000015         1 UKB           UK Biobank                                 </span>
+<span class="co">#&gt;  2 PSS000019         1 CARTaGENE     CARTaGENE cohort (CHU Sainte-Justine, Queb…</span>
+<span class="co">#&gt;  3 PSS000020         1 MHI           Montreal Heart Institute Biobank           </span>
+<span class="co">#&gt;  4 PSS000020         2 MHI           Montreal Heart Institute Biobank           </span>
+<span class="co">#&gt;  5 PSS000021         1 MHI           Montreal Heart Institute Biobank           </span>
+<span class="co">#&gt;  6 PSS000022         1 MHI           Montreal Heart Institute Biobank           </span>
+<span class="co">#&gt;  7 PSS000219         1 CG            Color Genomics                             </span>
+<span class="co">#&gt;  8 PSS000227         1 VIRGO         Variation in Recovery: Role of Gender on O…</span>
+<span class="co">#&gt;  9 PSS000227         1 MESA          Multi-Ethnic Study of Atherosclerosis      </span>
+<span class="co">#&gt; 10 PSS000228         1 VIRGO         Variation in Recovery: Role of Gender on O…</span>
+<span class="co">#&gt; # … with 105 more rows</span></code></pre></div>
+</div>
+<div id="by-the-sample-set-identifier" class="section level3">
+<h3 class="hasAnchor">
+<a href="#by-the-sample-set-identifier" class="anchor"></a>By the sample set identifier</h3>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Sample set PSS000020</span>
+<span class="op">(</span><span class="va">pss_20</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_sample_sets.html">get_sample_sets</a></span><span class="op">(</span>pss_id <span class="op">=</span> <span class="st">'PSS000020'</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; An object of class "sample_sets"</span>
+<span class="co">#&gt; Slot "sample_sets":</span>
+<span class="co">#&gt; # A tibble: 1 × 1</span>
+<span class="co">#&gt;   pss_id   </span>
+<span class="co">#&gt;   &lt;chr&gt;    </span>
+<span class="co">#&gt; 1 PSS000020</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "samples":</span>
+<span class="co">#&gt; # A tibble: 2 × 15</span>
+<span class="co">#&gt;   pss_id    sample_id stage sample_size sample_cases sample_controls</span>
+<span class="co">#&gt;   &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;       &lt;int&gt;        &lt;int&gt;           &lt;int&gt;</span>
+<span class="co">#&gt; 1 PSS000020         1 eval          862          446             416</span>
+<span class="co">#&gt; 2 PSS000020         2 eval         2333          937            1396</span>
+<span class="co">#&gt; # … with 9 more variables: sample_percent_male &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   phenotype_description &lt;chr&gt;, ancestry_category &lt;chr&gt;, ancestry &lt;chr&gt;,</span>
+<span class="co">#&gt; #   country &lt;chr&gt;, ancestry_additional_description &lt;chr&gt;, study_id &lt;chr&gt;,</span>
+<span class="co">#&gt; #   pubmed_id &lt;chr&gt;, cohorts_additional_description &lt;chr&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "demographics":</span>
+<span class="co">#&gt; # A tibble: 0 × 11</span>
+<span class="co">#&gt; # … with 11 variables: pss_id &lt;chr&gt;, sample_id &lt;int&gt;, variable &lt;chr&gt;,</span>
+<span class="co">#&gt; #   estimate_type &lt;chr&gt;, estimate &lt;dbl&gt;, unit &lt;chr&gt;, variability_type &lt;chr&gt;,</span>
+<span class="co">#&gt; #   variability &lt;dbl&gt;, interval_type &lt;chr&gt;, interval_lower &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   interval_upper &lt;dbl&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "cohorts":</span>
+<span class="co">#&gt; # A tibble: 2 × 4</span>
+<span class="co">#&gt;   pss_id    sample_id cohort_symbol cohort_name                     </span>
+<span class="co">#&gt;   &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;                           </span>
+<span class="co">#&gt; 1 PSS000020         1 MHI           Montreal Heart Institute Biobank</span>
+<span class="co">#&gt; 2 PSS000020         2 MHI           Montreal Heart Institute Biobank</span></code></pre></div>
+</div>
+<div id="by-trait-or-disease" class="section level3">
+<h3 class="hasAnchor">
+<a href="#by-trait-or-disease" class="anchor"></a>By trait or disease</h3>
+<p>If you wish to search by other criteria other than the PGS identifier or the PSS identifier, then you will need to do it in several steps. The general approach is to map your criteria to matching PGS identifiers and from those PGS IDs to sample sets using <code><a href="../reference/get_sample_sets.html">get_sample_sets()</a></code>.</p>
+<p>Let’s say that you want to retrieve all sample sets used in the evaluation of polygenic scores for the disease Vitiligo (loss of skin melanocytes that causes areas of skin depigmentation).</p>
+<div class="figure">
+<img src="../man/figures/vitiligo.png" alt="Vitiligo of the hands in a person with dark skin. Source (CC BY-SA 3.0): https://pt.wikipedia.org/wiki/Vitiligo." width="90%"><p class="caption">
+Vitiligo of the hands in a person with dark skin. Source (CC BY-SA 3.0): <a href="https://pt.wikipedia.org/wiki/Vitiligo" class="uri">https://pt.wikipedia.org/wiki/Vitiligo</a>.
+</p>
+</div>
+<p>We start by searching for this disease in the PGS Catalog with <code><a href="../reference/get_traits.html">get_traits()</a></code>:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">(</span><span class="va">traits_vitiligo</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_traits.html">get_traits</a></span><span class="op">(</span>trait_term <span class="op">=</span> <span class="st">'Vitiligo'</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; An object of class "traits"</span>
+<span class="co">#&gt; Slot "traits":</span>
+<span class="co">#&gt; # A tibble: 1 × 6</span>
+<span class="co">#&gt;   efo_id      parent_efo_id is_child trait    description             url       </span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;    &lt;chr&gt;                   &lt;chr&gt;     </span>
+<span class="co">#&gt; 1 EFO_0004208 &lt;NA&gt;          FALSE    Vitiligo Generalized well circu… http://ww…</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "pgs_ids":</span>
+<span class="co">#&gt; # A tibble: 2 × 4</span>
+<span class="co">#&gt;   efo_id      parent_efo_id is_child pgs_id   </span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;    </span>
+<span class="co">#&gt; 1 EFO_0004208 &lt;NA&gt;          FALSE    PGS000738</span>
+<span class="co">#&gt; 2 EFO_0004208 &lt;NA&gt;          FALSE    PGS000760</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "child_pgs_ids":</span>
+<span class="co">#&gt; # A tibble: 0 × 4</span>
+<span class="co">#&gt; # … with 4 variables: efo_id &lt;chr&gt;, parent_efo_id &lt;chr&gt;, is_child &lt;lgl&gt;,</span>
+<span class="co">#&gt; #   child_pgs_id &lt;chr&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "trait_categories":</span>
+<span class="co">#&gt; # A tibble: 1 × 4</span>
+<span class="co">#&gt;   efo_id      parent_efo_id is_child trait_categories      </span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;                 </span>
+<span class="co">#&gt; 1 EFO_0004208 &lt;NA&gt;          FALSE    Immune system disorder</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "trait_synonyms":</span>
+<span class="co">#&gt; # A tibble: 1 × 4</span>
+<span class="co">#&gt;   efo_id      parent_efo_id is_child trait_synonyms</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;         </span>
+<span class="co">#&gt; 1 EFO_0004208 &lt;NA&gt;          FALSE    vitiligo      </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "trait_mapped_terms":</span>
+<span class="co">#&gt; # A tibble: 13 × 4</span>
+<span class="co">#&gt;    efo_id      parent_efo_id is_child trait_mapped_terms</span>
+<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;             </span>
+<span class="co">#&gt;  1 EFO_0004208 &lt;NA&gt;          FALSE    COHD:138502       </span>
+<span class="co">#&gt;  2 EFO_0004208 &lt;NA&gt;          FALSE    DOID:12306        </span>
+<span class="co">#&gt;  3 EFO_0004208 &lt;NA&gt;          FALSE    ICD10:L80         </span>
+<span class="co">#&gt;  4 EFO_0004208 &lt;NA&gt;          FALSE    ICD9:709.01       </span>
+<span class="co">#&gt;  5 EFO_0004208 &lt;NA&gt;          FALSE    MESH:D014820      </span>
+<span class="co">#&gt;  6 EFO_0004208 &lt;NA&gt;          FALSE    MONDO:0008661     </span>
+<span class="co">#&gt;  7 EFO_0004208 &lt;NA&gt;          FALSE    MeSH:D014820      </span>
+<span class="co">#&gt;  8 EFO_0004208 &lt;NA&gt;          FALSE    MedDRA:10047642   </span>
+<span class="co">#&gt;  9 EFO_0004208 &lt;NA&gt;          FALSE    NCIT:C26915       </span>
+<span class="co">#&gt; 10 EFO_0004208 &lt;NA&gt;          FALSE    NCIt:C26915       </span>
+<span class="co">#&gt; 11 EFO_0004208 &lt;NA&gt;          FALSE    OMIM:193200       </span>
+<span class="co">#&gt; 12 EFO_0004208 &lt;NA&gt;          FALSE    SNOMEDCT:56727007 </span>
+<span class="co">#&gt; 13 EFO_0004208 &lt;NA&gt;          FALSE    UMLS:C0042900</span></code></pre></div>
+<p>The slot <code>pgs_ids</code> contains the polygenic score identifiers associated with Vitiligo.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">traits_vitiligo</span><span class="op">@</span><span class="va">pgs_ids</span>
+<span class="co">#&gt; # A tibble: 2 × 4</span>
+<span class="co">#&gt;   efo_id      parent_efo_id is_child pgs_id   </span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;    </span>
+<span class="co">#&gt; 1 EFO_0004208 &lt;NA&gt;          FALSE    PGS000738</span>
+<span class="co">#&gt; 2 EFO_0004208 &lt;NA&gt;          FALSE    PGS000760</span></code></pre></div>
+<p>Now to search for the sample sets, we can pass those PGS identifiers to <code><a href="../reference/get_sample_sets.html">get_sample_sets()</a></code>:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">(</span><span class="va">pss_vitiligo</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_sample_sets.html">get_sample_sets</a></span><span class="op">(</span>pgs_id <span class="op">=</span> <span class="va">traits_vitiligo</span><span class="op">@</span><span class="va">pgs_ids</span><span class="op">$</span><span class="va">pgs_id</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; An object of class "sample_sets"</span>
+<span class="co">#&gt; Slot "sample_sets":</span>
+<span class="co">#&gt; # A tibble: 2 × 1</span>
+<span class="co">#&gt;   pss_id   </span>
+<span class="co">#&gt;   &lt;chr&gt;    </span>
+<span class="co">#&gt; 1 PSS000907</span>
+<span class="co">#&gt; 2 PSS000970</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "samples":</span>
+<span class="co">#&gt; # A tibble: 2 × 15</span>
+<span class="co">#&gt;   pss_id    sample_id stage sample_size sample_cases sample_controls</span>
+<span class="co">#&gt;   &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;       &lt;int&gt;        &lt;int&gt;           &lt;int&gt;</span>
+<span class="co">#&gt; 1 PSS000907         1 eval         4008         1827            2181</span>
+<span class="co">#&gt; 2 PSS000970         1 eval         1584           NA              NA</span>
+<span class="co">#&gt; # … with 9 more variables: sample_percent_male &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   phenotype_description &lt;chr&gt;, ancestry_category &lt;chr&gt;, ancestry &lt;chr&gt;,</span>
+<span class="co">#&gt; #   country &lt;chr&gt;, ancestry_additional_description &lt;chr&gt;, study_id &lt;chr&gt;,</span>
+<span class="co">#&gt; #   pubmed_id &lt;chr&gt;, cohorts_additional_description &lt;chr&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "demographics":</span>
+<span class="co">#&gt; # A tibble: 0 × 11</span>
+<span class="co">#&gt; # … with 11 variables: pss_id &lt;chr&gt;, sample_id &lt;int&gt;, variable &lt;chr&gt;,</span>
+<span class="co">#&gt; #   estimate_type &lt;chr&gt;, estimate &lt;dbl&gt;, unit &lt;chr&gt;, variability_type &lt;chr&gt;,</span>
+<span class="co">#&gt; #   variability &lt;dbl&gt;, interval_type &lt;chr&gt;, interval_lower &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   interval_upper &lt;dbl&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "cohorts":</span>
+<span class="co">#&gt; # A tibble: 1 × 4</span>
+<span class="co">#&gt;   pss_id    sample_id cohort_symbol cohort_name                                 </span>
+<span class="co">#&gt;   &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;                                       </span>
+<span class="co">#&gt; 1 PSS000970         1 GNEHGI2020Q2  Genentech Human Genetics Initiative Cancer …</span></code></pre></div>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
 
 </div>
 

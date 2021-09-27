@@ -149,14 +149,137 @@
 
     
     
+<div id="cohorts" class="section level2">
+<h2 class="hasAnchor">
+<a href="#cohorts" class="anchor"></a>Cohorts</h2>
+<p>A cohort is a group of individuals with a shared characteristic. Cohorts are identified in quincunx by the <code>cohort_symbol</code> variable. See <code><a href="../articles/getting-cohorts.html">vignette('getting-cohorts')</a></code> on how to find associated polygenic scores.</p>
+<p><img src="../man/figures/cohorts.svg" width="90%"></p>
+<p>Using <code><a href="../reference/get_cohorts.html">get_cohorts()</a></code> to retrieve associated PGS identifiers with cohort <code>"PROMIS"</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">quincunx</span><span class="op">)</span></code></pre></div>
-<p>Coming soon.</p>
+<code class="sourceCode R"><span class="fu"><a href="../reference/get_cohorts.html">get_cohorts</a></span><span class="op">(</span><span class="st">'PROMIS'</span><span class="op">)</span>
+<span class="co">#&gt; An object of class "cohorts"</span>
+<span class="co">#&gt; Slot "cohorts":</span>
+<span class="co">#&gt; # A tibble: 1 × 2</span>
+<span class="co">#&gt;   cohort_symbol cohort_name                                     </span>
+<span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;                                           </span>
+<span class="co">#&gt; 1 PROMIS        The Pakistan Risk Of Myocardial Infarction Study</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "pgs_ids":</span>
+<span class="co">#&gt; # A tibble: 14 × 3</span>
+<span class="co">#&gt;    cohort_symbol pgs_id    stage   </span>
+<span class="co">#&gt;    &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;   </span>
+<span class="co">#&gt;  1 PROMIS        PGS000011 gwas/dev</span>
+<span class="co">#&gt;  2 PROMIS        PGS000012 gwas/dev</span>
+<span class="co">#&gt;  3 PROMIS        PGS000013 gwas/dev</span>
+<span class="co">#&gt;  4 PROMIS        PGS000018 gwas/dev</span>
+<span class="co">#&gt;  5 PROMIS        PGS000019 gwas/dev</span>
+<span class="co">#&gt;  6 PROMIS        PGS000020 gwas/dev</span>
+<span class="co">#&gt;  7 PROMIS        PGS000058 gwas/dev</span>
+<span class="co">#&gt;  8 PROMIS        PGS000349 gwas/dev</span>
+<span class="co">#&gt;  9 PROMIS        PGS000746 gwas/dev</span>
+<span class="co">#&gt; 10 PROMIS        PGS000747 gwas/dev</span>
+<span class="co">#&gt; 11 PROMIS        PGS000748 gwas/dev</span>
+<span class="co">#&gt; 12 PROMIS        PGS000749 gwas/dev</span>
+<span class="co">#&gt; 13 PROMIS        PGS000818 gwas/dev</span>
+<span class="co">#&gt; 14 PROMIS        PGS000899 gwas/dev</span></code></pre></div>
+</div>
+<div id="samples" class="section level2">
+<h2 class="hasAnchor">
+<a href="#samples" class="anchor"></a>Samples</h2>
+<p>A sample is a group of participants associated with none, one or more catalogued cohorts. The selection from a cohort can be either a subset or its totality. Samples are not identified in PGS Catalog with a global unique identifier, but quincunx assigns a surrogate identifier (<code>sample_id</code>) to allow relations between tables.</p>
+<p><img src="../man/figures/samples.svg" width="90%"></p>
+<p>Sample composition is provided in slot <code>cohorts</code> from objects <code>scores</code> returned by the <code><a href="../reference/get_scores.html">get_scores()</a></code> function.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span>, warn.conflicts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+
+<span class="co"># PGS000001 is one of the polygenic scores that is based upon participants from</span>
+<span class="co"># cohort PROMIS</span>
+<span class="va">pgs_11</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_scores.html">get_scores</a></span><span class="op">(</span><span class="st">'PGS000011'</span><span class="op">)</span>
+
+<span class="co"># Cohort PROMIS is included in sample no. 2, along with LOLIPOP</span>
+<span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">pgs_11</span><span class="op">@</span><span class="va">cohorts</span>, <span class="va">sample_id</span> <span class="op">==</span> <span class="fl">2L</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 2 × 4</span>
+<span class="co">#&gt;   pgs_id    sample_id cohort_symbol cohort_name                                 </span>
+<span class="co">#&gt;   &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;                                       </span>
+<span class="co">#&gt; 1 PGS000011         2 PROMIS        The Pakistan Risk Of Myocardial Infarction …</span>
+<span class="co">#&gt; 2 PGS000011         2 LOLIPOP       London Life Sciences Population Study</span></code></pre></div>
+<p>To know a few more details about samples, look into the <code>samples</code> slot of the object <code>scores</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">pgs_11</span><span class="op">@</span><span class="va">samples</span>, <span class="va">sample_id</span> <span class="op">==</span> <span class="fl">2L</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 1 × 15</span>
+<span class="co">#&gt;   pgs_id    sample_id stage sample_size sample_cases sample_controls</span>
+<span class="co">#&gt;   &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;       &lt;int&gt;        &lt;int&gt;           &lt;int&gt;</span>
+<span class="co">#&gt; 1 PGS000011         2 gwas         8653         4394            4259</span>
+<span class="co">#&gt; # … with 9 more variables: sample_percent_male &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   phenotype_description &lt;chr&gt;, ancestry_category &lt;chr&gt;, ancestry &lt;chr&gt;,</span>
+<span class="co">#&gt; #   country &lt;chr&gt;, ancestry_additional_description &lt;chr&gt;, study_id &lt;chr&gt;,</span>
+<span class="co">#&gt; #   pubmed_id &lt;chr&gt;, cohorts_additional_description &lt;chr&gt;</span></code></pre></div>
+</div>
+<div id="sample-sets" class="section level2">
+<h2 class="hasAnchor">
+<a href="#sample-sets" class="anchor"></a>Sample sets</h2>
+<p>A sample set is a group of samples used in a polygenic score evaluation. Each sample set is identified in the PGS Catalog by a unique sample set identifier (<code>pss_id</code>).</p>
+<p><img src="../man/figures/sample_sets.svg" width="90%"></p>
+<p>To find the sample sets that included a specific cohort, we start by getting the PGS identifiers associated with a cohort, e.g. MHI:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Note that by the definition of sample set, samples included in sample sets</span>
+<span class="co"># are only used at PGS evaluation stages.</span>
+<span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="../reference/get_cohorts.html">get_cohorts</a></span><span class="op">(</span><span class="st">'MHI'</span><span class="op">)</span><span class="op">@</span><span class="va">pgs_ids</span>, <span class="va">stage</span> <span class="op">==</span> <span class="st">'eval'</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 2 × 3</span>
+<span class="co">#&gt;   cohort_symbol pgs_id    stage</span>
+<span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;</span>
+<span class="co">#&gt; 1 MHI           PGS000013 eval </span>
+<span class="co">#&gt; 2 MHI           PGS000018 eval</span></code></pre></div>
+<p>PGS000013 is one of the polygenic scores whose evaluation used participants from the cohort MHI. We retrieve now the sample sets used in the evaluation of PGS000013:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Sample sets used in the evaluation of the PGS000013</span>
+<span class="va">pgs_13_sset</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_sample_sets.html">get_sample_sets</a></span><span class="op">(</span>pgs_id <span class="op">=</span> <span class="st">'PGS000013'</span><span class="op">)</span>
+<span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">pgs_13_sset</span><span class="op">@</span><span class="va">sample_sets</span><span class="op">)</span>
+<span class="co">#&gt; Rows: 41</span>
+<span class="co">#&gt; Columns: 1</span>
+<span class="co">#&gt; $ pss_id &lt;chr&gt; "PSS000015", "PSS000019", "PSS000020", "PSS000021", "PSS000022"…</span></code></pre></div>
+<p>One of the sample sets used to evaluate PGS000013 is PSS000020. We can retrieve a <code>sample_set</code> object that contains its composition, i.e., the samples and cohorts included, along with other details:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get_sample_sets.html">get_sample_sets</a></span><span class="op">(</span><span class="st">'PSS000020'</span><span class="op">)</span>
+<span class="co">#&gt; An object of class "sample_sets"</span>
+<span class="co">#&gt; Slot "sample_sets":</span>
+<span class="co">#&gt; # A tibble: 1 × 1</span>
+<span class="co">#&gt;   pss_id   </span>
+<span class="co">#&gt;   &lt;chr&gt;    </span>
+<span class="co">#&gt; 1 PSS000020</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "samples":</span>
+<span class="co">#&gt; # A tibble: 2 × 15</span>
+<span class="co">#&gt;   pss_id    sample_id stage sample_size sample_cases sample_controls</span>
+<span class="co">#&gt;   &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;       &lt;int&gt;        &lt;int&gt;           &lt;int&gt;</span>
+<span class="co">#&gt; 1 PSS000020         1 eval          862          446             416</span>
+<span class="co">#&gt; 2 PSS000020         2 eval         2333          937            1396</span>
+<span class="co">#&gt; # … with 9 more variables: sample_percent_male &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   phenotype_description &lt;chr&gt;, ancestry_category &lt;chr&gt;, ancestry &lt;chr&gt;,</span>
+<span class="co">#&gt; #   country &lt;chr&gt;, ancestry_additional_description &lt;chr&gt;, study_id &lt;chr&gt;,</span>
+<span class="co">#&gt; #   pubmed_id &lt;chr&gt;, cohorts_additional_description &lt;chr&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "demographics":</span>
+<span class="co">#&gt; # A tibble: 0 × 11</span>
+<span class="co">#&gt; # … with 11 variables: pss_id &lt;chr&gt;, sample_id &lt;int&gt;, variable &lt;chr&gt;,</span>
+<span class="co">#&gt; #   estimate_type &lt;chr&gt;, estimate &lt;dbl&gt;, unit &lt;chr&gt;, variability_type &lt;chr&gt;,</span>
+<span class="co">#&gt; #   variability &lt;dbl&gt;, interval_type &lt;chr&gt;, interval_lower &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   interval_upper &lt;dbl&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "cohorts":</span>
+<span class="co">#&gt; # A tibble: 2 × 4</span>
+<span class="co">#&gt;   pss_id    sample_id cohort_symbol cohort_name                     </span>
+<span class="co">#&gt;   &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;                           </span>
+<span class="co">#&gt; 1 PSS000020         1 MHI           Montreal Heart Institute Biobank</span>
+<span class="co">#&gt; 2 PSS000020         2 MHI           Montreal Heart Institute Biobank</span></code></pre></div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
 
 </div>
 
