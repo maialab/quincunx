@@ -14,7 +14,7 @@ Authors@R: c(
     person(given = "Ana-Teresa", family = "Maia",
       email = "maia.anateresa@gmail.com", role = "aut", 
       comment = c(ORCID = "0000-0002-0454-9207")),
-    person("Centre for Biomedical Research, University of Algarve",
+    person("Center for Research in Health Technologies and Information Systems (CINTESIS), University of Algarve",
     role = c("cph", "fnd"))
     )
 Description: Programmatic access to the PGS Catalog.
