@@ -39,7 +39,7 @@ verbose about the different queries or not.}
 progress from the REST API server.}
 }
 \value{
-An \linkS4class{sample_sets} object.
+A \linkS4class{sample_sets} object.
 }
 \description{
 Retrieves sample sets via the PGS Catalog REST API. The REST
@@ -55,6 +55,10 @@ Please note that all search criteria are vectorised, thus allowing for batch
 mode search.
 }
 \examples{
-get_sample_sets('PSS000068')
+# Search by PGS identifier
+get_sample_sets(pgs_id = 'PGS000013')
+
+# Search by the PSS identifier
+get_sample_sets(pss_id = 'PSS000068')
 
 }

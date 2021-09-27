@@ -88,9 +88,13 @@ get_sample_sets_all <- function(limit = 20L, verbose = FALSE, warnings = TRUE, p
 #' @param progress_bar Whether to show a progress bar indicating download
 #'   progress from the REST API server.
 #'
-#' @return An \linkS4class{sample_sets} object.
+#' @return A \linkS4class{sample_sets} object.
 #' @examples
-#' get_sample_sets('PSS000068')
+#' # Search by PGS identifier
+#' get_sample_sets(pgs_id = 'PGS000013')
+#'
+#' # Search by the PSS identifier
+#' get_sample_sets(pss_id = 'PSS000068')
 #'
 #' @export
 get_sample_sets <- function(

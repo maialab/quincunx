@@ -5,6 +5,8 @@ vignette: >
   %\VignetteIndexEntry{Getting PGS Sample Sets}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+resource_files:
+  - '../man/figures/vitiligo.png'
 ---
 
 ```{r, include = FALSE}
@@ -12,10 +14,69 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-```
-
-```{r setup}
 library(quincunx)
 ```
 
-Coming soon.
+## Sample sets
+
+A sample set is a group of samples used in a polygenic score evaluation.Each
+sample set is identified in the PGS Catalog by a unique sample set identifier
+(`pss_id`). See `vignette('cohorts-samples-sample-sets')` for more details on
+the relationship between cohorts, samples, and sample sets.
+
+## Getting sample sets
+
+To get information on sample sets you can either search by the associated
+polygenic score identifiers, or by the sample set identifiers themselves (if you
+know them beforehand).
+
+### By the PGS identifier
+
+```{r}
+# Sample sets used in the evaluation of the PGS000013
+(pgs_13_sset <- get_sample_sets(pgs_id = 'PGS000013'))
+```
+
+### By the sample set identifier
+
+```{r}
+# Sample set PSS000020
+(pss_20 <- get_sample_sets(pss_id = 'PSS000020'))
+```
+
+### By trait or disease
+
+If you wish to search by other criteria other than the PGS identifier or the PSS
+identifier, then you will need to do it in several steps. The general approach
+is to map your criteria to matching PGS identifiers and from those PGS IDs to
+sample sets using `get_sample_sets()`.
+
+Let's say that you want to retrieve all sample sets used in the evaluation of
+polygenic scores for the disease Vitiligo (loss of skin melanocytes that causes
+areas of skin depigmentation).
+
+```{r  out.width = "90%", echo=FALSE, fig.cap='Vitiligo of the hands in a person with dark skin. Source (CC BY-SA 3.0): https://pt.wikipedia.org/wiki/Vitiligo.'}
+knitr::include_graphics('../man/figures/vitiligo.png') 
+```
+
+We start by searching for this disease in the PGS Catalog with `get_traits()`:
+
+```{r}
+(traits_vitiligo <- get_traits(trait_term = 'Vitiligo'))
+```
+
+The slot `pgs_ids` contains the polygenic score identifiers associated with
+Vitiligo.
+
+```{r}
+traits_vitiligo@pgs_ids
+```
+
+Now to search for the sample sets, we can pass those PGS identifiers to
+`get_sample_sets()`:
+
+```{r}
+(pss_vitiligo <- get_sample_sets(pgs_id = traits_vitiligo@pgs_ids$pgs_id))
+```
+
+
