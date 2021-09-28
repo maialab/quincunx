@@ -120,3 +120,5 @@ Depends:
     R (>= 2.10)
 Remotes: 
     ramiromagno/gwasrapidd
+URL: https://github.com/ramiromagno/quincunx
+BugReports: https://github.com/ramiromagno/quincunx/issues
