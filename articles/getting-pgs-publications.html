@@ -120,7 +120,14 @@
   </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/ramiromagno/quincunx/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
@@ -142,7 +149,7 @@
       <h1 data-toc-skip>Getting PGS Publications</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/ramiromagno/quincunx/blob/master/vignettes/getting-pgs-publications.Rmd"><code>vignettes/getting-pgs-publications.Rmd</code></a></small>
       <div class="hidden name"><code>getting-pgs-publications.Rmd</code></div>
 
     </div>
@@ -171,7 +178,7 @@
 <a href="#getting-pgs-publications" class="anchor"></a>Getting PGS Publications</h2>
 <p>Getting PGS publications by their identifiers:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">quincunx</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ramiromagno/quincunx">quincunx</a></span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/get_publications.html">get_publications</a></span><span class="op">(</span>pgp_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'PGP000001'</span>, <span class="st">'PGP000002'</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; An object of class "publications"</span>
@@ -200,7 +207,7 @@
 <span class="co">#&gt; # … with 11 more rows</span></code></pre></div>
 <p>By <code>pgs_id</code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">quincunx</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ramiromagno/quincunx">quincunx</a></span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/get_publications.html">get_publications</a></span><span class="op">(</span>pgs_id <span class="op">=</span> <span class="st">'PGS000003'</span><span class="op">)</span>
 <span class="co">#&gt; An object of class "publications"</span>
@@ -223,7 +230,7 @@
 <span class="co">#&gt; 6 PGP000001 PGS000003 eval</span></code></pre></div>
 <p>By <code>pubmed_id</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">quincunx</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ramiromagno/quincunx">quincunx</a></span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/get_publications.html">get_publications</a></span><span class="op">(</span>pubmed_id <span class="op">=</span> <span class="st">'30554720'</span><span class="op">)</span>
 <span class="co">#&gt; An object of class "publications"</span>
@@ -255,7 +262,7 @@
 <span class="co">#&gt; 15 PGP000002 PGS000009 eval</span></code></pre></div>
 <p>By <code>author</code>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">quincunx</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ramiromagno/quincunx">quincunx</a></span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/get_publications.html">get_publications</a></span><span class="op">(</span>author <span class="op">=</span> <span class="st">'Natarajan'</span><span class="op">)</span>
 <span class="co">#&gt; An object of class "publications"</span>
@@ -357,7 +364,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://rmagno.eu/">Ramiro Magno</a>, <a href="https://iduarte.eu/">Isabel Duarte</a>, Ana-Teresa Maia, Center for Research in Health Technologies and Information Systems (CINTESIS), University of Algarve.</p>
+  <p>Developed by <a href="https://rmagno.eu/">Ramiro Magno</a>, <a href="https://iduarte.eu/">Isabel Duarte</a>, Ana-Teresa Maia, <a href="https://cintesis.eu/"><img src="../man/figures/cintesis.png" height="24"></a>.</p>
 </div>
 
 <div class="pkgdown">

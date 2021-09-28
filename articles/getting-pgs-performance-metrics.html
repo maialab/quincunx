@@ -120,7 +120,14 @@
   </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/ramiromagno/quincunx/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
@@ -142,7 +149,7 @@
       <h1 data-toc-skip>Getting PGS Performance Metrics</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/ramiromagno/quincunx/blob/master/vignettes/getting-pgs-performance-metrics.Rmd"><code>vignettes/getting-pgs-performance-metrics.Rmd</code></a></small>
       <div class="hidden name"><code>getting-pgs-performance-metrics.Rmd</code></div>
 
     </div>
@@ -167,7 +174,7 @@
 <a href="#getting-pgs-performance-metrics" class="anchor"></a>Getting PGS performance metrics</h2>
 <p>In the PGS Catalog, performance metrics have been catalogued and have an associated identifier that starts with the prefix <code>"PPM"</code>. To retrieve the performance metrics associated with one assessment of a polygenic score, you can use directly its identifier:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">quincunx</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ramiromagno/quincunx">quincunx</a></span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/get_performance_metrics.html">get_performance_metrics</a></span><span class="op">(</span>ppm_id <span class="op">=</span> <span class="st">'PPM000001'</span><span class="op">)</span>
 <span class="co">#&gt; An object of class "performance_metrics"</span>
@@ -439,7 +446,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://rmagno.eu/">Ramiro Magno</a>, <a href="https://iduarte.eu/">Isabel Duarte</a>, Ana-Teresa Maia, Center for Research in Health Technologies and Information Systems (CINTESIS), University of Algarve.</p>
+  <p>Developed by <a href="https://rmagno.eu/">Ramiro Magno</a>, <a href="https://iduarte.eu/">Isabel Duarte</a>, Ana-Teresa Maia, <a href="https://cintesis.eu/"><img src="../man/figures/cintesis.png" height="24"></a>.</p>
 </div>
 
 <div class="pkgdown">
