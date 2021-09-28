@@ -129,7 +129,15 @@ get_trait_by_trait_term <-
 #'
 #' @return A \linkS4class{traits} object.
 #' @examples
-#' # Coming soon...
+#' # Get a trait by its EFO identifier
+#' get_traits(efo_id = 'EFO_0004631')
+#'
+#' # Get a trait by a term in its name or description
+#' get_traits(trait_term = 'stroke', exact_term = FALSE)
+#'
+#' # Get a trait matching its name exactly (default)
+#' get_traits(trait_term = 'stroke', exact_term = TRUE)
+#'
 #'
 #' @export
 get_traits <- function(efo_id = NULL,
