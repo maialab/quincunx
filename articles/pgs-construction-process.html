@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PGS Construction Process • quincunx</title>
+<title>PGS Construction Process and Stages • quincunx</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -20,7 +20,7 @@
 <script src="../pkgdown.js"></script><!-- docsearch --><script src="../docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><link href="../extra.css" rel="stylesheet">
-<meta property="og:title" content="PGS Construction Process">
+<meta property="og:title" content="PGS Construction Process and Stages">
 <meta property="og:description" content="quincunx">
 <meta property="og:image" content="https://maialab.org/quincunx/logo.svg">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -69,7 +69,7 @@
       <a href="../articles/identifiers.html">Identifiers</a>
     </li>
     <li>
-      <a href="../articles/pgs-construction-process.html">PGS Construction Process</a>
+      <a href="../articles/pgs-construction-process.html">PGS Construction Process and Stages</a>
     </li>
     <li>
       <a href="../articles/cohorts-samples-sample-sets.html">Cohorts, Samples and Sample Sets</a>
@@ -146,7 +146,7 @@
       </header><script src="pgs-construction-process_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>PGS Construction Process</h1>
+      <h1 data-toc-skip>PGS Construction Process and Stages</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/maialab/quincunx/blob/master/vignettes/pgs-construction-process.Rmd"><code>vignettes/pgs-construction-process.Rmd</code></a></small>
@@ -156,14 +156,146 @@
 
     
     
+<div id="overview-of-polygenic-risk-score-construction" class="section level2">
+<h2 class="hasAnchor">
+<a href="#overview-of-polygenic-risk-score-construction" class="anchor"></a>Overview of polygenic risk score construction</h2>
+<p>PGS is calculated as a weighted sum of several risk variants from a genome-wide association study in one or more samples with multiple p-value thresholds. The effect sizes are typically estimated as β (beta coefficients) or as odds ratios. After the PGS is calculated in one sample, the distribution of individual PGS is assessed in another in an independent sample set.</p>
+<div class="figure">
+<img src="../man/figures/pgs-construction-process.png" alt="Adapted from [Konuma &amp; Okada (2021)](https://doi.org/10.1186/s41232-021-00172-9), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)." width="90%"><p class="caption">
+Adapted from <a href="https://doi.org/10.1186/s41232-021-00172-9">Konuma &amp; Okada (2021)</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+</p>
+</div>
+</div>
+<div id="pgs-development-and-evaluation-stages" class="section level2">
+<h2 class="hasAnchor">
+<a href="#pgs-development-and-evaluation-stages" class="anchor"></a>PGS development and evaluation stages</h2>
+<p><img src="../man/figures/pgs-stages.svg" width="90%"></p>
+<p>In the PGS Catalog, cohorts and samples are annotated according to their utilisation context, i.e. stage, in the PGS construction process. In quincunx, the stage is indicated by the <code>stage</code> variable that can have one of these values:</p>
+<ul>
+<li>
+<code>gwas</code>: to annotate samples used to derive variant associations (GWAS)</li>
+<li>
+<code>dev</code>: to annotate samples used in the development or training of PGSs</li>
+<li>
+<code>gwas/dev</code>: as a catch-all term to annotate samples used either in <code>gwas</code> or <code>dev</code> stages</li>
+<li>
+<code>eval</code>: to annotate samples used in the PGS evaluation stage</li>
+</ul>
+<p>You will encounter the stage annotation in tables of objects returned by quincunx’s retrieval functions. Here are a few examples:</p>
+<div id="in-a-scores-object" class="section level3">
+<h3 class="hasAnchor">
+<a href="#in-a-scores-object" class="anchor"></a>In a <code>scores</code> object</h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/maialab/quincunx">quincunx</a></span><span class="op">)</span></code></pre></div>
-<p>Coming soon.</p>
+<code class="sourceCode R"><span class="fu"><a href="../reference/get_scores.html">get_scores</a></span><span class="op">(</span><span class="st">'PGS000327'</span><span class="op">)</span><span class="op">@</span><span class="va">samples</span>
+<span class="co">#&gt; # A tibble: 2 × 15</span>
+<span class="co">#&gt;   pgs_id    sample_id stage sample_size sample_cases sample_controls</span>
+<span class="co">#&gt;   &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;       &lt;int&gt;        &lt;int&gt;           &lt;int&gt;</span>
+<span class="co">#&gt; 1 PGS000327         1 gwas        46350           NA              NA</span>
+<span class="co">#&gt; 2 PGS000327         2 dev         28592        10461           18131</span>
+<span class="co">#&gt; # … with 9 more variables: sample_percent_male &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   phenotype_description &lt;chr&gt;, ancestry_category &lt;chr&gt;, ancestry &lt;chr&gt;,</span>
+<span class="co">#&gt; #   country &lt;chr&gt;, ancestry_additional_description &lt;chr&gt;, study_id &lt;chr&gt;,</span>
+<span class="co">#&gt; #   pubmed_id &lt;chr&gt;, cohorts_additional_description &lt;chr&gt;</span></code></pre></div>
+</div>
+<div id="in-a-sample_sets-object" class="section level3">
+<h3 class="hasAnchor">
+<a href="#in-a-sample_sets-object" class="anchor"></a>In a <code>sample_sets</code> object</h3>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get_sample_sets.html">get_sample_sets</a></span><span class="op">(</span>pgs_id <span class="op">=</span> <span class="st">'PGS000327'</span><span class="op">)</span><span class="op">@</span><span class="va">samples</span>
+<span class="co">#&gt; # A tibble: 1 × 15</span>
+<span class="co">#&gt;   pss_id    sample_id stage sample_size sample_cases sample_controls</span>
+<span class="co">#&gt;   &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;       &lt;int&gt;        &lt;int&gt;           &lt;int&gt;</span>
+<span class="co">#&gt; 1 PSS000435         1 eval         7148         2615            4532</span>
+<span class="co">#&gt; # … with 9 more variables: sample_percent_male &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   phenotype_description &lt;chr&gt;, ancestry_category &lt;chr&gt;, ancestry &lt;chr&gt;,</span>
+<span class="co">#&gt; #   country &lt;chr&gt;, ancestry_additional_description &lt;chr&gt;, study_id &lt;chr&gt;,</span>
+<span class="co">#&gt; #   pubmed_id &lt;chr&gt;, cohorts_additional_description &lt;chr&gt;</span></code></pre></div>
+</div>
+<div id="in-a-performance_metrics-object" class="section level3">
+<h3 class="hasAnchor">
+<a href="#in-a-performance_metrics-object" class="anchor"></a>In a <code>performance_metrics</code> object</h3>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get_performance_metrics.html">get_performance_metrics</a></span><span class="op">(</span>pgs_id <span class="op">=</span> <span class="st">'PGS000327'</span><span class="op">)</span><span class="op">@</span><span class="va">samples</span>
+<span class="co">#&gt; # A tibble: 1 × 16</span>
+<span class="co">#&gt;   ppm_id    pss_id    sample_id stage sample_size sample_cases sample_controls</span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;       &lt;int&gt;        &lt;int&gt;           &lt;int&gt;</span>
+<span class="co">#&gt; 1 PPM000879 PSS000435         1 eval         7148         2615            4532</span>
+<span class="co">#&gt; # … with 9 more variables: sample_percent_male &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   phenotype_description &lt;chr&gt;, ancestry_category &lt;chr&gt;, ancestry &lt;chr&gt;,</span>
+<span class="co">#&gt; #   country &lt;chr&gt;, ancestry_additional_description &lt;chr&gt;, study_id &lt;chr&gt;,</span>
+<span class="co">#&gt; #   pubmed_id &lt;chr&gt;, cohorts_additional_description &lt;chr&gt;</span></code></pre></div>
+</div>
+<div id="in-the-stages_tally-table" class="section level3">
+<h3 class="hasAnchor">
+<a href="#in-the-stages_tally-table" class="anchor"></a>In the <code>stages_tally</code> table:</h3>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get_scores.html">get_scores</a></span><span class="op">(</span><span class="st">'PGS000327'</span><span class="op">)</span><span class="op">@</span><span class="va">stages_tally</span>
+<span class="co">#&gt; # A tibble: 3 × 4</span>
+<span class="co">#&gt;   pgs_id    stage sample_size n_sample_sets</span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt;         &lt;int&gt;</span>
+<span class="co">#&gt; 1 PGS000327 gwas        46350            NA</span>
+<span class="co">#&gt; 2 PGS000327 dev         28592            NA</span>
+<span class="co">#&gt; 3 PGS000327 eval           NA             1</span></code></pre></div>
+</div>
+<div id="in-the-ancestry_frequencies-table" class="section level3">
+<h3 class="hasAnchor">
+<a href="#in-the-ancestry_frequencies-table" class="anchor"></a>In the <code>ancestry_frequencies</code> table:</h3>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get_scores.html">get_scores</a></span><span class="op">(</span><span class="st">'PGS000012'</span><span class="op">)</span><span class="op">@</span><span class="va">ancestry_frequencies</span>
+<span class="co">#&gt; # A tibble: 4 × 4</span>
+<span class="co">#&gt;   pgs_id    stage ancestry_class_symbol frequency</span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;                     &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 PGS000012 gwas  MAE                       100  </span>
+<span class="co">#&gt; 2 PGS000012 dev   EUR                       100  </span>
+<span class="co">#&gt; 3 PGS000012 eval  EUR                        66.7</span>
+<span class="co">#&gt; 4 PGS000012 eval  MAE                        33.3</span></code></pre></div>
+</div>
+<div id="and-in-multi_ancestry_composition-table" class="section level3">
+<h3 class="hasAnchor">
+<a href="#and-in-multi_ancestry_composition-table" class="anchor"></a>And in <code>multi_ancestry_composition</code> table:</h3>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get_scores.html">get_scores</a></span><span class="op">(</span><span class="st">'PGS000012'</span><span class="op">)</span><span class="op">@</span><span class="va">multi_ancestry_composition</span>
+<span class="co">#&gt; # A tibble: 4 × 4</span>
+<span class="co">#&gt;   pgs_id    stage multi_ancestry_class_symbol ancestry_class_symbol</span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;                       &lt;chr&gt;                </span>
+<span class="co">#&gt; 1 PGS000012 gwas  MAE                         EUR                  </span>
+<span class="co">#&gt; 2 PGS000012 gwas  MAE                         SAS                  </span>
+<span class="co">#&gt; 3 PGS000012 eval  MAE                         EUR                  </span>
+<span class="co">#&gt; 4 PGS000012 eval  MAE                         NR</span></code></pre></div>
+</div>
+<div id="in-a-cohorts-object" class="section level3">
+<h3 class="hasAnchor">
+<a href="#in-a-cohorts-object" class="anchor"></a>In a <code>cohorts</code> object:</h3>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get_cohorts.html">get_cohorts</a></span><span class="op">(</span><span class="st">'23andMe'</span><span class="op">)</span><span class="op">@</span><span class="va">pgs_ids</span>
+<span class="co">#&gt; # A tibble: 16 × 3</span>
+<span class="co">#&gt;    cohort_symbol pgs_id    stage   </span>
+<span class="co">#&gt;    &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;   </span>
+<span class="co">#&gt;  1 23andMe       PGS000336 gwas/dev</span>
+<span class="co">#&gt;  2 23andMe       PGS000730 gwas/dev</span>
+<span class="co">#&gt;  3 23andMe       PGS000731 gwas/dev</span>
+<span class="co">#&gt;  4 23andMe       PGS000732 gwas/dev</span>
+<span class="co">#&gt;  5 23andMe       PGS000766 gwas/dev</span>
+<span class="co">#&gt;  6 23andMe       PGS000767 gwas/dev</span>
+<span class="co">#&gt;  7 23andMe       PGS000780 gwas/dev</span>
+<span class="co">#&gt;  8 23andMe       PGS000790 gwas/dev</span>
+<span class="co">#&gt;  9 23andMe       PGS000800 gwas/dev</span>
+<span class="co">#&gt; 10 23andMe       PGS000810 gwas/dev</span>
+<span class="co">#&gt; 11 23andMe       PGS000867 gwas/dev</span>
+<span class="co">#&gt; 12 23andMe       PGS000902 gwas/dev</span>
+<span class="co">#&gt; 13 23andMe       PGS000903 gwas/dev</span>
+<span class="co">#&gt; 14 23andMe       PGS000730 eval    </span>
+<span class="co">#&gt; 15 23andMe       PGS000731 eval    </span>
+<span class="co">#&gt; 16 23andMe       PGS000732 eval</span></code></pre></div>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
 
 </div>
 
