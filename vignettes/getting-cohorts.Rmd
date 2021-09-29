@@ -43,8 +43,9 @@ library(quincunx)
 get_cohorts(cohort_symbol = '23andMe')
 ```
 
-The `pg_ids` lists associated PGS identifiers with the queried cohorts. The
-`stage` variable indicates the PGS stage in which the cohort was used.
+The `pgs_ids` slot contains a tibble of associated PGS identifiers with the
+queried cohorts. The `stage` variable indicates the PGS stage in which the
+cohort was used.
 
 To get all catalogued cohorts in the PGS Catalog, leave the `cohort_symbol`
 parameter as `NULL` (default). Note that, in this case, it may take a few
