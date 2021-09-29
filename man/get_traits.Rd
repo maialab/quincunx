@@ -64,6 +64,21 @@ Please note that all search criteria are vectorised, thus allowing for batch
 mode search.
 }
 \examples{
-# Coming soon...
+# Get a trait by its EFO identifier
+get_traits(efo_id = 'EFO_0004631')
+
+# Get a trait by matching a term in EFO identifier (`efo_id`), label,
+# description synonyms, categories, or external mapped terms
+get_traits(trait_term = 'stroke', exact_term = FALSE)
+
+# Get a trait matching its name (`trait`) exactly (default)
+get_traits(trait_term = 'stroke', exact_term = TRUE)
+
+# Get traits, excluding its children traits (default)
+get_traits(trait_term = 'breast cancer')
+
+# Get traits, including its children traits (check column `is_child` for
+# child traits)
+get_traits(trait_term = 'breast cancer', include_children = TRUE)
 
 }

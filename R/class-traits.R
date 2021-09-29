@@ -208,7 +208,7 @@ s4traits_trait_mapped_terms_tbl <- function(efo_id = character(),
 
 coerce_to_s4_traits <- function(lst_tbl = NULL) {
 
-  if (is.null(lst_tbl)) {
+  if (rlang::is_empty(lst_tbl)) {
     s4_traits <- traits()
     return(s4_traits)
   }

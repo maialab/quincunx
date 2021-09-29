@@ -132,12 +132,19 @@ get_trait_by_trait_term <-
 #' # Get a trait by its EFO identifier
 #' get_traits(efo_id = 'EFO_0004631')
 #'
-#' # Get a trait by a term in its name or description
+#' # Get a trait by matching a term in EFO identifier (`efo_id`), label,
+#' # description synonyms, categories, or external mapped terms
 #' get_traits(trait_term = 'stroke', exact_term = FALSE)
 #'
-#' # Get a trait matching its name exactly (default)
+#' # Get a trait matching its name (`trait`) exactly (default)
 #' get_traits(trait_term = 'stroke', exact_term = TRUE)
 #'
+#' # Get traits, excluding its children traits (default)
+#' get_traits(trait_term = 'breast cancer')
+#'
+#' # Get traits, including its children traits (check column `is_child` for
+#' # child traits)
+#' get_traits(trait_term = 'breast cancer', include_children = TRUE)
 #'
 #' @export
 get_traits <- function(efo_id = NULL,
@@ -172,17 +179,32 @@ get_traits <- function(efo_id = NULL,
     ) %>%
     coerce_to_s4_traits()
 
-  if (!rlang::is_null(trait_term))
-    list_of_traits[['get_trait_by_trait_term']] <-
-    get_trait_by_trait_term(
-      trait_term = trait_term,
-      include_children = include_children,
-      exact_term = exact_term,
-      verbose = verbose,
-      warnings = warnings,
-      progress_bar = progress_bar
-    ) %>%
-    coerce_to_s4_traits()
+  list_of_traits[['get_trait_by_trait_term']] <-
+    if (!rlang::is_null(trait_term)) {
+      traits_wo_children <- get_trait_by_trait_term(
+        trait_term = trait_term,
+        include_children = FALSE,
+        exact_term = exact_term,
+        verbose = verbose,
+        warnings = warnings,
+        progress_bar = progress_bar
+      ) %>%
+        coerce_to_s4_traits()
+
+      if (identical(include_children, FALSE)) {
+        traits_wo_children
+      } else {
+        # Now get all traits, one by one, including children
+        get_trait_by_efo_id(
+          efo_id = traits_wo_children@traits$efo_id,
+          include_children = TRUE,
+          verbose = verbose,
+          warnings = warnings,
+          progress_bar = progress_bar
+        ) %>%
+          coerce_to_s4_traits()
+      }
+    }
 
   # If no criteria have been passed, i.e. all are NULL then gotta fetch all
   # traits.
