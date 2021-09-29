@@ -56,10 +56,10 @@ nrow(my_scores@scores)
 This table has as many rows as polygenic scores. This is one way of knowing how many scores there are in the object. Alternatively, you can use the function `n()` on the object:
 
 ```{r}
-n(my_scores)
+quincunx::n(my_scores)
 ```
 
-It is important to know the number of scores if you plan to subset the `my_scores` object by position. In this case there are `r n(my_scores)` scores. If you want to subset the first, fifth, and tenth score, then you could do:
+It is important to know the number of scores if you plan to subset the `my_scores` object by position. In this case there are `r quincunx::n(my_scores)` scores. If you want to subset the first, fifth, and tenth score, then you could do:
 
 ```{r}
 my_scores[c(1, 5, 10)]@scores[1:2]
@@ -97,7 +97,7 @@ Please note that if you repeat the same position or identifier, you will get tha
 ```{r}
 my_scores[c('PGS000003', 'PGS000003')]@scores[1:2]
 
-n(my_scores[c('PGS000003', 'PGS000003')])
+quincunx::n(my_scores[c('PGS000003', 'PGS000003')])
 ```
 
 Or using the third position twice:
@@ -105,7 +105,7 @@ Or using the third position twice:
 ```{r}
 my_scores[c(3, 3)]@scores[1:2]
 
-n(my_scores[c(3, 3)])
+quincunx::n(my_scores[c(3, 3)])
 ```
 
 ### Subsetting using negative positions
@@ -124,7 +124,7 @@ If you request a position or identifier that does not match in the object, the r
 ```{r}
 my_scores[11]@scores[1:2]
 
-n(my_scores[11])
+quincunx::n(my_scores[11])
 ```
 
 Please note that the returned object is still a valid `scores` object and that it contains all the expected tables of such an object. It is just that all tables have no rows. The same behaviour is to be expected if you try to subset with non-existing identifiers:
@@ -132,7 +132,7 @@ Please note that the returned object is still a valid `scores` object and that i
 ```{r}
 my_scores['PGS000011']@scores[1:2]
 
-n(my_scores['PGS000011'])
+quincunx::n(my_scores['PGS000011'])
 ```
 
 ## Subsetting Publications
