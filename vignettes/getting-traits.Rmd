@@ -40,14 +40,14 @@ pgs_01@traits
 ```
 
 Many PGSs have been developed and demonstrated to be predictive of common
-complex traits, e.g. body mass index (BMI) @khera2019 , blood lipids
-@kuchenbaecker2019 and educational attainment @lee2018.
+complex traits, e.g. body mass index (BMI) [@khera2019], blood lipids
+[@kuchenbaecker2019] and educational attainment [@lee2018].
 
 Similarly, PGSs for various diseases have been shown to be predictive of disease
 incidence, defining marked increases in risk over the life course or at earlier
 ages for people with high PGSs, e.g. coronary artery disease
-[@inouye2018;@khera2018], breast cancer @mavaddat2019 and schizophrenia
-@zheutlin2019.
+[@inouye2018;@khera2018], breast cancer [@mavaddat2019] and schizophrenia
+[@zheutlin2019].
 
 ## Getting catalogued traits from PGS Catalog
 
