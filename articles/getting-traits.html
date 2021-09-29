@@ -156,14 +156,325 @@
 
     
     
+<div id="introduction" class="section level2">
+<h2 class="hasAnchor">
+<a href="#introduction" class="anchor"></a>Introduction</h2>
+<p>Polygenic scores (PGSs) are annotated with information about the phenotype that it predicts, i.e. the reported trait (as reported in the original publication). This can be found as the column <code>reported_trait</code> in slot <code>scores</code> of <code>scores</code> objects:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/maialab/quincunx">quincunx</a></span><span class="op">)</span></code></pre></div>
-<p>Coming soon.</p>
+<code class="sourceCode R"><span class="va">pgs_01</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_scores.html">get_scores</a></span><span class="op">(</span><span class="st">'PGS000001'</span><span class="op">)</span>
+<span class="va">pgs_01</span><span class="op">@</span><span class="va">scores</span>
+<span class="co">#&gt; # A tibble: 1 × 12</span>
+<span class="co">#&gt;   pgs_id    pgs_name scoring_file matches_publica… reported_trait trait_additiona…</span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;        &lt;lgl&gt;            &lt;chr&gt;          &lt;chr&gt;           </span>
+<span class="co">#&gt; 1 PGS000001 PRS77_BC https://ftp… TRUE             Breast Cancer  &lt;NA&gt;            </span>
+<span class="co">#&gt; # … with 6 more variables: pgs_method_name &lt;chr&gt;, pgs_method_params &lt;chr&gt;,</span>
+<span class="co">#&gt; #   n_variants &lt;int&gt;, n_variants_interactions &lt;int&gt;, assembly &lt;chr&gt;,</span>
+<span class="co">#&gt; #   license &lt;chr&gt;</span></code></pre></div>
+<p>The predicted phenotype is also mapped to Experimental Factor Ontology (EFO) terms (a controlled vocabulary for the unambiguous identification of traits and diseases, and their relationships), namely, the EFO trait. The EFO traits associated with a polygenic score can also be found in <code>scores</code> objects in the slot <code>traits</code>, column <code>trait</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pgs_01</span><span class="op">@</span><span class="va">traits</span>
+<span class="co">#&gt; # A tibble: 1 × 5</span>
+<span class="co">#&gt;   pgs_id    efo_id      trait            description                 url        </span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt;                       &lt;chr&gt;      </span>
+<span class="co">#&gt; 1 PGS000001 EFO_0000305 breast carcinoma A carcinoma that arises fr… http://www…</span></code></pre></div>
+<p>Many PGSs have been developed and demonstrated to be predictive of common complex traits, e.g. body mass index (BMI) <span class="citation">1</span> , blood lipids <span class="citation">2</span> and educational attainment <span class="citation">3</span>.</p>
+<p>Similarly, PGSs for various diseases have been shown to be predictive of disease incidence, defining marked increases in risk over the life course or at earlier ages for people with high PGSs, e.g. coronary artery disease,<span class="citation"><sup>4,5</sup></span> breast cancer <span class="citation">6</span> and schizophrenia <span class="citation">7</span>.</p>
+</div>
+<div id="getting-catalogued-traits-from-pgs-catalog" class="section level2">
+<h2 class="hasAnchor">
+<a href="#getting-catalogued-traits-from-pgs-catalog" class="anchor"></a>Getting catalogued traits from PGS Catalog</h2>
+<p>If you are interested in retrieving polygenic scores from the Catalog, you might want to search them by the trait they predict. <code><a href="../reference/get_scores.html">get_scores()</a></code> is the function that searches for <code>PGSs</code>, however, this function only allows to search by <code>pgs_id</code>, <code>efo_id</code> or <code>pubmed_id</code>. So in order to search by a trait term, we need to first find the associated EFO identifiers (<code>efo_id</code>).</p>
+<p>To search for traits (or diseases), you use the function <code><a href="../reference/get_traits.html">get_traits()</a></code>. With this function you can search by:</p>
+<ul>
+<li>The EFO trait identifier: <code>efo_id</code>;</li>
+<li>or by the trait term: a term to be matched in the EFO identifier (<code>efo_id</code>), label, description synonyms, trait categories, or external mapped terms.</li>
+</ul>
+<p>The most useful search criteria is the trait term, and that is typically want you will want to use. Unless you already know the EFO trait you are interested in, and are looking for extra details about it, you won’t search directly with the EFO identifier.</p>
+<div id="basic-example" class="section level3">
+<h3 class="hasAnchor">
+<a href="#basic-example" class="anchor"></a>Basic example</h3>
+<p>Let’s say you are interested in PGSs related to medical condition, stroke. Then you can search for <code>"stroke"</code> with <code><a href="../reference/get_traits.html">get_traits()</a></code>:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get_traits.html">get_traits</a></span><span class="op">(</span>trait_term <span class="op">=</span> <span class="st">'stroke'</span><span class="op">)</span>
+<span class="co">#&gt; An object of class "traits"</span>
+<span class="co">#&gt; Slot "traits":</span>
+<span class="co">#&gt; # A tibble: 1 × 6</span>
+<span class="co">#&gt;   efo_id      parent_efo_id is_child trait  description              url        </span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;  &lt;chr&gt;                    &lt;chr&gt;      </span>
+<span class="co">#&gt; 1 EFO_0000712 &lt;NA&gt;          FALSE    stroke A sudden loss of neurol… http://www…</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "pgs_ids":</span>
+<span class="co">#&gt; # A tibble: 3 × 4</span>
+<span class="co">#&gt;   efo_id      parent_efo_id is_child pgs_id   </span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;    </span>
+<span class="co">#&gt; 1 EFO_0000712 &lt;NA&gt;          FALSE    PGS000038</span>
+<span class="co">#&gt; 2 EFO_0000712 &lt;NA&gt;          FALSE    PGS000039</span>
+<span class="co">#&gt; 3 EFO_0000712 &lt;NA&gt;          FALSE    PGS000665</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "child_pgs_ids":</span>
+<span class="co">#&gt; # A tibble: 0 × 4</span>
+<span class="co">#&gt; # … with 4 variables: efo_id &lt;chr&gt;, parent_efo_id &lt;chr&gt;, is_child &lt;lgl&gt;,</span>
+<span class="co">#&gt; #   child_pgs_id &lt;chr&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "trait_categories":</span>
+<span class="co">#&gt; # A tibble: 2 × 4</span>
+<span class="co">#&gt;   efo_id      parent_efo_id is_child trait_categories      </span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;                 </span>
+<span class="co">#&gt; 1 EFO_0000712 &lt;NA&gt;          FALSE    Cardiovascular disease</span>
+<span class="co">#&gt; 2 EFO_0000712 &lt;NA&gt;          FALSE    Neurological disorder </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "trait_synonyms":</span>
+<span class="co">#&gt; # A tibble: 54 × 4</span>
+<span class="co">#&gt;    efo_id      parent_efo_id is_child trait_synonyms                 </span>
+<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;                          </span>
+<span class="co">#&gt;  1 EFO_0000712 &lt;NA&gt;          FALSE    Acute Cerebrovascular Accident </span>
+<span class="co">#&gt;  2 EFO_0000712 &lt;NA&gt;          FALSE    Acute Cerebrovascular Accidents</span>
+<span class="co">#&gt;  3 EFO_0000712 &lt;NA&gt;          FALSE    Acute Stroke                   </span>
+<span class="co">#&gt;  4 EFO_0000712 &lt;NA&gt;          FALSE    Acute Strokes                  </span>
+<span class="co">#&gt;  5 EFO_0000712 &lt;NA&gt;          FALSE    Apoplexy                       </span>
+<span class="co">#&gt;  6 EFO_0000712 &lt;NA&gt;          FALSE    Apoplexy, Cerebrovascular      </span>
+<span class="co">#&gt;  7 EFO_0000712 &lt;NA&gt;          FALSE    Brain Vascular Accident        </span>
+<span class="co">#&gt;  8 EFO_0000712 &lt;NA&gt;          FALSE    Brain Vascular Accidents       </span>
+<span class="co">#&gt;  9 EFO_0000712 &lt;NA&gt;          FALSE    CEREBROVASCULAR ACCIDENT, (CVA)</span>
+<span class="co">#&gt; 10 EFO_0000712 &lt;NA&gt;          FALSE    CVA                            </span>
+<span class="co">#&gt; # … with 44 more rows</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "trait_mapped_terms":</span>
+<span class="co">#&gt; # A tibble: 13 × 4</span>
+<span class="co">#&gt;    efo_id      parent_efo_id is_child trait_mapped_terms  </span>
+<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;               </span>
+<span class="co">#&gt;  1 EFO_0000712 &lt;NA&gt;          FALSE    HP:0001297          </span>
+<span class="co">#&gt;  2 EFO_0000712 &lt;NA&gt;          FALSE    ICD10:I64           </span>
+<span class="co">#&gt;  3 EFO_0000712 &lt;NA&gt;          FALSE    MESH:D020521        </span>
+<span class="co">#&gt;  4 EFO_0000712 &lt;NA&gt;          FALSE    MONDO:0005098       </span>
+<span class="co">#&gt;  5 EFO_0000712 &lt;NA&gt;          FALSE    MeSH:D020521        </span>
+<span class="co">#&gt;  6 EFO_0000712 &lt;NA&gt;          FALSE    MedDRA:10042244     </span>
+<span class="co">#&gt;  7 EFO_0000712 &lt;NA&gt;          FALSE    NCIT:C3390          </span>
+<span class="co">#&gt;  8 EFO_0000712 &lt;NA&gt;          FALSE    NCIt:C3390          </span>
+<span class="co">#&gt;  9 EFO_0000712 &lt;NA&gt;          FALSE    NIFSTD:birnlex_12783</span>
+<span class="co">#&gt; 10 EFO_0000712 &lt;NA&gt;          FALSE    OMIM:601367         </span>
+<span class="co">#&gt; 11 EFO_0000712 &lt;NA&gt;          FALSE    SCTID:230690007     </span>
+<span class="co">#&gt; 12 EFO_0000712 &lt;NA&gt;          FALSE    SNOMEDCT:230690007  </span>
+<span class="co">#&gt; 13 EFO_0000712 &lt;NA&gt;          FALSE    SNOMEDCT:422504002</span></code></pre></div>
+<p>As can be seen from the returned <code>traits</code> object, we get a set of six tables (slots) that include several details about stroke.</p>
+<p>In the first table <code>traits</code> we got only one row, indicating that this query returned only one trait in the Catalog. This trait is named <code>"stroke"</code> (column <code>trait</code>), and is unambiguously identified by the EFO identifier EFO_0000712.</p>
+</div>
+<div id="exact-matching" class="section level3">
+<h3 class="hasAnchor">
+<a href="#exact-matching" class="anchor"></a>Exact matching</h3>
+<p>By default, the trait term is matched exactly. If you want to relax the matching, then indicate with the parameter <code>exact_term</code> set to <code>FALSE</code>. This way you will get, potentially, more results, in this example case, ischemic stroke (HP_0002140) is now also returned:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get_traits.html">get_traits</a></span><span class="op">(</span>trait_term <span class="op">=</span> <span class="st">'stroke'</span>, exact_term <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="co">#&gt; An object of class "traits"</span>
+<span class="co">#&gt; Slot "traits":</span>
+<span class="co">#&gt; # A tibble: 2 × 6</span>
+<span class="co">#&gt;   efo_id      parent_efo_id is_child trait           description      url       </span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;           &lt;chr&gt;            &lt;chr&gt;     </span>
+<span class="co">#&gt; 1 HP_0002140  &lt;NA&gt;          FALSE    Ischemic stroke Acute ischemic … https://w…</span>
+<span class="co">#&gt; 2 EFO_0000712 &lt;NA&gt;          FALSE    stroke          A sudden loss o… http://ww…</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "pgs_ids":</span>
+<span class="co">#&gt; # A tibble: 5 × 4</span>
+<span class="co">#&gt;   efo_id      parent_efo_id is_child pgs_id   </span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;    </span>
+<span class="co">#&gt; 1 HP_0002140  &lt;NA&gt;          FALSE    PGS000039</span>
+<span class="co">#&gt; 2 HP_0002140  &lt;NA&gt;          FALSE    PGS000665</span>
+<span class="co">#&gt; 3 EFO_0000712 &lt;NA&gt;          FALSE    PGS000038</span>
+<span class="co">#&gt; 4 EFO_0000712 &lt;NA&gt;          FALSE    PGS000039</span>
+<span class="co">#&gt; 5 EFO_0000712 &lt;NA&gt;          FALSE    PGS000665</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "child_pgs_ids":</span>
+<span class="co">#&gt; # A tibble: 0 × 4</span>
+<span class="co">#&gt; # … with 4 variables: efo_id &lt;chr&gt;, parent_efo_id &lt;chr&gt;, is_child &lt;lgl&gt;,</span>
+<span class="co">#&gt; #   child_pgs_id &lt;chr&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "trait_categories":</span>
+<span class="co">#&gt; # A tibble: 3 × 4</span>
+<span class="co">#&gt;   efo_id      parent_efo_id is_child trait_categories      </span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;                 </span>
+<span class="co">#&gt; 1 HP_0002140  &lt;NA&gt;          FALSE    Other trait           </span>
+<span class="co">#&gt; 2 EFO_0000712 &lt;NA&gt;          FALSE    Cardiovascular disease</span>
+<span class="co">#&gt; 3 EFO_0000712 &lt;NA&gt;          FALSE    Neurological disorder </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "trait_synonyms":</span>
+<span class="co">#&gt; # A tibble: 55 × 4</span>
+<span class="co">#&gt;    efo_id      parent_efo_id is_child trait_synonyms                 </span>
+<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;                          </span>
+<span class="co">#&gt;  1 HP_0002140  &lt;NA&gt;          FALSE    Ischaemic stroke               </span>
+<span class="co">#&gt;  2 EFO_0000712 &lt;NA&gt;          FALSE    Acute Cerebrovascular Accident </span>
+<span class="co">#&gt;  3 EFO_0000712 &lt;NA&gt;          FALSE    Acute Cerebrovascular Accidents</span>
+<span class="co">#&gt;  4 EFO_0000712 &lt;NA&gt;          FALSE    Acute Stroke                   </span>
+<span class="co">#&gt;  5 EFO_0000712 &lt;NA&gt;          FALSE    Acute Strokes                  </span>
+<span class="co">#&gt;  6 EFO_0000712 &lt;NA&gt;          FALSE    Apoplexy                       </span>
+<span class="co">#&gt;  7 EFO_0000712 &lt;NA&gt;          FALSE    Apoplexy, Cerebrovascular      </span>
+<span class="co">#&gt;  8 EFO_0000712 &lt;NA&gt;          FALSE    Brain Vascular Accident        </span>
+<span class="co">#&gt;  9 EFO_0000712 &lt;NA&gt;          FALSE    Brain Vascular Accidents       </span>
+<span class="co">#&gt; 10 EFO_0000712 &lt;NA&gt;          FALSE    CEREBROVASCULAR ACCIDENT, (CVA)</span>
+<span class="co">#&gt; # … with 45 more rows</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "trait_mapped_terms":</span>
+<span class="co">#&gt; # A tibble: 15 × 4</span>
+<span class="co">#&gt;    efo_id      parent_efo_id is_child trait_mapped_terms   </span>
+<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;                </span>
+<span class="co">#&gt;  1 HP_0002140  &lt;NA&gt;          FALSE    SNOMEDCT_US:422504002</span>
+<span class="co">#&gt;  2 HP_0002140  &lt;NA&gt;          FALSE    UMLS:C0948008        </span>
+<span class="co">#&gt;  3 EFO_0000712 &lt;NA&gt;          FALSE    HP:0001297           </span>
+<span class="co">#&gt;  4 EFO_0000712 &lt;NA&gt;          FALSE    ICD10:I64            </span>
+<span class="co">#&gt;  5 EFO_0000712 &lt;NA&gt;          FALSE    MESH:D020521         </span>
+<span class="co">#&gt;  6 EFO_0000712 &lt;NA&gt;          FALSE    MONDO:0005098        </span>
+<span class="co">#&gt;  7 EFO_0000712 &lt;NA&gt;          FALSE    MeSH:D020521         </span>
+<span class="co">#&gt;  8 EFO_0000712 &lt;NA&gt;          FALSE    MedDRA:10042244      </span>
+<span class="co">#&gt;  9 EFO_0000712 &lt;NA&gt;          FALSE    NCIT:C3390           </span>
+<span class="co">#&gt; 10 EFO_0000712 &lt;NA&gt;          FALSE    NCIt:C3390           </span>
+<span class="co">#&gt; 11 EFO_0000712 &lt;NA&gt;          FALSE    NIFSTD:birnlex_12783 </span>
+<span class="co">#&gt; 12 EFO_0000712 &lt;NA&gt;          FALSE    OMIM:601367          </span>
+<span class="co">#&gt; 13 EFO_0000712 &lt;NA&gt;          FALSE    SCTID:230690007      </span>
+<span class="co">#&gt; 14 EFO_0000712 &lt;NA&gt;          FALSE    SNOMEDCT:230690007   </span>
+<span class="co">#&gt; 15 EFO_0000712 &lt;NA&gt;          FALSE    SNOMEDCT:422504002</span></code></pre></div>
+</div>
+<div id="subtraits-child-traits" class="section level3">
+<h3 class="hasAnchor">
+<a href="#subtraits-child-traits" class="anchor"></a>Subtraits (child traits)</h3>
+<p>By default, subtraits (child traits), are not retrieved by <code><a href="../reference/get_traits.html">get_traits()</a></code>. If you want to get all matching traits and those that are child traits thereof, then indicate with the parameter <code>include_children</code> set to <code>TRUE</code>. Here is an example with <code>"breast cancer"</code>:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get_traits.html">get_traits</a></span><span class="op">(</span>trait_term <span class="op">=</span> <span class="st">'breast cancer'</span>, include_children <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="co">#&gt; An object of class "traits"</span>
+<span class="co">#&gt; Slot "traits":</span>
+<span class="co">#&gt; # A tibble: 9 × 6</span>
+<span class="co">#&gt;   efo_id        parent_efo_id is_child trait     description        url         </span>
+<span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;     &lt;chr&gt;              &lt;chr&gt;       </span>
+<span class="co">#&gt; 1 MONDO_0007254 &lt;NA&gt;          FALSE    breast c… A primary or meta… http://purl…</span>
+<span class="co">#&gt; 2 EFO_0000305   MONDO_0007254 TRUE     breast c… A carcinoma that … http://www.…</span>
+<span class="co">#&gt; 3 MONDO_0021116 MONDO_0007254 TRUE     luminal … A biologic subset… http://purl…</span>
+<span class="co">#&gt; 4 MONDO_0021115 MONDO_0007254 TRUE     luminal … A biologic subset… http://purl…</span>
+<span class="co">#&gt; 5 EFO_1000650   MONDO_0007254 TRUE     estrogen… A subtype of brea… http://www.…</span>
+<span class="co">#&gt; 6 EFO_1000649   MONDO_0007254 TRUE     estrogen… A subtype of brea… http://www.…</span>
+<span class="co">#&gt; 7 MONDO_0000618 MONDO_0007254 TRUE     Her2-rec… &lt;NA&gt;               https://www…</span>
+<span class="co">#&gt; 8 EFO_0005537   MONDO_0007254 TRUE     triple-n… An invasive breas… http://www.…</span>
+<span class="co">#&gt; 9 EFO_1000294   MONDO_0007254 TRUE     HER2 Pos… A biologic subset… http://www.…</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "pgs_ids":</span>
+<span class="co">#&gt; # A tibble: 106 × 4</span>
+<span class="co">#&gt;    efo_id      parent_efo_id is_child pgs_id   </span>
+<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;    </span>
+<span class="co">#&gt;  1 EFO_0000305 MONDO_0007254 TRUE     PGS000001</span>
+<span class="co">#&gt;  2 EFO_0000305 MONDO_0007254 TRUE     PGS000004</span>
+<span class="co">#&gt;  3 EFO_0000305 MONDO_0007254 TRUE     PGS000007</span>
+<span class="co">#&gt;  4 EFO_0000305 MONDO_0007254 TRUE     PGS000015</span>
+<span class="co">#&gt;  5 EFO_0000305 MONDO_0007254 TRUE     PGS000028</span>
+<span class="co">#&gt;  6 EFO_0000305 MONDO_0007254 TRUE     PGS000029</span>
+<span class="co">#&gt;  7 EFO_0000305 MONDO_0007254 TRUE     PGS000045</span>
+<span class="co">#&gt;  8 EFO_0000305 MONDO_0007254 TRUE     PGS000050</span>
+<span class="co">#&gt;  9 EFO_0000305 MONDO_0007254 TRUE     PGS000051</span>
+<span class="co">#&gt; 10 EFO_0000305 MONDO_0007254 TRUE     PGS000052</span>
+<span class="co">#&gt; # … with 96 more rows</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "child_pgs_ids":</span>
+<span class="co">#&gt; # A tibble: 125 × 4</span>
+<span class="co">#&gt;    efo_id        parent_efo_id is_child child_pgs_id</span>
+<span class="co">#&gt;    &lt;chr&gt;         &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;       </span>
+<span class="co">#&gt;  1 MONDO_0007254 &lt;NA&gt;          FALSE    PGS000001   </span>
+<span class="co">#&gt;  2 MONDO_0007254 &lt;NA&gt;          FALSE    PGS000002   </span>
+<span class="co">#&gt;  3 MONDO_0007254 &lt;NA&gt;          FALSE    PGS000003   </span>
+<span class="co">#&gt;  4 MONDO_0007254 &lt;NA&gt;          FALSE    PGS000004   </span>
+<span class="co">#&gt;  5 MONDO_0007254 &lt;NA&gt;          FALSE    PGS000005   </span>
+<span class="co">#&gt;  6 MONDO_0007254 &lt;NA&gt;          FALSE    PGS000006   </span>
+<span class="co">#&gt;  7 MONDO_0007254 &lt;NA&gt;          FALSE    PGS000007   </span>
+<span class="co">#&gt;  8 MONDO_0007254 &lt;NA&gt;          FALSE    PGS000008   </span>
+<span class="co">#&gt;  9 MONDO_0007254 &lt;NA&gt;          FALSE    PGS000009   </span>
+<span class="co">#&gt; 10 MONDO_0007254 &lt;NA&gt;          FALSE    PGS000015   </span>
+<span class="co">#&gt; # … with 115 more rows</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "trait_categories":</span>
+<span class="co">#&gt; # A tibble: 9 × 4</span>
+<span class="co">#&gt;   efo_id        parent_efo_id is_child trait_categories</span>
+<span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;           </span>
+<span class="co">#&gt; 1 MONDO_0007254 &lt;NA&gt;          FALSE    Cancer          </span>
+<span class="co">#&gt; 2 EFO_0000305   MONDO_0007254 TRUE     Cancer          </span>
+<span class="co">#&gt; 3 MONDO_0021116 MONDO_0007254 TRUE     Cancer          </span>
+<span class="co">#&gt; 4 MONDO_0021115 MONDO_0007254 TRUE     Cancer          </span>
+<span class="co">#&gt; 5 EFO_1000650   MONDO_0007254 TRUE     Cancer          </span>
+<span class="co">#&gt; 6 EFO_1000649   MONDO_0007254 TRUE     Cancer          </span>
+<span class="co">#&gt; 7 MONDO_0000618 MONDO_0007254 TRUE     Cancer          </span>
+<span class="co">#&gt; 8 EFO_0005537   MONDO_0007254 TRUE     Cancer          </span>
+<span class="co">#&gt; 9 EFO_1000294   MONDO_0007254 TRUE     Cancer          </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "trait_synonyms":</span>
+<span class="co">#&gt; # A tibble: 37 × 4</span>
+<span class="co">#&gt;    efo_id        parent_efo_id is_child trait_synonyms                  </span>
+<span class="co">#&gt;    &lt;chr&gt;         &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;                           </span>
+<span class="co">#&gt;  1 MONDO_0007254 &lt;NA&gt;          FALSE    breast cancer                   </span>
+<span class="co">#&gt;  2 MONDO_0007254 &lt;NA&gt;          FALSE    cancer of breast                </span>
+<span class="co">#&gt;  3 MONDO_0007254 &lt;NA&gt;          FALSE    malignant breast neoplasm       </span>
+<span class="co">#&gt;  4 MONDO_0007254 &lt;NA&gt;          FALSE    malignant breast tumor          </span>
+<span class="co">#&gt;  5 MONDO_0007254 &lt;NA&gt;          FALSE    malignant neoplasm of breast    </span>
+<span class="co">#&gt;  6 MONDO_0007254 &lt;NA&gt;          FALSE    malignant neoplasm of the breast</span>
+<span class="co">#&gt;  7 MONDO_0007254 &lt;NA&gt;          FALSE    malignant tumor of breast       </span>
+<span class="co">#&gt;  8 MONDO_0007254 &lt;NA&gt;          FALSE    malignant tumor of the breast   </span>
+<span class="co">#&gt;  9 MONDO_0007254 &lt;NA&gt;          FALSE    mammary cancer                  </span>
+<span class="co">#&gt; 10 EFO_0000305   MONDO_0007254 TRUE     breast carcinoma                </span>
+<span class="co">#&gt; # … with 27 more rows</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "trait_mapped_terms":</span>
+<span class="co">#&gt; # A tibble: 36 × 4</span>
+<span class="co">#&gt;    efo_id        parent_efo_id is_child trait_mapped_terms</span>
+<span class="co">#&gt;    &lt;chr&gt;         &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;             </span>
+<span class="co">#&gt;  1 MONDO_0007254 &lt;NA&gt;          FALSE    DOID:1612         </span>
+<span class="co">#&gt;  2 MONDO_0007254 &lt;NA&gt;          FALSE    ICD10:C50         </span>
+<span class="co">#&gt;  3 MONDO_0007254 &lt;NA&gt;          FALSE    ICD10:C50-C50     </span>
+<span class="co">#&gt;  4 MONDO_0007254 &lt;NA&gt;          FALSE    ICD9:174.8        </span>
+<span class="co">#&gt;  5 MONDO_0007254 &lt;NA&gt;          FALSE    NCIT:C9335        </span>
+<span class="co">#&gt;  6 MONDO_0007254 &lt;NA&gt;          FALSE    SCTID:254837009   </span>
+<span class="co">#&gt;  7 EFO_0000305   MONDO_0007254 TRUE     DOID:3459         </span>
+<span class="co">#&gt;  8 EFO_0000305   MONDO_0007254 TRUE     EFO:0000305       </span>
+<span class="co">#&gt;  9 EFO_0000305   MONDO_0007254 TRUE     MONDO:0004989     </span>
+<span class="co">#&gt; 10 EFO_0000305   MONDO_0007254 TRUE     NCIT:C4872        </span>
+<span class="co">#&gt; # … with 26 more rows</span></code></pre></div>
+<p>The column <code>is_child</code> indicates whether that trait is being retrieved because it is a direct result of the query or not. <code>is_child</code> is <code>TRUE</code> when the trait is returned because it is a child trait of a matching trait, and <code>FALSE</code> if a direct result of the query.</p>
+<p>In the case of child traits, the column <code>parent_efo_id</code> indicates the EFO trait identifier of the parent trait, i.e. the direct matching trait, or <code>NA</code> otherwise.</p>
+</div>
+</div>
+<div id="getting-all-traits" class="section level2">
+<h2 class="hasAnchor">
+<a href="#getting-all-traits" class="anchor"></a>Getting all traits</h2>
+<p>To retrieve all traits simply leave the parameters <code>efo_id</code> and <code>trait_term</code> as <code>NULL</code> (default):</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get_traits.html">get_traits</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="references" class="section level2 unnumbered">
+<h2 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h2>
+<div id="refs" class="references">
+<div id="ref-khera2019">
+<p>1. Khera, A. V. <em>et al.</em> Polygenic prediction of weight and obesity trajectories from birth to adulthood. <em>Cell</em> <strong>177</strong>, 587–596.e9 (2019).</p>
+</div>
+<div id="ref-kuchenbaecker2019">
+<p>2. Kuchenbaecker, K. <em>et al.</em> The transferability of lipid loci across african, asian and european cohorts. <em>Nature Communications</em> <strong>10</strong>, (2019).</p>
+</div>
+<div id="ref-lee2018">
+<p>3. Lee, J. J. <em>et al.</em> Gene discovery and polygenic prediction from a genome-wide association study of educational attainment in 1.1 million individuals. <em>Nature Genetics</em> <strong>50</strong>, 1112–1121 (2018).</p>
+</div>
+<div id="ref-inouye2018">
+<p>4. Inouye, M. <em>et al.</em> Genomic risk prediction of coronary artery disease in 480,000 adults. <em>Journal of the American College of Cardiology</em> <strong>72</strong>, 1883–1893 (2018).</p>
+</div>
+<div id="ref-khera2018">
+<p>5. Khera, A. V. <em>et al.</em> Genome-wide polygenic scores for common diseases identify individuals with risk equivalent to monogenic mutations. <em>Nature Genetics</em> <strong>50</strong>, 1219–1224 (2018).</p>
+</div>
+<div id="ref-mavaddat2019">
+<p>6. Mavaddat, N. <em>et al.</em> Polygenic risk scores for prediction of breast cancer and breast cancer subtypes. <em>The American Journal of Human Genetics</em> <strong>104</strong>, 21–34 (2019).</p>
+</div>
+<div id="ref-zheutlin2019">
+<p>7. Zheutlin, A. B. <em>et al.</em> Penetrance and pleiotropy of polygenic risk scores for schizophrenia in 106,160 patients across four health care systems. <em>American Journal of Psychiatry</em> <strong>176</strong>, 846–855 (2019).</p>
+</div>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
 
 </div>
 

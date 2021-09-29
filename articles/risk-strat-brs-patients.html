@@ -179,9 +179,11 @@
 <code class="sourceCode R"><span class="co"># EFO Id</span>
 <span class="va">brs_traits</span><span class="op">@</span><span class="va">traits</span><span class="op">$</span><span class="va">efo_id</span>
 <span class="co">#&gt; [1] "Orphanet_130"</span>
+
 <span class="co"># Brugada syndrome description as defined by the Experimental Factor Ontology</span>
 <span class="va">brs_traits</span><span class="op">@</span><span class="va">traits</span><span class="op">$</span><span class="va">description</span>
 <span class="co">#&gt; [1] "A genetically heterogeneous condition characterized by complete or incomplete right bundle branch block accompanied by ST elevation in leads V1-V3. There is a high incidence of ventricular arrhythmia that may result in sudden death. [NCIT: C142891]"</span>
+
 <span class="co"># PGS scores associated with Brugada syndrome</span>
 <span class="va">brs_traits</span><span class="op">@</span><span class="va">pgs_ids</span><span class="op">$</span><span class="va">pgs_id</span>
 <span class="co">#&gt; [1] "PGS000737"</span></code></pre></div>
@@ -206,12 +208,15 @@
 <span class="co"># PGS code name</span>
 <span class="va">brs_pgs</span><span class="op">@</span><span class="va">scores</span><span class="op">$</span><span class="va">pgs_name</span>
 <span class="co">#&gt; [1] "PRS_BrS"</span>
+
 <span class="co"># Does the PGS score matches the one in the source publication?</span>
 <span class="va">brs_pgs</span><span class="op">@</span><span class="va">scores</span><span class="op">$</span><span class="va">matches_publication</span>
 <span class="co">#&gt; [1] TRUE</span>
+
 <span class="co"># Authors' own description of the trait</span>
 <span class="va">brs_pgs</span><span class="op">@</span><span class="va">scores</span><span class="op">$</span><span class="va">reported_trait</span>
 <span class="co">#&gt; [1] "Brugada syndrome"</span>
+
 <span class="co"># Number of variants included in the polygenic risk score</span>
 <span class="va">brs_pgs</span><span class="op">@</span><span class="va">scores</span><span class="op">$</span><span class="va">n_variants</span>
 <span class="co">#&gt; [1] 3</span></code></pre></div>
@@ -231,15 +236,19 @@
 <code class="sourceCode R"><span class="co"># PGP id</span>
 <span class="va">brs_pgs</span><span class="op">@</span><span class="va">publications</span><span class="op">$</span><span class="va">pgp_id</span>
 <span class="co">#&gt; [1] "PGP000144"</span>
+
 <span class="co"># PubMed id</span>
 <span class="va">brs_pgs</span><span class="op">@</span><span class="va">publications</span><span class="op">$</span><span class="va">pubmed_id</span>
 <span class="co">#&gt; [1] "31504448"</span>
+
 <span class="co"># Publication date</span>
 <span class="va">brs_pgs</span><span class="op">@</span><span class="va">publications</span><span class="op">$</span><span class="va">publication_date</span>
 <span class="co">#&gt; [1] "2019-10-01"</span>
+
 <span class="co"># Journal</span>
 <span class="va">brs_pgs</span><span class="op">@</span><span class="va">publications</span><span class="op">$</span><span class="va">publication</span>
 <span class="co">#&gt; [1] "Eur Heart J"</span>
+
 <span class="co"># Title</span>
 <span class="va">brs_pgs</span><span class="op">@</span><span class="va">publications</span><span class="op">$</span><span class="va">title</span>
 <span class="co">#&gt; [1] "Predicting cardiac electrical response to sodium-channel blockade and Brugada syndrome using polygenic risk scores."</span></code></pre></div>
@@ -254,15 +263,19 @@
 <code class="sourceCode R"><span class="co"># Stage</span>
 <span class="va">brs_pgs</span><span class="op">@</span><span class="va">samples</span><span class="op">$</span><span class="va">stage</span>
 <span class="co">#&gt; [1] "gwas"</span>
+
 <span class="co"># Sample size</span>
 <span class="va">brs_pgs</span><span class="op">@</span><span class="va">samples</span><span class="op">$</span><span class="va">sample_size</span>
 <span class="co">#&gt; [1] 1427</span>
+
 <span class="co"># Ancestry</span>
 <span class="va">brs_pgs</span><span class="op">@</span><span class="va">samples</span><span class="op">$</span><span class="va">ancestry_category</span>
 <span class="co">#&gt; [1] "European"</span>
+
 <span class="co"># Definition of European ancestry</span>
 <span class="va">ancestry_categories</span><span class="op">[</span><span class="va">ancestry_categories</span><span class="op">$</span><span class="va">ancestry_category</span> <span class="op">==</span> <span class="st">'European'</span>, <span class="st">'definition'</span>, drop <span class="op">=</span> <span class="cn">TRUE</span><span class="op">]</span>
 <span class="co">#&gt; [1] "Includes individuals who either self-report or have been described by authors as European, Caucasian, white, or one of the sub-populations from this region (e.g., Dutch). This category also includes individuals who genetically cluster with reference populations from this region, for example, 1000 Genomes and/or HapMap CEU, FIN, GBR, IBS, and TSI populations"</span>
+
 <span class="co"># Cohort</span>
 <span class="va">brs_pgs</span><span class="op">@</span><span class="va">cohorts</span>
 <span class="co">#&gt; # A tibble: 1 × 4</span>

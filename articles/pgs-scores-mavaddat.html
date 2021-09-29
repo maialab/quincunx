@@ -313,6 +313,7 @@ However, if these scores have already been indexed and manually curated by the <
 <span class="va">pub_by_pmid_30554720</span><span class="op">@</span><span class="va">pgs_ids</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">stage</span> <span class="op">==</span> <span class="st">"development"</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 0 × 3</span>
 <span class="co">#&gt; # … with 3 variables: pgp_id &lt;chr&gt;, pgs_id &lt;chr&gt;, stage &lt;chr&gt;</span>
+
 <span class="co"># All PGS scores evaluated (evaluation stage)  </span>
 <span class="va">pub_by_pmid_30554720</span><span class="op">@</span><span class="va">pgs_ids</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">stage</span> <span class="op">==</span> <span class="st">"evaluation"</span><span class="op">)</span> 
 <span class="co">#&gt; # A tibble: 0 × 3</span>
@@ -747,6 +748,7 @@ This is easily confirmed by checking that all other publications are dated after
 <span class="va">mavaddat2018_ppm_ids</span>
 <span class="co">#&gt; [1] "PPM000009" "PPM000008" "PPM000010" "PPM000004" "PPM000005" "PPM000007"</span>
 <span class="co">#&gt; [7] "PPM000006"</span>
+
 <span class="co"># Find the corresponding pgs_id, reported_trait, covariates, and comments</span>
 <span class="va">mavaddat2018_ppm</span><span class="op">@</span><span class="va">performance_metrics</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">ppm_id</span> <span class="op">%in%</span> <span class="va">mavaddat2018_ppm_ids</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 7 × 5</span>

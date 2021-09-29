@@ -202,11 +202,12 @@
 <span class="co">#&gt; # … with 6 more variables: pgs_method_name &lt;chr&gt;, pgs_method_params &lt;chr&gt;,</span>
 <span class="co">#&gt; #   n_variants &lt;int&gt;, n_variants_interactions &lt;int&gt;, assembly &lt;chr&gt;,</span>
 <span class="co">#&gt; #   license &lt;chr&gt;</span>
+
 <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">my_scores</span><span class="op">@</span><span class="va">scores</span><span class="op">)</span>
 <span class="co">#&gt; [1] 10</span></code></pre></div>
 <p>This table has as many rows as polygenic scores. This is one way of knowing how many scores there are in the object. Alternatively, you can use the function <code><a href="../reference/n.html">n()</a></code> on the object:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/n.html">n</a></span><span class="op">(</span><span class="va">my_scores</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu">quincunx</span><span class="fu">::</span><span class="fu"><a href="../reference/n.html">n</a></span><span class="op">(</span><span class="va">my_scores</span><span class="op">)</span>
 <span class="co">#&gt; [1] 10</span></code></pre></div>
 <p>It is important to know the number of scores if you plan to subset the <code>my_scores</code> object by position. In this case there are 10 scores. If you want to subset the first, fifth, and tenth score, then you could do:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -271,7 +272,8 @@
 <span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;      </span>
 <span class="co">#&gt; 1 PGS000003 PRS77_ERneg</span>
 <span class="co">#&gt; 2 PGS000003 PRS77_ERneg</span>
-<span class="fu"><a href="../reference/n.html">n</a></span><span class="op">(</span><span class="va">my_scores</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'PGS000003'</span>, <span class="st">'PGS000003'</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
+
+<span class="fu">quincunx</span><span class="fu">::</span><span class="fu"><a href="../reference/n.html">n</a></span><span class="op">(</span><span class="va">my_scores</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'PGS000003'</span>, <span class="st">'PGS000003'</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; [1] 2</span></code></pre></div>
 <p>Or using the third position twice:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
@@ -281,7 +283,8 @@
 <span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;      </span>
 <span class="co">#&gt; 1 PGS000003 PRS77_ERneg</span>
 <span class="co">#&gt; 2 PGS000003 PRS77_ERneg</span>
-<span class="fu"><a href="../reference/n.html">n</a></span><span class="op">(</span><span class="va">my_scores</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
+
+<span class="fu">quincunx</span><span class="fu">::</span><span class="fu"><a href="../reference/n.html">n</a></span><span class="op">(</span><span class="va">my_scores</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; [1] 2</span></code></pre></div>
 </div>
 <div id="subsetting-using-negative-positions" class="section level3">
@@ -310,14 +313,16 @@
 <code class="sourceCode R"><span class="va">my_scores</span><span class="op">[</span><span class="fl">11</span><span class="op">]</span><span class="op">@</span><span class="va">scores</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>
 <span class="co">#&gt; # A tibble: 0 × 2</span>
 <span class="co">#&gt; # … with 2 variables: pgs_id &lt;chr&gt;, pgs_name &lt;chr&gt;</span>
-<span class="fu"><a href="../reference/n.html">n</a></span><span class="op">(</span><span class="va">my_scores</span><span class="op">[</span><span class="fl">11</span><span class="op">]</span><span class="op">)</span>
+
+<span class="fu">quincunx</span><span class="fu">::</span><span class="fu"><a href="../reference/n.html">n</a></span><span class="op">(</span><span class="va">my_scores</span><span class="op">[</span><span class="fl">11</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; [1] 0</span></code></pre></div>
 <p>Please note that the returned object is still a valid <code>scores</code> object and that it contains all the expected tables of such an object. It is just that all tables have no rows. The same behaviour is to be expected if you try to subset with non-existing identifiers:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_scores</span><span class="op">[</span><span class="st">'PGS000011'</span><span class="op">]</span><span class="op">@</span><span class="va">scores</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>
 <span class="co">#&gt; # A tibble: 0 × 2</span>
 <span class="co">#&gt; # … with 2 variables: pgs_id &lt;chr&gt;, pgs_name &lt;chr&gt;</span>
-<span class="fu"><a href="../reference/n.html">n</a></span><span class="op">(</span><span class="va">my_scores</span><span class="op">[</span><span class="st">'PGS000011'</span><span class="op">]</span><span class="op">)</span>
+
+<span class="fu">quincunx</span><span class="fu">::</span><span class="fu"><a href="../reference/n.html">n</a></span><span class="op">(</span><span class="va">my_scores</span><span class="op">[</span><span class="st">'PGS000011'</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; [1] 0</span></code></pre></div>
 </div>
 </div>

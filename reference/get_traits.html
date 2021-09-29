@@ -288,8 +288,335 @@ progress from the REST API server.</p></td>
 mode search.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Coming soon...</span>
-
+    <pre class="examples"><div class='input'><span class='co'># Get a trait by its EFO identifier</span>
+<span class='fu'>get_traits</span><span class='op'>(</span>efo_id <span class='op'>=</span> <span class='st'>'EFO_0004631'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; An object of class "traits"
+#&gt; Slot "traits":
+#&gt; <span style='color: #949494;'># A tibble: 1 × 6</span>
+#&gt;   efo_id      parent_efo_id is_child trait                 description    url   
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                 <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> 
+#&gt; <span style='color: #BCBCBC;'>1</span> EFO_0004631 <span style='color: #BB0000;'>NA</span>            FALSE    vitamin D measurement <span style='color: #949494;'>"</span>['A quantifi… http:…
+#&gt; 
+#&gt; Slot "pgs_ids":
+#&gt; <span style='color: #949494;'># A tibble: 2 × 4</span>
+#&gt;   efo_id      parent_efo_id is_child pgs_id   
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
+#&gt; <span style='color: #BCBCBC;'>1</span> EFO_0004631 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000702
+#&gt; <span style='color: #BCBCBC;'>2</span> EFO_0004631 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000882
+#&gt; 
+#&gt; Slot "child_pgs_ids":
+#&gt; <span style='color: #949494;'># A tibble: 0 × 4</span>
+#&gt; <span style='color: #949494;'># … with 4 variables: efo_id &lt;chr&gt;, parent_efo_id &lt;chr&gt;, is_child &lt;lgl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   child_pgs_id &lt;chr&gt;</span>
+#&gt; 
+#&gt; Slot "trait_categories":
+#&gt; <span style='color: #949494;'># A tibble: 1 × 4</span>
+#&gt;   efo_id      parent_efo_id is_child trait_categories 
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            
+#&gt; <span style='color: #BCBCBC;'>1</span> EFO_0004631 <span style='color: #BB0000;'>NA</span>            FALSE    Other measurement
+#&gt; 
+#&gt; Slot "trait_synonyms":
+#&gt; <span style='color: #949494;'># A tibble: 0 × 4</span>
+#&gt; <span style='color: #949494;'># … with 4 variables: efo_id &lt;chr&gt;, parent_efo_id &lt;chr&gt;, is_child &lt;lgl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   trait_synonyms &lt;chr&gt;</span>
+#&gt; 
+#&gt; Slot "trait_mapped_terms":
+#&gt; <span style='color: #949494;'># A tibble: 2 × 4</span>
+#&gt;   efo_id      parent_efo_id is_child trait_mapped_terms
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             
+#&gt; <span style='color: #BCBCBC;'>1</span> EFO_0004631 <span style='color: #BB0000;'>NA</span>            FALSE    NCIt:C84818       
+#&gt; <span style='color: #BCBCBC;'>2</span> EFO_0004631 <span style='color: #BB0000;'>NA</span>            FALSE    SNOMEDCT:83729008 
+#&gt; </div><div class='input'>
+<span class='co'># Get a trait by matching a term in EFO identifier (`efo_id`), label,</span>
+<span class='co'># description synonyms, categories, or external mapped terms</span>
+<span class='fu'>get_traits</span><span class='op'>(</span>trait_term <span class='op'>=</span> <span class='st'>'stroke'</span>, exact_term <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; An object of class "traits"
+#&gt; Slot "traits":
+#&gt; <span style='color: #949494;'># A tibble: 2 × 6</span>
+#&gt;   efo_id      parent_efo_id is_child trait           description      url       
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     
+#&gt; <span style='color: #BCBCBC;'>1</span> HP_0002140  <span style='color: #BB0000;'>NA</span>            FALSE    Ischemic stroke Acute ischemic … https://w…
+#&gt; <span style='color: #BCBCBC;'>2</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    stroke          A sudden loss o… http://ww…
+#&gt; 
+#&gt; Slot "pgs_ids":
+#&gt; <span style='color: #949494;'># A tibble: 5 × 4</span>
+#&gt;   efo_id      parent_efo_id is_child pgs_id   
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
+#&gt; <span style='color: #BCBCBC;'>1</span> HP_0002140  <span style='color: #BB0000;'>NA</span>            FALSE    PGS000039
+#&gt; <span style='color: #BCBCBC;'>2</span> HP_0002140  <span style='color: #BB0000;'>NA</span>            FALSE    PGS000665
+#&gt; <span style='color: #BCBCBC;'>3</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000038
+#&gt; <span style='color: #BCBCBC;'>4</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000039
+#&gt; <span style='color: #BCBCBC;'>5</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000665
+#&gt; 
+#&gt; Slot "child_pgs_ids":
+#&gt; <span style='color: #949494;'># A tibble: 0 × 4</span>
+#&gt; <span style='color: #949494;'># … with 4 variables: efo_id &lt;chr&gt;, parent_efo_id &lt;chr&gt;, is_child &lt;lgl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   child_pgs_id &lt;chr&gt;</span>
+#&gt; 
+#&gt; Slot "trait_categories":
+#&gt; <span style='color: #949494;'># A tibble: 3 × 4</span>
+#&gt;   efo_id      parent_efo_id is_child trait_categories      
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                 
+#&gt; <span style='color: #BCBCBC;'>1</span> HP_0002140  <span style='color: #BB0000;'>NA</span>            FALSE    Other trait           
+#&gt; <span style='color: #BCBCBC;'>2</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    Cardiovascular disease
+#&gt; <span style='color: #BCBCBC;'>3</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    Neurological disorder 
+#&gt; 
+#&gt; Slot "trait_synonyms":
+#&gt; <span style='color: #949494;'># A tibble: 55 × 4</span>
+#&gt;    efo_id      parent_efo_id is_child trait_synonyms                 
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                          
+#&gt; <span style='color: #BCBCBC;'> 1</span> HP_0002140  <span style='color: #BB0000;'>NA</span>            FALSE    Ischaemic stroke               
+#&gt; <span style='color: #BCBCBC;'> 2</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    Acute Cerebrovascular Accident 
+#&gt; <span style='color: #BCBCBC;'> 3</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    Acute Cerebrovascular Accidents
+#&gt; <span style='color: #BCBCBC;'> 4</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    Acute Stroke                   
+#&gt; <span style='color: #BCBCBC;'> 5</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    Acute Strokes                  
+#&gt; <span style='color: #BCBCBC;'> 6</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    Apoplexy                       
+#&gt; <span style='color: #BCBCBC;'> 7</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    Apoplexy, Cerebrovascular      
+#&gt; <span style='color: #BCBCBC;'> 8</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    Brain Vascular Accident        
+#&gt; <span style='color: #BCBCBC;'> 9</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    Brain Vascular Accidents       
+#&gt; <span style='color: #BCBCBC;'>10</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    CEREBROVASCULAR ACCIDENT, (CVA)
+#&gt; <span style='color: #949494;'># … with 45 more rows</span>
+#&gt; 
+#&gt; Slot "trait_mapped_terms":
+#&gt; <span style='color: #949494;'># A tibble: 15 × 4</span>
+#&gt;    efo_id      parent_efo_id is_child trait_mapped_terms   
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                
+#&gt; <span style='color: #BCBCBC;'> 1</span> HP_0002140  <span style='color: #BB0000;'>NA</span>            FALSE    SNOMEDCT_US:422504002
+#&gt; <span style='color: #BCBCBC;'> 2</span> HP_0002140  <span style='color: #BB0000;'>NA</span>            FALSE    UMLS:C0948008        
+#&gt; <span style='color: #BCBCBC;'> 3</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    HP:0001297           
+#&gt; <span style='color: #BCBCBC;'> 4</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    ICD10:I64            
+#&gt; <span style='color: #BCBCBC;'> 5</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    MESH:D020521         
+#&gt; <span style='color: #BCBCBC;'> 6</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    MONDO:0005098        
+#&gt; <span style='color: #BCBCBC;'> 7</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    MeSH:D020521         
+#&gt; <span style='color: #BCBCBC;'> 8</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    MedDRA:10042244      
+#&gt; <span style='color: #BCBCBC;'> 9</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    NCIT:C3390           
+#&gt; <span style='color: #BCBCBC;'>10</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    NCIt:C3390           
+#&gt; <span style='color: #BCBCBC;'>11</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    NIFSTD:birnlex_12783 
+#&gt; <span style='color: #BCBCBC;'>12</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    OMIM:601367          
+#&gt; <span style='color: #BCBCBC;'>13</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    SCTID:230690007      
+#&gt; <span style='color: #BCBCBC;'>14</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    SNOMEDCT:230690007   
+#&gt; <span style='color: #BCBCBC;'>15</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    SNOMEDCT:422504002   
+#&gt; </div><div class='input'>
+<span class='co'># Get a trait matching its name (`trait`) exactly (default)</span>
+<span class='fu'>get_traits</span><span class='op'>(</span>trait_term <span class='op'>=</span> <span class='st'>'stroke'</span>, exact_term <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; An object of class "traits"
+#&gt; Slot "traits":
+#&gt; <span style='color: #949494;'># A tibble: 1 × 6</span>
+#&gt;   efo_id      parent_efo_id is_child trait  description              url        
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      
+#&gt; <span style='color: #BCBCBC;'>1</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    stroke A sudden loss of neurol… http://www…
+#&gt; 
+#&gt; Slot "pgs_ids":
+#&gt; <span style='color: #949494;'># A tibble: 3 × 4</span>
+#&gt;   efo_id      parent_efo_id is_child pgs_id   
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
+#&gt; <span style='color: #BCBCBC;'>1</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000038
+#&gt; <span style='color: #BCBCBC;'>2</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000039
+#&gt; <span style='color: #BCBCBC;'>3</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000665
+#&gt; 
+#&gt; Slot "child_pgs_ids":
+#&gt; <span style='color: #949494;'># A tibble: 0 × 4</span>
+#&gt; <span style='color: #949494;'># … with 4 variables: efo_id &lt;chr&gt;, parent_efo_id &lt;chr&gt;, is_child &lt;lgl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   child_pgs_id &lt;chr&gt;</span>
+#&gt; 
+#&gt; Slot "trait_categories":
+#&gt; <span style='color: #949494;'># A tibble: 2 × 4</span>
+#&gt;   efo_id      parent_efo_id is_child trait_categories      
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                 
+#&gt; <span style='color: #BCBCBC;'>1</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    Cardiovascular disease
+#&gt; <span style='color: #BCBCBC;'>2</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    Neurological disorder 
+#&gt; 
+#&gt; Slot "trait_synonyms":
+#&gt; <span style='color: #949494;'># A tibble: 54 × 4</span>
+#&gt;    efo_id      parent_efo_id is_child trait_synonyms                 
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                          
+#&gt; <span style='color: #BCBCBC;'> 1</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    Acute Cerebrovascular Accident 
+#&gt; <span style='color: #BCBCBC;'> 2</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    Acute Cerebrovascular Accidents
+#&gt; <span style='color: #BCBCBC;'> 3</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    Acute Stroke                   
+#&gt; <span style='color: #BCBCBC;'> 4</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    Acute Strokes                  
+#&gt; <span style='color: #BCBCBC;'> 5</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    Apoplexy                       
+#&gt; <span style='color: #BCBCBC;'> 6</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    Apoplexy, Cerebrovascular      
+#&gt; <span style='color: #BCBCBC;'> 7</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    Brain Vascular Accident        
+#&gt; <span style='color: #BCBCBC;'> 8</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    Brain Vascular Accidents       
+#&gt; <span style='color: #BCBCBC;'> 9</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    CEREBROVASCULAR ACCIDENT, (CVA)
+#&gt; <span style='color: #BCBCBC;'>10</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    CVA                            
+#&gt; <span style='color: #949494;'># … with 44 more rows</span>
+#&gt; 
+#&gt; Slot "trait_mapped_terms":
+#&gt; <span style='color: #949494;'># A tibble: 13 × 4</span>
+#&gt;    efo_id      parent_efo_id is_child trait_mapped_terms  
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>               
+#&gt; <span style='color: #BCBCBC;'> 1</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    HP:0001297          
+#&gt; <span style='color: #BCBCBC;'> 2</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    ICD10:I64           
+#&gt; <span style='color: #BCBCBC;'> 3</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    MESH:D020521        
+#&gt; <span style='color: #BCBCBC;'> 4</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    MONDO:0005098       
+#&gt; <span style='color: #BCBCBC;'> 5</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    MeSH:D020521        
+#&gt; <span style='color: #BCBCBC;'> 6</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    MedDRA:10042244     
+#&gt; <span style='color: #BCBCBC;'> 7</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    NCIT:C3390          
+#&gt; <span style='color: #BCBCBC;'> 8</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    NCIt:C3390          
+#&gt; <span style='color: #BCBCBC;'> 9</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    NIFSTD:birnlex_12783
+#&gt; <span style='color: #BCBCBC;'>10</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    OMIM:601367         
+#&gt; <span style='color: #BCBCBC;'>11</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    SCTID:230690007     
+#&gt; <span style='color: #BCBCBC;'>12</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    SNOMEDCT:230690007  
+#&gt; <span style='color: #BCBCBC;'>13</span> EFO_0000712 <span style='color: #BB0000;'>NA</span>            FALSE    SNOMEDCT:422504002  
+#&gt; </div><div class='input'>
+<span class='co'># Get traits, excluding its children traits (default)</span>
+<span class='fu'>get_traits</span><span class='op'>(</span>trait_term <span class='op'>=</span> <span class='st'>'breast cancer'</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; An object of class "traits"
+#&gt; Slot "traits":
+#&gt; <span style='color: #949494;'># A tibble: 1 × 6</span>
+#&gt;   efo_id        parent_efo_id is_child trait         description        url     
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   
+#&gt; <span style='color: #BCBCBC;'>1</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    breast cancer A primary or meta… http://…
+#&gt; 
+#&gt; Slot "pgs_ids":
+#&gt; <span style='color: #949494;'># A tibble: 0 × 4</span>
+#&gt; <span style='color: #949494;'># … with 4 variables: efo_id &lt;chr&gt;, parent_efo_id &lt;chr&gt;, is_child &lt;lgl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   pgs_id &lt;chr&gt;</span>
+#&gt; 
+#&gt; Slot "child_pgs_ids":
+#&gt; <span style='color: #949494;'># A tibble: 106 × 4</span>
+#&gt;    efo_id        parent_efo_id is_child child_pgs_id
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       
+#&gt; <span style='color: #BCBCBC;'> 1</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000001   
+#&gt; <span style='color: #BCBCBC;'> 2</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000002   
+#&gt; <span style='color: #BCBCBC;'> 3</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000003   
+#&gt; <span style='color: #BCBCBC;'> 4</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000004   
+#&gt; <span style='color: #BCBCBC;'> 5</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000005   
+#&gt; <span style='color: #BCBCBC;'> 6</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000006   
+#&gt; <span style='color: #BCBCBC;'> 7</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000007   
+#&gt; <span style='color: #BCBCBC;'> 8</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000008   
+#&gt; <span style='color: #BCBCBC;'> 9</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000009   
+#&gt; <span style='color: #BCBCBC;'>10</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000015   
+#&gt; <span style='color: #949494;'># … with 96 more rows</span>
+#&gt; 
+#&gt; Slot "trait_categories":
+#&gt; <span style='color: #949494;'># A tibble: 1 × 4</span>
+#&gt;   efo_id        parent_efo_id is_child trait_categories
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           
+#&gt; <span style='color: #BCBCBC;'>1</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    Cancer          
+#&gt; 
+#&gt; Slot "trait_synonyms":
+#&gt; <span style='color: #949494;'># A tibble: 9 × 4</span>
+#&gt;   efo_id        parent_efo_id is_child trait_synonyms                  
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                           
+#&gt; <span style='color: #BCBCBC;'>1</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    breast cancer                   
+#&gt; <span style='color: #BCBCBC;'>2</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    cancer of breast                
+#&gt; <span style='color: #BCBCBC;'>3</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    malignant breast neoplasm       
+#&gt; <span style='color: #BCBCBC;'>4</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    malignant breast tumor          
+#&gt; <span style='color: #BCBCBC;'>5</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    malignant neoplasm of breast    
+#&gt; <span style='color: #BCBCBC;'>6</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    malignant neoplasm of the breast
+#&gt; <span style='color: #BCBCBC;'>7</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    malignant tumor of breast       
+#&gt; <span style='color: #BCBCBC;'>8</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    malignant tumor of the breast   
+#&gt; <span style='color: #BCBCBC;'>9</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    mammary cancer                  
+#&gt; 
+#&gt; Slot "trait_mapped_terms":
+#&gt; <span style='color: #949494;'># A tibble: 6 × 4</span>
+#&gt;   efo_id        parent_efo_id is_child trait_mapped_terms
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             
+#&gt; <span style='color: #BCBCBC;'>1</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    DOID:1612         
+#&gt; <span style='color: #BCBCBC;'>2</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    ICD10:C50         
+#&gt; <span style='color: #BCBCBC;'>3</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    ICD10:C50-C50     
+#&gt; <span style='color: #BCBCBC;'>4</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    ICD9:174.8        
+#&gt; <span style='color: #BCBCBC;'>5</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    NCIT:C9335        
+#&gt; <span style='color: #BCBCBC;'>6</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    SCTID:254837009   
+#&gt; </div><div class='input'>
+<span class='co'># Get traits, including its children traits (check column `is_child` for</span>
+<span class='co'># child traits)</span>
+<span class='fu'>get_traits</span><span class='op'>(</span>trait_term <span class='op'>=</span> <span class='st'>'breast cancer'</span>, include_children <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; An object of class "traits"
+#&gt; Slot "traits":
+#&gt; <span style='color: #949494;'># A tibble: 9 × 6</span>
+#&gt;   efo_id        parent_efo_id is_child trait     description        url         
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       
+#&gt; <span style='color: #BCBCBC;'>1</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    breast c… A primary or meta… http://purl…
+#&gt; <span style='color: #BCBCBC;'>2</span> EFO_0000305   MONDO_0007254 TRUE     breast c… A carcinoma that … http://www.…
+#&gt; <span style='color: #BCBCBC;'>3</span> MONDO_0021116 MONDO_0007254 TRUE     luminal … A biologic subset… http://purl…
+#&gt; <span style='color: #BCBCBC;'>4</span> MONDO_0021115 MONDO_0007254 TRUE     luminal … A biologic subset… http://purl…
+#&gt; <span style='color: #BCBCBC;'>5</span> EFO_1000650   MONDO_0007254 TRUE     estrogen… A subtype of brea… http://www.…
+#&gt; <span style='color: #BCBCBC;'>6</span> EFO_1000649   MONDO_0007254 TRUE     estrogen… A subtype of brea… http://www.…
+#&gt; <span style='color: #BCBCBC;'>7</span> MONDO_0000618 MONDO_0007254 TRUE     Her2-rec… <span style='color: #BB0000;'>NA</span>                 https://www…
+#&gt; <span style='color: #BCBCBC;'>8</span> EFO_0005537   MONDO_0007254 TRUE     triple-n… An invasive breas… http://www.…
+#&gt; <span style='color: #BCBCBC;'>9</span> EFO_1000294   MONDO_0007254 TRUE     HER2 Pos… A biologic subset… http://www.…
+#&gt; 
+#&gt; Slot "pgs_ids":
+#&gt; <span style='color: #949494;'># A tibble: 106 × 4</span>
+#&gt;    efo_id      parent_efo_id is_child pgs_id   
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
+#&gt; <span style='color: #BCBCBC;'> 1</span> EFO_0000305 MONDO_0007254 TRUE     PGS000001
+#&gt; <span style='color: #BCBCBC;'> 2</span> EFO_0000305 MONDO_0007254 TRUE     PGS000004
+#&gt; <span style='color: #BCBCBC;'> 3</span> EFO_0000305 MONDO_0007254 TRUE     PGS000007
+#&gt; <span style='color: #BCBCBC;'> 4</span> EFO_0000305 MONDO_0007254 TRUE     PGS000015
+#&gt; <span style='color: #BCBCBC;'> 5</span> EFO_0000305 MONDO_0007254 TRUE     PGS000028
+#&gt; <span style='color: #BCBCBC;'> 6</span> EFO_0000305 MONDO_0007254 TRUE     PGS000029
+#&gt; <span style='color: #BCBCBC;'> 7</span> EFO_0000305 MONDO_0007254 TRUE     PGS000045
+#&gt; <span style='color: #BCBCBC;'> 8</span> EFO_0000305 MONDO_0007254 TRUE     PGS000050
+#&gt; <span style='color: #BCBCBC;'> 9</span> EFO_0000305 MONDO_0007254 TRUE     PGS000051
+#&gt; <span style='color: #BCBCBC;'>10</span> EFO_0000305 MONDO_0007254 TRUE     PGS000052
+#&gt; <span style='color: #949494;'># … with 96 more rows</span>
+#&gt; 
+#&gt; Slot "child_pgs_ids":
+#&gt; <span style='color: #949494;'># A tibble: 125 × 4</span>
+#&gt;    efo_id        parent_efo_id is_child child_pgs_id
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       
+#&gt; <span style='color: #BCBCBC;'> 1</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000001   
+#&gt; <span style='color: #BCBCBC;'> 2</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000002   
+#&gt; <span style='color: #BCBCBC;'> 3</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000003   
+#&gt; <span style='color: #BCBCBC;'> 4</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000004   
+#&gt; <span style='color: #BCBCBC;'> 5</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000005   
+#&gt; <span style='color: #BCBCBC;'> 6</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000006   
+#&gt; <span style='color: #BCBCBC;'> 7</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000007   
+#&gt; <span style='color: #BCBCBC;'> 8</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000008   
+#&gt; <span style='color: #BCBCBC;'> 9</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000009   
+#&gt; <span style='color: #BCBCBC;'>10</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000015   
+#&gt; <span style='color: #949494;'># … with 115 more rows</span>
+#&gt; 
+#&gt; Slot "trait_categories":
+#&gt; <span style='color: #949494;'># A tibble: 9 × 4</span>
+#&gt;   efo_id        parent_efo_id is_child trait_categories
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           
+#&gt; <span style='color: #BCBCBC;'>1</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    Cancer          
+#&gt; <span style='color: #BCBCBC;'>2</span> EFO_0000305   MONDO_0007254 TRUE     Cancer          
+#&gt; <span style='color: #BCBCBC;'>3</span> MONDO_0021116 MONDO_0007254 TRUE     Cancer          
+#&gt; <span style='color: #BCBCBC;'>4</span> MONDO_0021115 MONDO_0007254 TRUE     Cancer          
+#&gt; <span style='color: #BCBCBC;'>5</span> EFO_1000650   MONDO_0007254 TRUE     Cancer          
+#&gt; <span style='color: #BCBCBC;'>6</span> EFO_1000649   MONDO_0007254 TRUE     Cancer          
+#&gt; <span style='color: #BCBCBC;'>7</span> MONDO_0000618 MONDO_0007254 TRUE     Cancer          
+#&gt; <span style='color: #BCBCBC;'>8</span> EFO_0005537   MONDO_0007254 TRUE     Cancer          
+#&gt; <span style='color: #BCBCBC;'>9</span> EFO_1000294   MONDO_0007254 TRUE     Cancer          
+#&gt; 
+#&gt; Slot "trait_synonyms":
+#&gt; <span style='color: #949494;'># A tibble: 37 × 4</span>
+#&gt;    efo_id        parent_efo_id is_child trait_synonyms                  
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                           
+#&gt; <span style='color: #BCBCBC;'> 1</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    breast cancer                   
+#&gt; <span style='color: #BCBCBC;'> 2</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    cancer of breast                
+#&gt; <span style='color: #BCBCBC;'> 3</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    malignant breast neoplasm       
+#&gt; <span style='color: #BCBCBC;'> 4</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    malignant breast tumor          
+#&gt; <span style='color: #BCBCBC;'> 5</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    malignant neoplasm of breast    
+#&gt; <span style='color: #BCBCBC;'> 6</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    malignant neoplasm of the breast
+#&gt; <span style='color: #BCBCBC;'> 7</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    malignant tumor of breast       
+#&gt; <span style='color: #BCBCBC;'> 8</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    malignant tumor of the breast   
+#&gt; <span style='color: #BCBCBC;'> 9</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    mammary cancer                  
+#&gt; <span style='color: #BCBCBC;'>10</span> EFO_0000305   MONDO_0007254 TRUE     breast carcinoma                
+#&gt; <span style='color: #949494;'># … with 27 more rows</span>
+#&gt; 
+#&gt; Slot "trait_mapped_terms":
+#&gt; <span style='color: #949494;'># A tibble: 36 × 4</span>
+#&gt;    efo_id        parent_efo_id is_child trait_mapped_terms
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             
+#&gt; <span style='color: #BCBCBC;'> 1</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    DOID:1612         
+#&gt; <span style='color: #BCBCBC;'> 2</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    ICD10:C50         
+#&gt; <span style='color: #BCBCBC;'> 3</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    ICD10:C50-C50     
+#&gt; <span style='color: #BCBCBC;'> 4</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    ICD9:174.8        
+#&gt; <span style='color: #BCBCBC;'> 5</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    NCIT:C9335        
+#&gt; <span style='color: #BCBCBC;'> 6</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    SCTID:254837009   
+#&gt; <span style='color: #BCBCBC;'> 7</span> EFO_0000305   MONDO_0007254 TRUE     DOID:3459         
+#&gt; <span style='color: #BCBCBC;'> 8</span> EFO_0000305   MONDO_0007254 TRUE     EFO:0000305       
+#&gt; <span style='color: #BCBCBC;'> 9</span> EFO_0000305   MONDO_0007254 TRUE     MONDO:0004989     
+#&gt; <span style='color: #BCBCBC;'>10</span> EFO_0000305   MONDO_0007254 TRUE     NCIT:C4872        
+#&gt; <span style='color: #949494;'># … with 26 more rows</span>
+#&gt; </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
