@@ -7,6 +7,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 resource_files:
   - '../man/figures/pgs-construction-process.png'
+  - '../man/figures/pgs-stages.svg'
 ---
 
 ```{r, include = FALSE}
@@ -31,7 +32,7 @@ knitr::include_graphics('../man/figures/pgs-construction-process.png')
 
 ## PGS development and evaluation stages
 
-```{r  out.width = "90%", echo=FALSE}
+```{r  out.width = "80%", echo=FALSE}
 knitr::include_graphics('../man/figures/pgs-stages.svg') 
 ```
 
