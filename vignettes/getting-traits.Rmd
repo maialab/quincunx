@@ -5,6 +5,8 @@ vignette: >
   %\VignetteIndexEntry{Getting Traits}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+bibliography: "`r system.file('references.bib', package = 'quincunx')`"
+csl: "`r system.file('nature.csl', package = 'quincunx')`"
 ---
 
 ```{r, include = FALSE}
@@ -12,10 +14,115 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-```
-
-```{r setup}
 library(quincunx)
 ```
 
-Coming soon.
+## Introduction
+
+Polygenic scores (PGSs) are annotated with information about the phenotype that
+it predicts, i.e. the reported trait (as reported in the original publication).
+This can be found as the column `reported_trait` in slot `scores` of `scores`
+objects:
+
+```{r}
+pgs_01 <- get_scores('PGS000001')
+pgs_01@scores
+```
+
+The predicted phenotype is also mapped to Experimental Factor Ontology (EFO)
+terms (a controlled vocabulary for the unambiguous identification of traits and
+diseases, and their relationships), namely, the EFO trait. The EFO traits
+associated with a polygenic score can also be found in `scores` objects in the
+slot `traits`, column `trait`:
+
+```{r}
+pgs_01@traits
+```
+
+Many PGSs have been developed and demonstrated to be predictive of common
+complex traits, e.g. body mass index (BMI) @khera2019 , blood lipids
+@kuchenbaecker2019 and educational attainment @lee2018.
+
+Similarly, PGSs for various diseases have been shown to be predictive of disease
+incidence, defining marked increases in risk over the life course or at earlier
+ages for people with high PGSs, e.g. coronary artery disease
+[@inouye2018;@khera2018], breast cancer @mavaddat2019 and schizophrenia
+@zheutlin2019.
+
+## Getting catalogued traits from PGS Catalog
+
+If you are interested in retrieving polygenic scores from the Catalog, you might
+want to search them by the trait they predict. `get_scores()` is the function
+that searches for `PGSs`, however, this function only allows to search by
+`pgs_id`, `efo_id` or `pubmed_id`. So in order to search by a trait term, we
+need to first find the associated EFO identifiers (`efo_id`).
+
+To search for traits (or diseases), you use the function `get_traits()`. With
+this function you can search by:
+
+- The EFO trait identifier: `efo_id`;
+- or by the trait term: a term to be matched in the EFO identifier (`efo_id`),
+label, description synonyms, trait categories, or external mapped terms.
+
+The most useful search criteria is the trait term, and that is typically want
+you will want to use. Unless you already know the EFO trait you are interested
+in, and are looking for extra details about it, you won't search directly with
+the EFO identifier.
+
+### Basic example
+
+Let's say you are interested in PGSs related to medical condition, stroke. Then
+you can search for `"stroke"` with `get_traits()`:
+
+```{r}
+get_traits(trait_term = 'stroke')
+```
+
+As can be seen from the returned `traits` object, we get a set of six tables
+(slots) that include several details about stroke.
+
+In the first table `traits` we got only one row, indicating that this query
+returned only one trait in the Catalog. This trait is named `"stroke"` (column
+`trait`), and is unambiguously identified by the EFO identifier EFO_0000712.
+
+### Exact matching
+
+By default, the trait term is matched exactly. If you want to relax the
+matching, then indicate with the parameter `exact_term` set to `FALSE`. This way
+you will get, potentially, more results, in this example case, ischemic stroke
+(HP_0002140) is now also returned:
+
+```{r}
+get_traits(trait_term = 'stroke', exact_term = FALSE)
+```
+
+### Subtraits (child traits)
+
+By default, subtraits (child traits), are not retrieved by `get_traits()`. If
+you want to get all matching traits and those that are child traits thereof,
+then indicate with the parameter `include_children` set to `TRUE`. Here is an
+example with `"breast cancer"`:
+
+```{r}
+get_traits(trait_term = 'breast cancer', include_children = TRUE)
+```
+
+The column `is_child` indicates whether that trait is being retrieved because it
+is a direct result of the query or not. `is_child` is `TRUE` when the trait is
+returned because it is a child trait of a matching trait, and `FALSE` if a
+direct result of the query.
+
+In the case of child traits, the column `parent_efo_id` indicates the EFO trait
+identifier of the parent trait, i.e. the direct matching trait, or `NA`
+otherwise.
+
+## Getting all traits
+
+To retrieve all traits simply leave the parameters `efo_id` and `trait_term` as
+`NULL` (default):
+
+```{r eval=FALSE}
+get_traits()
+```
+
+`r if (knitr::is_html_output()) '## References'`
