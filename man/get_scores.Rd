@@ -43,7 +43,7 @@ verbose about the different queries or not.}
 performed.}
 }
 \value{
-An \linkS4class{scores} object.
+A \linkS4class{scores} object.
 }
 \description{
 Retrieves polygenic scores via the PGS Catalog REST API. The REST
@@ -59,6 +59,13 @@ Please note that all search criteria are vectorised, thus allowing for batch
 mode search.
 }
 \examples{
-# Coming soon...
+# By `pgs_id`
+get_scores(pgs_id = 'PGS000088')
+
+# By `efo_id`
+get_scores(efo_id = 'EFO_0007992')
+
+# By `pubmed_id`
+get_scores(pubmed_id = 'PGP000003')
 
 }
