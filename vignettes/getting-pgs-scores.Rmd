@@ -12,10 +12,71 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-```
-
-```{r setup}
 library(quincunx)
 ```
 
-Coming soon.
+## Polygenic scores
+
+A polygenic score (PGS) aggregates the effects of many genetic variants into a
+single number which predicts genetic predisposition for a phenotype. PGS are
+typically composed of hundreds-to-millions of genetic variants (usually SNPs)
+which are combined using a weighted sum of allele dosages multiplied by their
+corresponding effect sizes, as estimated from a relevant genome-wide association
+study (GWAS).
+
+PGS nomenclature is heterogeneous: they can also be referred to as genetic
+scores or genomic scores, and as polygenic risk scores (PRS) or genomic risk
+scores (GRS) if they predict a discrete phenotype, such as a disease.
+
+## PGS Catalog
+
+The PGS Catalog is an open database of published polygenic scores (PGS). Each
+PGS in the Catalog is consistently annotated with relevant metadata; including
+scoring files (variants, effect alleles/weights), annotations of how the PGS was
+developed and applied, and evaluations of their predictive performance.
+
+## Getting PGS scores
+
+You can search PGS scores by three criteria:
+
+- `pgs_id`: PGS identifier
+- `efo_id`: EFO trait identifier
+- `pubmed_id`: PubMed identifier
+
+While these criteria are not terribly useful, as normally you do not know these
+identifiers beforehand, these are the search criteria provided by the PGS
+Catalog REST API (the service quincunx communicates with).
+
+Instead of using these criteria directly, we show you how you may retrieve
+polygenic score information by starting with a trait or disease of interest.
+See `vignette('pgs-scores-mavaddat')` for how to get polygenic scores if
+starting with a publication of interest.
+
+Let's say you are interested in
+[basophil](https://en.wikipedia.org/wiki/Basophil) count. Basophils are one of
+the several kinds of white blood cells and make up less than 1% of all
+circulating white blood cells. Basophils play a part in immune surveillance, and
+varying levels of basophils are associated with different medical conditions,
+e.g., allergies, inflammation, infection, leukemia or anemia.
+
+We start by querying the PGS Catalog for traits with the term `"basophil"` ---
+you may check `vignette('getting-traits')` for more details on how to use the
+`get_traits()` function.
+
+```{r}
+(basophil_traits <- get_traits(trait_term = 'basophil', exact_term = FALSE))
+```
+
+The table (slot) `pgs_ids` in `basophil_traits` provides the associated PGS
+identifiers.
+
+```{r}
+basophil_traits@pgs_ids
+```
+
+These identifiers can now be used to query score information using the
+function `get_scores()`:
+
+```{r}
+get_scores(pgs_id = basophil_traits@pgs_ids$pgs_id)
+```
