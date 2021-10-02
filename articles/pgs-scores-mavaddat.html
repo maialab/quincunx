@@ -381,12 +381,12 @@ A description of each variable is annotated in the <code>scores</code> object he
 <span class="co">#&gt; # A tibble: 6 × 1</span>
 <span class="co">#&gt;   scoring_file                                                                  </span>
 <span class="co">#&gt;   &lt;chr&gt;                                                                         </span>
-<span class="co">#&gt; 1 https://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000008/ScoringFiles/PG…</span>
-<span class="co">#&gt; 2 https://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000007/ScoringFiles/PG…</span>
-<span class="co">#&gt; 3 https://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000009/ScoringFiles/PG…</span>
-<span class="co">#&gt; 4 https://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000004/ScoringFiles/PG…</span>
-<span class="co">#&gt; 5 https://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000006/ScoringFiles/PG…</span>
-<span class="co">#&gt; 6 https://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000005/ScoringFiles/PG…</span></code></pre></div>
+<span class="co">#&gt; 1 http://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000008/ScoringFiles/PGS…</span>
+<span class="co">#&gt; 2 http://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000007/ScoringFiles/PGS…</span>
+<span class="co">#&gt; 3 http://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000009/ScoringFiles/PGS…</span>
+<span class="co">#&gt; 4 http://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000004/ScoringFiles/PGS…</span>
+<span class="co">#&gt; 5 http://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000006/ScoringFiles/PGS…</span>
+<span class="co">#&gt; 6 http://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS000005/ScoringFiles/PGS…</span></code></pre></div>
 <p>The column <code>scoring_file</code> contains the URL for the FTP location containing the corresponding PGS scoring files. PGS scoring files are the text files provided by the PGS Catalog team containing the source data that you can use to compute polygenic scores for particular individuals, i.e. that allow you to apply these scores to your individual samples. Learn more about scoring files in <code><a href="../articles/pgs-scoring-file.html">vignette("pgs-scoring-file")</a></code>. For a quick consultation of the file format of PGS scoring files you may also check the second page of <a href="https://github.com/ramiromagno/cheatsheets/blob/master/quincunx/quincunx_cheatsheet.pdf">quincunx cheatsheet</a>.</p>
 <p>As an additional feature, <em>quincunx</em> allows you to download the relevant PGS scoring files directly into R using the function <code><a href="../reference/read_scoring_file.html">read_scoring_file()</a></code>, making the data immediately available in R for further analysis.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">

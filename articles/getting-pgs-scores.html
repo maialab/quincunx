@@ -156,14 +156,212 @@
 
     
     
+<div id="polygenic-scores" class="section level2">
+<h2 class="hasAnchor">
+<a href="#polygenic-scores" class="anchor"></a>Polygenic scores</h2>
+<p>A polygenic score (PGS) aggregates the effects of many genetic variants into a single number which predicts genetic predisposition for a phenotype. PGS are typically composed of hundreds-to-millions of genetic variants (usually SNPs) which are combined using a weighted sum of allele dosages multiplied by their corresponding effect sizes, as estimated from a relevant genome-wide association study (GWAS).</p>
+<p>PGS nomenclature is heterogeneous: they can also be referred to as genetic scores or genomic scores, and as polygenic risk scores (PRS) or genomic risk scores (GRS) if they predict a discrete phenotype, such as a disease.</p>
+</div>
+<div id="pgs-catalog" class="section level2">
+<h2 class="hasAnchor">
+<a href="#pgs-catalog" class="anchor"></a>PGS Catalog</h2>
+<p>The PGS Catalog is an open database of published polygenic scores (PGS). Each PGS in the Catalog is consistently annotated with relevant metadata; including scoring files (variants, effect alleles/weights), annotations of how the PGS was developed and applied, and evaluations of their predictive performance.</p>
+</div>
+<div id="getting-pgs-scores" class="section level2">
+<h2 class="hasAnchor">
+<a href="#getting-pgs-scores" class="anchor"></a>Getting PGS scores</h2>
+<p>You can search PGS scores by three criteria:</p>
+<ul>
+<li>
+<code>pgs_id</code>: PGS identifier</li>
+<li>
+<code>efo_id</code>: EFO trait identifier</li>
+<li>
+<code>pubmed_id</code>: PubMed identifier</li>
+</ul>
+<p>While these criteria are not terribly useful, as normally you do not know these identifiers beforehand, these are the search criteria provided by the PGS Catalog REST API (the service quincunx communicates with).</p>
+<p>Instead of using these criteria directly, we show you how you may retrieve polygenic score information by starting with a trait or disease of interest. See <code><a href="../articles/pgs-scores-mavaddat.html">vignette('pgs-scores-mavaddat')</a></code> for how to get polygenic scores if starting with a publication of interest.</p>
+<p>Let’s say you are interested in <a href="https://en.wikipedia.org/wiki/Basophil">basophil</a> count. Basophils are one of the several kinds of white blood cells and make up less than 1% of all circulating white blood cells. Basophils play a part in immune surveillance, and varying levels of basophils are associated with different medical conditions, e.g., allergies, inflammation, infection, leukemia or anemia.</p>
+<p>We start by querying the PGS Catalog for traits with the term <code>"basophil"</code> — you may check <code><a href="../articles/getting-traits.html">vignette('getting-traits')</a></code> for more details on how to use the <code><a href="../reference/get_traits.html">get_traits()</a></code> function.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/maialab/quincunx">quincunx</a></span><span class="op">)</span></code></pre></div>
-<p>Coming soon.</p>
+<code class="sourceCode R"><span class="op">(</span><span class="va">basophil_traits</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_traits.html">get_traits</a></span><span class="op">(</span>trait_term <span class="op">=</span> <span class="st">'basophil'</span>, exact_term <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; An object of class "traits"</span>
+<span class="co">#&gt; Slot "traits":</span>
+<span class="co">#&gt; # A tibble: 2 × 6</span>
+<span class="co">#&gt;   efo_id      parent_efo_id is_child trait      description            url      </span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;      &lt;chr&gt;                  &lt;chr&gt;    </span>
+<span class="co">#&gt; 1 EFO_0005090 &lt;NA&gt;          FALSE    basophil … ['quantification of b… http://w…</span>
+<span class="co">#&gt; 2 EFO_0007992 &lt;NA&gt;          FALSE    basophil … ['A calculated measur… http://w…</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "pgs_ids":</span>
+<span class="co">#&gt; # A tibble: 4 × 4</span>
+<span class="co">#&gt;   efo_id      parent_efo_id is_child pgs_id   </span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;    </span>
+<span class="co">#&gt; 1 EFO_0005090 &lt;NA&gt;          FALSE    PGS000088</span>
+<span class="co">#&gt; 2 EFO_0005090 &lt;NA&gt;          FALSE    PGS000163</span>
+<span class="co">#&gt; 3 EFO_0007992 &lt;NA&gt;          FALSE    PGS000089</span>
+<span class="co">#&gt; 4 EFO_0007992 &lt;NA&gt;          FALSE    PGS000164</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "child_pgs_ids":</span>
+<span class="co">#&gt; # A tibble: 2 × 4</span>
+<span class="co">#&gt;   efo_id      parent_efo_id is_child child_pgs_id</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;       </span>
+<span class="co">#&gt; 1 EFO_0005090 &lt;NA&gt;          FALSE    PGS000089   </span>
+<span class="co">#&gt; 2 EFO_0005090 &lt;NA&gt;          FALSE    PGS000164   </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "trait_categories":</span>
+<span class="co">#&gt; # A tibble: 4 × 4</span>
+<span class="co">#&gt;   efo_id      parent_efo_id is_child trait_categories         </span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;                    </span>
+<span class="co">#&gt; 1 EFO_0005090 &lt;NA&gt;          FALSE    Hematological measurement</span>
+<span class="co">#&gt; 2 EFO_0005090 &lt;NA&gt;          FALSE    Inflammatory measurement </span>
+<span class="co">#&gt; 3 EFO_0007992 &lt;NA&gt;          FALSE    Hematological measurement</span>
+<span class="co">#&gt; 4 EFO_0007992 &lt;NA&gt;          FALSE    Inflammatory measurement </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "trait_synonyms":</span>
+<span class="co">#&gt; # A tibble: 6 × 4</span>
+<span class="co">#&gt;   efo_id      parent_efo_id is_child trait_synonyms                             </span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;                                      </span>
+<span class="co">#&gt; 1 EFO_0005090 &lt;NA&gt;          FALSE    blood basophil count                       </span>
+<span class="co">#&gt; 2 EFO_0007992 &lt;NA&gt;          FALSE    basophil count as percentage of total whit…</span>
+<span class="co">#&gt; 3 EFO_0007992 &lt;NA&gt;          FALSE    basophil count to total WBC count ratio    </span>
+<span class="co">#&gt; 4 EFO_0007992 &lt;NA&gt;          FALSE    basophil percentage                        </span>
+<span class="co">#&gt; 5 EFO_0007992 &lt;NA&gt;          FALSE    basophil percentage of white cells         </span>
+<span class="co">#&gt; 6 EFO_0007992 &lt;NA&gt;          FALSE    blood basophil count to total leukocyte co…</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "trait_mapped_terms":</span>
+<span class="co">#&gt; # A tibble: 5 × 4</span>
+<span class="co">#&gt;   efo_id      parent_efo_id is_child trait_mapped_terms</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;             </span>
+<span class="co">#&gt; 1 EFO_0005090 &lt;NA&gt;          FALSE    CMO:0000034       </span>
+<span class="co">#&gt; 2 EFO_0005090 &lt;NA&gt;          FALSE    CMO:0000111       </span>
+<span class="co">#&gt; 3 EFO_0005090 &lt;NA&gt;          FALSE    MedDRA:10049695   </span>
+<span class="co">#&gt; 4 EFO_0005090 &lt;NA&gt;          FALSE    SNOMEDCT:42351005 </span>
+<span class="co">#&gt; 5 EFO_0007992 &lt;NA&gt;          FALSE    CMO:0000368</span></code></pre></div>
+<p>The table (slot) <code>pgs_ids</code> in <code>basophil_traits</code> provides the associated PGS identifiers.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">basophil_traits</span><span class="op">@</span><span class="va">pgs_ids</span>
+<span class="co">#&gt; # A tibble: 4 × 4</span>
+<span class="co">#&gt;   efo_id      parent_efo_id is_child pgs_id   </span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;    </span>
+<span class="co">#&gt; 1 EFO_0005090 &lt;NA&gt;          FALSE    PGS000088</span>
+<span class="co">#&gt; 2 EFO_0005090 &lt;NA&gt;          FALSE    PGS000163</span>
+<span class="co">#&gt; 3 EFO_0007992 &lt;NA&gt;          FALSE    PGS000089</span>
+<span class="co">#&gt; 4 EFO_0007992 &lt;NA&gt;          FALSE    PGS000164</span></code></pre></div>
+<p>These identifiers can now be used to query score information using the function <code><a href="../reference/get_scores.html">get_scores()</a></code>:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get_scores.html">get_scores</a></span><span class="op">(</span>pgs_id <span class="op">=</span> <span class="va">basophil_traits</span><span class="op">@</span><span class="va">pgs_ids</span><span class="op">$</span><span class="va">pgs_id</span><span class="op">)</span>
+<span class="co">#&gt; An object of class "scores"</span>
+<span class="co">#&gt; Slot "scores":</span>
+<span class="co">#&gt; # A tibble: 4 × 12</span>
+<span class="co">#&gt;   pgs_id    pgs_name scoring_file matches_publica… reported_trait trait_additiona…</span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;        &lt;lgl&gt;            &lt;chr&gt;          &lt;chr&gt;           </span>
+<span class="co">#&gt; 1 PGS000088 baso     http://ftp.… TRUE             Basophil count BASO#           </span>
+<span class="co">#&gt; 2 PGS000163 baso     http://ftp.… TRUE             Basophil count BASO#           </span>
+<span class="co">#&gt; 3 PGS000089 baso_p   http://ftp.… TRUE             Basophil perc… BASO%           </span>
+<span class="co">#&gt; 4 PGS000164 baso_p   http://ftp.… TRUE             Basophil perc… BASO%           </span>
+<span class="co">#&gt; # … with 6 more variables: pgs_method_name &lt;chr&gt;, pgs_method_params &lt;chr&gt;,</span>
+<span class="co">#&gt; #   n_variants &lt;int&gt;, n_variants_interactions &lt;int&gt;, assembly &lt;chr&gt;,</span>
+<span class="co">#&gt; #   license &lt;chr&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "publications":</span>
+<span class="co">#&gt; # A tibble: 4 × 8</span>
+<span class="co">#&gt;   pgs_id    pgp_id    pubmed_id publication_date publication title author_fullname</span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;date&gt;           &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;          </span>
+<span class="co">#&gt; 1 PGS000088 PGP000051 &lt;NA&gt;      2020-02-18       bioRxiv     Lear… Xu Y           </span>
+<span class="co">#&gt; 2 PGS000163 PGP000078 32888494  2020-09-01       Cell        The … Vuckovic D     </span>
+<span class="co">#&gt; 3 PGS000089 PGP000051 &lt;NA&gt;      2020-02-18       bioRxiv     Lear… Xu Y           </span>
+<span class="co">#&gt; 4 PGS000164 PGP000078 32888494  2020-09-01       Cell        The … Vuckovic D     </span>
+<span class="co">#&gt; # … with 1 more variable: doi &lt;chr&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "samples":</span>
+<span class="co">#&gt; # A tibble: 6 × 15</span>
+<span class="co">#&gt;   pgs_id    sample_id stage sample_size sample_cases sample_controls</span>
+<span class="co">#&gt;   &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;       &lt;int&gt;        &lt;int&gt;           &lt;int&gt;</span>
+<span class="co">#&gt; 1 PGS000088         1 gwas       404718           NA              NA</span>
+<span class="co">#&gt; 2 PGS000088         2 dev        323774           NA              NA</span>
+<span class="co">#&gt; 3 PGS000163         1 gwas       408112           NA              NA</span>
+<span class="co">#&gt; 4 PGS000089         1 gwas       404532           NA              NA</span>
+<span class="co">#&gt; 5 PGS000089         2 dev        323626           NA              NA</span>
+<span class="co">#&gt; 6 PGS000164         1 gwas       408112           NA              NA</span>
+<span class="co">#&gt; # … with 9 more variables: sample_percent_male &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   phenotype_description &lt;chr&gt;, ancestry_category &lt;chr&gt;, ancestry &lt;chr&gt;,</span>
+<span class="co">#&gt; #   country &lt;chr&gt;, ancestry_additional_description &lt;chr&gt;, study_id &lt;chr&gt;,</span>
+<span class="co">#&gt; #   pubmed_id &lt;chr&gt;, cohorts_additional_description &lt;chr&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "demographics":</span>
+<span class="co">#&gt; # A tibble: 4 × 11</span>
+<span class="co">#&gt;   pgs_id    sample_id variable estimate_type estimate unit  variability_type</span>
+<span class="co">#&gt;   &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;           </span>
+<span class="co">#&gt; 1 PGS000088         1 age      mean              57.2 years &lt;NA&gt;            </span>
+<span class="co">#&gt; 2 PGS000088         2 age      mean              57.2 years &lt;NA&gt;            </span>
+<span class="co">#&gt; 3 PGS000089         1 age      mean              57.2 years &lt;NA&gt;            </span>
+<span class="co">#&gt; 4 PGS000089         2 age      mean              57.2 years &lt;NA&gt;            </span>
+<span class="co">#&gt; # … with 4 more variables: variability &lt;dbl&gt;, interval_type &lt;chr&gt;,</span>
+<span class="co">#&gt; #   interval_lower &lt;dbl&gt;, interval_upper &lt;dbl&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "cohorts":</span>
+<span class="co">#&gt; # A tibble: 6 × 4</span>
+<span class="co">#&gt;   pgs_id    sample_id cohort_symbol cohort_name</span>
+<span class="co">#&gt;   &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;      </span>
+<span class="co">#&gt; 1 PGS000088         1 UKB           UK Biobank </span>
+<span class="co">#&gt; 2 PGS000088         2 UKB           UK Biobank </span>
+<span class="co">#&gt; 3 PGS000163         1 UKB           UK Biobank </span>
+<span class="co">#&gt; 4 PGS000089         1 UKB           UK Biobank </span>
+<span class="co">#&gt; 5 PGS000089         2 UKB           UK Biobank </span>
+<span class="co">#&gt; 6 PGS000164         1 UKB           UK Biobank </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "traits":</span>
+<span class="co">#&gt; # A tibble: 4 × 5</span>
+<span class="co">#&gt;   pgs_id    efo_id      trait                             description     url   </span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;                             &lt;chr&gt;           &lt;chr&gt; </span>
+<span class="co">#&gt; 1 PGS000088 EFO_0005090 basophil count                    ['quantificati… http:…</span>
+<span class="co">#&gt; 2 PGS000163 EFO_0005090 basophil count                    ['quantificati… http:…</span>
+<span class="co">#&gt; 3 PGS000089 EFO_0007992 basophil percentage of leukocytes ['A calculated… http:…</span>
+<span class="co">#&gt; 4 PGS000164 EFO_0007992 basophil percentage of leukocytes ['A calculated… http:…</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "stages_tally":</span>
+<span class="co">#&gt; # A tibble: 10 × 4</span>
+<span class="co">#&gt;    pgs_id    stage sample_size n_sample_sets</span>
+<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt;         &lt;int&gt;</span>
+<span class="co">#&gt;  1 PGS000088 gwas       404718            NA</span>
+<span class="co">#&gt;  2 PGS000088 dev        323774            NA</span>
+<span class="co">#&gt;  3 PGS000088 eval           NA             2</span>
+<span class="co">#&gt;  4 PGS000163 gwas       408112            NA</span>
+<span class="co">#&gt;  5 PGS000163 eval           NA             2</span>
+<span class="co">#&gt;  6 PGS000089 gwas       404532            NA</span>
+<span class="co">#&gt;  7 PGS000089 dev        323626            NA</span>
+<span class="co">#&gt;  8 PGS000089 eval           NA             2</span>
+<span class="co">#&gt;  9 PGS000164 gwas       408112            NA</span>
+<span class="co">#&gt; 10 PGS000164 eval           NA             1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "ancestry_frequencies":</span>
+<span class="co">#&gt; # A tibble: 10 × 4</span>
+<span class="co">#&gt;    pgs_id    stage ancestry_class_symbol frequency</span>
+<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;                     &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 PGS000088 gwas  EUR                         100</span>
+<span class="co">#&gt;  2 PGS000088 dev   EUR                         100</span>
+<span class="co">#&gt;  3 PGS000088 eval  EUR                         100</span>
+<span class="co">#&gt;  4 PGS000163 gwas  EUR                         100</span>
+<span class="co">#&gt;  5 PGS000163 eval  EUR                         100</span>
+<span class="co">#&gt;  6 PGS000089 gwas  EUR                         100</span>
+<span class="co">#&gt;  7 PGS000089 dev   EUR                         100</span>
+<span class="co">#&gt;  8 PGS000089 eval  EUR                         100</span>
+<span class="co">#&gt;  9 PGS000164 gwas  EUR                         100</span>
+<span class="co">#&gt; 10 PGS000164 eval  EUR                         100</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Slot "multi_ancestry_composition":</span>
+<span class="co">#&gt; # A tibble: 0 × 4</span>
+<span class="co">#&gt; # … with 4 variables: pgs_id &lt;chr&gt;, stage &lt;chr&gt;,</span>
+<span class="co">#&gt; #   multi_ancestry_class_symbol &lt;chr&gt;, ancestry_class_symbol &lt;chr&gt;</span></code></pre></div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
 
 </div>
 
