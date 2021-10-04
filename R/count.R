@@ -11,6 +11,9 @@
 #' @keywords internal
 count <- function(json_string) {
 
+  if(is.null(json_string))
+    return(NA_integer_)
+
   if(identical(json_string, ''))
     return(NA_integer_)
 
