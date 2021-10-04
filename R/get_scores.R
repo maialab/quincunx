@@ -115,7 +115,7 @@ get_score_by_trait_id <- function(efo_id, limit = 20L, verbose = FALSE, warnings
 #' get_scores(efo_id = 'EFO_0007992')
 #'
 #' # By `pubmed_id`
-#' get_scores(pubmed_id = 'PGP000003')
+#' get_scores(pubmed_id = '25748612')
 #'
 #' @export
 get_scores <- function(pgs_id = NULL,

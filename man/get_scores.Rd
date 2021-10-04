@@ -66,6 +66,6 @@ get_scores(pgs_id = 'PGS000088')
 get_scores(efo_id = 'EFO_0007992')
 
 # By `pubmed_id`
-get_scores(pubmed_id = 'PGP000003')
+get_scores(pubmed_id = '25748612')
 
 }
