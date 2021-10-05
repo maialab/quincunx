@@ -11,7 +11,7 @@
 #'
 #' @return Returns \code{TRUE} if successful, or \code{FALSE} otherwise. But
 #'   note that this function is run for its side effect.
-#' @examplesIf
+#' @examplesIf interactive()
 #' # Open in PGS scores Catalog Web Graphical User Interface
 #' open_in_pgs_catalog(c('PGS000001', 'PGS000002'))
 #'
