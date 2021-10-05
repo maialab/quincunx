@@ -39,7 +39,7 @@ relevant to the PGS development method/process.}
 included in the PGS.}
 \item{assembly}{The version of the genome assembly that the variants present
 in the PGS are associated with. Example: \code{GRCh37}.}
-\item{license}{The PGS Catalog distributes its data according to EBI’s
+\item{license}{The PGS Catalog distributes its data according to EBI's
 standard Terms of Use. Some PGS have specific terms, licenses, or
 restrictions (e.g. non-commercial use) that we highlight in this field, if
 known.}
@@ -60,7 +60,7 @@ Genet"}.}
 \item{author_fullname}{First author of the publication. Example:
 \code{'Mavaddat N'}.}
 \item{doi}{Digital Object Identifier (DOI). This variable is also curated to
-allow unpublished work (e.g. pre-prints) to be added to the catalog. Example:
+allow unpublished work (e.g. preprints) to be added to the catalog. Example:
 \code{"10.1093/jnci/djv036"}.}
 }}
 
