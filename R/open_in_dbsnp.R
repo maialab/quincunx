@@ -7,10 +7,9 @@
 #'
 #' @return Returns \code{TRUE} if successful. Note however that this
 #' function is run for its side effect.
-#' @examples
-#' \dontrun{
+#' @examplesIf interactive()
 #' open_in_dbsnp('rs56261590')
-#' }
+#'
 #' @export
 open_in_dbsnp <- function(variant_id) {
 
