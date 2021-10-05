@@ -86,7 +86,9 @@ To know how many variants are included in every score, you can take advantage of
 
 ## PGS scoring file format
 
-Each scoring file contains variant identification, effect alleles and respective score weights. The file is formatted as a gzipped tab-delimited text file, with a header containing brief metada about the score.
+Each scoring file contains variant identification, effect alleles and respective
+score weights. The file is formatted as a gzipped tab-delimited text file, with
+a header containing brief metadata about the score.
 
 ### Header
 
@@ -110,7 +112,7 @@ The following table lists all possible columns in a PGS scoring file. A few colu
 
 | Column                   | Field Name                                | Field Description                                            | Field Requirement                                            |
 | ------------------------ | ----------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `rsID`                   | dbSNP Accession ID (rsID)                 | The SNP’s rs ID                                              | **Required**/**Optional** -- unless both the *chr_name* and *chr_position* columns are absent. |
+| `rsID`                   | dbSNP Accession ID (rsID)                 | The SNP's rs ID                                              | **Required**/**Optional** -- unless both the *chr_name* and *chr_position* columns are absent. |
 | `chr_name`               | Location - Chromosome                     | Chromosome name/number associated with the variant           | **Required** -- may be optional if an *rsID* for the variant is provided. |
 | `chr_position`           | Location - Position within the Chromosome | Chromosomal position associated with the variant             | **Required** -- may be optional if an *rsID* for the variant is provided. |
 | `effect_allele`          | Effect Allele                             | The allele that's dosage is counted (e.g. {0, 1, 2}) and multiplied by the variant's weight ('effect_weight') when calculating score. The effect allele is also known as the 'risk allele'. | **Required**                                                 |

@@ -22,9 +22,9 @@ library(quincunx)
 
 PGS is calculated as a weighted sum of several risk variants from a genome-wide
 association study in one or more samples with multiple p-value thresholds. The
-effect sizes are typically estimated as β (beta coefficients) or as odds ratios.
-After the PGS is calculated in one sample, the distribution of individual PGS is
-assessed in another in an independent sample set.
+effect sizes are typically estimated as $\beta$ (beta coefficients) or as odds
+ratios. After the PGS is calculated in one sample, the distribution of
+individual PGS is assessed in another in an independent sample set.
 
 ```{r  out.width = "90%", echo=FALSE, fig.cap='Adapted from [Konuma & Okada (2021)](https://doi.org/10.1186/s41232-021-00172-9), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).'}
 knitr::include_graphics('../man/figures/pgs-construction-process.png') 
