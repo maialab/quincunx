@@ -814,24 +814,29 @@ setMethod("[",
 
 #' Number of PGS Catalog entities
 #'
-#' This function returns the number of unique entities in a PGS Catalog object.
+#' This function returns the number of entities in a PGS Catalog object. To
+#' avoid ambiguity with `dplyr::n()` use `quincunx::n()`.
 #'
 #' @param x A \linkS4class{scores}, \linkS4class{publications},
-#'   \linkS4class{traits}, \linkS4class{performance_metrics}, or
-#'   \linkS4class{sample_sets} object.
+#'   \linkS4class{traits}, \linkS4class{performance_metrics},
+#'   \linkS4class{sample_sets}, \linkS4class{cohorts},
+#'   \linkS4class{trait_categories} or \linkS4class{releases} object.
 #' @param unique Whether to count only unique entries (\code{TRUE}) or not
 #'   (\code{FALSE}).
 #'
 #' @return An integer scalar.
 #'
+#' @docType methods
+#'
+#' @examplesIf interactive()
+#' # E.g, the number of scores
+#' n(get_scores(pgs_id = c('PGS000007', 'PGS000042')))
+#'
+#' @md
 #' @export
 setGeneric('n', function(x, unique = FALSE) standardGeneric('n'))
 
 #' @rdname n
-#' @examples
-#' # Coming soon...
-#'
-#' @export
 setMethod("n",
           signature(x = "scores"),
           definition = function(x, unique = FALSE) {
@@ -842,7 +847,6 @@ setMethod("n",
 )
 
 #' @rdname n
-#' @export
 setMethod("n",
           signature(x = "publications"),
           definition = function(x, unique = FALSE) {
@@ -853,7 +857,6 @@ setMethod("n",
 )
 
 #' @rdname n
-#' @export
 setMethod("n",
           signature(x = "traits"),
           definition = function(x, unique = FALSE) {
@@ -864,7 +867,6 @@ setMethod("n",
 )
 
 #' @rdname n
-#' @export
 setMethod("n",
           signature(x = "performance_metrics"),
           definition = function(x, unique = FALSE) {
@@ -875,7 +877,6 @@ setMethod("n",
 )
 
 #' @rdname n
-#' @export
 setMethod("n",
           signature(x = "sample_sets"),
           definition = function(x, unique = FALSE) {
@@ -886,7 +887,6 @@ setMethod("n",
 )
 
 #' @rdname n
-#' @export
 setMethod("n",
           signature(x = "cohorts"),
           definition = function(x, unique = FALSE) {
@@ -897,7 +897,6 @@ setMethod("n",
 )
 
 #' @rdname n
-#' @export
 setMethod("n",
           signature(x = "trait_categories"),
           definition = function(x, unique = FALSE) {
@@ -908,7 +907,6 @@ setMethod("n",
 )
 
 #' @rdname n
-#' @export
 setMethod("n",
           signature(x = "releases"),
           definition = function(x, unique = FALSE) {
