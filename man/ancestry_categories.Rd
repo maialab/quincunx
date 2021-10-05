@@ -34,10 +34,9 @@ ancestry_categories
 }
 \description{
 A dataset containing the ancestry categories defined in NHGRI-EBI GWAS
-Catalog framework (Table 1,
-\href{https://doi.org/10.1186/s13059-018-1396-2}{Morales et al. (2018)}).
-Ancestry categories are assigned to samples with distinct and well-defined
-patterns of genetic variation. You will find these categories in the variable
+Catalog framework (Table 1, \doi{10.1186/s13059-018-1396-2}). Ancestry
+categories are assigned to samples with distinct and well-defined patterns of
+genetic variation. You will find these categories in the variable
 \code{ancestry_category} of the following objects: \linkS4class{scores},
 \linkS4class{performance_metrics} and \linkS4class{sample_sets}. Ancestry
 categories (\code{ancestry_category}) are further clustered into ancestry
