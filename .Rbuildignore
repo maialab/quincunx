@@ -7,5 +7,5 @@
 ^pkgdown$
 ^\.github$
 ^data-raw$
-^vignettes/articles$
+^vignettes$
 ^CODE_OF_CONDUCT\.md$

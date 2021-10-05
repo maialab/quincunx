@@ -115,7 +115,6 @@ Collate:
     'utils-pipe.R'
     'warnings.R'
     'write_xlsx.R'
-VignetteBuilder: knitr
 Depends: 
     R (>= 2.10)
 Remotes: 
