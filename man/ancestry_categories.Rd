@@ -24,8 +24,7 @@ A data frame with 19 ancestry categories (rows) and 6 columns:
 }
 \source{
 \describe{
-  \item{Table 1 of
-\href{https://doi.org/10.1186/s13059-018-1396-2}{Morales et al. (2018)}:}{\url{https://genomebiology.biomedcentral.com/articles/10.1186/s13059-018-1396-2/tables/1}}
+  \item{Table 1 of Moralles et al. (2018):}{\doi{10.1186/s13059-018-1396-2}}
   \item{PGS Catalog Ancestry Documentation:}{\url{http://www.pgscatalog.org/docs/ancestry/}}
 }
 }
