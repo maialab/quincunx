@@ -28,8 +28,7 @@ Suggests:
     testthat,
     knitr,
     rmarkdown,
-    ggplot2,
-    gwasrapidd (>= 0.99.11)
+    ggplot2
 Imports: 
     stringr,
     magrittr,
@@ -117,7 +116,5 @@ Collate:
     'write_xlsx.R'
 Depends: 
     R (>= 2.10)
-Remotes: 
-    ramiromagno/gwasrapidd
 URL: https://github.com/maialab/quincunx
 BugReports: https://github.com/maialab/quincunx/issues
