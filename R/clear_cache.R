@@ -6,6 +6,9 @@
 #' @return Returns a logical value, indicating whether the resetting of the
 #'   cache was successful (\code{TRUE}) or not  \code{FALSE}.
 #'
+#' @examples
+#' clear_cache()
+#'
 #' @export
 clear_cache <- function() {
   memoise::forget(memoised_GET)
