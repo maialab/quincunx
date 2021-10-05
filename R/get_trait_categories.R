@@ -28,16 +28,7 @@ get_trait_category_all <- function(limit = 20L, verbose = FALSE, warnings = TRUE
 
 #' Get PGS Catalog Trait Categories
 #'
-#' Retrieves trait categories via the PGS Catalog REST API. The REST
-#' API is queried multiple times with the criteria passed as arguments (see
-#' below). By default all trait categories that match the criteria supplied in the
-#' arguments are retrieved: this corresponds to the default option
-#' \code{set_operation} set to \code{'union'}. If you rather have only the
-#' associations that match simultaneously all criteria provided, then set
-#' \code{set_operation} to \code{'intersection'}.
-#'
-#' Please note that all search criteria are vectorised, thus allowing for batch
-#' mode search.
+#' Retrieves all trait categories via the PGS Catalog REST API.
 #'
 #' @param verbose A \code{logical} indicating whether the function should be
 #'   verbose about the different queries or not.
@@ -45,9 +36,9 @@ get_trait_category_all <- function(limit = 20L, verbose = FALSE, warnings = TRUE
 #' @param progress_bar Whether to show a progress bar indicating download
 #'   progress from the REST API server.
 #'
-#' @return An \linkS4class{trait_categories} object.
+#' @return A \linkS4class{trait_categories} object.
 #' @examples
-#' # Coming soon...
+#' get_trait_categories()
 #'
 #' @export
 get_trait_categories <- function(verbose = FALSE,
