@@ -55,13 +55,7 @@
   
 
 <meta property="og:title" content="Get PGS Catalog Trait Categories — get_trait_categories" />
-<meta property="og:description" content="Retrieves trait categories via the PGS Catalog REST API. The REST
-API is queried multiple times with the criteria passed as arguments (see
-below). By default all trait categories that match the criteria supplied in the
-arguments are retrieved: this corresponds to the default option
-set_operation set to 'union'. If you rather have only the
-associations that match simultaneously all criteria provided, then set
-set_operation to 'intersection'." />
+<meta property="og:description" content="Retrieves all trait categories via the PGS Catalog REST API." />
 <meta property="og:image" content="https://maialab.org/quincunx/logo.svg" />
 
 
@@ -205,13 +199,7 @@ set_operation to 'intersection'." />
     </div>
 
     <div class="ref-description">
-    <p>Retrieves trait categories via the PGS Catalog REST API. The REST
-API is queried multiple times with the criteria passed as arguments (see
-below). By default all trait categories that match the criteria supplied in the
-arguments are retrieved: this corresponds to the default option
-<code>set_operation</code> set to <code>'union'</code>. If you rather have only the
-associations that match simultaneously all criteria provided, then set
-<code>set_operation</code> to <code>'intersection'</code>.</p>
+    <p>Retrieves all trait categories via the PGS Catalog REST API.</p>
     </div>
 
     <pre class="usage"><span class='fu'>get_trait_categories</span><span class='op'>(</span>verbose <span class='op'>=</span> <span class='cn'>FALSE</span>, warnings <span class='op'>=</span> <span class='cn'>TRUE</span>, progress_bar <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
@@ -237,15 +225,50 @@ progress from the REST API server.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An <a href='trait_categories-class.html'>trait_categories</a> object.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Please note that all search criteria are vectorised, thus allowing for batch
-mode search.</p>
+    <p>A <a href='trait_categories-class.html'>trait_categories</a> object.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Coming soon...</span>
-
+    <pre class="examples"><div class='input'><span class='fu'>get_trait_categories</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; An object of class "trait_categories"
+#&gt; Slot "trait_categories":
+#&gt; <span style='color: #949494;'># A tibble: 18 × 1</span>
+#&gt;    trait_category                  
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                           
+#&gt; <span style='color: #BCBCBC;'> 1</span> Biological process              
+#&gt; <span style='color: #BCBCBC;'> 2</span> Body measurement                
+#&gt; <span style='color: #BCBCBC;'> 3</span> Cancer                          
+#&gt; <span style='color: #BCBCBC;'> 4</span> Cardiovascular disease          
+#&gt; <span style='color: #BCBCBC;'> 5</span> Cardiovascular measurement      
+#&gt; <span style='color: #BCBCBC;'> 6</span> Digestive system disorder       
+#&gt; <span style='color: #BCBCBC;'> 7</span> Hematological measurement       
+#&gt; <span style='color: #BCBCBC;'> 8</span> Immune system disorder          
+#&gt; <span style='color: #BCBCBC;'> 9</span> Inflammatory measurement        
+#&gt; <span style='color: #BCBCBC;'>10</span> Lipid or lipoprotein measurement
+#&gt; <span style='color: #BCBCBC;'>11</span> Liver enzyme measurement        
+#&gt; <span style='color: #BCBCBC;'>12</span> Metabolic disorder              
+#&gt; <span style='color: #BCBCBC;'>13</span> Neurological disorder           
+#&gt; <span style='color: #BCBCBC;'>14</span> Other disease                   
+#&gt; <span style='color: #BCBCBC;'>15</span> Other measurement               
+#&gt; <span style='color: #BCBCBC;'>16</span> Other trait                     
+#&gt; <span style='color: #BCBCBC;'>17</span> Response to drug                
+#&gt; <span style='color: #BCBCBC;'>18</span> Sex-specific PGS                
+#&gt; 
+#&gt; Slot "traits":
+#&gt; <span style='color: #949494;'># A tibble: 257 × 5</span>
+#&gt;    trait_category     efo_id      trait                        description url  
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> Biological process EFO_0007766 response to beta blocker     <span style='color: #949494;'>"</span>['Any pro… http…
+#&gt; <span style='color: #BCBCBC;'> 2</span> Biological process EFO_0008579 risk-taking behaviour        <span style='color: #949494;'>"</span>['The ten… http…
+#&gt; <span style='color: #BCBCBC;'> 3</span> Biological process GO_0097366  response to bronchodilator   <span style='color: #949494;'>"</span>['Any pro… http…
+#&gt; <span style='color: #BCBCBC;'> 4</span> Body measurement   EFO_0004340 body mass index              <span style='color: #949494;'>"</span>['An indi… http…
+#&gt; <span style='color: #BCBCBC;'> 5</span> Body measurement   EFO_0004342 waist circumference          <span style='color: #949494;'>"</span>['The mea… http…
+#&gt; <span style='color: #BCBCBC;'> 6</span> Body measurement   EFO_0004339 body height                  <span style='color: #949494;'>"</span>['The dis… http…
+#&gt; <span style='color: #BCBCBC;'> 7</span> Body measurement   EFO_0007788 BMI-adjusted waist-hip ratio <span style='color: #949494;'>"</span>['waist-h… http…
+#&gt; <span style='color: #BCBCBC;'> 8</span> Cancer             EFO_0000095 chronic lymphocytic leukemia <span style='color: #949494;'>"</span>B-cell ch… http…
+#&gt; <span style='color: #BCBCBC;'> 9</span> Cancer             EFO_1001512 endometrial carcinoma        <span style='color: #949494;'>"</span>A maligna… http…
+#&gt; <span style='color: #BCBCBC;'>10</span> Cancer             EFO_1001950 colon carcinoma              <span style='color: #949494;'>"</span>A carcino… http…
+#&gt; <span style='color: #949494;'># … with 247 more rows</span>
+#&gt; </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
