@@ -1,6 +1,6 @@
 Package: quincunx
 Type: Package
-Title: REST API Client for the PGS Catalog
+Title: REST API Client for the 'PGS' Catalog
 Version: 0.1.0
 Authors@R: c(
     person(given = "Ramiro", family = "Magno",
@@ -17,8 +17,8 @@ Authors@R: c(
     person("CINTESIS",
     role = c("cph", "fnd"))
     )
-Description: Programmatic access to the PGS Catalog.
-    This package provides easy access to PGS Catalog data by
+Description: Programmatic access to the 'PGS' Catalog.
+    This package provides easy access to 'PGS' Catalog data by
     accessing the REST API <https://www.pgscatalog.org/rest/>.
 License: MIT + file LICENSE
 Encoding: UTF-8
