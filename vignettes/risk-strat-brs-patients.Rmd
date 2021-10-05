@@ -5,6 +5,9 @@ vignette: >
   %\VignetteIndexEntry{Risk of Brugada syndrome patients}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+notes-after-punctuation: false
+bibliography: "`r system.file('references.bib', package = 'quincunx')`"
+csl: "`r system.file('nature.csl', package = 'quincunx')`"
 ---
 
 ```{r, include = FALSE}
@@ -19,21 +22,20 @@ knitr::opts_chunk$set(
 In this example we walk you through an hypothetical usage case of a quincunx
 application with the goal of calculating the risk of developing a specific
 disease. For illustrative purposes, the disease chosen here is the Brugada
-syndrome (for details about the origin of the name, see [Featuring: Josep
-Brugada](https://www.ecrjournal.com/articles/featuring-josep-brugada)).
+syndrome @Brugada.ECR.2019.
 
 Brugada syndrome is a rare, inherited cardiac disease leading to ventricular
 fibrillation and sudden cardiac death in structurally normal hearts. People with
 Brugada syndrome have an increased risk of having irregular heart rhythms
 beginning in the lower chambers of the heart (ventricles)
-([10.1038/gim.2015.35](https://doi.org/10.1038/gim.2015.35)).
+@SarquellaBrugada.GiM.2015.
 
 The prevalence varies among regions and ethnicities, affecting mostly males. The
 risk stratification and management of patients, predominantly asymptomatic, still
 remains challenging. Currently, despite several genes identified, SCN5A has
 attracted the most attention, and in approximately 30% of patients, a genetic
 variant may be implicated as causal factor after a comprehensive analysis
-([10.1016/j.jacc.2018.06.037](https://doi.org/10.1016/j.jacc.2018.06.037)).
+@Brugada.JotACoC.2018.
 
 In the walk-through below, we show how to use quincunx to search for Brugada
 syndrome related polygenic scores, and how to compute the associated risk
@@ -47,7 +49,9 @@ Before anything, let us load quincunx:
 library(quincunx)
 ```
 
-Now, we start by searching for the Brugada syndrome in the PGS Catalog. To do this we search for any traits/diseases that might include the term `"brugada"` in the trait description using the function `get_traits()`:
+Now, we start by searching for the Brugada syndrome in the PGS Catalog. To do
+this we search for any traits/diseases that might include the term `"brugada"`
+in the trait description using the function `get_traits()`:
 
 ```{r}
 # Search in PGS Catalog for traits/diseases containing the term "brugada"
@@ -128,9 +132,18 @@ To view this publication online: `open_in_pubmed(brs_pgs@publications$pubmed_id)
 
 ## Sample ancestry
 
-To get a feeling for the applicability of this polygenic score, it is important to know the genetic diversity of the participants involved in the development of the risk score. We can get details on the ancestry composition of the samples used to develop `r brs_pgs@scores$pgs_name` by looking into the `samples` table. In this table we can see that one sample (`sample_id = 1`) of `r brs_pgs@samples$sample_size` individuals was used at the `r brs_pgs@samples$stage` stage. The ancestry category associated with these individuals is `r brs_pgs@samples$ancestry_category`. You can use quincunx's internal dataset on possible ancestry categories: `ancestry_categories`.
+To get a feeling for the applicability of this polygenic score, it is important
+to know the genetic diversity of the participants involved in the development of
+the risk score. We can get details on the ancestry composition of the samples
+used to develop `r brs_pgs@scores$pgs_name` by looking into the `samples` table.
+In this table we can see that one sample (`sample_id = 1`) of `r
+brs_pgs@samples$sample_size` individuals was used at the `r
+brs_pgs@samples$stage` stage. The ancestry category associated with these
+individuals is `r brs_pgs@samples$ancestry_category`. You can use quincunx's
+internal dataset on possible ancestry categories: `ancestry_categories`.
 
-From this data, one may assume that the applicability of this risk score should probably be restricted to people from European ancestry.
+From this data, one may assume that the applicability of this risk score should
+probably be restricted to people from European ancestry.
 
 ```{r}
 # Stage
@@ -201,7 +214,7 @@ $${PRS_{BrS}} = \beta_{\text{rs11708996}} \times x_{rs11708996} + \beta_{\text{r
 where, e.g., $\beta_{\text{rs11708996}} = 0.55$, and $x_{rs11708996}$ is either $0$, for genotype "G/G", $1$, for genotype "G/C" or $2$, for genotype "C/C".
 
 As a side note, although simplistic, the additive model reflects our best estimate of genetic architecture of common complex disorders, where little evidence of
-interaction between genetic variants is detected. And although this type of model ignores any gene-gene or gene-environment interactions ([10.1002/gepi.21989](https://doi.org/10.1002/gepi.21989)), it seems, nevertheless, that the largest meta-analysis of heritability from twin studies supports a simple additive model in most of the traits examined ([10.1038/ng.3285](https://doi.org/10.1038/ng.3285)).
+interaction between genetic variants is detected. And although this type of model ignores any gene-gene or gene-environment interactions @Aschard.GE.2016, it seems, nevertheless, that the largest meta-analysis of heritability from twin studies supports a simple additive model in most of the traits examined @Polderman.NG.2015.
 
 Next we calculate PRS_BrS for the genotypes `BrS_genotypes`:
 
@@ -256,6 +269,8 @@ The polygenic risk score spans a range from (almost) $-2$ to (litle more than) $
 
 ## Final remarks
 
-The question of how to use the risk scores obtained, namely, how to proceed clinically, is an open and on-going discussion in the medical community that typically needs to be considered in the larger context of each individual characteristics. A good place to start looking into this discussion is the original paper which published this polygenic risk score: [https://academic.oup.com/eurheartj/article/40/37/3097/5559542](https://academic.oup.com/eurheartj/article/40/37/3097/5559542).
+The question of how to use the risk scores obtained, namely, how to proceed clinically, is an open and on-going discussion in the medical community that typically needs to be considered in the larger context of each individual characteristics. A good place to start looking into this discussion is the original paper which published this polygenic risk score @Tadros.EHJ.2019.
 
-Furthermore, the purpose of this vignette is to show how to start from a trait or disease of interest, and end up by actually calculating the risk scores for particular individuals (if the user has real patient data). In this example, the individuals are hypothetical, and are represented by their in silico constructed genotypes. While trying to apply the same workflow to other traits or diseases, things are likely to be different from this simple example, namely, the number of variants will likely be much larger, and the polygenic risk score model applied could be more complex than the simple additive architecture assumed here. Also, you will probably want to take advantage of a dedicated tool that specialises in score computation instead of using your own custom R code, e.g., you could use the popular [bigsnpr](https://privefl.github.io/bigsnpr/articles/LDpred2.html) package.
+Furthermore, the purpose of this vignette is to show how to start from a trait or disease of interest, and end up by actually calculating the risk scores for particular individuals (if the user has real patient data). In this example, the individuals are hypothetical, and are represented by their in silico constructed genotypes. While trying to apply the same workflow to other traits or diseases, things are likely to be different from this simple example, namely, the number of variants will likely be much larger, and the polygenic risk score model applied could be more complex than the simple additive architecture assumed here. Also, you will probably want to take advantage of a dedicated tool that specialises in score computation instead of using your own custom R code, e.g., you could use the popular [bigsnpr](https://privefl.github.io/bigsnpr/articles/LDpred2.html) package @Prive.B.2018.
+
+`r if (knitr::is_html_output()) '## References'`
