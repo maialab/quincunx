@@ -24,7 +24,7 @@ Score (PGS) Catalog](https://www.pgscatalog.org/), an open resource for
 metadata describing their development and respective assessment.
 
 Browse the online documentation at
-[maialab.org/quincunx](https://maialab.org/quincunx) to get started.
+[maialab.org/quincunx](https://maialab.org/quincunx/) to get started.
 
 ## Installation
 

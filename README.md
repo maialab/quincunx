@@ -13,7 +13,7 @@ scores](https://en.wikipedia.org/wiki/Polygenic_score) and associated
 metadata describing their development and respective assessment.
 
 Browse the online documentation at
-[maialab.org/quincunx](https://maialab.org/quincunx) to get started.
+[maialab.org/quincunx](https://maialab.org/quincunx/) to get started.
 
 ## Installation
 
