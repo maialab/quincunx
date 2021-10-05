@@ -11,8 +11,7 @@
 #'
 #' @return Returns \code{TRUE} if successful, or \code{FALSE} otherwise. But
 #'   note that this function is run for its side effect.
-#' @examples
-#' \dontrun{
+#' @examplesIf
 #' # Open in PGS scores Catalog Web Graphical User Interface
 #' open_in_pgs_catalog(c('PGS000001', 'PGS000002'))
 #'
@@ -27,7 +26,7 @@
 #' # Open EFO traits (EFO)
 #' open_in_pgs_catalog(c('EFO_0001645', 'MONDO_0007254'),
 #'   pgs_catalog_entity = 'efo')
-#' }
+#'
 #' @export
 open_in_pgs_catalog <- function(identifier = NULL,
                                 pgs_catalog_entity = c(

@@ -26,7 +26,7 @@ This function launches the web browser and opens a tab for each identifier on
 the PGS Catalog web graphical user interface: \url{https://www.pgscatalog.org/}.
 }
 \examples{
-\dontrun{
+\dontshow{if () (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Open in PGS scores Catalog Web Graphical User Interface
 open_in_pgs_catalog(c('PGS000001', 'PGS000002'))
 
@@ -41,5 +41,5 @@ open_in_pgs_catalog(c('PSS000001', 'PSS000002'),
 # Open EFO traits (EFO)
 open_in_pgs_catalog(c('EFO_0001645', 'MONDO_0007254'),
   pgs_catalog_entity = 'efo')
-}
+\dontshow{\}) # examplesIf}
 }
