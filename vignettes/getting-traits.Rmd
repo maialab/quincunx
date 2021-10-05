@@ -5,6 +5,7 @@ vignette: >
   %\VignetteIndexEntry{Getting Traits}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+notes-after-punctuation: false
 bibliography: "`r system.file('references.bib', package = 'quincunx')`"
 csl: "`r system.file('nature.csl', package = 'quincunx')`"
 ---
