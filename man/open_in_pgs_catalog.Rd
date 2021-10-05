@@ -26,7 +26,7 @@ This function launches the web browser and opens a tab for each identifier on
 the PGS Catalog web graphical user interface: \url{https://www.pgscatalog.org/}.
 }
 \examples{
-\dontshow{if () (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Open in PGS scores Catalog Web Graphical User Interface
 open_in_pgs_catalog(c('PGS000001', 'PGS000002'))
 
