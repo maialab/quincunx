@@ -19,7 +19,7 @@ This function launches the web browser and opens a tab for each PubMed
 citation.
 }
 \examples{
-\dontrun{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 open_in_pubmed(c('26301688', '30595370'))
-}
+\dontshow{\}) # examplesIf}
 }
