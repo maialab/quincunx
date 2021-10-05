@@ -34,7 +34,7 @@ setOldClass(c("tbl_df", "tbl", "data.frame"))
 #' \item{author_fullname}{First author of the publication. Example:
 #' \code{'Mavaddat N'}.}
 #' \item{doi}{Digital Object Identifier (DOI). This variable is also curated to
-#' allow unpublished work (e.g. pre-prints) to be added to the catalog. Example:
+#' allow unpublished work (e.g. preprints) to be added to the catalog. Example:
 #' \code{"10.1093/jnci/djv036"}.}
 #' }
 #' @slot sample_sets A table of sample sets. Each sample set (row) is uniquely
