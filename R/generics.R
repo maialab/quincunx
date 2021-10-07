@@ -853,14 +853,27 @@ setMethod("[",
 #' @docType methods
 #'
 #' @examplesIf interactive()
-#' # E.g, the number of scores
-#' n(get_scores(pgs_id = c('PGS000007', 'PGS000042')))
+#' # Return the number of polygenic scores in a scores object:
+#' my_scores <- get_scores(pgs_id = c('PGS000007', 'PGS000007', 'PGS000042'))
+#' n(my_scores)
+#'
+#' # If you want to count unique scores only, then use the `unique` parameter:
+#' n(my_scores, unique = TRUE)
+#'
+#' # Total number of curated publications in the PGS Catalog:
+#' all_pub <- get_publications(interactive = FALSE, progress_bar = FALSE)
+#' n(all_pub)
+#'
+#' # Total number of curated traits in the PGS Catalog:
+#' all_traits <- get_traits(interactive = FALSE, progress_bar = FALSE)
+#' n(all_traits)
 #'
 #' @md
 #' @export
 setGeneric('n', function(x, unique = FALSE) standardGeneric('n'))
 
 #' @rdname n
+#' @export
 setMethod("n",
           signature(x = "scores"),
           definition = function(x, unique = FALSE) {
@@ -871,6 +884,7 @@ setMethod("n",
 )
 
 #' @rdname n
+#' @export
 setMethod("n",
           signature(x = "publications"),
           definition = function(x, unique = FALSE) {
@@ -881,6 +895,7 @@ setMethod("n",
 )
 
 #' @rdname n
+#' @export
 setMethod("n",
           signature(x = "traits"),
           definition = function(x, unique = FALSE) {
@@ -891,6 +906,7 @@ setMethod("n",
 )
 
 #' @rdname n
+#' @export
 setMethod("n",
           signature(x = "performance_metrics"),
           definition = function(x, unique = FALSE) {
@@ -901,6 +917,7 @@ setMethod("n",
 )
 
 #' @rdname n
+#' @export
 setMethod("n",
           signature(x = "sample_sets"),
           definition = function(x, unique = FALSE) {
@@ -911,6 +928,7 @@ setMethod("n",
 )
 
 #' @rdname n
+#' @export
 setMethod("n",
           signature(x = "cohorts"),
           definition = function(x, unique = FALSE) {
@@ -921,6 +939,7 @@ setMethod("n",
 )
 
 #' @rdname n
+#' @export
 setMethod("n",
           signature(x = "trait_categories"),
           definition = function(x, unique = FALSE) {
@@ -931,6 +950,7 @@ setMethod("n",
 )
 
 #' @rdname n
+#' @export
 setMethod("n",
           signature(x = "releases"),
           definition = function(x, unique = FALSE) {
