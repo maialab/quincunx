@@ -491,8 +491,8 @@ setMethod("[",
 
 #' Subset a publications object
 #'
-#' You can subset \linkS4class{publications} by identifier or by position using the
-#' \code{`[`} operator.
+#' You can subset \linkS4class{publications} by identifier or by position using
+#' the \code{`[`} operator.
 #'
 #' @param x A \linkS4class{publications} object.
 #' @param i Position of the identifier or the name of the identifier itself.
@@ -501,8 +501,19 @@ setMethod("[",
 #' @param drop Not used.
 #'
 #' @return A \linkS4class{publications} object.
-#' @examples
-#' # Coming soon...
+#' @examplesIf interactive()
+#' # Get all publications in the PGS Catalog:
+#' all_pub <- get_publications(interactive = FALSE, progress_bar = FALSE)
+#'
+#' #
+#' # Subsetting by position
+#' #
+#' all_pub[1:5]
+#'
+#' #
+#' # Subsetting by publication identifier (character)
+#' #
+#' all_pub['PGP000001']
 #'
 #' @name subset-publications
 NULL

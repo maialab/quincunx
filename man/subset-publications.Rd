@@ -28,11 +28,23 @@
 A \linkS4class{publications} object.
 }
 \description{
-You can subset \linkS4class{publications} by identifier or by position using the
-\code{`[`} operator.
+You can subset \linkS4class{publications} by identifier or by position using
+the \code{`[`} operator.
 }
 \examples{
-# Coming soon...
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# Get all publications in the PGS Catalog:
+all_pub <- get_publications(interactive = FALSE, progress_bar = FALSE)
 
+#
+# Subsetting by position
+#
+all_pub[1:5]
+
+#
+# Subsetting by publication identifier (character)
+#
+all_pub['PGP000001']
+\dontshow{\}) # examplesIf}
 }
 \keyword{internal}
