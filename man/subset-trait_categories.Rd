@@ -28,11 +28,23 @@
 A \linkS4class{trait_categories} object.
 }
 \description{
-You can subset \linkS4class{trait_categories} by identifier or by position using the
-\code{`[`} operator.
+You can subset \linkS4class{trait_categories} by trait category (string) or
+by position using the \code{`[`} operator.
 }
 \examples{
-# Coming soon...
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# Get details about all trait categories:
+all_trait_categories <- get_trait_categories(progress_bar = FALSE)
 
+#
+# Subsetting by position
+#
+all_trait_categories[1:5]
+
+#
+# Subsetting by trait category (character)
+#
+all_trait_categories['Liver enzyme measurement']
+\dontshow{\}) # examplesIf}
 }
 \keyword{internal}

@@ -37,8 +37,8 @@ get_trait_category_all <- function(limit = 20L, verbose = FALSE, warnings = TRUE
 #'   progress from the REST API server.
 #'
 #' @return A \linkS4class{trait_categories} object.
-#' @examples
-#' get_trait_categories()
+#' @examplesIf interactive()
+#' get_trait_categories(progress_bar = FALSE)
 #'
 #' @export
 get_trait_categories <- function(verbose = FALSE,

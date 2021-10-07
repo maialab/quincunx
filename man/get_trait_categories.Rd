@@ -22,6 +22,7 @@ A \linkS4class{trait_categories} object.
 Retrieves all trait categories via the PGS Catalog REST API.
 }
 \examples{
-get_trait_categories()
-
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+get_trait_categories(progress_bar = FALSE)
+\dontshow{\}) # examplesIf}
 }

@@ -688,8 +688,20 @@ setMethod("[",
 #' @param drop Not used.
 #'
 #' @return A \linkS4class{cohorts} object.
-#' @examples
-#' # Coming soon...
+#' @examplesIf interactive()
+#' # Get a few cohorts by their symbol:
+#' my_cohorts <- get_cohorts(c('23andMe', 'BioImage', 'Rotterdam-SI', 'SGWAS'),
+#'                 progress_bar = FALSE)
+#'
+#' #
+#' # Subsetting by position
+#' #
+#' my_cohorts[c(1, 3)]
+#'
+#' #
+#' # Subsetting by cohort symbol (character)
+#' #
+#' my_cohorts[c('23andMe', 'SGWAS')]
 #'
 #' @name subset-cohorts
 NULL
@@ -724,8 +736,8 @@ setMethod("[",
 
 #' Subset a trait_categories object
 #'
-#' You can subset \linkS4class{trait_categories} by identifier or by position using the
-#' \code{`[`} operator.
+#' You can subset \linkS4class{trait_categories} by trait category (string) or
+#' by position using the \code{`[`} operator.
 #'
 #' @param x A \linkS4class{trait_categories} object.
 #' @param i Position of the identifier or the name of the identifier itself.
@@ -734,8 +746,19 @@ setMethod("[",
 #' @param drop Not used.
 #'
 #' @return A \linkS4class{trait_categories} object.
-#' @examples
-#' # Coming soon...
+#' @examplesIf interactive()
+#' # Get details about all trait categories:
+#' all_trait_categories <- get_trait_categories(progress_bar = FALSE)
+#'
+#' #
+#' # Subsetting by position
+#' #
+#' all_trait_categories[1:5]
+#'
+#' #
+#' # Subsetting by trait category (character)
+#' #
+#' all_trait_categories['Liver enzyme measurement']
 #'
 #' @name subset-trait_categories
 NULL
