@@ -632,8 +632,8 @@ setMethod("[",
 
 #' Subset a sample_sets object
 #'
-#' You can subset \linkS4class{sample_sets} by identifier or by position using the
-#' \code{`[`} operator.
+#' You can subset \linkS4class{sample_sets} by identifier or by position using
+#' the \code{`[`} operator.
 #'
 #' @param x A \linkS4class{sample_sets} object.
 #' @param i Position of the identifier or the name of the identifier itself.
@@ -642,8 +642,19 @@ setMethod("[",
 #' @param drop Not used.
 #'
 #' @return A \linkS4class{sample_sets} object.
-#' @examples
-#' # Coming soon...
+#' @examplesIf interactive()
+#' # Get a few sample sets:
+#' my_pss <- get_sample_sets(sprintf('PSS%06d', 42:48))
+#'
+#' #
+#' # Subsetting by position
+#' #
+#' my_pss[c(1, 3)]
+#'
+#' #
+#' # Subsetting by sample set identifier (character)
+#' #
+#' my_pss['PSS000042']
 #'
 #' @name subset-sample_sets
 NULL

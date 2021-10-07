@@ -28,11 +28,23 @@
 A \linkS4class{sample_sets} object.
 }
 \description{
-You can subset \linkS4class{sample_sets} by identifier or by position using the
-\code{`[`} operator.
+You can subset \linkS4class{sample_sets} by identifier or by position using
+the \code{`[`} operator.
 }
 \examples{
-# Coming soon...
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# Get a few sample sets:
+my_pss <- get_sample_sets(sprintf('PSS\%06d', 42:48))
 
+#
+# Subsetting by position
+#
+my_pss[c(1, 3)]
+
+#
+# Subsetting by sample set identifier (character)
+#
+my_pss['PSS000042']
+\dontshow{\}) # examplesIf}
 }
 \keyword{internal}
