@@ -6,7 +6,7 @@
 \alias{intersect}
 \alias{setdiff}
 \alias{setequal}
-\title{Set operations on PGS GWAS Catalog objects.}
+\title{Set operations on PGS Catalog objects}
 \usage{
 union(x, y, ...)
 
@@ -17,43 +17,51 @@ setdiff(x, y, ...)
 setequal(x, y, ...)
 }
 \arguments{
-\item{x, y}{Objects of either class \linkS4class{scores},
-\linkS4class{publications}, \linkS4class{traits},
-\linkS4class{performance_metrics}, or \linkS4class{sample_sets}.}
+\item{x, y}{Objects of either class \linkS4class{scores}, \linkS4class{publications},
+\linkS4class{traits}, \linkS4class{performance_metrics}, \linkS4class{sample_sets},
+\linkS4class{cohorts} or \linkS4class{trait_categories}.}
 
 \item{...}{other arguments passed on to methods.}
 }
 \value{
-An object of the same class as \code{x} and \code{y}, i.e.,
-  \linkS4class{scores}, \linkS4class{publications}, \linkS4class{traits},
-  \linkS4class{performance_metrics}, or \linkS4class{sample_sets}.
+In the case of \code{union()}, \code{intersect()}, or \code{setdiff()}: an object of
+the same class as \code{x} and \code{y}. In the case of \code{setequal()}, a
+logical scalar.
 }
 \description{
 Performs set union, intersection, and (asymmetric!) difference on two objects
-of either class \linkS4class{scores}, \linkS4class{publications},
-\linkS4class{traits}, \linkS4class{performance_metrics}, or
-\linkS4class{sample_sets}. Note that \code{union()} removes duplicated
-entities, whereas \code{\link[quincunx]{bind}()} does not.
+of either class \linkS4class{scores}, \linkS4class{publications}, \linkS4class{traits},
+\linkS4class{performance_metrics}, \linkS4class{sample_sets}, \linkS4class{cohorts} or
+\linkS4class{trait_categories}. Note that \code{union()} removes duplicated
+entities, whereas \code{\link[=bind]{bind()}} does not.
 }
 \examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# Get some `scores` objects:
+my_scores_1 <- get_scores(c('PGS000012', 'PGS000013'))
+my_scores_2 <- get_scores(c('PGS000013', 'PGS000014'))
+
 #
 # union()
 #
-# Coming soon...
+# NB: with `union()`, PGS000013 is not repeated.
+union(my_scores_1, my_scores_2)@scores
 
 #
 # intersect()
 #
-# Coming soon...
+intersect(my_scores_1, my_scores_2)@scores
 
 #
 # setdiff()
 #
-# Coming soon...
+setdiff(my_scores_1, my_scores_2)@scores
 
 #
 # setequal()
 #
-# Coming soon...
-
+setequal(my_scores_1, my_scores_2)
+setequal(my_scores_1, my_scores_1)
+setequal(my_scores_2, my_scores_2)
+\dontshow{\}) # examplesIf}
 }

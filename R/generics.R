@@ -29,66 +29,72 @@ p_endofunction <- function(fn, obj_class) {
   }
 }
 
-#' Set operations on PGS GWAS Catalog objects.
+#' Set operations on PGS Catalog objects
 #'
 #' Performs set union, intersection, and (asymmetric!) difference on two objects
-#' of either class \linkS4class{scores}, \linkS4class{publications},
-#' \linkS4class{traits}, \linkS4class{performance_metrics}, or
-#' \linkS4class{sample_sets}. Note that \code{union()} removes duplicated
-#' entities, whereas \code{\link[quincunx]{bind}()} does not.
+#' of either class [scores-class], [publications-class], [traits-class],
+#' [performance_metrics-class], [sample_sets-class], [cohorts-class] or
+#' [trait_categories-class]. Note that \code{union()} removes duplicated
+#' entities, whereas [bind()] does not.
 #'
-#' @param x,y Objects of either class \linkS4class{scores},
-#'   \linkS4class{publications}, \linkS4class{traits},
-#'   \linkS4class{performance_metrics}, or \linkS4class{sample_sets}.
+#' @param x,y Objects of either class [scores-class], [publications-class],
+#'   [traits-class], [performance_metrics-class], [sample_sets-class],
+#'   [cohorts-class] or [trait_categories-class].
 #' @param ... other arguments passed on to methods.
 #'
-#' @return An object of the same class as \code{x} and \code{y}, i.e.,
-#'   \linkS4class{scores}, \linkS4class{publications}, \linkS4class{traits},
-#'   \linkS4class{performance_metrics}, or \linkS4class{sample_sets}.
+#' @return In the case of `union()`, `intersect()`, or `setdiff()`: an object of
+#'   the same class as \code{x} and \code{y}. In the case of `setequal()`, a
+#'   logical scalar.
+#'
+#' @examplesIf interactive()
+#' # Get some `scores` objects:
+#' my_scores_1 <- get_scores(c('PGS000012', 'PGS000013'))
+#' my_scores_2 <- get_scores(c('PGS000013', 'PGS000014'))
+#'
+#' #
+#' # union()
+#' #
+#' # NB: with `union()`, PGS000013 is not repeated.
+#' union(my_scores_1, my_scores_2)@scores
+#'
+#' #
+#' # intersect()
+#' #
+#' intersect(my_scores_1, my_scores_2)@scores
+#'
+#' #
+#' # setdiff()
+#' #
+#' setdiff(my_scores_1, my_scores_2)@scores
+#'
+#' #
+#' # setequal()
+#' #
+#' setequal(my_scores_1, my_scores_2)
+#' setequal(my_scores_1, my_scores_1)
+#' setequal(my_scores_2, my_scores_2)
+#'
+#' @md
 #' @name setop
 NULL
 
 #' @rdname setop
 #' @importFrom dplyr union
-#' @examples
-#' #
-#' # union()
-#' #
-#' # Coming soon...
-#'
 #' @export
 setGeneric('union', function(x, y) standardGeneric('union'))
 
 #' @rdname setop
 #' @importFrom dplyr intersect
-#' @examples
-#' #
-#' # intersect()
-#' #
-#' # Coming soon...
-#'
 #' @export
 setGeneric('intersect', function(x, y) standardGeneric('intersect'))
 
 #' @rdname setop
 #' @importFrom dplyr setdiff
-#' @examples
-#' #
-#' # setdiff()
-#' #
-#' # Coming soon...
-#'
 #' @export
 setGeneric('setdiff', function(x, y) standardGeneric('setdiff'))
 
 #' @rdname setop
 #' @importFrom dplyr setequal
-#' @examples
-#' #
-#' # setequal()
-#' #
-#' # Coming soon...
-#'
 #' @export
 setGeneric('setequal', function(x, y) standardGeneric('setequal'))
 
