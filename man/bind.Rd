@@ -7,9 +7,9 @@
 bind(x, ...)
 }
 \arguments{
-\item{x}{An object of class: \linkS4class{scores},
-\linkS4class{publications}, \linkS4class{traits},
-\linkS4class{performance_metrics}, or \linkS4class{sample_sets}.}
+\item{x}{An object of either class \linkS4class{scores}, \linkS4class{publications},
+\linkS4class{traits}, \linkS4class{performance_metrics}, \linkS4class{sample_sets},
+\linkS4class{cohorts} or \linkS4class{trait_categories}.}
 
 \item{...}{Objects of the same class as \code{x}.}
 }
@@ -22,6 +22,12 @@ Binds together PGS Catalog objects of the same class. Note that
 \code{\link[quincunx:setop]{union}} does not.
 }
 \examples{
-# Coming soon...
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# Get some `scores` objects:
+my_scores_1 <- get_scores(c('PGS000012', 'PGS000013'))
+my_scores_2 <- get_scores(c('PGS000013', 'PGS000014'))
 
+# NB: with `bind()`, PGS000013 is repeated (as opposed to `union()`)
+bind(my_scores_1, my_scores_2)@scores
+\dontshow{\}) # examplesIf}
 }

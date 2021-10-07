@@ -245,14 +245,20 @@ setMethod("setequal",
 #' \code{bind()} preserves duplicates whereas
 #' \code{\link[quincunx:setop]{union}} does not.
 #'
-#' @param x An object of class: \linkS4class{scores},
-#'   \linkS4class{publications}, \linkS4class{traits},
-#'   \linkS4class{performance_metrics}, or \linkS4class{sample_sets}.
+#' @param x An object of either class [scores-class], [publications-class],
+#'   [traits-class], [performance_metrics-class], [sample_sets-class],
+#'   [cohorts-class] or [trait_categories-class].
 #' @param ... Objects of the same class as \code{x}.
 #'
 #' @return An object of the same class as \code{x}.
-#' @examples
-#' # Coming soon...
+#' @md
+#' @examplesIf interactive()
+#' # Get some `scores` objects:
+#' my_scores_1 <- get_scores(c('PGS000012', 'PGS000013'))
+#' my_scores_2 <- get_scores(c('PGS000013', 'PGS000014'))
+#'
+#' # NB: with `bind()`, PGS000013 is repeated (as opposed to `union()`)
+#' bind(my_scores_1, my_scores_2)@scores
 #'
 #' @export
 setGeneric('bind', function(x, ...) standardGeneric('bind'))
