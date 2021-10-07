@@ -585,8 +585,8 @@ setMethod("[",
 
 #' Subset a performance_metrics object
 #'
-#' You can subset \linkS4class{performance_metrics} by identifier or by position using the
-#' \code{`[`} operator.
+#' You can subset \linkS4class{performance_metrics} by identifier or by position
+#' using the \code{`[`} operator.
 #'
 #' @param x A \linkS4class{performance_metrics} object.
 #' @param i Position of the identifier or the name of the identifier itself.
@@ -595,8 +595,19 @@ setMethod("[",
 #' @param drop Not used.
 #'
 #' @return A \linkS4class{performance_metrics} object.
-#' @examples
-#' # Coming soon...
+#' @examplesIf interactive()
+#' # Get a few performance metrics:
+#' my_ppm <- get_performance_metrics(sprintf('PPM%06d', 38:42))
+#'
+#' #
+#' # Subsetting by position
+#' #
+#' my_ppm[c(1, 4)]
+#'
+#' #
+#' # Subsetting by performance metrics identifier (character)
+#' #
+#' my_ppm['PPM000042']
 #'
 #' @name subset-performance_metrics
 NULL

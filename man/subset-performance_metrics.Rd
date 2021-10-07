@@ -28,11 +28,23 @@
 A \linkS4class{performance_metrics} object.
 }
 \description{
-You can subset \linkS4class{performance_metrics} by identifier or by position using the
-\code{`[`} operator.
+You can subset \linkS4class{performance_metrics} by identifier or by position
+using the \code{`[`} operator.
 }
 \examples{
-# Coming soon...
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# Get a few performance metrics:
+my_ppm <- get_performance_metrics(sprintf('PPM\%06d', 38:42))
 
+#
+# Subsetting by position
+#
+my_ppm[c(1, 4)]
+
+#
+# Subsetting by performance metrics identifier (character)
+#
+my_ppm['PPM000042']
+\dontshow{\}) # examplesIf}
 }
 \keyword{internal}
