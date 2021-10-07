@@ -184,8 +184,8 @@ get_publications <- function(pgp_id = NULL,
                              warnings = TRUE,
                              progress_bar = TRUE) {
 
-
-  if(!(rlang::is_scalar_character(set_operation) && set_operation %in% c('union', 'intersection')))
+  if(!(rlang::is_scalar_character(set_operation) &&
+       set_operation %in% c('union', 'intersection')))
     stop("set_operation must be either 'union' or 'intersection'")
 
   if(!(rlang::is_scalar_logical(verbose) && verbose %in% c(TRUE, FALSE)))
@@ -198,30 +198,36 @@ get_publications <- function(pgp_id = NULL,
 
   if (!rlang::is_null(pgp_id))
     list_of_publications[['get_publication_by_pgp_id']] <-
-    get_publication_by_pgp_id(pgp_id = pgp_id,
-                               verbose = verbose,
-                               warnings = warnings) %>%
+    get_publication_by_pgp_id(
+      pgp_id = pgp_id,
+      verbose = verbose,
+      warnings = warnings,
+      progress_bar = progress_bar
+    ) %>%
     coerce_to_s4_publications()
 
   if (!rlang::is_null(pgs_id))
     list_of_publications[['get_publication_by_pgs_id']] <-
     get_publication_by_pgs_id(pgs_id = pgs_id,
-                               verbose = verbose,
-                               warnings = warnings) %>%
+                              verbose = verbose,
+                              warnings = warnings,
+                              progress_bar = progress_bar) %>%
     coerce_to_s4_publications()
 
   if (!rlang::is_null(pubmed_id))
     list_of_publications[['get_publication_by_pubmed_id']] <-
     get_publication_by_pubmed_id(pubmed_id = pubmed_id,
                                  verbose = verbose,
-                                 warnings = warnings) %>%
+                                 warnings = warnings,
+                                 progress_bar = progress_bar) %>%
     coerce_to_s4_publications()
 
   if (!rlang::is_null(author))
     list_of_publications[['get_publication_by_author']] <-
     get_publication_by_author(author = author,
                               verbose = verbose,
-                              warnings = warnings) %>%
+                              warnings = warnings,
+                              progress_bar = progress_bar) %>%
     coerce_to_s4_publications()
 
   # If no criteria have been passed, i.e. all are NULL then got fetch all
@@ -241,7 +247,12 @@ get_publications <- function(pgp_id = NULL,
       default_answer = default_answer
     ))
       return(coerce_to_s4_publications(
-        get_publication_all(verbose = verbose, warnings = warnings)))
+        get_publication_all(
+          verbose = verbose,
+          warnings = warnings,
+          progress_bar = progress_bar
+        )
+      ))
     else
       return(coerce_to_s4_publications(NULL))
   } else {
