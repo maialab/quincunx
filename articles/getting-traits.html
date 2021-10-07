@@ -174,9 +174,9 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pgs_01</span><span class="op">@</span><span class="va">traits</span>
 <span class="co">#&gt; # A tibble: 1 × 5</span>
-<span class="co">#&gt;   pgs_id    efo_id      trait            description                 url        </span>
-<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt;                       &lt;chr&gt;      </span>
-<span class="co">#&gt; 1 PGS000001 EFO_0000305 breast carcinoma A carcinoma that arises fr… http://www…</span></code></pre></div>
+<span class="co">#&gt;   pgs_id    efo_id      trait            description               url          </span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt;                     &lt;chr&gt;        </span>
+<span class="co">#&gt; 1 PGS000001 EFO_0000305 breast carcinoma A carcinoma that arises … http://www.e…</span></code></pre></div>
 <p>Many PGSs have been developed and demonstrated to be predictive of common complex traits, e.g. body mass index (BMI)<span class="citation"><sup>1</sup></span>, blood lipids<span class="citation"><sup>2</sup></span> and educational attainment<span class="citation"><sup>3</sup></span>.</p>
 <p>Similarly, PGSs for various diseases have been shown to be predictive of disease incidence, defining marked increases in risk over the life course or at earlier ages for people with high PGSs, e.g. coronary artery disease<span class="citation"><sup>4,5</sup></span>, breast cancer<span class="citation"><sup>6</sup></span> and schizophrenia<span class="citation"><sup>7</sup></span>.</p>
 </div>
@@ -204,12 +204,13 @@
 <span class="co">#&gt; 1 EFO_0000712 &lt;NA&gt;          FALSE    stroke A sudden loss of neurol… http://www…</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Slot "pgs_ids":</span>
-<span class="co">#&gt; # A tibble: 3 × 4</span>
+<span class="co">#&gt; # A tibble: 4 × 4</span>
 <span class="co">#&gt;   efo_id      parent_efo_id is_child pgs_id   </span>
 <span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;    </span>
 <span class="co">#&gt; 1 EFO_0000712 &lt;NA&gt;          FALSE    PGS000038</span>
 <span class="co">#&gt; 2 EFO_0000712 &lt;NA&gt;          FALSE    PGS000039</span>
 <span class="co">#&gt; 3 EFO_0000712 &lt;NA&gt;          FALSE    PGS000665</span>
+<span class="co">#&gt; 4 EFO_0000712 &lt;NA&gt;          FALSE    PGS000911</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Slot "child_pgs_ids":</span>
 <span class="co">#&gt; # A tibble: 0 × 4</span>
@@ -274,14 +275,16 @@
 <span class="co">#&gt; 2 EFO_0000712 &lt;NA&gt;          FALSE    stroke          A sudden loss o… http://ww…</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Slot "pgs_ids":</span>
-<span class="co">#&gt; # A tibble: 5 × 4</span>
+<span class="co">#&gt; # A tibble: 7 × 4</span>
 <span class="co">#&gt;   efo_id      parent_efo_id is_child pgs_id   </span>
 <span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;    </span>
 <span class="co">#&gt; 1 HP_0002140  &lt;NA&gt;          FALSE    PGS000039</span>
 <span class="co">#&gt; 2 HP_0002140  &lt;NA&gt;          FALSE    PGS000665</span>
-<span class="co">#&gt; 3 EFO_0000712 &lt;NA&gt;          FALSE    PGS000038</span>
-<span class="co">#&gt; 4 EFO_0000712 &lt;NA&gt;          FALSE    PGS000039</span>
-<span class="co">#&gt; 5 EFO_0000712 &lt;NA&gt;          FALSE    PGS000665</span>
+<span class="co">#&gt; 3 HP_0002140  &lt;NA&gt;          FALSE    PGS000911</span>
+<span class="co">#&gt; 4 EFO_0000712 &lt;NA&gt;          FALSE    PGS000038</span>
+<span class="co">#&gt; 5 EFO_0000712 &lt;NA&gt;          FALSE    PGS000039</span>
+<span class="co">#&gt; 6 EFO_0000712 &lt;NA&gt;          FALSE    PGS000665</span>
+<span class="co">#&gt; 7 EFO_0000712 &lt;NA&gt;          FALSE    PGS000911</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Slot "child_pgs_ids":</span>
 <span class="co">#&gt; # A tibble: 0 × 4</span>
@@ -345,13 +348,13 @@
 <span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;     &lt;chr&gt;              &lt;chr&gt;       </span>
 <span class="co">#&gt; 1 MONDO_0007254 &lt;NA&gt;          FALSE    breast c… A primary or meta… http://purl…</span>
 <span class="co">#&gt; 2 EFO_0000305   MONDO_0007254 TRUE     breast c… A carcinoma that … http://www.…</span>
-<span class="co">#&gt; 3 MONDO_0021116 MONDO_0007254 TRUE     luminal … A biologic subset… http://purl…</span>
-<span class="co">#&gt; 4 MONDO_0021115 MONDO_0007254 TRUE     luminal … A biologic subset… http://purl…</span>
-<span class="co">#&gt; 5 EFO_1000650   MONDO_0007254 TRUE     estrogen… A subtype of brea… http://www.…</span>
+<span class="co">#&gt; 3 EFO_1000294   MONDO_0007254 TRUE     HER2 Pos… A biologic subset… http://www.…</span>
+<span class="co">#&gt; 4 MONDO_0000618 MONDO_0007254 TRUE     Her2-rec… &lt;NA&gt;               https://www…</span>
+<span class="co">#&gt; 5 MONDO_0021115 MONDO_0007254 TRUE     luminal … A biologic subset… http://purl…</span>
 <span class="co">#&gt; 6 EFO_1000649   MONDO_0007254 TRUE     estrogen… A subtype of brea… http://www.…</span>
-<span class="co">#&gt; 7 MONDO_0000618 MONDO_0007254 TRUE     Her2-rec… &lt;NA&gt;               https://www…</span>
+<span class="co">#&gt; 7 EFO_1000650   MONDO_0007254 TRUE     estrogen… A subtype of brea… http://www.…</span>
 <span class="co">#&gt; 8 EFO_0005537   MONDO_0007254 TRUE     triple-n… An invasive breas… http://www.…</span>
-<span class="co">#&gt; 9 EFO_1000294   MONDO_0007254 TRUE     HER2 Pos… A biologic subset… http://www.…</span>
+<span class="co">#&gt; 9 MONDO_0021116 MONDO_0007254 TRUE     luminal … A biologic subset… http://purl…</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Slot "pgs_ids":</span>
 <span class="co">#&gt; # A tibble: 106 × 4</span>
@@ -391,13 +394,13 @@
 <span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;           </span>
 <span class="co">#&gt; 1 MONDO_0007254 &lt;NA&gt;          FALSE    Cancer          </span>
 <span class="co">#&gt; 2 EFO_0000305   MONDO_0007254 TRUE     Cancer          </span>
-<span class="co">#&gt; 3 MONDO_0021116 MONDO_0007254 TRUE     Cancer          </span>
-<span class="co">#&gt; 4 MONDO_0021115 MONDO_0007254 TRUE     Cancer          </span>
-<span class="co">#&gt; 5 EFO_1000650   MONDO_0007254 TRUE     Cancer          </span>
+<span class="co">#&gt; 3 EFO_1000294   MONDO_0007254 TRUE     Cancer          </span>
+<span class="co">#&gt; 4 MONDO_0000618 MONDO_0007254 TRUE     Cancer          </span>
+<span class="co">#&gt; 5 MONDO_0021115 MONDO_0007254 TRUE     Cancer          </span>
 <span class="co">#&gt; 6 EFO_1000649   MONDO_0007254 TRUE     Cancer          </span>
-<span class="co">#&gt; 7 MONDO_0000618 MONDO_0007254 TRUE     Cancer          </span>
+<span class="co">#&gt; 7 EFO_1000650   MONDO_0007254 TRUE     Cancer          </span>
 <span class="co">#&gt; 8 EFO_0005537   MONDO_0007254 TRUE     Cancer          </span>
-<span class="co">#&gt; 9 EFO_1000294   MONDO_0007254 TRUE     Cancer          </span>
+<span class="co">#&gt; 9 MONDO_0021116 MONDO_0007254 TRUE     Cancer          </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Slot "trait_synonyms":</span>
 <span class="co">#&gt; # A tibble: 37 × 4</span>

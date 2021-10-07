@@ -55,8 +55,8 @@
   
 
 <meta property="og:title" content="Subset a releases object — subset-releases" />
-<meta property="og:description" content="You can subset releases by identifier or by position using the
-`[` operator." />
+<meta property="og:description" content="You can subset releases by identifier (release date) or by
+position using the `[` operator." />
 <meta property="og:image" content="https://maialab.org/quincunx/logo.svg" />
 
 
@@ -200,8 +200,8 @@
     </div>
 
     <div class="ref-description">
-    <p>You can subset <a href='releases-class.html'>releases</a> by identifier or by position using the
-<code><a href='https://rdrr.io/r/base/Extract.html'>`[`</a></code> operator.</p>
+    <p>You can subset <a href='releases-class.html'>releases</a> by identifier (release date) or by
+position using the <code><a href='https://rdrr.io/r/base/Extract.html'>`[`</a></code> operator.</p>
     </div>
 
     <pre class="usage"># S4 method for releases,missing,missing,missing
@@ -246,8 +246,33 @@
     <p>A <a href='releases-class.html'>releases</a> object.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Coming soon...</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span> <span class='co'># interactive()</span>
+<span class='co'># Get details about all PGS Catalog data releases thus far:</span>
+<span class='va'>all_releases</span> <span class='op'>&lt;-</span> <span class='fu'><a href='get_releases.html'>get_releases</a></span><span class='op'>(</span>date <span class='op'>=</span> <span class='st'>'all'</span>, progress_bar <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
+<span class='co'>#</span>
+<span class='co'># Subsetting by position</span>
+<span class='co'>#</span>
+<span class='co'># Releases are, by default, sorted by date in descending order, thus the</span>
+<span class='co'># first PGS Catalog release is in the last position of the returned</span>
+<span class='co'># `all_releases` object. Here's how you can extract that first release (last</span>
+<span class='co'># position in `all_releases`):</span>
+<span class='va'>all_releases</span><span class='op'>[</span><span class='fu'><a href='n.html'>n</a></span><span class='op'>(</span><span class='va'>all_releases</span><span class='op'>)</span><span class='op'>]</span>
+
+<span class='co'>#</span>
+<span class='co'># Subsetting by date (character)</span>
+<span class='co'>#</span>
+<span class='va'>date_of_interest</span> <span class='op'>&lt;-</span> <span class='st'>'2021-06-11'</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>date_of_interest</span><span class='op'>)</span>
+<span class='va'>all_releases</span><span class='op'>[</span><span class='va'>date_of_interest</span><span class='op'>]</span>
+
+<span class='co'>#</span>
+<span class='co'># Subsetting by date (Date object)</span>
+<span class='co'>#</span>
+<span class='va'>date_of_interest</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>'2021-06-11'</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>date_of_interest</span><span class='op'>)</span>
+<span class='va'>all_releases</span><span class='op'>[</span><span class='va'>date_of_interest</span><span class='op'>]</span>
+<span class='op'>}</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -253,8 +253,20 @@ avoid ambiguity with <code><a href='https://dplyr.tidyverse.org/reference/contex
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span> <span class='co'># interactive()</span>
-<span class='co'># E.g, the number of scores</span>
-<span class='fu'>n</span><span class='op'>(</span><span class='fu'><a href='get_scores.html'>get_scores</a></span><span class='op'>(</span>pgs_id <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'PGS000007'</span>, <span class='st'>'PGS000042'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'># Return the number of polygenic scores in a scores object:</span>
+<span class='va'>my_scores</span> <span class='op'>&lt;-</span> <span class='fu'><a href='get_scores.html'>get_scores</a></span><span class='op'>(</span>pgs_id <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'PGS000007'</span>, <span class='st'>'PGS000007'</span>, <span class='st'>'PGS000042'</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>n</span><span class='op'>(</span><span class='va'>my_scores</span><span class='op'>)</span>
+
+<span class='co'># If you want to count unique scores only, then use the `unique` parameter:</span>
+<span class='fu'>n</span><span class='op'>(</span><span class='va'>my_scores</span>, unique <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='co'># Total number of curated publications in the PGS Catalog:</span>
+<span class='va'>all_pub</span> <span class='op'>&lt;-</span> <span class='fu'><a href='get_publications.html'>get_publications</a></span><span class='op'>(</span>interactive <span class='op'>=</span> <span class='cn'>FALSE</span>, progress_bar <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='fu'>n</span><span class='op'>(</span><span class='va'>all_pub</span><span class='op'>)</span>
+
+<span class='co'># Total number of curated traits in the PGS Catalog:</span>
+<span class='va'>all_traits</span> <span class='op'>&lt;-</span> <span class='fu'><a href='get_traits.html'>get_traits</a></span><span class='op'>(</span>interactive <span class='op'>=</span> <span class='cn'>FALSE</span>, progress_bar <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='fu'>n</span><span class='op'>(</span><span class='va'>all_traits</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>

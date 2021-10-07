@@ -55,8 +55,8 @@
   
 
 <meta property="og:title" content="Subset a sample_sets object — subset-sample_sets" />
-<meta property="og:description" content="You can subset sample_sets by identifier or by position using the
-`[` operator." />
+<meta property="og:description" content="You can subset sample_sets by identifier or by position using
+the `[` operator." />
 <meta property="og:image" content="https://maialab.org/quincunx/logo.svg" />
 
 
@@ -200,8 +200,8 @@
     </div>
 
     <div class="ref-description">
-    <p>You can subset <a href='sample_sets-class.html'>sample_sets</a> by identifier or by position using the
-<code><a href='https://rdrr.io/r/base/Extract.html'>`[`</a></code> operator.</p>
+    <p>You can subset <a href='sample_sets-class.html'>sample_sets</a> by identifier or by position using
+the <code><a href='https://rdrr.io/r/base/Extract.html'>`[`</a></code> operator.</p>
     </div>
 
     <pre class="usage"># S4 method for sample_sets,missing,missing,missing
@@ -243,8 +243,20 @@
     <p>A <a href='sample_sets-class.html'>sample_sets</a> object.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Coming soon...</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span> <span class='co'># interactive()</span>
+<span class='co'># Get a few sample sets:</span>
+<span class='va'>my_pss</span> <span class='op'>&lt;-</span> <span class='fu'><a href='get_sample_sets.html'>get_sample_sets</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sprintf.html'>sprintf</a></span><span class='op'>(</span><span class='st'>'PSS%06d'</span>, <span class='fl'>42</span><span class='op'>:</span><span class='fl'>48</span><span class='op'>)</span><span class='op'>)</span>
 
+<span class='co'>#</span>
+<span class='co'># Subsetting by position</span>
+<span class='co'>#</span>
+<span class='va'>my_pss</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span><span class='op'>)</span><span class='op'>]</span>
+
+<span class='co'>#</span>
+<span class='co'># Subsetting by sample set identifier (character)</span>
+<span class='co'>#</span>
+<span class='va'>my_pss</span><span class='op'>[</span><span class='st'>'PSS000042'</span><span class='op'>]</span>
+<span class='op'>}</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
