@@ -14,6 +14,9 @@ write_xlsx(x, file = stop("`file` must be specified"))
 
 \item{file}{A file name to write to.}
 }
+\value{
+No return value, called for its side effect.
+}
 \description{
 This function exports a PGS Catalog object to Microsoft Excel xlsx file. Each
 table (slot) is saved in its own sheet.

@@ -9,6 +9,8 @@
 #'   \linkS4class{trait_categories} or \linkS4class{releases} object.
 #' @param file A file name to write to.
 #'
+#' @return No return value, called for its side effect.
+#'
 #' @export
 write_xlsx <- function(x, file = stop('`file` must be specified')) {
   lst <- s4_to_list(x)
