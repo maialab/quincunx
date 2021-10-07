@@ -548,8 +548,20 @@ setMethod("[",
 #' @param drop Not used.
 #'
 #' @return A \linkS4class{traits} object.
-#' @examples
-#' # Coming soon...
+#' @examplesIf interactive()
+#' # Get a few traits:
+#' my_traits <- get_traits(trait_term = 'stroke', exact_term = FALSE,
+#'                progress_bar = FALSE)
+#'
+#' #
+#' # Subsetting by position
+#' #
+#' my_traits[1]
+#'
+#' #
+#' # Subsetting by EFO trait identifier (character)
+#' #
+#' my_traits['EFO_0000712']
 #'
 #' @name subset-traits
 NULL

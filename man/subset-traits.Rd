@@ -32,7 +32,20 @@ You can subset \linkS4class{traits} by identifier or by position using the
 \code{`[`} operator.
 }
 \examples{
-# Coming soon...
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# Get a few traits:
+my_traits <- get_traits(trait_term = 'stroke', exact_term = FALSE,
+               progress_bar = FALSE)
 
+#
+# Subsetting by position
+#
+my_traits[1]
+
+#
+# Subsetting by EFO trait identifier (character)
+#
+my_traits['EFO_0000712']
+\dontshow{\}) # examplesIf}
 }
 \keyword{internal}
