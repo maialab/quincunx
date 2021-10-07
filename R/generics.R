@@ -454,8 +454,19 @@ setMethod("filter_by_id",
 #' @param drop Not used.
 #'
 #' @return A \linkS4class{scores} object.
-#' @examples
-#' # Coming soon...
+#' @examplesIf interactive()
+#' # Get a few polygenic scores:
+#' my_scores <- get_scores(sprintf('PGS%06d', 10:14), progress_bar = FALSE)
+#'
+#' #
+#' # Subsetting by position
+#' #
+#' my_scores[c(1, 3, 5)]@scores
+#'
+#' #
+#' # Subsetting by PGS identifier (character)
+#' #
+#' my_scores[c('PGS000011', 'PGS000014')]@scores
 #'
 #' @name subset-scores
 NULL

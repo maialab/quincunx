@@ -32,7 +32,19 @@ You can subset \linkS4class{scores} by identifier or by position using the
 \code{`[`} operator.
 }
 \examples{
-# Coming soon...
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# Get a few polygenic scores:
+my_scores <- get_scores(sprintf('PGS\%06d', 10:14), progress_bar = FALSE)
 
+#
+# Subsetting by position
+#
+my_scores[c(1, 3, 5)]@scores
+
+#
+# Subsetting by PGS identifier (character)
+#
+my_scores[c('PGS000011', 'PGS000014')]@scores
+\dontshow{\}) # examplesIf}
 }
 \keyword{internal}
