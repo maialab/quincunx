@@ -4,6 +4,13 @@
 # quincunx <img src='man/figures/logo.svg' align="right" height="139" />
 
 <!-- badges: start -->
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/quincunx)](https://CRAN.R-project.org/package=quincunx)
+[![License:
+MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![](https://img.shields.io/badge/doi-10.1093/bioinformatics/btab522-blue.svg)](https://doi.org/10.1093/bioinformatics/btab522)
 <!-- badges: end -->
 
 The goal of `{quincunx}` is to provide programmatic access to the
@@ -17,7 +24,14 @@ Browse the online documentation at
 
 ## Installation
 
-You can install the current version of `{quincunx}` with:
+Install `{quincunx}` from CRAN:
+
+``` r
+# Install from CRAN
+install.packages("quincunx")
+```
+
+You can instead install the development version of `{quincunx}` with:
 
 ``` r
 # install.packages("remotes")
