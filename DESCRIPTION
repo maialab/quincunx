@@ -1,7 +1,7 @@
 Package: quincunx
 Type: Package
 Title: REST API Client for the 'PGS' Catalog
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: c(
     person(given = "Ramiro", family = "Magno",
       email = "ramiro.magno@gmail.com",
