@@ -86,6 +86,16 @@ read_one_pgs_scoring_file <- function(file, metadata_only = FALSE) {
 
 }
 
+read_one_pgs_scoring_file_safe <- function(file, metadata_only = FALSE) {
+
+tryCatch(expr = read_one_pgs_scoring_file(file = file, metadata_only = metadata_only),
+         error = function(cnd) {
+           message(glue::glue('Could not download {file} because of: {conditionMessage(cnd)}'))
+           list(metadata = tibble::tibble(), data = tibble::tibble())
+           }
+         )
+}
+
 #' Read a polygenic scoring file
 #'
 #' This function imports a PGS scoring file. For more information about the
@@ -154,6 +164,6 @@ read_scoring_file <- function(source, protocol = 'http', metadata_only = FALSE) 
   source2[is_pgs_id(source2)] <- ftp_resources
   source2 <- stats::setNames(object = source2, nm = source)
 
-  purrr::map(source2, read_one_pgs_scoring_file, metadata_only = metadata_only)
+  purrr::map(source2, read_one_pgs_scoring_file_safe, metadata_only = metadata_only)
 
 }
