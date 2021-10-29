@@ -94,7 +94,7 @@ set_operation to 'intersection'." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">quincunx</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
       </span>
     </div>
 
@@ -286,9 +286,9 @@ mode search.</p>
 #&gt; 
 #&gt; Slot "publications":
 #&gt; <span style='color: #949494;'># A tibble: 1 × 8</span>
-#&gt;   ppm_id    pgp_id    pubmed_id publication_date publication title author_fullname
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          
-#&gt; <span style='color: #BCBCBC;'>1</span> PPM000001 PGP000001 25855707  2015-04-08       J Natl Can… Pred… Mavaddat N     
+#&gt;   ppm_id    pgp_id  pubmed_id publication_date publication title author_fullname
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          
+#&gt; <span style='color: #BCBCBC;'>1</span> PPM000001 PGP000… 25855707  2015-04-08       J Natl Can… Pred… Mavaddat N     
 #&gt; <span style='color: #949494;'># … with 1 more variable: doi &lt;chr&gt;</span>
 #&gt; 
 #&gt; Slot "sample_sets":
@@ -318,16 +318,16 @@ mode search.</p>
 #&gt; <span style='color: #949494;'># A tibble: 33 × 5</span>
 #&gt;    ppm_id    pss_id    sample_id cohort_symbol cohort_name                      
 #&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                            
-#&gt; <span style='color: #BCBCBC;'> 1</span> PPM000001 PSS000001         1 DEMOKRITOS    Hellenic Cooperative Oncology Gr…
-#&gt; <span style='color: #BCBCBC;'> 2</span> PPM000001 PSS000001         1 SBCS          Shanghai Breast Cancer Study     
-#&gt; <span style='color: #BCBCBC;'> 3</span> PPM000001 PSS000001         1 SEARCH        Study of Epidemiology and Risk F…
-#&gt; <span style='color: #BCBCBC;'> 4</span> PPM000001 PSS000001         1 MCBCS         Mayo Clinic Breast Cancer Study  
-#&gt; <span style='color: #BCBCBC;'> 5</span> PPM000001 PSS000001         1 RPCI          Roswell Park Cancer Institute    
-#&gt; <span style='color: #BCBCBC;'> 6</span> PPM000001 PSS000001         1 OSU           The Stefanie Spielman Breast Ban…
-#&gt; <span style='color: #BCBCBC;'> 7</span> PPM000001 PSS000001         1 GENICA        Gene Environment Interaction and…
-#&gt; <span style='color: #BCBCBC;'> 8</span> PPM000001 PSS000001         1 MARIE         Mammary Carcinoma Risk Factor In…
-#&gt; <span style='color: #BCBCBC;'> 9</span> PPM000001 PSS000001         1 BIGGS         Breast Cancer In Galway Genetic …
-#&gt; <span style='color: #BCBCBC;'>10</span> PPM000001 PSS000001         1 ABCS          Amsterdam Breast Cancer Study    
+#&gt; <span style='color: #BCBCBC;'> 1</span> PPM000001 PSS000001         1 ABCFS         Australian Breast Cancer Family …
+#&gt; <span style='color: #BCBCBC;'> 2</span> PPM000001 PSS000001         1 MCCS          Melbourne Collaborative Cohort S…
+#&gt; <span style='color: #BCBCBC;'> 3</span> PPM000001 PSS000001         1 HMBCS         Hannover-Minsk Breast Cancer Stu…
+#&gt; <span style='color: #BCBCBC;'> 4</span> PPM000001 PSS000001         1 LMBC          Leuven Multidisciplinary Breast …
+#&gt; <span style='color: #BCBCBC;'> 5</span> PPM000001 PSS000001         1 MTLGEBCS      Montreal Gene-Environment Breast…
+#&gt; <span style='color: #BCBCBC;'> 6</span> PPM000001 PSS000001         1 CGPS          Copenhagen General Population St…
+#&gt; <span style='color: #BCBCBC;'> 7</span> PPM000001 PSS000001         1 KBCP          Kuopio Breast Cancer Project     
+#&gt; <span style='color: #BCBCBC;'> 8</span> PPM000001 PSS000001         1 OBCS          Oulu Breast Cancer Study         
+#&gt; <span style='color: #BCBCBC;'> 9</span> PPM000001 PSS000001         1 CECILE        CECILE Breast Cancer Study       
+#&gt; <span style='color: #BCBCBC;'>10</span> PPM000001 PSS000001         1 BBCC          Bavarian Breast Cancer Cases and…
 #&gt; <span style='color: #949494;'># … with 23 more rows</span>
 #&gt; 
 #&gt; Slot "pgs_effect_sizes":
@@ -376,21 +376,21 @@ mode search.</p>
 #&gt; 
 #&gt; Slot "publications":
 #&gt; <span style='color: #949494;'># A tibble: 13 × 8</span>
-#&gt;    ppm_id    pgp_id    pubmed_id publication_date publication title author_fullname
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          
-#&gt; <span style='color: #BCBCBC;'> 1</span> PPM000001 PGP000001 25855707  2015-04-08       J Natl Can… Pred… Mavaddat N     
-#&gt; <span style='color: #BCBCBC;'> 2</span> PPM000011 PGP000002 30554720  2018-12-13       Am J Hum G… Poly… Mavaddat N     
-#&gt; <span style='color: #BCBCBC;'> 3</span> PPM000114 PGP000033 28376175  2017-07-01       J Natl Can… Eval… Kuchenbaecker …
-#&gt; <span style='color: #BCBCBC;'> 4</span> PPM000117 PGP000033 28376175  2017-07-01       J Natl Can… Eval… Kuchenbaecker …
-#&gt; <span style='color: #BCBCBC;'> 5</span> PPM000944 PGP000109 33022221  2020-10-05       Am J Hum G… Brea… Kramer I       
-#&gt; <span style='color: #BCBCBC;'> 6</span> PPM000945 PGP000109 33022221  2020-10-05       Am J Hum G… Brea… Kramer I       
-#&gt; <span style='color: #BCBCBC;'> 7</span> PPM000961 PGP000109 33022221  2020-10-05       Am J Hum G… Brea… Kramer I       
-#&gt; <span style='color: #BCBCBC;'> 8</span> PPM000962 PGP000109 33022221  2020-10-05       Am J Hum G… Brea… Kramer I       
-#&gt; <span style='color: #BCBCBC;'> 9</span> PPM002150 PGP000198 33372680  2020-12-29       J Natl Can… Perf… Borde J        
-#&gt; <span style='color: #BCBCBC;'>10</span> PPM002151 PGP000198 33372680  2020-12-29       J Natl Can… Perf… Borde J        
-#&gt; <span style='color: #BCBCBC;'>11</span> PPM002152 PGP000198 33372680  2020-12-29       J Natl Can… Perf… Borde J        
-#&gt; <span style='color: #BCBCBC;'>12</span> PPM002153 PGP000198 33372680  2020-12-29       J Natl Can… Perf… Borde J        
-#&gt; <span style='color: #BCBCBC;'>13</span> PPM002154 PGP000198 33372680  2020-12-29       J Natl Can… Perf… Borde J        
+#&gt;    ppm_id    pgp_id pubmed_id publication_date publication title author_fullname
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          
+#&gt; <span style='color: #BCBCBC;'> 1</span> PPM000001 PGP00… 25855707  2015-04-08       J Natl Can… Pred… Mavaddat N     
+#&gt; <span style='color: #BCBCBC;'> 2</span> PPM000011 PGP00… 30554720  2018-12-13       Am J Hum G… Poly… Mavaddat N     
+#&gt; <span style='color: #BCBCBC;'> 3</span> PPM000114 PGP00… 28376175  2017-07-01       J Natl Can… Eval… Kuchenbaecker …
+#&gt; <span style='color: #BCBCBC;'> 4</span> PPM000117 PGP00… 28376175  2017-07-01       J Natl Can… Eval… Kuchenbaecker …
+#&gt; <span style='color: #BCBCBC;'> 5</span> PPM000944 PGP00… 33022221  2020-10-05       Am J Hum G… Brea… Kramer I       
+#&gt; <span style='color: #BCBCBC;'> 6</span> PPM000945 PGP00… 33022221  2020-10-05       Am J Hum G… Brea… Kramer I       
+#&gt; <span style='color: #BCBCBC;'> 7</span> PPM000961 PGP00… 33022221  2020-10-05       Am J Hum G… Brea… Kramer I       
+#&gt; <span style='color: #BCBCBC;'> 8</span> PPM000962 PGP00… 33022221  2020-10-05       Am J Hum G… Brea… Kramer I       
+#&gt; <span style='color: #BCBCBC;'> 9</span> PPM002150 PGP00… 33372680  2020-12-29       J Natl Can… Perf… Borde J        
+#&gt; <span style='color: #BCBCBC;'>10</span> PPM002151 PGP00… 33372680  2020-12-29       J Natl Can… Perf… Borde J        
+#&gt; <span style='color: #BCBCBC;'>11</span> PPM002152 PGP00… 33372680  2020-12-29       J Natl Can… Perf… Borde J        
+#&gt; <span style='color: #BCBCBC;'>12</span> PPM002153 PGP00… 33372680  2020-12-29       J Natl Can… Perf… Borde J        
+#&gt; <span style='color: #BCBCBC;'>13</span> PPM002154 PGP00… 33372680  2020-12-29       J Natl Can… Perf… Borde J        
 #&gt; <span style='color: #949494;'># … with 1 more variable: doi &lt;chr&gt;</span>
 #&gt; 
 #&gt; Slot "sample_sets":

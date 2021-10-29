@@ -94,7 +94,7 @@ set_operation to 'intersection'." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">quincunx</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
       </span>
     </div>
 
@@ -298,11 +298,13 @@ mode search.</p>
 #&gt; <span style='color: #BCBCBC;'>1</span> EFO_0004631 <span style='color: #BB0000;'>NA</span>            FALSE    vitamin D measurement <span style='color: #949494;'>"</span>A quantifica… http:…
 #&gt; 
 #&gt; Slot "pgs_ids":
-#&gt; <span style='color: #949494;'># A tibble: 2 × 4</span>
+#&gt; <span style='color: #949494;'># A tibble: 4 × 4</span>
 #&gt;   efo_id      parent_efo_id is_child pgs_id   
 #&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
 #&gt; <span style='color: #BCBCBC;'>1</span> EFO_0004631 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000702
 #&gt; <span style='color: #BCBCBC;'>2</span> EFO_0004631 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000882
+#&gt; <span style='color: #BCBCBC;'>3</span> EFO_0004631 <span style='color: #BB0000;'>NA</span>            FALSE    PGS001186
+#&gt; <span style='color: #BCBCBC;'>4</span> EFO_0004631 <span style='color: #BB0000;'>NA</span>            FALSE    PGS001187
 #&gt; 
 #&gt; Slot "child_pgs_ids":
 #&gt; <span style='color: #949494;'># A tibble: 0 × 4</span>
@@ -478,7 +480,7 @@ mode search.</p>
 #&gt; <span style='color: #949494;'>#   pgs_id &lt;chr&gt;</span>
 #&gt; 
 #&gt; Slot "child_pgs_ids":
-#&gt; <span style='color: #949494;'># A tibble: 106 × 4</span>
+#&gt; <span style='color: #949494;'># A tibble: 107 × 4</span>
 #&gt;    efo_id        parent_efo_id is_child child_pgs_id
 #&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       
 #&gt; <span style='color: #BCBCBC;'> 1</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000001   
@@ -491,7 +493,7 @@ mode search.</p>
 #&gt; <span style='color: #BCBCBC;'> 8</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000008   
 #&gt; <span style='color: #BCBCBC;'> 9</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000009   
 #&gt; <span style='color: #BCBCBC;'>10</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000015   
-#&gt; <span style='color: #949494;'># … with 96 more rows</span>
+#&gt; <span style='color: #949494;'># … with 97 more rows</span>
 #&gt; 
 #&gt; Slot "trait_categories":
 #&gt; <span style='color: #949494;'># A tibble: 1 × 4</span>
@@ -533,33 +535,33 @@ mode search.</p>
 #&gt;   efo_id        parent_efo_id is_child trait     description        url         
 #&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       
 #&gt; <span style='color: #BCBCBC;'>1</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    breast c… A primary or meta… http://purl…
-#&gt; <span style='color: #BCBCBC;'>2</span> EFO_0000305   MONDO_0007254 TRUE     breast c… A carcinoma that … http://www.…
-#&gt; <span style='color: #BCBCBC;'>3</span> EFO_1000294   MONDO_0007254 TRUE     HER2 Pos… A biologic subset… http://www.…
-#&gt; <span style='color: #BCBCBC;'>4</span> MONDO_0000618 MONDO_0007254 TRUE     Her2-rec… <span style='color: #BB0000;'>NA</span>                 https://www…
-#&gt; <span style='color: #BCBCBC;'>5</span> MONDO_0021115 MONDO_0007254 TRUE     luminal … A biologic subset… http://purl…
-#&gt; <span style='color: #BCBCBC;'>6</span> EFO_1000649   MONDO_0007254 TRUE     estrogen… A subtype of brea… http://www.…
-#&gt; <span style='color: #BCBCBC;'>7</span> EFO_1000650   MONDO_0007254 TRUE     estrogen… A subtype of brea… http://www.…
+#&gt; <span style='color: #BCBCBC;'>2</span> MONDO_0021116 MONDO_0007254 TRUE     luminal … A biologic subset… http://purl…
+#&gt; <span style='color: #BCBCBC;'>3</span> MONDO_0021115 MONDO_0007254 TRUE     luminal … A biologic subset… http://purl…
+#&gt; <span style='color: #BCBCBC;'>4</span> EFO_1000649   MONDO_0007254 TRUE     estrogen… A subtype of brea… http://www.…
+#&gt; <span style='color: #BCBCBC;'>5</span> EFO_1000650   MONDO_0007254 TRUE     estrogen… A subtype of brea… http://www.…
+#&gt; <span style='color: #BCBCBC;'>6</span> EFO_1000294   MONDO_0007254 TRUE     HER2 Pos… A biologic subset… http://www.…
+#&gt; <span style='color: #BCBCBC;'>7</span> MONDO_0000618 MONDO_0007254 TRUE     Her2-rec… <span style='color: #BB0000;'>NA</span>                 https://www…
 #&gt; <span style='color: #BCBCBC;'>8</span> EFO_0005537   MONDO_0007254 TRUE     triple-n… An invasive breas… http://www.…
-#&gt; <span style='color: #BCBCBC;'>9</span> MONDO_0021116 MONDO_0007254 TRUE     luminal … A biologic subset… http://purl…
+#&gt; <span style='color: #BCBCBC;'>9</span> EFO_0000305   MONDO_0007254 TRUE     breast c… A carcinoma that … http://www.…
 #&gt; 
 #&gt; Slot "pgs_ids":
-#&gt; <span style='color: #949494;'># A tibble: 106 × 4</span>
-#&gt;    efo_id      parent_efo_id is_child pgs_id   
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
-#&gt; <span style='color: #BCBCBC;'> 1</span> EFO_0000305 MONDO_0007254 TRUE     PGS000001
-#&gt; <span style='color: #BCBCBC;'> 2</span> EFO_0000305 MONDO_0007254 TRUE     PGS000004
-#&gt; <span style='color: #BCBCBC;'> 3</span> EFO_0000305 MONDO_0007254 TRUE     PGS000007
-#&gt; <span style='color: #BCBCBC;'> 4</span> EFO_0000305 MONDO_0007254 TRUE     PGS000015
-#&gt; <span style='color: #BCBCBC;'> 5</span> EFO_0000305 MONDO_0007254 TRUE     PGS000028
-#&gt; <span style='color: #BCBCBC;'> 6</span> EFO_0000305 MONDO_0007254 TRUE     PGS000029
-#&gt; <span style='color: #BCBCBC;'> 7</span> EFO_0000305 MONDO_0007254 TRUE     PGS000045
-#&gt; <span style='color: #BCBCBC;'> 8</span> EFO_0000305 MONDO_0007254 TRUE     PGS000050
-#&gt; <span style='color: #BCBCBC;'> 9</span> EFO_0000305 MONDO_0007254 TRUE     PGS000051
-#&gt; <span style='color: #BCBCBC;'>10</span> EFO_0000305 MONDO_0007254 TRUE     PGS000052
-#&gt; <span style='color: #949494;'># … with 96 more rows</span>
+#&gt; <span style='color: #949494;'># A tibble: 107 × 4</span>
+#&gt;    efo_id        parent_efo_id is_child pgs_id   
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    
+#&gt; <span style='color: #BCBCBC;'> 1</span> MONDO_0021116 MONDO_0007254 TRUE     PGS000212
+#&gt; <span style='color: #BCBCBC;'> 2</span> MONDO_0021115 MONDO_0007254 TRUE     PGS000214
+#&gt; <span style='color: #BCBCBC;'> 3</span> EFO_1000649   MONDO_0007254 TRUE     PGS000002
+#&gt; <span style='color: #BCBCBC;'> 4</span> EFO_1000649   MONDO_0007254 TRUE     PGS000005
+#&gt; <span style='color: #BCBCBC;'> 5</span> EFO_1000649   MONDO_0007254 TRUE     PGS000008
+#&gt; <span style='color: #BCBCBC;'> 6</span> EFO_1000649   MONDO_0007254 TRUE     PGS000046
+#&gt; <span style='color: #BCBCBC;'> 7</span> EFO_1000649   MONDO_0007254 TRUE     PGS000347
+#&gt; <span style='color: #BCBCBC;'> 8</span> EFO_1000649   MONDO_0007254 TRUE     PGS000774
+#&gt; <span style='color: #BCBCBC;'> 9</span> EFO_1000650   MONDO_0007254 TRUE     PGS000003
+#&gt; <span style='color: #BCBCBC;'>10</span> EFO_1000650   MONDO_0007254 TRUE     PGS000006
+#&gt; <span style='color: #949494;'># … with 97 more rows</span>
 #&gt; 
 #&gt; Slot "child_pgs_ids":
-#&gt; <span style='color: #949494;'># A tibble: 125 × 4</span>
+#&gt; <span style='color: #949494;'># A tibble: 126 × 4</span>
 #&gt;    efo_id        parent_efo_id is_child child_pgs_id
 #&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       
 #&gt; <span style='color: #BCBCBC;'> 1</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000001   
@@ -572,21 +574,21 @@ mode search.</p>
 #&gt; <span style='color: #BCBCBC;'> 8</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000008   
 #&gt; <span style='color: #BCBCBC;'> 9</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000009   
 #&gt; <span style='color: #BCBCBC;'>10</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    PGS000015   
-#&gt; <span style='color: #949494;'># … with 115 more rows</span>
+#&gt; <span style='color: #949494;'># … with 116 more rows</span>
 #&gt; 
 #&gt; Slot "trait_categories":
 #&gt; <span style='color: #949494;'># A tibble: 9 × 4</span>
 #&gt;   efo_id        parent_efo_id is_child trait_categories
 #&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;lgl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           
 #&gt; <span style='color: #BCBCBC;'>1</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    Cancer          
-#&gt; <span style='color: #BCBCBC;'>2</span> EFO_0000305   MONDO_0007254 TRUE     Cancer          
-#&gt; <span style='color: #BCBCBC;'>3</span> EFO_1000294   MONDO_0007254 TRUE     Cancer          
-#&gt; <span style='color: #BCBCBC;'>4</span> MONDO_0000618 MONDO_0007254 TRUE     Cancer          
-#&gt; <span style='color: #BCBCBC;'>5</span> MONDO_0021115 MONDO_0007254 TRUE     Cancer          
-#&gt; <span style='color: #BCBCBC;'>6</span> EFO_1000649   MONDO_0007254 TRUE     Cancer          
-#&gt; <span style='color: #BCBCBC;'>7</span> EFO_1000650   MONDO_0007254 TRUE     Cancer          
+#&gt; <span style='color: #BCBCBC;'>2</span> MONDO_0021116 MONDO_0007254 TRUE     Cancer          
+#&gt; <span style='color: #BCBCBC;'>3</span> MONDO_0021115 MONDO_0007254 TRUE     Cancer          
+#&gt; <span style='color: #BCBCBC;'>4</span> EFO_1000649   MONDO_0007254 TRUE     Cancer          
+#&gt; <span style='color: #BCBCBC;'>5</span> EFO_1000650   MONDO_0007254 TRUE     Cancer          
+#&gt; <span style='color: #BCBCBC;'>6</span> EFO_1000294   MONDO_0007254 TRUE     Cancer          
+#&gt; <span style='color: #BCBCBC;'>7</span> MONDO_0000618 MONDO_0007254 TRUE     Cancer          
 #&gt; <span style='color: #BCBCBC;'>8</span> EFO_0005537   MONDO_0007254 TRUE     Cancer          
-#&gt; <span style='color: #BCBCBC;'>9</span> MONDO_0021116 MONDO_0007254 TRUE     Cancer          
+#&gt; <span style='color: #BCBCBC;'>9</span> EFO_0000305   MONDO_0007254 TRUE     Cancer          
 #&gt; 
 #&gt; Slot "trait_synonyms":
 #&gt; <span style='color: #949494;'># A tibble: 37 × 4</span>
@@ -601,7 +603,7 @@ mode search.</p>
 #&gt; <span style='color: #BCBCBC;'> 7</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    malignant tumor of breast       
 #&gt; <span style='color: #BCBCBC;'> 8</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    malignant tumor of the breast   
 #&gt; <span style='color: #BCBCBC;'> 9</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    mammary cancer                  
-#&gt; <span style='color: #BCBCBC;'>10</span> EFO_0000305   MONDO_0007254 TRUE     breast carcinoma                
+#&gt; <span style='color: #BCBCBC;'>10</span> MONDO_0021116 MONDO_0007254 TRUE     Luminal A                       
 #&gt; <span style='color: #949494;'># … with 27 more rows</span>
 #&gt; 
 #&gt; Slot "trait_mapped_terms":
@@ -614,10 +616,10 @@ mode search.</p>
 #&gt; <span style='color: #BCBCBC;'> 4</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    ICD9:174.8        
 #&gt; <span style='color: #BCBCBC;'> 5</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    NCIT:C9335        
 #&gt; <span style='color: #BCBCBC;'> 6</span> MONDO_0007254 <span style='color: #BB0000;'>NA</span>            FALSE    SCTID:254837009   
-#&gt; <span style='color: #BCBCBC;'> 7</span> EFO_0000305   MONDO_0007254 TRUE     DOID:3459         
-#&gt; <span style='color: #BCBCBC;'> 8</span> EFO_0000305   MONDO_0007254 TRUE     EFO:0000305       
-#&gt; <span style='color: #BCBCBC;'> 9</span> EFO_0000305   MONDO_0007254 TRUE     MONDO:0004989     
-#&gt; <span style='color: #BCBCBC;'>10</span> EFO_0000305   MONDO_0007254 TRUE     NCIT:C4872        
+#&gt; <span style='color: #BCBCBC;'> 7</span> MONDO_0021116 MONDO_0007254 TRUE     NCIT:C53554       
+#&gt; <span style='color: #BCBCBC;'> 8</span> MONDO_0021116 MONDO_0007254 TRUE     UMLS:C3642345     
+#&gt; <span style='color: #BCBCBC;'> 9</span> MONDO_0021115 MONDO_0007254 TRUE     NCIT:C53555       
+#&gt; <span style='color: #BCBCBC;'>10</span> MONDO_0021115 MONDO_0007254 TRUE     UMLS:C3642346     
 #&gt; <span style='color: #949494;'># … with 26 more rows</span>
 #&gt; </div><div class='input'>
 </div></pre>

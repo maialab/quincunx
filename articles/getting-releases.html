@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">quincunx</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
       </span>
     </div>
 
@@ -168,37 +168,33 @@
 <span class="co">#&gt; # A tibble: 1 × 5</span>
 <span class="co">#&gt;   date       n_pgs n_ppm n_pgp notes                                            </span>
 <span class="co">#&gt;   &lt;date&gt;     &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;                                            </span>
-<span class="co">#&gt; 1 2021-10-07    17   328     6 This release contains 17 new Score(s), 6 new Pub…</span>
+<span class="co">#&gt; 1 2021-10-21   428  2124     1 This release contains 428 new Score(s), 1 new Pu…</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Slot "pgs_ids":</span>
-<span class="co">#&gt; # A tibble: 17 × 2</span>
+<span class="co">#&gt; # A tibble: 428 × 2</span>
 <span class="co">#&gt;   date       pgs_id   </span>
 <span class="co">#&gt;   &lt;date&gt;     &lt;chr&gt;    </span>
-<span class="co">#&gt; 1 2021-10-07 PGS000883</span>
-<span class="co">#&gt; 2 2021-10-07 PGS000884</span>
-<span class="co">#&gt; 3 2021-10-07 PGS000885</span>
-<span class="co">#&gt; 4 2021-10-07 PGS000907</span>
-<span class="co">#&gt; # … with 13 more rows</span>
+<span class="co">#&gt; 1 2021-10-21 PGS000922</span>
+<span class="co">#&gt; 2 2021-10-21 PGS000923</span>
+<span class="co">#&gt; 3 2021-10-21 PGS000924</span>
+<span class="co">#&gt; 4 2021-10-21 PGS000925</span>
+<span class="co">#&gt; # … with 424 more rows</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Slot "ppm_ids":</span>
-<span class="co">#&gt; # A tibble: 328 × 2</span>
+<span class="co">#&gt; # A tibble: 2,124 × 2</span>
 <span class="co">#&gt;   date       ppm_id   </span>
 <span class="co">#&gt;   &lt;date&gt;     &lt;chr&gt;    </span>
-<span class="co">#&gt; 1 2021-10-07 PPM002528</span>
-<span class="co">#&gt; 2 2021-10-07 PPM002529</span>
-<span class="co">#&gt; 3 2021-10-07 PPM002530</span>
-<span class="co">#&gt; 4 2021-10-07 PPM002531</span>
-<span class="co">#&gt; # … with 324 more rows</span>
+<span class="co">#&gt; 1 2021-10-21 PPM002994</span>
+<span class="co">#&gt; 2 2021-10-21 PPM002995</span>
+<span class="co">#&gt; 3 2021-10-21 PPM002996</span>
+<span class="co">#&gt; 4 2021-10-21 PPM002997</span>
+<span class="co">#&gt; # … with 2,120 more rows</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Slot "pgp_ids":</span>
-<span class="co">#&gt; # A tibble: 6 × 2</span>
+<span class="co">#&gt; # A tibble: 1 × 2</span>
 <span class="co">#&gt;   date       pgp_id   </span>
 <span class="co">#&gt;   &lt;date&gt;     &lt;chr&gt;    </span>
-<span class="co">#&gt; 1 2021-10-07 PGP000229</span>
-<span class="co">#&gt; 2 2021-10-07 PGP000238</span>
-<span class="co">#&gt; 3 2021-10-07 PGP000239</span>
-<span class="co">#&gt; 4 2021-10-07 PGP000240</span>
-<span class="co">#&gt; # … with 2 more rows</span></code></pre></div>
+<span class="co">#&gt; 1 2021-10-21 PGP000244</span></code></pre></div>
 </div>
 <div id="release-by-date" class="section level2">
 <h2 class="hasAnchor">
@@ -249,44 +245,44 @@
 <code class="sourceCode R"><span class="op">(</span><span class="va">all_releases</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_releases.html">get_releases</a></span><span class="op">(</span>date <span class="op">=</span> <span class="st">'all'</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; An object of class "releases"</span>
 <span class="co">#&gt; Slot "releases":</span>
-<span class="co">#&gt; # A tibble: 34 × 5</span>
+<span class="co">#&gt; # A tibble: 35 × 5</span>
 <span class="co">#&gt;   date       n_pgs n_ppm n_pgp notes                                            </span>
 <span class="co">#&gt;   &lt;date&gt;     &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;                                            </span>
-<span class="co">#&gt; 1 2021-10-07    17   328     6 This release contains 17 new Score(s), 6 new Pub…</span>
-<span class="co">#&gt; 2 2021-09-17     9    46     7 This release contains 9 new Score(s), 7 new Publ…</span>
-<span class="co">#&gt; 3 2021-08-26    18   120    17 This release contains 18 new Score(s), 17 new Pu…</span>
-<span class="co">#&gt; 4 2021-07-29    17    66    10 This release contains 17 new Score(s), 10 new Pu…</span>
-<span class="co">#&gt; # … with 30 more rows</span>
+<span class="co">#&gt; 1 2021-10-21   428  2124     1 This release contains 428 new Score(s), 1 new Pu…</span>
+<span class="co">#&gt; 2 2021-10-07    17   328     6 This release contains 17 new Score(s), 6 new Pub…</span>
+<span class="co">#&gt; 3 2021-09-17     9    46     7 This release contains 9 new Score(s), 7 new Publ…</span>
+<span class="co">#&gt; 4 2021-08-26    18   120    17 This release contains 18 new Score(s), 17 new Pu…</span>
+<span class="co">#&gt; # … with 31 more rows</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Slot "pgs_ids":</span>
-<span class="co">#&gt; # A tibble: 873 × 2</span>
+<span class="co">#&gt; # A tibble: 1,301 × 2</span>
 <span class="co">#&gt;   date       pgs_id   </span>
 <span class="co">#&gt;   &lt;date&gt;     &lt;chr&gt;    </span>
-<span class="co">#&gt; 1 2021-10-07 PGS000883</span>
-<span class="co">#&gt; 2 2021-10-07 PGS000884</span>
-<span class="co">#&gt; 3 2021-10-07 PGS000885</span>
-<span class="co">#&gt; 4 2021-10-07 PGS000907</span>
-<span class="co">#&gt; # … with 869 more rows</span>
+<span class="co">#&gt; 1 2021-10-21 PGS000922</span>
+<span class="co">#&gt; 2 2021-10-21 PGS000923</span>
+<span class="co">#&gt; 3 2021-10-21 PGS000924</span>
+<span class="co">#&gt; 4 2021-10-21 PGS000925</span>
+<span class="co">#&gt; # … with 1,297 more rows</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Slot "ppm_ids":</span>
-<span class="co">#&gt; # A tibble: 2,614 × 2</span>
+<span class="co">#&gt; # A tibble: 4,738 × 2</span>
 <span class="co">#&gt;   date       ppm_id   </span>
 <span class="co">#&gt;   &lt;date&gt;     &lt;chr&gt;    </span>
-<span class="co">#&gt; 1 2021-10-07 PPM002528</span>
-<span class="co">#&gt; 2 2021-10-07 PPM002529</span>
-<span class="co">#&gt; 3 2021-10-07 PPM002530</span>
-<span class="co">#&gt; 4 2021-10-07 PPM002531</span>
-<span class="co">#&gt; # … with 2,610 more rows</span>
+<span class="co">#&gt; 1 2021-10-21 PPM002994</span>
+<span class="co">#&gt; 2 2021-10-21 PPM002995</span>
+<span class="co">#&gt; 3 2021-10-21 PPM002996</span>
+<span class="co">#&gt; 4 2021-10-21 PPM002997</span>
+<span class="co">#&gt; # … with 4,734 more rows</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Slot "pgp_ids":</span>
-<span class="co">#&gt; # A tibble: 237 × 2</span>
+<span class="co">#&gt; # A tibble: 238 × 2</span>
 <span class="co">#&gt;   date       pgp_id   </span>
 <span class="co">#&gt;   &lt;date&gt;     &lt;chr&gt;    </span>
-<span class="co">#&gt; 1 2021-10-07 PGP000229</span>
-<span class="co">#&gt; 2 2021-10-07 PGP000238</span>
-<span class="co">#&gt; 3 2021-10-07 PGP000239</span>
-<span class="co">#&gt; 4 2021-10-07 PGP000240</span>
-<span class="co">#&gt; # … with 233 more rows</span></code></pre></div>
+<span class="co">#&gt; 1 2021-10-21 PGP000244</span>
+<span class="co">#&gt; 2 2021-10-07 PGP000229</span>
+<span class="co">#&gt; 3 2021-10-07 PGP000238</span>
+<span class="co">#&gt; 4 2021-10-07 PGP000239</span>
+<span class="co">#&gt; # … with 234 more rows</span></code></pre></div>
 </div>
   </div>
 

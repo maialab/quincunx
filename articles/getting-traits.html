@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">quincunx</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
       </span>
     </div>
 
@@ -164,9 +164,9 @@
 <code class="sourceCode R"><span class="va">pgs_01</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_scores.html">get_scores</a></span><span class="op">(</span><span class="st">'PGS000001'</span><span class="op">)</span>
 <span class="va">pgs_01</span><span class="op">@</span><span class="va">scores</span>
 <span class="co">#&gt; # A tibble: 1 × 12</span>
-<span class="co">#&gt;   pgs_id    pgs_name scoring_file matches_publica… reported_trait trait_additiona…</span>
-<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;        &lt;lgl&gt;            &lt;chr&gt;          &lt;chr&gt;           </span>
-<span class="co">#&gt; 1 PGS000001 PRS77_BC http://ftp.… TRUE             Breast Cancer  &lt;NA&gt;            </span>
+<span class="co">#&gt;   pgs_id  pgs_name scoring_file matches_publica… reported_trait trait_additiona…</span>
+<span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;        &lt;lgl&gt;            &lt;chr&gt;          &lt;chr&gt;           </span>
+<span class="co">#&gt; 1 PGS000… PRS77_BC http://ftp.… TRUE             Breast Cancer  &lt;NA&gt;            </span>
 <span class="co">#&gt; # … with 6 more variables: pgs_method_name &lt;chr&gt;, pgs_method_params &lt;chr&gt;,</span>
 <span class="co">#&gt; #   n_variants &lt;int&gt;, n_variants_interactions &lt;int&gt;, assembly &lt;chr&gt;,</span>
 <span class="co">#&gt; #   license &lt;chr&gt;</span></code></pre></div>
@@ -347,33 +347,33 @@
 <span class="co">#&gt;   efo_id        parent_efo_id is_child trait     description        url         </span>
 <span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;     &lt;chr&gt;              &lt;chr&gt;       </span>
 <span class="co">#&gt; 1 MONDO_0007254 &lt;NA&gt;          FALSE    breast c… A primary or meta… http://purl…</span>
-<span class="co">#&gt; 2 EFO_0000305   MONDO_0007254 TRUE     breast c… A carcinoma that … http://www.…</span>
-<span class="co">#&gt; 3 EFO_1000294   MONDO_0007254 TRUE     HER2 Pos… A biologic subset… http://www.…</span>
-<span class="co">#&gt; 4 MONDO_0000618 MONDO_0007254 TRUE     Her2-rec… &lt;NA&gt;               https://www…</span>
-<span class="co">#&gt; 5 MONDO_0021115 MONDO_0007254 TRUE     luminal … A biologic subset… http://purl…</span>
-<span class="co">#&gt; 6 EFO_1000649   MONDO_0007254 TRUE     estrogen… A subtype of brea… http://www.…</span>
-<span class="co">#&gt; 7 EFO_1000650   MONDO_0007254 TRUE     estrogen… A subtype of brea… http://www.…</span>
+<span class="co">#&gt; 2 MONDO_0021116 MONDO_0007254 TRUE     luminal … A biologic subset… http://purl…</span>
+<span class="co">#&gt; 3 MONDO_0021115 MONDO_0007254 TRUE     luminal … A biologic subset… http://purl…</span>
+<span class="co">#&gt; 4 EFO_1000649   MONDO_0007254 TRUE     estrogen… A subtype of brea… http://www.…</span>
+<span class="co">#&gt; 5 EFO_1000650   MONDO_0007254 TRUE     estrogen… A subtype of brea… http://www.…</span>
+<span class="co">#&gt; 6 EFO_1000294   MONDO_0007254 TRUE     HER2 Pos… A biologic subset… http://www.…</span>
+<span class="co">#&gt; 7 MONDO_0000618 MONDO_0007254 TRUE     Her2-rec… &lt;NA&gt;               https://www…</span>
 <span class="co">#&gt; 8 EFO_0005537   MONDO_0007254 TRUE     triple-n… An invasive breas… http://www.…</span>
-<span class="co">#&gt; 9 MONDO_0021116 MONDO_0007254 TRUE     luminal … A biologic subset… http://purl…</span>
+<span class="co">#&gt; 9 EFO_0000305   MONDO_0007254 TRUE     breast c… A carcinoma that … http://www.…</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Slot "pgs_ids":</span>
-<span class="co">#&gt; # A tibble: 106 × 4</span>
-<span class="co">#&gt;    efo_id      parent_efo_id is_child pgs_id   </span>
-<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;    </span>
-<span class="co">#&gt;  1 EFO_0000305 MONDO_0007254 TRUE     PGS000001</span>
-<span class="co">#&gt;  2 EFO_0000305 MONDO_0007254 TRUE     PGS000004</span>
-<span class="co">#&gt;  3 EFO_0000305 MONDO_0007254 TRUE     PGS000007</span>
-<span class="co">#&gt;  4 EFO_0000305 MONDO_0007254 TRUE     PGS000015</span>
-<span class="co">#&gt;  5 EFO_0000305 MONDO_0007254 TRUE     PGS000028</span>
-<span class="co">#&gt;  6 EFO_0000305 MONDO_0007254 TRUE     PGS000029</span>
-<span class="co">#&gt;  7 EFO_0000305 MONDO_0007254 TRUE     PGS000045</span>
-<span class="co">#&gt;  8 EFO_0000305 MONDO_0007254 TRUE     PGS000050</span>
-<span class="co">#&gt;  9 EFO_0000305 MONDO_0007254 TRUE     PGS000051</span>
-<span class="co">#&gt; 10 EFO_0000305 MONDO_0007254 TRUE     PGS000052</span>
-<span class="co">#&gt; # … with 96 more rows</span>
+<span class="co">#&gt; # A tibble: 107 × 4</span>
+<span class="co">#&gt;    efo_id        parent_efo_id is_child pgs_id   </span>
+<span class="co">#&gt;    &lt;chr&gt;         &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;    </span>
+<span class="co">#&gt;  1 MONDO_0021116 MONDO_0007254 TRUE     PGS000212</span>
+<span class="co">#&gt;  2 MONDO_0021115 MONDO_0007254 TRUE     PGS000214</span>
+<span class="co">#&gt;  3 EFO_1000649   MONDO_0007254 TRUE     PGS000002</span>
+<span class="co">#&gt;  4 EFO_1000649   MONDO_0007254 TRUE     PGS000005</span>
+<span class="co">#&gt;  5 EFO_1000649   MONDO_0007254 TRUE     PGS000008</span>
+<span class="co">#&gt;  6 EFO_1000649   MONDO_0007254 TRUE     PGS000046</span>
+<span class="co">#&gt;  7 EFO_1000649   MONDO_0007254 TRUE     PGS000347</span>
+<span class="co">#&gt;  8 EFO_1000649   MONDO_0007254 TRUE     PGS000774</span>
+<span class="co">#&gt;  9 EFO_1000650   MONDO_0007254 TRUE     PGS000003</span>
+<span class="co">#&gt; 10 EFO_1000650   MONDO_0007254 TRUE     PGS000006</span>
+<span class="co">#&gt; # … with 97 more rows</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Slot "child_pgs_ids":</span>
-<span class="co">#&gt; # A tibble: 125 × 4</span>
+<span class="co">#&gt; # A tibble: 126 × 4</span>
 <span class="co">#&gt;    efo_id        parent_efo_id is_child child_pgs_id</span>
 <span class="co">#&gt;    &lt;chr&gt;         &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;       </span>
 <span class="co">#&gt;  1 MONDO_0007254 &lt;NA&gt;          FALSE    PGS000001   </span>
@@ -386,21 +386,21 @@
 <span class="co">#&gt;  8 MONDO_0007254 &lt;NA&gt;          FALSE    PGS000008   </span>
 <span class="co">#&gt;  9 MONDO_0007254 &lt;NA&gt;          FALSE    PGS000009   </span>
 <span class="co">#&gt; 10 MONDO_0007254 &lt;NA&gt;          FALSE    PGS000015   </span>
-<span class="co">#&gt; # … with 115 more rows</span>
+<span class="co">#&gt; # … with 116 more rows</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Slot "trait_categories":</span>
 <span class="co">#&gt; # A tibble: 9 × 4</span>
 <span class="co">#&gt;   efo_id        parent_efo_id is_child trait_categories</span>
 <span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;         &lt;lgl&gt;    &lt;chr&gt;           </span>
 <span class="co">#&gt; 1 MONDO_0007254 &lt;NA&gt;          FALSE    Cancer          </span>
-<span class="co">#&gt; 2 EFO_0000305   MONDO_0007254 TRUE     Cancer          </span>
-<span class="co">#&gt; 3 EFO_1000294   MONDO_0007254 TRUE     Cancer          </span>
-<span class="co">#&gt; 4 MONDO_0000618 MONDO_0007254 TRUE     Cancer          </span>
-<span class="co">#&gt; 5 MONDO_0021115 MONDO_0007254 TRUE     Cancer          </span>
-<span class="co">#&gt; 6 EFO_1000649   MONDO_0007254 TRUE     Cancer          </span>
-<span class="co">#&gt; 7 EFO_1000650   MONDO_0007254 TRUE     Cancer          </span>
+<span class="co">#&gt; 2 MONDO_0021116 MONDO_0007254 TRUE     Cancer          </span>
+<span class="co">#&gt; 3 MONDO_0021115 MONDO_0007254 TRUE     Cancer          </span>
+<span class="co">#&gt; 4 EFO_1000649   MONDO_0007254 TRUE     Cancer          </span>
+<span class="co">#&gt; 5 EFO_1000650   MONDO_0007254 TRUE     Cancer          </span>
+<span class="co">#&gt; 6 EFO_1000294   MONDO_0007254 TRUE     Cancer          </span>
+<span class="co">#&gt; 7 MONDO_0000618 MONDO_0007254 TRUE     Cancer          </span>
 <span class="co">#&gt; 8 EFO_0005537   MONDO_0007254 TRUE     Cancer          </span>
-<span class="co">#&gt; 9 MONDO_0021116 MONDO_0007254 TRUE     Cancer          </span>
+<span class="co">#&gt; 9 EFO_0000305   MONDO_0007254 TRUE     Cancer          </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Slot "trait_synonyms":</span>
 <span class="co">#&gt; # A tibble: 37 × 4</span>
@@ -415,7 +415,7 @@
 <span class="co">#&gt;  7 MONDO_0007254 &lt;NA&gt;          FALSE    malignant tumor of breast       </span>
 <span class="co">#&gt;  8 MONDO_0007254 &lt;NA&gt;          FALSE    malignant tumor of the breast   </span>
 <span class="co">#&gt;  9 MONDO_0007254 &lt;NA&gt;          FALSE    mammary cancer                  </span>
-<span class="co">#&gt; 10 EFO_0000305   MONDO_0007254 TRUE     breast carcinoma                </span>
+<span class="co">#&gt; 10 MONDO_0021116 MONDO_0007254 TRUE     Luminal A                       </span>
 <span class="co">#&gt; # … with 27 more rows</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Slot "trait_mapped_terms":</span>
@@ -428,10 +428,10 @@
 <span class="co">#&gt;  4 MONDO_0007254 &lt;NA&gt;          FALSE    ICD9:174.8        </span>
 <span class="co">#&gt;  5 MONDO_0007254 &lt;NA&gt;          FALSE    NCIT:C9335        </span>
 <span class="co">#&gt;  6 MONDO_0007254 &lt;NA&gt;          FALSE    SCTID:254837009   </span>
-<span class="co">#&gt;  7 EFO_0000305   MONDO_0007254 TRUE     DOID:3459         </span>
-<span class="co">#&gt;  8 EFO_0000305   MONDO_0007254 TRUE     EFO:0000305       </span>
-<span class="co">#&gt;  9 EFO_0000305   MONDO_0007254 TRUE     MONDO:0004989     </span>
-<span class="co">#&gt; 10 EFO_0000305   MONDO_0007254 TRUE     NCIT:C4872        </span>
+<span class="co">#&gt;  7 MONDO_0021116 MONDO_0007254 TRUE     NCIT:C53554       </span>
+<span class="co">#&gt;  8 MONDO_0021116 MONDO_0007254 TRUE     UMLS:C3642345     </span>
+<span class="co">#&gt;  9 MONDO_0021115 MONDO_0007254 TRUE     NCIT:C53555       </span>
+<span class="co">#&gt; 10 MONDO_0021115 MONDO_0007254 TRUE     UMLS:C3642346     </span>
 <span class="co">#&gt; # … with 26 more rows</span></code></pre></div>
 <p>The column <code>is_child</code> indicates whether that trait is being retrieved because it is a direct result of the query or not. <code>is_child</code> is <code>TRUE</code> when the trait is returned because it is a child trait of a matching trait, and <code>FALSE</code> if a direct result of the query.</p>
 <p>In the case of child traits, the column <code>parent_efo_id</code> indicates the EFO trait identifier of the parent trait, i.e. the direct matching trait, or <code>NA</code> otherwise.</p>

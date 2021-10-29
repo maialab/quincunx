@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">quincunx</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
       </span>
     </div>
 
@@ -304,7 +304,7 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">all_pub</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_publications.html">get_publications</a></span><span class="op">(</span>interactive <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="va">all_pub</span><span class="op">@</span><span class="va">publications</span>
-<span class="co">#&gt; # A tibble: 237 × 8</span>
+<span class="co">#&gt; # A tibble: 238 × 8</span>
 <span class="co">#&gt;    pgp_id    pubmed_id publication_date publication  title author_fullname doi  </span>
 <span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;date&gt;           &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;</span>
 <span class="co">#&gt;  1 PGP000001 25855707  2015-04-08       J Natl Canc… Pred… Mavaddat N      10.1…</span>
@@ -317,7 +317,7 @@
 <span class="co">#&gt;  8 PGP000008 31184202  2019-06-11       Circ Genom … Vali… Wünnemann F     10.1…</span>
 <span class="co">#&gt;  9 PGP000009 28456682  2017-04-06       J Clin Lipi… Poly… Paquette M      10.1…</span>
 <span class="co">#&gt; 10 PGP000010 27513194  2016-08-11       Genet Med    Pers… Läll K          10.1…</span>
-<span class="co">#&gt; # … with 227 more rows, and 1 more variable: authors &lt;chr&gt;</span></code></pre></div>
+<span class="co">#&gt; # … with 228 more rows, and 1 more variable: authors &lt;chr&gt;</span></code></pre></div>
 <p>Filtering based on the year 2021:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span>, warn.conflicts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
@@ -336,7 +336,7 @@
 
 <span class="co"># Print the first 10 PGS publications</span>
 <span class="va">pub_2021</span><span class="op">@</span><span class="va">publications</span>
-<span class="co">#&gt; # A tibble: 52 × 8</span>
+<span class="co">#&gt; # A tibble: 53 × 8</span>
 <span class="co">#&gt;    pgp_id    pubmed_id publication_date publication  title author_fullname doi  </span>
 <span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;     &lt;date&gt;           &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;</span>
 <span class="co">#&gt;  1 PGP000050 33579919  2021-02-12       Nat Commun   Cros… Graff RE        10.1…</span>
@@ -349,7 +349,7 @@
 <span class="co">#&gt;  8 PGP000148 33472890  2021-01-20       Cancer Res   Asse… Hung RJ         10.1…</span>
 <span class="co">#&gt;  9 PGP000149 33623038  2021-02-23       Nat Commun   Poly… Huynh-Le MP     10.1…</span>
 <span class="co">#&gt; 10 PGP000150 33420416  2021-01-08       Prostate Ca… Addi… Karunamuni RA   10.1…</span>
-<span class="co">#&gt; # … with 42 more rows, and 1 more variable: authors &lt;chr&gt;</span></code></pre></div>
+<span class="co">#&gt; # … with 43 more rows, and 1 more variable: authors &lt;chr&gt;</span></code></pre></div>
 </div>
   </div>
 
