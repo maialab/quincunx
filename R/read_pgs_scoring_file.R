@@ -128,7 +128,7 @@ tryCatch(expr = read_one_pgs_scoring_file(file = file, metadata_only = metadata_
 #'   \code{vignette("pgs-scoring-file", package = "quincunx")}.
 #'
 #' @examples
-#'
+#' \dontrun{
 #' # Read a PGS scoring file by PGS ID
 #' # (internally, it translates the PGS ID
 #' #  to the corresponding FTP URL)
@@ -143,7 +143,7 @@ tryCatch(expr = read_one_pgs_scoring_file(file = file, metadata_only = metadata_
 #' )
 #' read_scoring_file(url)
 #'
-#' \dontrun{
+#'
 #' # Reading from a local file
 #' read_scoring_file("~/PGS000655.txt.gz")
 #' }

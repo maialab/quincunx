@@ -41,7 +41,7 @@ scoring file schema check \code{vignette("pgs-scoring-file", package =
 "quincunx")}.
 }
 \examples{
-
+\dontrun{
 # Read a PGS scoring file by PGS ID
 # (internally, it translates the PGS ID
 #  to the corresponding FTP URL)
@@ -56,7 +56,7 @@ url <- paste0(
 )
 read_scoring_file(url)
 
-\dontrun{
+
 # Reading from a local file
 read_scoring_file("~/PGS000655.txt.gz")
 }
