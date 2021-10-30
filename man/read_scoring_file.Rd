@@ -45,7 +45,7 @@ scoring file schema check \code{vignette("pgs-scoring-file", package =
 # Read a PGS scoring file by PGS ID
 # (internally, it translates the PGS ID
 #  to the corresponding FTP URL)
-read_scoring_file("PGS000655")
+try(read_scoring_file("PGS000655"))
 
 # Equivalent to `read_scoring_file("PGS000655")`
 url <- paste0(
@@ -58,6 +58,6 @@ read_scoring_file(url)
 
 
 # Reading from a local file
-read_scoring_file("~/PGS000655.txt.gz")
+try(read_scoring_file("~/PGS000655.txt.gz"))
 }
 }
