@@ -31,11 +31,15 @@ Install `{quincunx}` from CRAN:
 install.packages("quincunx")
 ```
 
-You can instead install the development version of `{quincunx}` with:
+You can instead install the development version of `{quincunx}` by
+setting [Ramiro Magno’s universe](https://ramiromagno.r-universe.dev/)
+repository:
 
 ``` r
-# install.packages("remotes")
-remotes::install_github("maialab/quincunx")
+options(repos = c(ramiromagno = 'https://ramiromagno.r-universe.dev',
+                CRAN = 'https://cloud.r-project.org'))
+
+install.packages('quincunx')
 ```
 
 ## Cheatsheet
