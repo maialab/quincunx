@@ -1,7 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://maialab.org/quincunx/404.html</loc>
+  </url>
+  <url>
+    <loc>https://maialab.org/quincunx/CODE_OF_CONDUCT.html</loc>
+  </url>
+  <url>
+    <loc>https://maialab.org/quincunx/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://maialab.org/quincunx/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://maialab.org/quincunx/articles/cohorts-samples-sample-sets.html</loc>
+  </url>
+  <url>
+    <loc>https://maialab.org/quincunx/articles/getting-cohorts.html</loc>
+  </url>
+  <url>
+    <loc>https://maialab.org/quincunx/articles/getting-pgs-performance-metrics.html</loc>
+  </url>
+  <url>
+    <loc>https://maialab.org/quincunx/articles/getting-pgs-publications.html</loc>
+  </url>
+  <url>
+    <loc>https://maialab.org/quincunx/articles/getting-pgs-sample-sets.html</loc>
+  </url>
+  <url>
+    <loc>https://maialab.org/quincunx/articles/getting-pgs-scores.html</loc>
+  </url>
+  <url>
+    <loc>https://maialab.org/quincunx/articles/getting-releases.html</loc>
+  </url>
+  <url>
+    <loc>https://maialab.org/quincunx/articles/getting-traits.html</loc>
+  </url>
+  <url>
+    <loc>https://maialab.org/quincunx/articles/identifiers.html</loc>
+  </url>
+  <url>
+    <loc>https://maialab.org/quincunx/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://maialab.org/quincunx/articles/pgs-cat-ent-subsetting.html</loc>
+  </url>
+  <url>
+    <loc>https://maialab.org/quincunx/articles/pgs-construction-process.html</loc>
+  </url>
+  <url>
+    <loc>https://maialab.org/quincunx/articles/pgs-scores-mavaddat.html</loc>
+  </url>
+  <url>
+    <loc>https://maialab.org/quincunx/articles/pgs-scoring-file.html</loc>
+  </url>
+  <url>
+    <loc>https://maialab.org/quincunx/articles/quincunx-development.html</loc>
+  </url>
+  <url>
+    <loc>https://maialab.org/quincunx/articles/quincunx-s-advantages.html</loc>
+  </url>
+  <url>
+    <loc>https://maialab.org/quincunx/articles/risk-strat-brs-patients.html</loc>
+  </url>
+  <url>
+    <loc>https://maialab.org/quincunx/authors.html</loc>
+  </url>
+  <url>
     <loc>https://maialab.org/quincunx/index.html</loc>
+  </url>
+  <url>
+    <loc>https://maialab.org/quincunx/news/index.html</loc>
   </url>
   <url>
     <loc>https://maialab.org/quincunx/reference/ancestry_categories.html</loc>
@@ -65,6 +134,9 @@
   </url>
   <url>
     <loc>https://maialab.org/quincunx/reference/get_traits.html</loc>
+  </url>
+  <url>
+    <loc>https://maialab.org/quincunx/reference/index.html</loc>
   </url>
   <url>
     <loc>https://maialab.org/quincunx/reference/is_paginated.html</loc>
@@ -257,53 +329,5 @@
   </url>
   <url>
     <loc>https://maialab.org/quincunx/reference/write_xlsx.html</loc>
-  </url>
-  <url>
-    <loc>https://maialab.org/quincunx/articles/cohorts-samples-sample-sets.html</loc>
-  </url>
-  <url>
-    <loc>https://maialab.org/quincunx/articles/getting-cohorts.html</loc>
-  </url>
-  <url>
-    <loc>https://maialab.org/quincunx/articles/getting-pgs-performance-metrics.html</loc>
-  </url>
-  <url>
-    <loc>https://maialab.org/quincunx/articles/getting-pgs-publications.html</loc>
-  </url>
-  <url>
-    <loc>https://maialab.org/quincunx/articles/getting-pgs-sample-sets.html</loc>
-  </url>
-  <url>
-    <loc>https://maialab.org/quincunx/articles/getting-pgs-scores.html</loc>
-  </url>
-  <url>
-    <loc>https://maialab.org/quincunx/articles/getting-releases.html</loc>
-  </url>
-  <url>
-    <loc>https://maialab.org/quincunx/articles/getting-traits.html</loc>
-  </url>
-  <url>
-    <loc>https://maialab.org/quincunx/articles/identifiers.html</loc>
-  </url>
-  <url>
-    <loc>https://maialab.org/quincunx/articles/pgs-cat-ent-subsetting.html</loc>
-  </url>
-  <url>
-    <loc>https://maialab.org/quincunx/articles/pgs-construction-process.html</loc>
-  </url>
-  <url>
-    <loc>https://maialab.org/quincunx/articles/pgs-scores-mavaddat.html</loc>
-  </url>
-  <url>
-    <loc>https://maialab.org/quincunx/articles/pgs-scoring-file.html</loc>
-  </url>
-  <url>
-    <loc>https://maialab.org/quincunx/articles/quincunx-development.html</loc>
-  </url>
-  <url>
-    <loc>https://maialab.org/quincunx/articles/quincunx-s-advantages.html</loc>
-  </url>
-  <url>
-    <loc>https://maialab.org/quincunx/articles/risk-strat-brs-patients.html</loc>
   </url>
 </urlset>

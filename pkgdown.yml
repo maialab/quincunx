@@ -1,5 +1,5 @@
 pandoc: 2.7.3
-pkgdown: 1.6.1
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   cohorts-samples-sample-sets: cohorts-samples-sample-sets.html
@@ -18,7 +18,7 @@ articles:
   quincunx-development: quincunx-development.html
   quincunx-s-advantages: quincunx-s-advantages.html
   risk-strat-brs-patients: risk-strat-brs-patients.html
-last_built: 2021-10-30T10:31Z
+last_built: 2022-08-13T16:17Z
 urls:
   reference: https://maialab.org/quincunx/reference
   article: https://maialab.org/quincunx/articles

@@ -29,6 +29,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -41,30 +43,25 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">quincunx</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.5</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
 <li class="divider">
-    <li class="dropdown-header">PGS Catalog Concepts</li>
+    </li>
+<li class="dropdown-header">PGS Catalog Concepts</li>
     <li>
       <a href="../articles/identifiers.html">Identifiers</a>
     </li>
@@ -75,7 +72,8 @@
       <a href="../articles/cohorts-samples-sample-sets.html">Cohorts, Samples and Sample Sets</a>
     </li>
     <li class="divider">
-    <li class="dropdown-header">Getting PGS Catalog Data</li>
+    </li>
+<li class="dropdown-header">Getting PGS Catalog Data</li>
     <li>
       <a href="../articles/getting-pgs-scores.html">Getting PGS Scores</a>
     </li>
@@ -101,12 +99,14 @@
       <a href="../articles/pgs-scoring-file.html">PGS scoring file</a>
     </li>
     <li class="divider">
-    <li class="dropdown-header">Wrangling PGS Catalog Data</li>
+    </li>
+<li class="dropdown-header">Wrangling PGS Catalog Data</li>
     <li>
       <a href="../articles/pgs-cat-ent-subsetting.html">PGS Catalog Entity Subsetting</a>
     </li>
     <li class="divider">
-    <li class="dropdown-header">Case Studies</li>
+    </li>
+<li class="dropdown-header">Case Studies</li>
     <li>
       <a href="../articles/risk-strat-brs-patients.html">Risk of Brugada syndrome patients</a>
     </li>
@@ -114,15 +114,19 @@
       <a href="../articles/pgs-scores-mavaddat.html">Exploring PGS scores by Mavaddat et al. (2018)</a>
     </li>
     <li class="divider">
-    <li>
-      <a href="../articles/index.html">More...</a>
+    </li>
+<li>
+      <a href="../articles/index.html">More articles...</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/maialab/quincunx/">
+  <a href="https://github.com/maialab/quincunx/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -149,136 +153,141 @@
       <h1 data-toc-skip>Cohorts, Samples and Sample Sets</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/maialab/quincunx/blob/master/vignettes/cohorts-samples-sample-sets.Rmd"><code>vignettes/cohorts-samples-sample-sets.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/maialab/quincunx/blob/HEAD/vignettes/cohorts-samples-sample-sets.Rmd" class="external-link"><code>vignettes/cohorts-samples-sample-sets.Rmd</code></a></small>
       <div class="hidden name"><code>cohorts-samples-sample-sets.Rmd</code></div>
 
     </div>
 
     
     
-<div id="cohorts" class="section level2">
-<h2 class="hasAnchor">
-<a href="#cohorts" class="anchor"></a>Cohorts</h2>
+<div class="section level2">
+<h2 id="cohorts">Cohorts<a class="anchor" aria-label="anchor" href="#cohorts"></a>
+</h2>
 <p>A cohort is a group of individuals with a shared characteristic. Cohorts are identified in quincunx by the <code>cohort_symbol</code> variable. See <code><a href="../articles/getting-cohorts.html">vignette('getting-cohorts')</a></code> on how to find associated polygenic scores.</p>
-<p><img src="../man/figures/cohorts.svg" width="90%"></p>
+<p><img src="../reference/figures/cohorts.svg" width="90%"></p>
 <p>Using <code><a href="../reference/get_cohorts.html">get_cohorts()</a></code> to retrieve associated PGS identifiers with cohort <code>"PROMIS"</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/get_cohorts.html">get_cohorts</a></span><span class="op">(</span><span class="st">'PROMIS'</span><span class="op">)</span>
-<span class="co">#&gt; An object of class "cohorts"</span>
-<span class="co">#&gt; Slot "cohorts":</span>
-<span class="co">#&gt; # A tibble: 1 × 2</span>
-<span class="co">#&gt;   cohort_symbol cohort_name                                     </span>
-<span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;                                           </span>
-<span class="co">#&gt; 1 PROMIS        The Pakistan Risk Of Myocardial Infarction Study</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Slot "pgs_ids":</span>
-<span class="co">#&gt; # A tibble: 14 × 3</span>
-<span class="co">#&gt;    cohort_symbol pgs_id    stage   </span>
-<span class="co">#&gt;    &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;   </span>
-<span class="co">#&gt;  1 PROMIS        PGS000011 gwas/dev</span>
-<span class="co">#&gt;  2 PROMIS        PGS000012 gwas/dev</span>
-<span class="co">#&gt;  3 PROMIS        PGS000013 gwas/dev</span>
-<span class="co">#&gt;  4 PROMIS        PGS000018 gwas/dev</span>
-<span class="co">#&gt;  5 PROMIS        PGS000019 gwas/dev</span>
-<span class="co">#&gt;  6 PROMIS        PGS000020 gwas/dev</span>
-<span class="co">#&gt;  7 PROMIS        PGS000058 gwas/dev</span>
-<span class="co">#&gt;  8 PROMIS        PGS000349 gwas/dev</span>
-<span class="co">#&gt;  9 PROMIS        PGS000746 gwas/dev</span>
-<span class="co">#&gt; 10 PROMIS        PGS000747 gwas/dev</span>
-<span class="co">#&gt; 11 PROMIS        PGS000748 gwas/dev</span>
-<span class="co">#&gt; 12 PROMIS        PGS000749 gwas/dev</span>
-<span class="co">#&gt; 13 PROMIS        PGS000818 gwas/dev</span>
-<span class="co">#&gt; 14 PROMIS        PGS000899 gwas/dev</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_cohorts.html">get_cohorts</a></span><span class="op">(</span><span class="st">'PROMIS'</span><span class="op">)</span></span>
+<span><span class="co">#&gt; An object of class "cohorts"</span></span>
+<span><span class="co">#&gt; Slot "cohorts":</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 2</span></span></span>
+<span><span class="co">#&gt;   cohort_symbol cohort_name                                     </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> PROMIS        The Pakistan Risk Of Myocardial Infarction Study</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Slot "pgs_ids":</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 14 × 3</span></span></span>
+<span><span class="co">#&gt;    cohort_symbol pgs_id    stage   </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> PROMIS        PGS000011 gwas/dev</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> PROMIS        PGS000012 gwas/dev</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> PROMIS        PGS000013 gwas/dev</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> PROMIS        PGS000018 gwas/dev</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> PROMIS        PGS000019 gwas/dev</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> PROMIS        PGS000020 gwas/dev</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> PROMIS        PGS000058 gwas/dev</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> PROMIS        PGS000349 gwas/dev</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> PROMIS        PGS000746 gwas/dev</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> PROMIS        PGS000747 gwas/dev</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> PROMIS        PGS000748 gwas/dev</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> PROMIS        PGS000749 gwas/dev</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> PROMIS        PGS000818 gwas/dev</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> PROMIS        PGS000899 gwas/dev</span></span></code></pre></div>
 </div>
-<div id="samples" class="section level2">
-<h2 class="hasAnchor">
-<a href="#samples" class="anchor"></a>Samples</h2>
+<div class="section level2">
+<h2 id="samples">Samples<a class="anchor" aria-label="anchor" href="#samples"></a>
+</h2>
 <p>A sample is a group of participants associated with none, one or more catalogued cohorts. The selection from a cohort can be either a subset or its totality. Samples are not identified in PGS Catalog with a global unique identifier, but quincunx assigns a surrogate identifier (<code>sample_id</code>) to allow relations between tables.</p>
-<p><img src="../man/figures/samples.svg" width="90%"></p>
+<p><img src="../reference/figures/samples.svg" width="90%"></p>
 <p>Sample composition is provided in slot <code>cohorts</code> from objects <code>scores</code> returned by the <code><a href="../reference/get_scores.html">get_scores()</a></code> function.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span>, warn.conflicts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="co"># PGS000001 is one of the polygenic scores that is based upon participants from</span>
-<span class="co"># cohort PROMIS</span>
-<span class="va">pgs_11</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_scores.html">get_scores</a></span><span class="op">(</span><span class="st">'PGS000011'</span><span class="op">)</span>
-
-<span class="co"># Cohort PROMIS is included in sample no. 2, along with LOLIPOP</span>
-<span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">pgs_11</span><span class="op">@</span><span class="va">cohorts</span>, <span class="va">sample_id</span> <span class="op">==</span> <span class="fl">2L</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 2 × 4</span>
-<span class="co">#&gt;   pgs_id    sample_id cohort_symbol cohort_name                                 </span>
-<span class="co">#&gt;   &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;                                       </span>
-<span class="co">#&gt; 1 PGS000011         2 PROMIS        The Pakistan Risk Of Myocardial Infarction …</span>
-<span class="co">#&gt; 2 PGS000011         2 LOLIPOP       London Life Sciences Population Study</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span>, warn.conflicts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># PGS000001 is one of the polygenic scores that is based upon participants from</span></span>
+<span><span class="co"># cohort PROMIS</span></span>
+<span><span class="va">pgs_11</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_scores.html">get_scores</a></span><span class="op">(</span><span class="st">'PGS000011'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Cohort PROMIS is included in sample no. 2, along with LOLIPOP</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">pgs_11</span><span class="op">@</span><span class="va">cohorts</span>, <span class="va">sample_id</span> <span class="op">==</span> <span class="fl">2L</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 4</span></span></span>
+<span><span class="co">#&gt;   pgs_id    sample_id cohort_symbol cohort_name                                 </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> PGS000011         2 PROMIS        The Pakistan Risk Of Myocardial Infarction …</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> PGS000011         2 LOLIPOP       London Life Sciences Population Study</span></span></code></pre></div>
 <p>To know a few more details about samples, look into the <code>samples</code> slot of the object <code>scores</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">pgs_11</span><span class="op">@</span><span class="va">samples</span>, <span class="va">sample_id</span> <span class="op">==</span> <span class="fl">2L</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 1 × 15</span>
-<span class="co">#&gt;   pgs_id    sample_id stage sample_size sample_cases sample_controls</span>
-<span class="co">#&gt;   &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;       &lt;int&gt;        &lt;int&gt;           &lt;int&gt;</span>
-<span class="co">#&gt; 1 PGS000011         2 gwas         8653         4394            4259</span>
-<span class="co">#&gt; # … with 9 more variables: sample_percent_male &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   phenotype_description &lt;chr&gt;, ancestry_category &lt;chr&gt;, ancestry &lt;chr&gt;,</span>
-<span class="co">#&gt; #   country &lt;chr&gt;, ancestry_additional_description &lt;chr&gt;, study_id &lt;chr&gt;,</span>
-<span class="co">#&gt; #   pubmed_id &lt;chr&gt;, cohorts_additional_description &lt;chr&gt;</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">pgs_11</span><span class="op">@</span><span class="va">samples</span>, <span class="va">sample_id</span> <span class="op">==</span> <span class="fl">2L</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 15</span></span></span>
+<span><span class="co">#&gt;   pgs_id   sampl…¹ stage sampl…² sampl…³ sampl…⁴ sampl…⁵ pheno…⁶ ances…⁷ ances…⁸</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> PGS0000…       2 gwas     <span style="text-decoration: underline;">8</span>653    <span style="text-decoration: underline;">4</span>394    <span style="text-decoration: underline;">4</span>259      <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>      South … <span style="color: #BB0000;">NA</span>     </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 5 more variables: country &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   ancestry_additional_description &lt;chr&gt;, study_id &lt;chr&gt;, pubmed_id &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   cohorts_additional_description &lt;chr&gt;, and abbreviated variable names</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   ¹​sample_id, ²​sample_size, ³​sample_cases, ⁴​sample_controls,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   ⁵​sample_percent_male, ⁶​phenotype_description, ⁷​ancestry_category, ⁸​ancestry</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ Use `colnames()` to see all variable names</span></span></span></code></pre></div>
 </div>
-<div id="sample-sets" class="section level2">
-<h2 class="hasAnchor">
-<a href="#sample-sets" class="anchor"></a>Sample sets</h2>
+<div class="section level2">
+<h2 id="sample-sets">Sample sets<a class="anchor" aria-label="anchor" href="#sample-sets"></a>
+</h2>
 <p>A sample set is a group of samples used in a polygenic score evaluation. Each sample set is identified in the PGS Catalog by a unique sample set identifier (<code>pss_id</code>).</p>
-<p><img src="../man/figures/sample_sets.svg" width="90%"></p>
+<p><img src="../reference/figures/sample_sets.svg" width="90%"></p>
 <p>To find the sample sets that included a specific cohort, we start by getting the PGS identifiers associated with a cohort, e.g. MHI:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Note that by the definition of sample set, samples included in sample sets</span>
-<span class="co"># are only used at PGS evaluation stages.</span>
-<span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="../reference/get_cohorts.html">get_cohorts</a></span><span class="op">(</span><span class="st">'MHI'</span><span class="op">)</span><span class="op">@</span><span class="va">pgs_ids</span>, <span class="va">stage</span> <span class="op">==</span> <span class="st">'eval'</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 2 × 3</span>
-<span class="co">#&gt;   cohort_symbol pgs_id    stage</span>
-<span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;</span>
-<span class="co">#&gt; 1 MHI           PGS000013 eval </span>
-<span class="co">#&gt; 2 MHI           PGS000018 eval</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Note that by the definition of sample set, samples included in sample sets</span></span>
+<span><span class="co"># are only used at PGS evaluation stages.</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="../reference/get_cohorts.html">get_cohorts</a></span><span class="op">(</span><span class="st">'MHI'</span><span class="op">)</span><span class="op">@</span><span class="va">pgs_ids</span>, <span class="va">stage</span> <span class="op">==</span> <span class="st">'eval'</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 3</span></span></span>
+<span><span class="co">#&gt;   cohort_symbol pgs_id    stage</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> MHI           PGS000013 eval </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> MHI           PGS000018 eval</span></span></code></pre></div>
 <p>PGS000013 is one of the polygenic scores whose evaluation used participants from the cohort MHI. We retrieve now the sample sets used in the evaluation of PGS000013:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Sample sets used in the evaluation of the PGS000013</span>
-<span class="va">pgs_13_sset</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_sample_sets.html">get_sample_sets</a></span><span class="op">(</span>pgs_id <span class="op">=</span> <span class="st">'PGS000013'</span><span class="op">)</span>
-<span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">pgs_13_sset</span><span class="op">@</span><span class="va">sample_sets</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 41</span>
-<span class="co">#&gt; Columns: 1</span>
-<span class="co">#&gt; $ pss_id &lt;chr&gt; "PSS000015", "PSS000019", "PSS000020", "PSS000021", "PSS000022"…</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Sample sets used in the evaluation of the PGS000013</span></span>
+<span><span class="va">pgs_13_sset</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_sample_sets.html">get_sample_sets</a></span><span class="op">(</span>pgs_id <span class="op">=</span> <span class="st">'PGS000013'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">pgs_13_sset</span><span class="op">@</span><span class="va">sample_sets</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 45</span></span>
+<span><span class="co">#&gt; Columns: 1</span></span>
+<span><span class="co">#&gt; $ pss_id <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "PSS000015", "PSS000019", "PSS000020", "PSS000021", "PSS000022"…</span></span></code></pre></div>
 <p>One of the sample sets used to evaluate PGS000013 is PSS000020. We can retrieve a <code>sample_set</code> object that contains its composition, i.e., the samples and cohorts included, along with other details:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/get_sample_sets.html">get_sample_sets</a></span><span class="op">(</span><span class="st">'PSS000020'</span><span class="op">)</span>
-<span class="co">#&gt; An object of class "sample_sets"</span>
-<span class="co">#&gt; Slot "sample_sets":</span>
-<span class="co">#&gt; # A tibble: 1 × 1</span>
-<span class="co">#&gt;   pss_id   </span>
-<span class="co">#&gt;   &lt;chr&gt;    </span>
-<span class="co">#&gt; 1 PSS000020</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Slot "samples":</span>
-<span class="co">#&gt; # A tibble: 2 × 15</span>
-<span class="co">#&gt;   pss_id    sample_id stage sample_size sample_cases sample_controls</span>
-<span class="co">#&gt;   &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;       &lt;int&gt;        &lt;int&gt;           &lt;int&gt;</span>
-<span class="co">#&gt; 1 PSS000020         1 eval          862          446             416</span>
-<span class="co">#&gt; 2 PSS000020         2 eval         2333          937            1396</span>
-<span class="co">#&gt; # … with 9 more variables: sample_percent_male &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   phenotype_description &lt;chr&gt;, ancestry_category &lt;chr&gt;, ancestry &lt;chr&gt;,</span>
-<span class="co">#&gt; #   country &lt;chr&gt;, ancestry_additional_description &lt;chr&gt;, study_id &lt;chr&gt;,</span>
-<span class="co">#&gt; #   pubmed_id &lt;chr&gt;, cohorts_additional_description &lt;chr&gt;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Slot "demographics":</span>
-<span class="co">#&gt; # A tibble: 0 × 11</span>
-<span class="co">#&gt; # … with 11 variables: pss_id &lt;chr&gt;, sample_id &lt;int&gt;, variable &lt;chr&gt;,</span>
-<span class="co">#&gt; #   estimate_type &lt;chr&gt;, estimate &lt;dbl&gt;, unit &lt;chr&gt;, variability_type &lt;chr&gt;,</span>
-<span class="co">#&gt; #   variability &lt;dbl&gt;, interval_type &lt;chr&gt;, interval_lower &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   interval_upper &lt;dbl&gt;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Slot "cohorts":</span>
-<span class="co">#&gt; # A tibble: 2 × 4</span>
-<span class="co">#&gt;   pss_id    sample_id cohort_symbol cohort_name                     </span>
-<span class="co">#&gt;   &lt;chr&gt;         &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;                           </span>
-<span class="co">#&gt; 1 PSS000020         1 MHI           Montreal Heart Institute Biobank</span>
-<span class="co">#&gt; 2 PSS000020         2 MHI           Montreal Heart Institute Biobank</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_sample_sets.html">get_sample_sets</a></span><span class="op">(</span><span class="st">'PSS000020'</span><span class="op">)</span></span>
+<span><span class="co">#&gt; An object of class "sample_sets"</span></span>
+<span><span class="co">#&gt; Slot "sample_sets":</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 1</span></span></span>
+<span><span class="co">#&gt;   pss_id   </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> PSS000020</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Slot "samples":</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 15</span></span></span>
+<span><span class="co">#&gt;   pss_id   sampl…¹ stage sampl…² sampl…³ sampl…⁴ sampl…⁵ pheno…⁶ ances…⁷ ances…⁸</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> PSS0000…       1 eval      862     446     416      <span style="color: #BB0000;">NA</span> Recurr… Europe… French…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> PSS0000…       2 eval     <span style="text-decoration: underline;">2</span>333     937    <span style="text-decoration: underline;">1</span>396      <span style="color: #BB0000;">NA</span> Recurr… Europe… French…</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 5 more variables: country &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   ancestry_additional_description &lt;chr&gt;, study_id &lt;chr&gt;, pubmed_id &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   cohorts_additional_description &lt;chr&gt;, and abbreviated variable names</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   ¹​sample_id, ²​sample_size, ³​sample_cases, ⁴​sample_controls,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   ⁵​sample_percent_male, ⁶​phenotype_description, ⁷​ancestry_category, ⁸​ancestry</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ Use `colnames()` to see all variable names</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Slot "demographics":</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 0 × 11</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 11 variables: pss_id &lt;chr&gt;, sample_id &lt;int&gt;, variable &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   estimate_type &lt;chr&gt;, estimate &lt;dbl&gt;, unit &lt;chr&gt;, variability_type &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   variability &lt;dbl&gt;, interval_type &lt;chr&gt;, interval_lower &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   interval_upper &lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ Use `colnames()` to see all variable names</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Slot "cohorts":</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 4</span></span></span>
+<span><span class="co">#&gt;   pss_id    sample_id cohort_symbol cohort_name                     </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> PSS000020         1 MHI           Montreal Heart Institute Biobank</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> PSS000020         2 MHI           Montreal Heart Institute Biobank</span></span></code></pre></div>
 </div>
   </div>
 
@@ -293,11 +302,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://rmagno.eu/">Ramiro Magno</a>, <a href="http://iduarte.eu/">Isabel Duarte</a>, Ana-Teresa Maia, <a href="https://cintesis.eu/"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAcMAAACKCAMAAADheNH8AAADAFBMVEUkUKMnUqQmUqQnU6T+/v79%20/f4mUaT///8lUaP+/v8mU6cnU6cnU6b8/f4lUaQlUKMnVKcmUqP9/f/b4vCTqdJMcro1YLK2xeC/%20zOSesdYmVKwmUqbBzuX8/P6TqdN/mctMcbY6Yq4lUaUmUaMmUqUnU6UnUqUoU6V/msz7+/0kUKT3%20+Pz5+v0mVKpFa7IkUabN2OqWrNQlUqeLo8/5+/34+vwlU6n8/P0nVawlVKvw8/n09vsmVa0mU6bA%20zeUmU6ikt9knVKi2xOFjgr33+fzt8fhykMjy9fqitdnE0OcpVanv8vn9/v8oU6bi6PPDz+YlU6oy%20W6n19/uywt9Ye7wlU6hRdrzd5PGouttFbLRTdrcpVKZdfrxwjcN7lsoxXK0vWao4YrPz9vrP2esr%20V6suWq4vWqw2X6y+y+RLcLXy9frW3u5tisNyj8XJ1OkwW6txj8fK1ekwXLA4Ya1NcrfM1urq7vaZ%20rtUrVqfV3e0zXKslUKVUeLs3YbGbsNYmVKkqVqro7fWJoc7U3O2rvNxmhsOPpdAuW7Dk6fRpiMFK%20cLifs9g6Y7ElUqg7Y67G0uctWKu1xOCEncxQdbpWeby3xuHf5fFoiMU0Xq0+aLYqVaba4fB9mMqm%20uNonVKrR2uy6yONegL+uvt37/P7a4e/u8vi0w+Dn7PXg5/M2X68tWKhCaLB0kcigtNlHb7q5x+Jg%20gsJ6lMd3k8Zkg75nhcBBabWXrNTp7vZJbrSsvd0rV6mBm84pVahbfb2wwN9Vd7h2k8m8yuM/Zq9H%20bbQlUqRbfr49ZrKUqtMyXrKHn82xwd8zX7DI0+iGn884Ya/S2+zl6/QsWK1XebopVquBm8uMpNA8%20ZK+RqNJ1kcZGbbdef71Qc7ZPdLljhMBDa7dRdbfX3+7r7/c+Z7Rhgb1BaLNkhMNJb7d/mcokUqlX%20er2Los5ggb/Y4O9ujMZvjMOUq9T+//81YLMlUqUsWrBafLonVatNcbU8ZrXs8Pd4lcrf5vJNdLwn%20VKtYfsUnV7EnUqSAzipdAAAdjUlEQVR42uyce1BU1xnA7+7ec885LHsvLMYIG6zuLpAgBN0iuiBB%2007UojaAog69RwKj1SVEBdTRaX/X9bCNpVDA1ATVGYwUfQdNMqGgkaqyj0WRibEcz07RVZzoNQ6cz%203RXuY3fv3d3L3oubmf1m+AN2z3fu9/3Od853vnMuBAzLj12IsAvCDMMSZhiWMMOwhBmGGYYlzDAs%20YYZhCTMMMwxLmGFYwgzDEgxD0uDxB8Nr0l/GJIm71w1+/DgEffYa8Pjd6PMpAzXf4PEtA6keQ5cF%20Mzb8+1bpk0UzZ85ctOhS6dWjP7u90OH8RLRXx/2GhipHd5yVcr9hY1Zo8XPiAPNa794q7b3oN07j%20L/VeuX3yhxfqnZ/ES7RwVDU0nB7gR60RwtxdJ89sf3LpqU8vPbn68h9bBw5xDgCsPEOShLUnPyg3%20RZkZRBNPBSEKmfQtOxtvNOU7v+A+Bie+Nb05kmEim6e/9UujrJ72bHW2JGhnwzbBuH+w+Tl58t/R%20gtb/C7DR5o+wxPAd2drvSos+kUKINR6ZI7OtKzcvOC4yTEEba375D7G+jB29qbE5MpuiaNSl1UKZ%20sk3nGif0Ku4MGuUYYnh6zR2rSet88i4bCM4UixZF0Xe+rHVHHhtlYRiEnD9Ru9yeZfRIP11t13S2%20RJF9+Ik7vUQrU3KaBEp7RwfWKKmf6CPhivXn9MjTeNfvWmTNKf9zU6Enw4Io1Gm+Rd8qaWl6r0l6%20q5bydimFGH3kNwtGK8kQd0wrcQEkxAURSGte48Ewgv0w6nk3hq37fM8SuL+mq6GAIVlPS3UuJeZ9%20QoYBtqZmG0QeqWNvHm2Rst4Fcts8T4Yv6NmvR/SSMDR9+NUI5Etr8g/KMcRlG1ZbJW3o6jNnXYAM%20p83aSMpmCL41yWWI5neH4dIUb19PNCcyvtvb22UzxPnnc3z7FJlvKMbQ2FZCEciPE1BqLQ6IIbk+%204Yb8OAQD9bIZnuoGQzTFc1aEWV/mID/Wo7gyuQzBwBrKn9bsXkAhhimXD/jrzdXhckdgcYj3aFoq%20H/cEw02KMHQc9Gs9ovsDmQzjF+q1/h6JaYnBijAEcI/FP0EC6abhAOfSixqiVHYc4rfNchnSC7oz%20lx7xmEvJ7xnvlAO5pzdozKB4eQwNp/OktPJ/1q5UZm8BHI0JjEcyRul0yGyz2dLMSKPTdY5SlFEA%20A2M4uIRiomLjZTKE7Qmyc5rLSuQ0f4/izXc6WIcyhtrTkhFtixuaatbqngKm8rx2gf7isJRGArWW%20JLN9WBFNmdMyhsUVUS6fOtNE4mNFGIIBW4XZqFN1tNl+5O7tz9qWLVt2beHx/bunjhs71mkZ5TGV%20SjNsd+UHQzPlMiRrEikvQYJs3EtGHMMiDMW+KZCkOR6Jx1KBrxmNffLEmF9nFjoGD8jKPN1Q+cYE%20k92sQcg7YHwzBF/xXnXmn0VLP6rIH1nmSHcU5rZfP7Rr2mK7TWNxZonxisThX61uCKkD5y8UOzDo%208g4JAE6vr3jUb5VpEA6MIa5Pdg4xzXy5DOGo23095bKN7UJzr6+3dIgxtCxu7etLXnV/mIe0AP4X%20fTcCTqcrtwbk3GWjbphyLhtlMSTXphGcWiZiyY5Co7BEQmLD9YIXl6867FAiDh3PJQhD3pp3820A%20Sa/tPwkaYqtggAw3Ohc2hDLWkjIZkthTQIyd7SLpJvD62G1QcQyjl3grkmoEyeJmhivLZN8rFql/%20kZDcuC5XXhymn+HyGUTRsX8QKYpB7Kg4q0StDdykBIsBbX1QLFXDFbFNgiFZ5Xp+pP2PQyZDEUNj%204riM6id+ynk8w36BFpRd2eNXvLNb7jokMn0xhT4ZFtu5gh1D1wEYqE+7wRCPThVEITX9mN/6XSDr%20Ye456mlJ4AIOfYaZcQQXhotHyrDeJ0P8iOKDe4scrfIZZpZQAoQ1tbKOkSQZGsqfMrTMLgx9htfM%20DNuD7bi8Ix5fDI9quOVp3ACoJkPyc41gPX+9g4SKMIQXtZ1T85qQZ2j8qY7zwNJCpRji+iL2I0bz%20HlCTIfj2ALcYIiKuWB5CH7W2rzsZoqh8EOpxOIdjmDQNKMawMpWb3uLaoZoMyX/y6zmRMUP2kakk%20wxPRXTnSg1CPw8FHuMUkeTxUbC6ts3GOzShUkyGYt5rhFsPED4coxhC+r+1KyfIKjKHNcO42LmBs%20lcox3E9zjk0aomoc/pyvghA18tVLM9zAHlnTk0I7Dsn2sRzDjLWKMSSrOa3UOKAmw7LpXE9MZJ1R%20QYafZbCZdWQsDm2G/MJlq1COYROf7U9RMw5BNfcMiN4MlYzD3FuIDcRF6SHN8N0Mztv0flKxuZSP%20Q9pepmYcPuSLsvrnjUoyhK+wazpK2DQklNfDLP7ugG6FQTGG68ysVktRsYoMs55WUzo3AY1Q0TiE%208HxXyo4I+8ZQZjhkNr9DTr2GlWL4ChfeSHfXoBpDY3U214/5psIMccewrhIW0hwNZYb4e36PH71C%20KYZgmZ2/S5ZxTb04fJmfSiOWAYXjMH5NEnubMq1PCDMEEzV8+pG8W6l6adYUwVnQrHygFsNLXDfa%20RqD0XAqztjEsxJpMMnTrNNfHCg6AE3aTpCIM8SnB0KC2yq2ABcpwbpSF6+UkVJwhqLN27T5R9iMc%20ugwH76QFZ2/m9YWKMIQFNsG5OnX4AglUYGh8z4ok7o0qwhDCOyxDZmcHDlmG4B2r8BZDy/KJ6Uow%20LCtnhGpN82MwVpwh3sTdQEKr1mLlGeJ/7OQ2ifNDNw4hPEy73SbKmTQ+C5PBMsTv6N0gWvNePBSv%20NEMwm+KKNL/PUiMOyVPsCEcRO3DIMozflUcg4Z2+6Jya6nwcJEPoKHW7XIoYXerBHWVYUYYOvtir%20/RSqwRA6ytlA1O4BPclwSbqEiC9KU91vCCNEWVPvDSw0BsUQ5jYz7lqRpmjWhnaAlWOYO4xTr9kL%20VGEIe0WwgZi3Jb7nGDo3CeKS1ire8gMd8nybhUq2f1cIDUEwjB+vZzzvCFOasdsrIFCK4f04/rLx%2051gdhi89ZNMaj+uZ6jJEUhL9vvgkW/aNxutKNoHGvH7mE1+3lvzdESZjbZTX2KBpqvfJd2Vg9MWw%20fht3dkhXqzOXQtCHO79InN+DcSgl0SfEGZK5B01e78wgZKGtW9d0nyHEdSMob62IsJ5bMQMaFWB4%20iLsLRJjOqsQQ4vkaNjVd/YtnzzBRspg2YJRN4/3umtPhkYe/SyG7yRCCNz8WeXfN9R5w828LAvw3%20Br4YVvLJmK1ONYbF7LEA0n760rOPw6+lE9aOX/3Fyoj4G5lqmgq7yRDClLP9xd7LRQydd2JesAzJ%20V3iGRX3UYgjxI1OnBYiIaCOfNUPNHumxT+KBe5utSCxqIuZU4m4yhDh90MURiBKhSEWsyQ2OIX6V%201+v5PpOCDMnMK+y1DGp62TOPwwm+5i8AYxYc1iORhVFrqhbZ9QfE0CXDlzRbaZGF0by5A/wIGEJc%20YGIPoYgt+FnnpXt9b/4xTDnWaE0kvP2tP5XefYYYxpy6Eolor9xXc64SBMPwOOoRhjB+NlvKQkXX%20yZ5hSOnEJWmfX5uMsGrqF4mUxfO/Y0Sewd1m6HpdwzCxxJRAeFE0twXx7hr5gmA9/ERFhtCxmj2E%20SvwT7hGG1OKmQaLyqDYguxzraop0HhCJMZODYOj6tqH+b3Yt5fmPU5qvB/E+fm0yp870OzUZ4n8l%20sOcXB9pwz9RLgRGIiTHAOipwzLhhT3IvlRFRw0EwDF1S9UaJza2a4Nzzlwaxt3gzjd/jD1eT4f/Z%20O/OgKK40gE/3vO73How9jCRW4oirc4AVQBGG4ahFJGAmukGUgJiaDSpWrWI0ilfQUnBdY8RbY9wV%20o/FC1FiJiNemwDPqGlcTIlqaRFclGnXd7MaYrDH5Y3uE6X4DzEzPFZit/v5ABrt7+n2//t7R7ztg%209Fzhtemczrhv0a50uV5oW2uQE0nzUF8ZQmxZ9fUyyiFkl9oHvGZ4cJjAkO0JAsmQeVZYJMa3uP91%20foYQMwWFQ8hhEVEVPjPkZevzxzlys0uxbJHXDAd1Fy5E/YQDyRDCXnZDRKdyg4WhLSViXC8VCTH/%20PvCdId+mMysdHo19jLcMi8R9C2VeQO2QX18MsU9rVN/goGFoW6BPSSNCbLn5fmEIwYrzRNQniq0G%20XjKMETwTFfpxpsDaIdhtENwyHoHgYcjLuVARItXb5BeGEIfvJB6NB9u9tUN4QgyYiV+LA8oQL/pI%20cMsohkHFkCkmHNQcnYi9ZwhhSbla7AavYi8ZMmeyRX+aVYFlCEGZsNBHtuRWwcMQPupO5BzcAP3E%20MKkwCjnNWyWZIfiUSMvSGNi+lF82213iEWrICiqG4EikaIjf+IshDhenlGiYK+8dl30p0yBcRbM4%200Azh4PKW/Qu1il8rBxFDLD7rCsf3rb4whFvHiUNZ8lhvGcK5Yqxq2HocYIYxn9sNUX3hj8HEEMIG%20QU+au35jyBSKcR7mwd7OaXCFGDOjXR1oO4TVZvv+BV0DgoqhuKfluIfsE0O8RXRdzB/vLUNmhujo%207V3AhUcMYaF9XEHp7zHBxHCM6MR521/jIQSDJe45uIkhXSpmxQj9BAeaIRR2gyPvmoKToeZpv9kh%20jPMPw31CzlekvxJwO4xYkGF/W1O+JUj70rvYb33pMb04HuZ4zZCZJcYxo7TDEYG2Q7jYvtDX9+7N%20Bg/DvwViXsqUKYl5KeO1HcIRYmfKnQ14X4pfE1MJCr91fobRYWJgSqHfxkP4UGQ4bIfXawvIbCkn%20Ah2LuwbaDuEkHRIcXoKFYcSBSDHGb6DfGFb9IKwP2dIs78dDaFpMJBkKfQMHmuGgnW2c1zs9w8Q/%20iDqKjfPXeAiOEfk4vgA+MMTb04k9EOfpRv3FEJeFBBtDPCBEeDutd8xi6QvD6PeJYWyDLwwhrifD%20xrULAswQRr/SyhA7PcNHhBmyu7GfGALxYUYoZS30hSG4P4/IBM2m94wJLEM4OD64GFpOasTsIXcc%2034l5z/ClTf2InPvHTT4xhMwSFZmRPeTLaheKAr4zxLUax3jNDmeIXZXhsGwm0yxPS5TO0FX0Pd7E%20iYtDhW489o0hxIeUZIEO2jzfWVpyJml9ou8MhyarOxVDZm/P1KT2FQ6Y+zs1hG50rVJFu8q5V3Ci%20JMtJkGGE6V0tqfILrssjSGAILHdY0lVOkf39pAkQOKoL8x9Tz0w1v+wzQxjRUxl4htOlDwepG6M2%20jq4p4Ik41lnlrXPHj3VE+CCipm2VzBAu4djvD/2VpxMBWhl9RNlUWkH0pAo3CcYk1Si5MdXBa1Wt%20MM77+nKOw8Px+MWm/4apEH3Id4YwN56schgQhurSvq6F2I5/PR7pFSpVt+J7JRbiWqnHXl3HfUz4%201iNF9x1AOsOvaL2CVa3cX7GAdEp9KfzAP6aGcWTCDMNDN/qSVmdmW7dWKQX0XNqDj/aPyKud+G1F%20U96Ia6MMIQZkK61n7oF9ZogHG0jD/1VjZlpEKVbYxEeVtnIqasSmqSrPX/t5TR4vc64srUwzOMS4%20IDU3UnrdNRyegZoVqcvgJt9cPMJ22TU/7x8VGcI5RM4g/alcvzCEs5aybQqo6hGtR5zuOaSnafur%20McQd9d0OIZweaIZuwxDFHBKWXazQZDWiaZplWaLFIkLtT20a6MIOywSvaKRm+cvaClDxP/VtCtWO%202Qb8wxCuLVYhKQrQj8vynSEuIFxkO4Sh8qRghyW/SDkJqQ2725kOOWVoz0nv5qpIPzfOrbqkMsTR%20uz/mpFRATM9hfLdDMNHQsQyJHJdvqCW0GnFhjdgThonD9RKuigynrkO/MbQtvteFuq0l29pnw0uG%200HRedKnrWIb4FuVe12rj3A89iuVmxoa4r+mq5rRNFuBXhjjiHj/ndVlS1VZG+qQ/GMIl8R3KULnZ%20jgRcol3XAbZVXQz7wtL+0tIpww3lbio58zNE63fSMll4VFudgQmxDzTOa6vz87k7o0b6hSF4OxJ1%205JzmTfvNZh1PQZQLdSNWae7trE6M8750SUo/23TXOULamNxfYp4hjxjyN1WU82N3XZS+nfB/vRIl%20l67eEcM4Mgxln0zWWaruHY8y8K7Y+KSWKmI11gGus10XmKnm6qFUZaMbhmeVEsUq1jVOqlo1PSVe%20Q7eXDwNRlHlezUyn/R2TU0e1tF91utUiuKCxNBkp9e1eVqno/v6HuVLdJjxkyFPp8tmxF2abzTo9%20pdRQvGj4Jqu1sebZFQvCo9tgGjBnWmU/rVZXuTzPs4pt8N9fDtfFxxtnn7i6/j8uDzx4a/ry2bt2%20DR/X9/futsbO/aaPRCH9VzCcWXLxkDZ5mY7l29zcaI2SQvEp8X0vjk11Fc61Pm95qU4br62cNqdN%20v8hkFWypGG6O1aoppVJDN+uS0uvMKaVXD+8wSX8Z6DFD23ttJmbHipEJU05Of4WX6fUT+/TfXjI0%20Ebeb0hMwRalVVb/L9TQZIK85U+rBGxaT+w6FP8CUlZvYBbrNKcpgqdKmyXjQa88MTDh6a86TRt+e%2082bh6VVxM922CjO5VbzkMu1lkAYYJw4t2d6/z79OfnXiiS5PTjk3sEd4lme68oJhs4KhvaW2fwF0%20lZaqrU6kfouX5wVGcHMlWyDemrTbAy6bYbueoKDmQz1ttALKEuwiM5QZyiIzlEVmKIvMUGYoi8xQ%20FpmhLDJDmaEsMkNZZIaydGKGTFW00/+bkOrBhTpw24OZYAlihuB6fb2YGWx1ff0MD7OiJE2OanCW%20F2nhkLrL7s4v2jzig/03b36QN39RhyEERyvrNnQJXoYDUFSxYAlvUxkve5iLIYliHXMIEDwvag2v%20ujs/9bc0HaVURrFa7nJqRzF8gWqT3TuoGCqoXoL6R0SGes4QJccR7Qefib8naLUSGCoMT+/Zs5hF%20asPnRR3FUJMmMxQ/v34EeMgQpRTwtvv4iEEdkiAz7HiGeGxspscMY5+kQAW3Of1sk8zQ3wy7MgC3%20qhobgQGIwE4YMmv7ZWcyrRhiBnTFbhlCZoaWzSBHVoYBTCv3RRwBAON4Q4C/xVZHde3a+qjmT6Sn%20DH9T4tVbGDIubzRYGb4zKXPiJ11IdYQ/+21mbUK46L9GMsSW0ZrIh9XV1RNIhn+63LR3htOVg8AQ%20mlaqN24Svp2B4y9nTnSo5MjA62dqm/Y+n0VOoGY1NtUeGEQeNujwu5mZNeMJF7uqnL/zj50l7rp4%202nuNTZmXF1gIhibYY2Jm47b/M4Z7GwzZVqPxrYXCX0w7OWO20Wg1zBUK5zkwvG2rDajT0W8CgaFl%20TKTRaDSscxaLQDJkNz5j/3Zw5i1jdpRR1VAjIvx0rsGabc2OHLJEuOFN3RT8X4x1ecIzgmtVtlvk%20b/uecOZT6RkDLEvD6NEt9MHAs9yTY8JuADvDFx+Psf1FeyXIGQIHhmsMdL71krUfF3rOrn9wNySW%20smrNNLfLns+KZLgnOR+hfsnJv/xZYJg5Rrnsh1hWbbjmzg6Txqch66OWb+ryzwxUXnlpVzoKa7Lb%20k2UyzZpnXypNTrE/QPh0GMdplw/Ppw1C5mRmoDZFZ42MZbm6MjvXp0Iy7n1HKZ+bHNOyHNQiOoVD%20+bE3GbsdqhZeiMpPMesVkcVJQchQP+5iQov0RgJDUGOg/zK+CFu2zOPSBUfquP+1d75BTRxRAM9t%207vb2ILkgaFuNjHBJLg6oIAaVjAX/gIDVQUOtGlAoKohKcepf1NEWBFRQ8d9Mx9GiYHQKWKvWapUZ%20lE6d6VSlxVqsyijFmToV/eBoS/3Q6SV3e0loEm3HL9G8T5fN3r29+92+2/fu9m3iM7Ml5fIcqL/l%20oR+2zf+dBe2xsfOfYVuKAFxx8G7sFq1G5eXLcXlMQ19iAV75hfwqGHEH85i8r1nFBGlRKbJoGrSG%20mZjksAPSXFsmfQqr799LmWLv6fSP8H1mqlvSa0ntuRGl+aiLxAxRFlD8VSXl6xn4WKN/2GY2n2lL%20l20p4rXliYcvt2sU01f5IUOEtFhYJ0NbgmJbuj12MbVUBcpdnkCkfTJXEvreky1ljkUZutUU/qBa%20YGjYYx8/JEcAw1JfDBn66G4AcmZJF723GIromE1a0CjlPmhFo+sotyDCeqS/MdXOv1bLftinick1%20rJyDUmDILj8qW9tq9nGT0FZSHuM4GJ40CQVd+RqQyfghQzZEkglRMkNqEw9XSB0gBxQ7cxU5liQx%20rQU/evQt0tYZ3HwLdM7mOMhAFraS3hkml1zXA5STjq/e7CRULWpKSUKDpHVbGiE3xG2QuqpZt8bm%20+I86pGRd8lE49pwEuE0yQ9hchmNp6p0qVGwj+/gWUp5J6oJSuYvyP4agde/ENx1y/B7ADJknSmJ1%20tMUu8b+AoB75Jk4pOZ55JKOAWPBiDKXn1Fsz4QzKK8PDHQkKpIj4WKZwAamWWkSJhMNLxJaOCtbE%20FfVEy8/r8E0TwO14R6XoCjitP/6DsoQlZmYe7AZsmswQnHZq7ObBQ7Kvf8iJ+SyYY9BYFO5/DIlC%20MlxaUHC3PKapXwuRY9KQIBqUdFkEwFh2TR8dpVBoWc2LMeQmiVsZo30xDCMLAbtWLe9IftsPQUk5%20RNvmS8XvqRTK6fs6VuEe9ZMW6eRahhP4+MdzEziFIopD65wMkcuKlds13Mh/+/gVogs5G/knQ0++%20hYWwT0MUZwpCmCT63qTlsywUNWjcuHEvyhDHaZ7DUB02FhFp4c7YO490ECvf1obLqzbGKXXGQRVS%20f52rRRq5iVnYBJ5SIV2C0MQYV4ZctlNjNUwa7y1O80oxTN6H2NK9E7FIwehlBpQ/32ZJtUUSL5Uh%20w8zmNE/D5HasJ/Rzj2DdOxfL5ZbamwlKRUyd5L9qYcRBuYmik8mkc4qZq3vz8syPDF4YXoUxVa8F%20Q7qVgGlT3Wf4kb1GXU2KY7j4shnS9XuMYDnOz0OW9zOcHIN1u0fNuiJ4MEfc7AgB68k+kxCZETDK%20kT9UXeSNYSF0XyPolWUYOsTY72afQTa1MgmIrrp3hhy4+b8Y0in3NdorWGEFC+95aTBjmaJb4zAL%20obFalNMnbSAdrUcJjv5MeWMYWhoMtr4e/bAnThFXRspDdcdlqQ0Cv3pgOHyHDHs8y7c+hyFjtsV7%208vEHT9BwGdKcz9iNiilYed+sasnNRLF4APUloMdPQVwr2oiml/hkSHedg1op0Rfpi2G92Wzyb4am%200wBVLzLZjVTvZRztytWxaYL1olwYUgWQvSJ7yxfjdPedc6Y9MWS2ZIHIeA+xNqZTD+69I5V2Agj3%20xttNZIqc3WFJFyloXrUb9CsXFTAdWk3zyDz7dF/LB9iWtvDEJLPdAntlSHdq2Zo0i1BHvdkXw7Mg%206ybp1wzpvBw9ilu+pWnp2eApi6VzGRqi4XafL53XDnQyw/4Gjbbw3dWOGswP11iiofNQu49+2MhD%20mEJ6iHnTV1l9kdSqzX+ycGNBedPDFfBvm1Tz5+DbTUO/QAS6VoZ3fhCCOGP25GV7GsZmTBVPoTaI%20jYq8UHq+vMHbuJRJ3a6HXMODZQ+2f5Lsg+H7iJjjH/1wMMe7MJzWLDOkbANC9MBoNCpVT/EDz3SI%205ZVGwkhA1QL5EJ+rIGGQ/EDmQDMPiaxc0QiNCnobMxwOMMNvVDxvdu2H/FORYWjiAj5or/ROr3cE%204gmloJyPkYKvdKVB+G2EIW/I4RyGKapRQXst0Lwf3xYd51RAaKKRUOllhkkG135InRmg54HSqDR8%20ukP0mSbzzZghnyUzNPBb/YIhXWK17peBnrBaVzrzSNJt3cWVlQtndLvkDinLzl1YubD4VkWZs2z1%202RmtOGkY1XuqIDfylBibq7tzZ4NYfPeWVYqXkgOt1kcuJsrSYs0+Km2PfNLiXO981pdrBU0zsi/i%20BtW1C6rzWzeoXV/lLv6tYGFlZe4fVc6BiGVeQb5Q1HhiEf5o8sgda4XbuIiuzc6trMxvvJ4qKbZa%20pTSgGdaWDdLNNs/a8p1/MPQlwlPFNMxEkZTr6TuKaNdX+RTtkrOXoZnn5hAhvfx0z6YqKne+yg2n%20x5iG1ZN9Ro0UU28yqd0SJQtF8UIR5SuzN602xY8hQ/9DK/2UYUACDAMSYBhgGJAAw4AEGAYkwPDV%20lH8ApkyvCL+KUR0AAAAASUVORK5CYII=" height="24"></a>.</p>
+  <p></p>
+<p>Developed by <a href="https://rmagno.eu/" class="external-link">Ramiro Magno</a>, <a href="http://iduarte.eu/" class="external-link">Isabel Duarte</a>, Ana-Teresa Maia, <a href="https://cintesis.eu/" class="external-link"><img src="reference/figures/cintesis.svg" height="24"></a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
