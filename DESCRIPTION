@@ -1,7 +1,7 @@
 Package: quincunx
 Type: Package
 Title: REST API Client for the 'PGS' Catalog
-Version: 0.1.4
+Version: 0.1.5
 Authors@R: c(
     person(given = "Ramiro", family = "Magno",
       email = "ramiro.magno@gmail.com",
@@ -23,7 +23,7 @@ Description: Programmatic access to the 'PGS' Catalog.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
 Suggests: 
     testthat,
     knitr,

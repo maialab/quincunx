@@ -1,26 +1,38 @@
 read_pgs_scoring_file_data <- function(file) {
 
   col_types <- list(
-    variant_id = vroom::col_character(),
+
+    # Variant description columns
     rsID = vroom::col_character(),
     chr_name = vroom::col_character(),
     chr_position = vroom::col_integer(),
     effect_allele = vroom::col_character(),
-    reference_allele = vroom::col_character(),
-    effect_weight = vroom::col_double(),
+    other_allele = vroom::col_character(),
     locus_name = vroom::col_character(),
-    weight_type = vroom::col_character(),
-    allelefrequency_effect = vroom::col_double(),
-    is_interaction = vroom::col_logical(),
-    is_recessive = vroom::col_logical(),
     is_haplotype = vroom::col_logical(),
     is_diplotype = vroom::col_logical(),
     imputation_method = vroom::col_character(),
     variant_description = vroom::col_character(),
     inclusion_criteria = vroom::col_character(),
+
+    # Weight information columns
+    effect_weight = vroom::col_double(),
+    is_interaction = vroom::col_logical(),
+    is_dominant = vroom::col_logical(),
+    is_recessive = vroom::col_logical(),
+
+    dosage_0_weight = vroom::col_character(),
+    dosage_1_weight = vroom::col_character(),
+    dosage_2_weight = vroom::col_character(),
+
+    # Other information
     OR = vroom::col_double(),
-    HR = vroom::col_double()
-  )
+    HR = vroom::col_double(),
+    allelefrequency_effect = vroom::col_double()
+
+    # TODO: support the column allelefrequency_effect_<Ancestry>. Note that
+    # <Ancestry> is variable making the name of this column unpredictable.
+)
 
   col_names <- read_file_column_names(file)
   col_types2 <- vroom::cols(!!!col_types[col_names])
@@ -51,22 +63,30 @@ read_pgs_scoring_file_metadata <- function(file) {
 
   comment_block_lines <- read_comment_block(file)
 
-  pgs_id <- extract_from_comment(comment_block_lines, pattern = '^# PGS ID = (PGS\\d{6})')
-  reported_trait <- extract_from_comment(comment_block_lines, pattern = '# Reported Trait = (.+)')
-  original_genome_build <- extract_from_comment(comment_block_lines, pattern = '# Original Genome Build = (.+)')
-  number_of_variants <- extract_from_comment(comment_block_lines, pattern = '# Number of Variants = (\\d+)')
-  pgp_id <- extract_from_comment(comment_block_lines, pattern = '# PGP ID = (PGP\\d{6})')
-  citation <- extract_from_comment(comment_block_lines, pattern = '# Citation = (.+)')
-  license <- extract_from_comment(comment_block_lines, pattern = '# LICENSE = (.+)')
+  pgs_id <- extract_from_comment(comment_block_lines, pattern = '^#pgs_id=(PGS\\d{6})')
+  pgs_name <- extract_from_comment(comment_block_lines, pattern = '^#pgs_name=(.+)')
+
+  reported_trait <- extract_from_comment(comment_block_lines, pattern = '^#trait_reported=(.+)')
+  mapped_trait <- extract_from_comment(comment_block_lines, pattern = '^#trait_mapped=(.+)')
+  efo_trait <- extract_from_comment(comment_block_lines, pattern = '^#trait_efo=(.+)')
+
+  genome_build <- extract_from_comment(comment_block_lines, pattern = '^#genome_build=(.+)')
+  weight_type <- extract_from_comment(comment_block_lines, pattern = '^#weight_type=(.+)')
+  number_of_variants <- extract_from_comment(comment_block_lines, pattern = '^#variants_number=(\\d+)')
+  pgp_id <- extract_from_comment(comment_block_lines, pattern = '^#pgp_id=(PGP\\d{6})')
+  citation <- extract_from_comment(comment_block_lines, pattern = '^#citation=(.+)')
 
   metadata_tbl <- tibble::tibble(
-    pgs_id = pgs_id,
-    reported_trait = reported_trait,
-    original_genome_build = original_genome_build,
-    number_of_variants = as.integer(number_of_variants),
-    pgp_id = pgp_id,
-    citation = citation,
-    license = license
+    pgs_id = nr_to_na(pgs_id),
+    pgs_name = nr_to_na(pgs_name),
+    reported_trait = nr_to_na(reported_trait),
+    mapped_trait = nr_to_na(mapped_trait),
+    efo_trait = nr_to_na(efo_trait),
+    genome_build = nr_to_na(genome_build),
+    weight_type = nr_to_na(weight_type),
+    number_of_variants = as.integer(nr_to_na(number_of_variants)),
+    pgp_id = nr_to_na(pgp_id),
+    citation = nr_to_na(citation)
   )
 
   return(metadata_tbl)
