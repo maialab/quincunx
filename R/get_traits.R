@@ -129,6 +129,7 @@ get_trait_by_trait_term <-
 #'
 #' @return A \linkS4class{traits} object.
 #' @examples
+#' \dontrun{
 #' # Get a trait by its EFO identifier
 #' get_traits(efo_id = 'EFO_0004631')
 #'
@@ -145,7 +146,7 @@ get_trait_by_trait_term <-
 #' # Get traits, including its children traits (check column `is_child` for
 #' # child traits)
 #' get_traits(trait_term = 'breast cancer', include_children = TRUE)
-#'
+#' }
 #' @export
 get_traits <- function(efo_id = NULL,
                        trait_term = NULL,

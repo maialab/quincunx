@@ -64,6 +64,7 @@ mode search. For more details see the help vignette:
 \code{vignette("getting-pgs-publications", package = "quincunx")}.
 }
 \examples{
+\dontrun{
 # Get PGS publications by their identifier
 get_publications(pgp_id = c('PGP000001', 'PGP000002'))
 
@@ -75,5 +76,5 @@ get_publications(pubmed_id = '30554720')
 
 # By author's last name
 get_publications(author = 'Natarajan')
-
+}
 }

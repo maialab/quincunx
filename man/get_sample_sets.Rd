@@ -55,10 +55,11 @@ Please note that all search criteria are vectorised, thus allowing for batch
 mode search.
 }
 \examples{
+\dontrun{
 # Search by PGS identifier
 get_sample_sets(pgs_id = 'PGS000013')
 
 # Search by the PSS identifier
 get_sample_sets(pss_id = 'PSS000068')
-
+}
 }

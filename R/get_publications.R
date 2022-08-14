@@ -161,6 +161,7 @@ get_publication_by_author <-
 #'
 #' @return A \linkS4class{publications} object.
 #' @examples
+#' \dontrun{
 #' # Get PGS publications by their identifier
 #' get_publications(pgp_id = c('PGP000001', 'PGP000002'))
 #'
@@ -172,7 +173,7 @@ get_publication_by_author <-
 #'
 #' # By author's last name
 #' get_publications(author = 'Natarajan')
-#'
+#' }
 #' @export
 get_publications <- function(pgp_id = NULL,
                              pgs_id = NULL,

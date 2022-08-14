@@ -108,6 +108,7 @@ get_score_by_trait_id <- function(efo_id, limit = 20L, verbose = FALSE, warnings
 #'
 #' @return A \linkS4class{scores} object.
 #' @examples
+#' \dontrun{
 #' # By `pgs_id`
 #' get_scores(pgs_id = 'PGS000088')
 #'
@@ -116,7 +117,7 @@ get_score_by_trait_id <- function(efo_id, limit = 20L, verbose = FALSE, warnings
 #'
 #' # By `pubmed_id`
 #' get_scores(pubmed_id = '25748612')
-#'
+#' }
 #' @export
 get_scores <- function(pgs_id = NULL,
                        efo_id = NULL,

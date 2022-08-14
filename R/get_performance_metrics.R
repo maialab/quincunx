@@ -92,6 +92,7 @@ get_performance_by_pgs_id <- function(pgs_id, limit = 20L, verbose = FALSE, warn
 #'
 #' @return A \linkS4class{performance_metrics} object.
 #' @examples
+#' \dontrun{
 #' # Get performance metrics catalogued with identifier 'PPM000001'
 #' get_performance_metrics(ppm_id = 'PPM000001')
 #'
@@ -100,7 +101,6 @@ get_performance_by_pgs_id <- function(pgs_id, limit = 20L, verbose = FALSE, warn
 #'
 #' # To retrieve all catalogued performed metrics in PGS Catalog you simply
 #' # leave the parameters `ppm_id` and `pgs_id` as `NULL`.
-#' \dontrun{
 #' get_performance_metrics()
 #' }
 #'

@@ -48,6 +48,7 @@ element a vector. These columns can be unnested using
 \code{\link[tidyr]{unnest_longer}} (see Examples).
 }
 \examples{
+\dontrun{
 # Get the latest release
 get_releases()
 get_releases(date = 'latest')
@@ -57,6 +58,6 @@ get_releases(date = 'all')
 
 # Get a specific release by date
 get_releases(date = '2020-08-19')
-
+}
 
 }

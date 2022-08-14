@@ -64,6 +64,7 @@ Please note that all search criteria are vectorised, thus allowing for batch
 mode search.
 }
 \examples{
+\dontrun{
 # Get a trait by its EFO identifier
 get_traits(efo_id = 'EFO_0004631')
 
@@ -80,5 +81,5 @@ get_traits(trait_term = 'breast cancer')
 # Get traits, including its children traits (check column `is_child` for
 # child traits)
 get_traits(trait_term = 'breast cancer', include_children = TRUE)
-
+}
 }

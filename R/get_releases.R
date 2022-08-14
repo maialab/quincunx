@@ -98,6 +98,7 @@ get_release_all <-
 #' \item{notes}{News about the release.}
 #' }
 #' @examples
+#' \dontrun{
 #' # Get the latest release
 #' get_releases()
 #' get_releases(date = 'latest')
@@ -107,7 +108,7 @@ get_release_all <-
 #'
 #' # Get a specific release by date
 #' get_releases(date = '2020-08-19')
-#'
+#' }
 #'
 #' @export
 get_releases <- function(date = 'latest',
