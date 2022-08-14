@@ -5,8 +5,6 @@ vignette: >
   %\VignetteIndexEntry{PGS scoring file}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-resource_files:
-  - '../man/figures/pgs_scoring_file.svg'
 ---
 
 ```{r, include = FALSE}
@@ -19,17 +17,50 @@ library(quincunx)
 
 ## Introduction
 
-PGS scoring files are the files provided by the PGS Catalog that allow you to compute polygenic scores for your samples. These files are hosted at the PGS Catalog FTP server: [http://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/](http://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/). They are labelled by their respective PGS Score ID (e.g. `PGS000001.txt.gz`). 
+PGS scoring files are the files provided by the PGS Catalog that allow you to
+compute polygenic scores for your samples. These files are hosted at the PGS
+Catalog FTP server:
+[http://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/](http://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/).
+They are labelled by their respective PGS Score ID (e.g. `PGS000001.txt.gz`).
 
-Essentially, each scoring file contains variant identification, effect alleles and respective score weights. The file is formatted to be a gzipped tab-delimited text file. The file starts with an header that contains brief metadata about the score.
+Essentially, each scoring file contains variant identification, effect alleles
+and respective score weights. The file is formatted to be a gzipped
+tab-delimited text file. The file starts with an header that contains brief
+metadata about the score.
 
-```{r  out.width = "100%", echo=FALSE}
-knitr::include_graphics('../man/figures/pgs_scoring_file.svg') 
+```r
+###PGS CATALOG SCORING FILE - see https://www.pgscatalog.org/downloads/#dl_ftp_scoring for additional information
+#format_version=2.0
+##POLYGENIC SCORE (PGS) INFORMATION
+#pgs_id=PGS000117
+#pgs_name=CVD_EJ2020
+#trait_reported=Cardiovascular Disease 
+#trait_mapped=cardiovascular disease
+#trait_efo=EFO_0000319
+#weight_type=NR
+#genome_build=GRCh37
+#variants_number=267863
+##SOURCE INFORMATION
+#pgp_id=PGP000054
+#citation=Elliott J et al. JAMA (2020). doi:10.1001/jama.2019.22241
+rsID	chr_name	chr_position	effect_allele	other_allele	effect_weight
+rs11240779	1	808631	A	G	0.00077622
+rs1921	1	949608	A	G	-0.00583829
+rs2710890	1	958905	G	A	-0.00182583
+rs4970349	1	967658	T	C	-0.001855691
+rs2710887	1	986443	T	C	-0.003430246
 ```
 
 ## Getting PGS scoring files
 
-To get PGS scoring files you may either download them directly from the FTP server yourself or use the quincunx function `read_scoring_file()`. This function automatically downloads, unzips and reads both the header and the data as a data frame into R. Let's look at an example: polygenic score "PGS000655". You can use directly the PGS score ID as the argument to the `source` parameter in the function `read_scoring_file()`, and it will translate it to the corresponding URL, download the file and import the data as data frame with appropriate data types.
+To get PGS scoring files you may either download them directly from the FTP
+server yourself or use the quincunx function `read_scoring_file()`. This
+function automatically downloads, unzips and reads both the header and the data
+as a data frame into R. Let's look at an example: polygenic score "PGS000655".
+You can use directly the PGS score ID as the argument to the `source` parameter
+in the function `read_scoring_file()`, and it will translate it to the
+corresponding URL, download the file and import the data as data frame with
+appropriate data types.
 
 ```{r reading}
 my_pgs <- read_scoring_file(source = "PGS000655")
@@ -37,20 +68,27 @@ length(my_pgs)
 names(my_pgs)
 ```
 
-The returned object of `read_scoring_file()` is a list of lists. The outer list runs (potentially) over several PGS IDs if you asked for more than one. So we start by extracting the first (and in this case only) score by name:
+The returned object of `read_scoring_file()` is a list of lists. The outer list
+runs (potentially) over several PGS IDs if you asked for more than one. So we
+start by extracting the first (and in this case only) score by name:
 
 ```{r selecting}
 PGS000655 <- my_pgs[['PGS000655']]
 names(PGS000655)
 ```
 
-Now, each inner list comprises two elements: `metadata` and `data`. The metadata part contains the information retrieved from the initial comment block of the file:
+Now, each inner list comprises two elements: `metadata` and `data`. The metadata
+part contains the information retrieved from the initial comment block of the
+file:
 
 ```{r metadata}
 dplyr::glimpse(PGS000655$metadata)
 ```
 
-From the metadata we can see that this score is for the trait *Non-alcoholic fatty liver disease*, and that it is composed of 10 variants. Remember that you can retrieve more metadata information about this score by using `get_scores('PGS000655')` or `get_performance_metrics('PGS000655')`.
+From the metadata we can see that this score is for the trait *Non-alcoholic
+fatty liver disease*, and that it is composed of 10 variants. Remember that you
+can retrieve more metadata information about this score by using
+`get_scores('PGS000655')` or `get_performance_metrics('PGS000655')`.
 
 The data element contains the actual relevant information for calculating scores:
 
@@ -58,7 +96,12 @@ The data element contains the actual relevant information for calculating scores
 PGS000655$data
 ```
 
-The minimal information for calculating scores are: variant identification information, and its effect allele, as well as the corresponding score weight. Currently, the PGS Catalog project, identifies a variant by either its rsID (column `rsID`), or by its genomic position (columns `chr_name` and `chr_position`). The effect allele and the score weight are given in the columns `effect_allele` and `effect_weight`, respectively.
+The minimal information for calculating scores are: variant identification
+information, and its effect allele, as well as the corresponding score weight.
+Currently, the PGS Catalog project, identifies a variant by either its rsID
+(column `rsID`), or by its genomic position (columns `chr_name` and
+`chr_position`). The effect allele and the score weight are given in the columns
+`effect_allele` and `effect_weight`, respectively.
 
 ```{r selected-data}
 PGS000655$data[c('rsID', 'effect_allele', 'effect_weight')]
@@ -66,7 +109,14 @@ PGS000655$data[c('rsID', 'effect_allele', 'effect_weight')]
 
 ## Note about large PGS files
 
-Please note that number of variants comprising PGS scores can vary wildly. In the example above (`"PGS000655"`) we provided a very small example. Other scores may be composed of millions of variants, e.g., `"PGS000013"`. Reading this scoring files directly to memory may take up a substantial amount of resources (in the order of Gigabytes). So to prevent stalling your computer while reading these files we recommend to read in only the metadata, as this can be done efficiently. As the number of variants is indicated in the metadata then you can decide whether to read in all the information or not.
+Please note that number of variants comprising PGS scores can vary wildly. In
+the example above (`"PGS000655"`) we provided a very small example. Other scores
+may be composed of millions of variants, e.g., `"PGS000013"`. Reading this
+scoring files directly to memory may take up a substantial amount of resources
+(in the order of Gigabytes). So to prevent stalling your computer while reading
+these files we recommend to read in only the metadata, as this can be done
+efficiently. As the number of variants is indicated in the metadata then you can
+decide whether to read in all the information or not.
 
 To read only the metadata set the parameter `metadata_only` to `TRUE`:
 
@@ -75,9 +125,12 @@ my_big_scoring_file <- read_scoring_file(source = "PGS000013", metadata_only = T
 dplyr::glimpse(my_big_scoring_file[['PGS000013']]$metadata)
 ```
 
-As can be seen from the variable `number_of_variants`, the number of variants is greater than 6 million. This means that reading this PGS scoring file has these many rows which can make it burdensome on some computers.
+As can be seen from the variable `number_of_variants`, the number of variants is
+greater than 6 million. This means that reading this PGS scoring file has these
+many rows which can make it burdensome on some computers.
 
-To know how many variants are included in every score, you can take advantage of the `get_scores()` function:
+To know how many variants are included in every score, you can take advantage of
+the `get_scores()` function:
 
 ```{r}
 # all_scores <- get_scores()
@@ -108,18 +161,22 @@ a header containing brief metadata about the score.
 
 ### Columns
 
-The following table lists all possible columns in a PGS scoring file. A few columns are required, and most are optional; either the `rsID` alone or the combination of `chr_name` and `chr_position` are required, with the other being optional. The `read_scoring_file()` function automatically reads all available columns with the right R types into a data frame.
+The following table lists all possible columns in a PGS scoring file. A few
+columns are required, and most are optional; either the `rsID` alone or the
+combination of `chr_name` and `chr_position` are required, with the other being
+optional. The `read_scoring_file()` function automatically reads all available
+columns with the right R types into a data frame. Original source is
+<https://www.pgscatalog.org/downloads/#scoring_columns>.
 
 | Column                   | Field Name                                | Field Description                                            | Field Requirement                                            |
 | ------------------------ | ----------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `rsID`                   | dbSNP Accession ID (rsID)                 | The SNP's rs ID                                              | **Required**/**Optional** -- unless both the *chr_name* and *chr_position* columns are absent. |
+| `rsID`                   | dbSNP Accession ID (rsID)                 | The SNP's rs ID                                              | **Optional** -- unless both the *chr_name* and *chr_position* columns are absent. |
 | `chr_name`               | Location - Chromosome                     | Chromosome name/number associated with the variant           | **Required** -- may be optional if an *rsID* for the variant is provided. |
 | `chr_position`           | Location - Position within the Chromosome | Chromosomal position associated with the variant             | **Required** -- may be optional if an *rsID* for the variant is provided. |
 | `effect_allele`          | Effect Allele                             | The allele that's dosage is counted (e.g. {0, 1, 2}) and multiplied by the variant's weight ('effect_weight') when calculating score. The effect allele is also known as the 'risk allele'. | **Required**                                                 |
-| `reference_allele`       | Reference Allele                          | The other allele(s) at the loci                              | Optional -- but strongly recommended.                        |
+| `other_allele`           | Other Allele                              | The other allele(s) at the loci                              | Optional -- but strongly recommended.                        |
 | `effect_weight`          | Variant Weight                            | Value of the effect that is multiplied by the dosage of the effect allele ('effect_allele') when calculating the score. | **Required**                                                 |
 | `locus_name`             | Locus Name                                | This is kept in for loci where the variant may be referenced by the gene (APOE e4). It is also common (usually in smaller PGS) to see the variants named according to the genes they impact. | Optional                                                     |
-| `weight_type`            | Type of Weight                            | Whether the author supplied Variant Weight is a: **beta** (effect size), or something like an **OR/HR** (odds/hazard ratio) | Optional                                                     |
 | `allelefrequency_effect` | Effect Allele Frequency                   | Reported effect allele frequency, if the associated locus is a haplotype then haplotype frequency will be extracted. | Optional                                                     |
 | `is_interaction`         | FLAG: Interaction                         | This is a TRUE/FALSE variable that flags whether the weight should be multiplied with the dosage of more than one variant. Interactions are demarcated with a *_x_* between entries for each of the variants present in the interaction. | Optional                                                     |
 | `is_recessive`           | FLAG: Recessive Inheritance Model         | This is a TRUE/FALSE variable that flags whether the weight should be added to the PGS sum only if there are 2 copies of the effect allele (e.g. it is a recessive allele). | Optional                                                     |
@@ -130,7 +187,11 @@ The following table lists all possible columns in a PGS scoring file. A few colu
 | `inclusion_criteria`     | Score Inclusion Criteria                  | Explanation of when this variant gets included into the PGS (e.g. if it depends on the results from other variants). | Optional                                                     |
 | `OR`                     | Odds Ratio                                | Sometimes the authors only give an Odds Ratio (OR) as a weight for the PGS. In these cases the OR is turned into an `effect_weight`,  by taking the log, as is customary when deriving PGS. The OR column in the scoring file to reflect how the score was originally provided by the authors. | Optional                                                     |
 | `HR`                     | Hazard Ratio                              | Sometimes the authors only give an Hazard Ratio (HR) as a weight for the PGS. In these cases the HR is turned into an `effect_weight`,  by taking the log, as is customary when deriving PGS. The HR column in the scoring file to reflect how the score was originally provided by the authors. | Optional                                                     |
+| `dosage_0_weight`, `dosage_1_weight`, `dosage_2_weight`  | Effect weight with 0, 1 or 2 copies of the effect allele | Weights that are specific to different dosages of the effect_allele (e.g. {0, 1, 2} copies) can also be reported when the the contribution of the variants to the score is not encoded as additive, dominant, or recessive. In this case three columns are added corresponding to which variant weight should be applied for each dosage, where the column name is formated as dosage_#_weight where the # sign indicates the number of effect_allele copies. | Optional |
+
 
 ## References
 
-The information here provided is gathered from the PGS Catalog documentation on the PGS scoring file schema: [PGS Scoring Files](https://www.pgscatalog.org/downloads/). Please note that, in comparison, with the original documentation of the file format, we have also included the columns `OR` and `HR` as discussed in [PGS Catalog, GitHub issue #147](https://github.com/PGScatalog/PGS_Catalog/issues/147).
+The information here provided is gathered from the PGS Catalog documentation on
+the PGS scoring file schema: [PGS Scoring
+Files](https://www.pgscatalog.org/downloads/).
