@@ -10,3 +10,5 @@
 ^vignettes$
 ^CODE_OF_CONDUCT\.md$
 ^CRAN-RELEASE$
+^cran-comments\.md$
+^CRAN-SUBMISSION$
