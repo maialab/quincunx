@@ -54,7 +54,7 @@ by the `get_scores()` function.
 ```{r}
 library(dplyr, warn.conflicts = FALSE)
 
-# PGS000001 is one of the polygenic scores that is based upon participants from
+# PGS000011 is one of the polygenic scores that is based upon participants from
 # cohort PROMIS
 pgs_11 <- get_scores('PGS000011')
 
