@@ -5,6 +5,7 @@ home:
   description: An R package to query, download and wrangle PGS Catalog data.
 
 template:
+  bootstrap: 5
   params:
     docsearch:
       api_key: 6eb557c1e1320049dc93c778f9efe639
